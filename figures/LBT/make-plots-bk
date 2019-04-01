@@ -1,0 +1,626 @@
+#!/usr/bin/env python3
+
+import matplotlib.pyplot as plt
+import numpy as np
+import argparse
+import colorsys
+import h5py
+import husl
+import glob
+import os
+import subprocess
+import pickle
+from itertools import chain
+from scipy import interpolate
+from scipy.optimize import brentq
+from matplotlib import ticker
+from matplotlib.colors import LinearSegmentedColormap
+from matplotlib import patches
+from matplotlib import gridspec
+
+aspect = 1/1.618
+resolution = 72.27
+columnwidth = 246/resolution
+textwidth = 510/resolution
+textiny, texsmall, texnormal = 8.0, 9.25, 10.0
+cm1, cm2 = plt.cm.Blues(.8), plt.cm.Reds(.8)
+cb,co,cg,cr = plt.cm.Blues(.6), \
+	plt.cm.Oranges(.6), plt.cm.Greens(.6), plt.cm.Reds(.6)
+offblack = '#262626'
+gray = '0.8'
+
+plt.rcdefaults()
+plt.rcParams.update({
+	'font.family': 'sans-serif',
+	'font.serif': ['CMU Serif'],
+	'font.size': textiny*1.2,
+	'legend.fontsize': textiny*1.2,
+	'axes.labelsize': textiny*1.2,
+	'axes.titlesize': textiny*1.2,
+	'xtick.labelsize': textiny*1.2,
+	'ytick.labelsize': textiny*1.2,
+	'font.weight': 400,
+	'axes.labelweight': 400,
+	'axes.titleweight': 400,
+	'lines.linewidth': .9,
+	'lines.markersize': 3,
+	'lines.markeredgewidth': .1,
+	'patch.linewidth': .9,
+	'axes.linewidth': .5,
+	'xtick.major.width': .5,
+	'ytick.major.width': .5,
+	'xtick.minor.width': .5,
+	'ytick.minor.width': .5,
+	'xtick.major.size': 2,
+	'ytick.major.size': 2,
+	'xtick.minor.size': 1.3,
+	'ytick.minor.size': 1.3,
+	'xtick.major.pad': 1.8,
+	'ytick.major.pad': 1.8,
+	'text.color': 'black',
+	'axes.edgecolor': 'black',
+	'axes.labelcolor': 'black',
+	'xtick.color': 'black',
+	'ytick.color': 'black',
+	'legend.numpoints': 1,
+	'legend.scatterpoints': 1,
+	'legend.frameon': False,
+	'image.interpolation': 'none',
+	'pdf.fonttype': 42,
+})
+
+
+plot_functions = {}
+
+def plot(f):
+	def wrapper(*args, **kwargs):
+		print(f.__name__)
+		f(*args, **kwargs)
+		plt.savefig('{}.pdf'.format(f.__name__))
+		plt.close()
+
+	plot_functions[f.__name__] = wrapper
+
+	return wrapper
+
+
+def finish(despine=True, remove_ticks=False, pad=0.1, h_pad=None, w_pad=None,
+		   rect=[0, 0, 1, 1]):
+	fig = plt.gcf()
+
+	for ax in fig.axes:
+		if despine:
+			for spine in 'top', 'right':
+				ax.spines[spine].set_visible(False)
+
+		if remove_ticks:
+			for ax_name in 'xaxis', 'yaxis':
+				getattr(ax, ax_name).set_ticks_position('none')
+		else:
+			ax.xaxis.set_ticks_position('bottom')
+			ax.yaxis.set_ticks_position('left')
+
+	fig.tight_layout(pad=pad, h_pad=h_pad, w_pad=w_pad, rect=rect)
+
+
+def set_loc(ax, xy=None, nbins=5, steps=[1, 2, 3, 4, 5, 10],
+			prune=None, minor=0):
+	if xy == 'x':
+		axes = ax.xaxis,
+	elif xy == 'y':
+		axes = ax.yaxis,
+	else:
+		axes = ax.xaxis, ax.yaxis
+
+	for axis in axes:
+		axis.set_major_locator(
+			ticker.MaxNLocator(nbins=nbins, steps=steps, prune=prune)
+		)
+		if minor:
+			axis.set_minor_locator(ticker.AutoMinorLocator(minor))
+
+
+def desaturate(color, fraction=0.5):
+	h, l, s = colorsys.rgb_to_hls(*color[:3])
+	return colorsys.hls_to_rgb(h, l, fraction*s)
+
+
+def recolor(color, f1=0.7, f2=0.7):
+	h, l, s = colorsys.rgb_to_hls(*color[:3])
+	return colorsys.hls_to_rgb(h, f1*l, f2*s)
+
+
+def truncate_colormap(cmap, minval=0.0, maxval=1.0, n=100):
+	new_cmap = LinearSegmentedColormap.from_list(
+		'trunc({n},{a:.2f},{b:.2f})'.format(n=cmap.name, a=minval, b=maxval),
+		cmap(np.linspace(minval, maxval, n)))
+	return new_cmap
+
+
+TRENTO_LABEL = r'T\raisebox{-.5ex}{R}ENTo'
+
+
+def alpha_s(Q2, T, mu):
+	alpha0 = 4.*np.pi/9.
+	Lambda2 = 0.2**2
+	scale2 = (mu*np.pi*T)**2
+	Q2 = np.abs(Q2)
+	result = alpha0/np.log(np.max([Q2, scale2])/Lambda2)
+	if result > alpha0 or result < 0.:
+		return alpha0
+	else:
+		return result
+alpha_s = np.vectorize(alpha_s)
+
+def mD2(T, mu):
+	return alpha_s(0., T, mu)*48./np.pi*T*T
+mD2 = np.vectorize(mD2)
+
+def mD2_LO_eq(m2, T, mu):
+	return alpha_s(m2, T, mu)*48./np.pi - m2/T/T
+def mD2_LO_sf(T, mu):	
+	return brentq(mD2_LO_eq, 0.01, 100., args=(T, mu))
+mD2_LO_sf = np.vectorize(mD2_LO_sf)
+
+@plot
+def alpha_s_at_T(args):
+	fig, axes = plt.subplots(nrows=1, ncols=2,
+							 figsize=(columnwidth, 0.6*columnwidth))
+	Tc = 0.154
+	T = np.linspace(Tc, 1, 100)
+	ax = axes[0]
+	for mu, num, line in zip([0.45, 0.6, 0.75],
+		["0.45", "0.6", "0.75"], ['--', '-', '-.']):
+		ax.plot(T, alpha_s(0., T, mu), line, color=cr, label=r"${:s}\pi T$".format(num))
+	ax.set_xlabel(r'$T$ [GeV]')
+	ax.set_ylabel(r'$\alpha_s(Q, \mu T)$')
+	ax.set_ylim(0,1.7)
+	ax.set_xlim(0.0, 1.1)
+	ax.set_xticks([0.2, 0.6, 1.0])
+	ax.legend()
+	ax.set_title("At $Q=0$")
+
+	ax = axes[1]
+	for mu, num, line in zip([0.45, 0.6, 0.75],
+		["0.45", "0.6", "0.75"], ['--', '-', '-.']):
+		m2 = mD2_LO_sf(T, mu)
+		ax.plot(T, alpha_s(m2, T, mu), line, color=cr, label=r"${:s}\pi T$".format(num))
+	ax.set_xlabel(r'$T$ [GeV]')
+	#ax.set_ylabel(r'$\alpha_s(Q, \mu T)$')
+	ax.set_ylim(0,1.7)
+	ax.set_xlim(0.0, 1.1)
+	ax.set_yticks([])
+	ax.set_xticks([0.2, 0.6, 1.0])
+	ax.legend()
+	ax.set_title("At $Q=m_D$")
+
+	finish(rect=[0.0, 0., 0.99, 0.99])
+
+@plot
+def tau_f(_):
+	fig, ax = plt.subplots(nrows=1, ncols=1, sharex=True,
+							 figsize=(.9*columnwidth, .8*columnwidth))
+	M = 1.3
+	T = .3
+	E = 20.
+	def tau_f(E, T, kperp, x, M):
+		return 2.*x*(1.-x)*E/(kperp**2 + (x*M)**2 + (1.-x)*0.5*mD2(T, 1.))
+	tau_f = np.vectorize(tau_f)
+
+	kt = np.linspace(0, T*5, 100) # kperp
+	x = np.linspace(0, 1, 100) # x
+
+	KT, X = np.meshgrid(kt, x)
+	KT = KT.T
+	X = X.T
+
+	Z = tau_f(E, T, KT, X, M)
+	im = ax.contourf(KT/T, X, Z/5.026, 10)
+	plt.colorbar(im, label=r'$\tau_f$ [fm/c]')
+	ax.set_ylabel(r'$x$')
+	ax.set_xlabel(r'$k_\perp/T$')
+	ax.set_xticks([0,1,2,3,4,5])
+	ax.set_yticks([0, 0.5, 1.0])
+	ax.set_title(r"$E=20$ GeV, $T=0.3$ GeV, $M=1.3$ GeV")
+	plt.tight_layout(True)
+	#finish(pad=1, h_pad=0.5, w_pad=0.5, rect=[0.02, 0.02, 0.98, 0.98])
+
+@plot
+def diffRate(quark):
+	M = 1.3 if quark == 'charm' else 4.2
+	fig, axes = plt.subplots(nrows=2, ncols=2, sharex=True, #sharey=True,
+							 figsize=(textwidth, 1.2*columnwidth))
+
+	f = h5py.File('data/DiffBoxRate.h5','r')
+	rad1 = f['diff-rate-rad-3GeV']
+	rad2 = f['diff-rate-rad-8GeV']
+	T = rad1.attrs['T']
+	E = rad1.attrs['E']
+	L = rad1.attrs['L']
+	dt = (L[1] - L[0])
+	color = ['b', 'r','g']
+	line = ['-', '--', '-.']
+	Eindex = [0,1,2]
+	ylim = [[[0,0.02]],[0,0.04]], [[0,0.003],[0,0.01]]
+	approx = [[0.0076],[0.019]], [[0.0016],[0.004]]
+	for ir, (rad, dk) in enumerate(zip([rad1, rad2],[0.5, 1.0])):
+		for iT, eT in enumerate(T[:2]):
+			axes[ir, iT].set_title(r"$T = {:1.1f}$ GeV".format(eT),)
+			name = '{}/1'.format(iT)
+			dRdk = np.mean(rad[name].value.reshape(-1,20), axis=1)/dt/5.026/dk
+			axes[ir, iT].plot(L[::20], dRdk, linewidth=2., color='r')
+			axes[ir, iT].set_ylim(*ylim[ir][iT])
+			ap = approx[ir][iT]
+			axes[ir, iT].plot([0,5],[ap,ap],'k--')
+	f.close()
+
+	axes[0,0].set_ylabel(r"$dR/dk(k=3 \mathrm{GeV})$")
+	axes[1,0].set_ylabel(r"$dR/dk(k=8 \mathrm{GeV})$")
+	axes[1,0].set_xlabel(r"$t$ [fm/c]")
+	axes[1,1].set_xlabel(r"$t$ [fm/c]")
+	plt.suptitle(r"$E = 16$ GeV, $M=0.2$ GeV, dead-cone effect off, $\alpha_s = 0.3$")
+
+	plt.tight_layout(True)
+	finish(pad=1, h_pad=0.5, w_pad=0.5, rect=[0.01, 0.02, 0.99, 0.98])
+
+
+@plot
+def BoxRate(quark):
+	M = 1.3 if quark == 'charm' else 4.2
+	fig, axes = plt.subplots(nrows=1, ncols=2, sharex=True, #sharey=True,
+							 figsize=(1.2*columnwidth, .6*columnwidth))
+
+	f = h5py.File('data/BoxRate.h5','r')
+	coll = f['coll']
+	rad_abs = f['rad+abs']
+	T = coll.attrs['T']
+	E = coll.attrs['E']
+	L = coll.attrs['L']
+	dt = (L[1] - L[0])
+	color = [cb, cr, cg]
+	line = ['--', '-.', '-']
+	Eindex = [13]
+	axes[0].set_title("Elastic, $E = 30$ GeV")
+	axes[1].set_title("Inelastic, $E = 30$ GeV")
+	for iE, eE in enumerate([E[13]]):
+		for iT, eT in enumerate(T[:2]):
+			name = '{}/{}'.format(iT, Eindex[iE])
+
+			Rra = np.mean(rad_abs[name].value.reshape(-1,10), axis=1)/dt/5.026/eT
+			Rc= np.mean(coll[name].value.reshape(-1,10), axis=1)/dt/5.026/eT
+			# charm
+			l = r"$T = {:1.1f}$ GeV".format(eT)
+			axes[0].plot(L[::10]*eT*5.026, Rc, line[iT], linewidth=1., color=color[iT], label=l)
+			axes[1].plot(L[::10]*eT*5.026, Rra, line[iT], linewidth=1., color=color[iT], label=l)
+			axes[0].set_ylim(0,3)
+			axes[1].set_ylim(0,.5)
+	f.close()
+
+	axes[0].set_ylabel(r"$R/T$")
+	axes[0].legend(framealpha=0., loc="upper right", fontsize=8)
+	#axes[1].legend(framealpha=0., loc="upper right", fontsize=8)
+	axes[1].set_xlabel(r"$LT$")
+	axes[0].set_xlabel(r"$LT$")
+	plt.tight_layout(True)
+	finish(pad=1, h_pad=0.5, w_pad=0.5, rect=[0.01, 0.02, 0.99, 0.98])
+
+
+@plot
+def L_Eloss(quark):
+	M = 1.3 if quark == 'charm' else 4.2
+	fig, axes = plt.subplots(nrows=2, ncols=3, sharex=True, #sharey=True,
+							 figsize=(textwidth, 1.2*columnwidth))
+
+	f = h5py.File('data/Eloss.h5','r')
+	coll = f['coll']
+	rad = f['rad']
+	rad_abs = f['rad+abs']
+	T = rad.attrs['T']
+	E = rad.attrs['E']
+	L = rad.attrs['L']
+	dL = L[1]-L[0]
+	L = L
+	color = ['b', 'r','g']
+	line = ['-', '--', '-.']
+	Eindex = [5, 10, 19]
+	for iE, eE in enumerate([E[5], E[10], E[19]]):
+		axes[0, iE].set_title(r"$E = {:1.1f}$ GeV".format(eE))
+		for iT, eT in enumerate(T[:]):
+			name = '{}/{}'.format(iT, Eindex[iE])
+			dEra = rad_abs[name].value
+			dEr = rad[name].value
+			dEc = coll[name].value
+			# charm
+			l = r"$T = {:1.1f}$ GeV".format(eT)
+			axes[0, iE].plot(L*eT*5.026, dEc/eE/L/eT/5.026, line[iT], linewidth=2., color=color[iT], label=l+', coll')
+			axes[1, iE].plot(L*eT*5.026, dEra/eE/L/eT/5.026, line[iT], linewidth=2., color=color[iT], label=l+', rad+abs')
+			#axes[1, iE].plot(L*eT*5.026, dEra/L/eT/5.026, 'o'+line[iT], color=color[iT], label=l+', rad+abs')
+			axes[0, iE].set_ylim(0,0.1)
+			axes[1, iE].set_ylim(0,0.07)
+			axes[1, iE].set_xlim(0,15)
+			#axes[2, iE].plot(L, dEr/dEc, line[iT], color=color[iT], label=l+",rad/coll")
+			#axes[2, iE].plot(L, dEra/dEc, 'o'+line[iT], color=color[iT], label=l+",(rad+abs)/coll")
+			#axes[2, iE].plot(L, np.ones_like(L), 'k-')
+			#axes[2, iE].set_ylim(0,3.5)
+	f.close()
+	axes[0,0].set_ylabel(r"Elastic $(\Delta E/E) /(LT)$")
+	axes[1,0].set_ylabel(r"Inelastic $(\Delta E/E) /(LT)$ ")
+	#axes[2,0].set_ylabel(r"Inelastic / Elastic")
+	axes[0,0].legend(framealpha=0., loc="upper left", fontsize=8)
+	axes[1,0].legend(framealpha=0., loc="upper left", fontsize=8)
+	#axes[2,0].legend(framealpha=0., loc="upper left", fontsize=8)
+	axes[1,1].set_xlabel(r"$LT$")
+	#for i in [1,2]:
+	#	for j in [0,1,2]:
+	#		axes[j,i].set_yticks([])
+	#		axes[2-i,j].set_xticks([])
+	plt.tight_layout(True)
+	finish(pad=1, h_pad=0.5, w_pad=0.5, rect=[0.01, 0.02, 0.99, 0.98])
+
+@plot
+def Eloss(quark):
+	M = 1.3 if quark == 'charm' else 4.2
+	fig, axes = plt.subplots(nrows=2, ncols=2, #sharex=True, 
+								#sharey=True,
+							 figsize=(columnwidth, 1.1*columnwidth))
+
+	with h5py.File('data/Eloss.h5','r') as f:
+		T = f['coll'].attrs['T']
+		E = f['coll'].attrs['E']
+		L = f['coll'].attrs['L']
+		def unpack(dset):
+			data = np.zeros([T.size, E.size, L.size])
+			for iT, eT in enumerate(T):
+				for iE, eE in enumerate(E):
+					data[iT, iE] = f[dset]['{}/{}'.format(iT, iE)].value
+			return data
+		coll = unpack('coll')
+		rad = unpack('rad')
+		rad_abs = unpack('rad+abs')
+
+	lines = ['--', '-']
+	lE = np.linspace(M,100,50)	
+	# first row, dE/E vs E
+	for i, (ax, dE, color, mk) in enumerate(zip([axes[0,0], axes[0,1], axes[0,1]], [coll, rad_abs, rad], [cb, cr, cb], ['', 'o', ''])):
+		for iT, (eT, ls) in enumerate(zip(T[:2], lines)):
+			dEE = dE[iT,:,-1]/E
+			ax.plot(E, dEE, mk+ls, color=color, linewidth=1., zorder=i)
+		if ax.is_first_col():
+			ax.set_ylabel(r"$\Delta E / E$")
+		else:
+			ax.set_yticks([])
+		ax.semilogx()
+		ax.set_ylim(-0.06, 0.65)
+		ax.set_xlabel(r"$E$ [GeV]")
+	# second row, dE/E vs L
+	for i, (ax, dE, color, mk, l) in enumerate(zip([axes[1,0], axes[1,1], axes[1,1]], [coll, rad_abs, rad], [cb, cr, cb], ['', 'o', ''], ['elastic', 'w/ abs', 'rad'])):
+		for iT, (eT, ls) in enumerate(zip(T[:2], lines)):
+			dEE = dE[iT,13,:]/E[13]
+			print(E[13])
+			ax.plot(L[::20], dEE[::20], mk+ls, color=color, linewidth=1., zorder=i, label=l+r" $T: {:1.1f}$ GeV".format(eT))
+		if ax.is_first_col():
+			ax.set_ylabel(r"$\Delta E / E$")
+		else:
+			ax.set_yticks([])
+		ax.set_xlabel(r"$L$ [fm]")
+		ax.legend(fontsize=8, loc="upper left")
+		ax.set_ylim(-0.06, 0.65)
+	plt.tight_layout(True)
+	#plt.subplots_adjust(wspace=0.)
+	finish(pad=0.02, h_pad=0.01, w_pad=0.01, rect=[0.01, 0.01, 0.99, 0.99])
+
+@plot
+def E_Eloss(quark):
+	M = 1.3 if quark == 'charm' else 4.2
+	fig, axes = plt.subplots(nrows=2, ncols=3, sharex=True, #sharey=True,
+							 figsize=(textwidth, 1.2*columnwidth))
+
+	f = h5py.File('data/Eloss.h5','r')
+	coll = f['coll']
+	rad = f['rad']
+	rad_abs = f['rad+abs']
+	T = rad.attrs['T']
+	E = rad.attrs['E']
+	L = rad.attrs['L']
+	color = ['b', 'r','g']
+	line = ['-', '--', '-.']
+	index = [40, 80, 199]
+	for iL, eL in enumerate([L[40], L[80], L[199]]):
+		axes[0, iL].set_title(r"$t = {:1.1f}$ fm/c".format(eL))
+		for iT, eT in enumerate(T[:]):
+			dEra = np.array([rad_abs['{}/{}'.format(iT, iE)][index[iL]]
+							for iE in range(len(E))])
+			dEr = np.array([rad['{}/{}'.format(iT, iE)][index[iL]]
+							for iE in range(len(E))])
+			dEc = np.array([coll['{}/{}'.format(iT, iE)][index[iL]]
+							for iE in range(len(E))])
+			print(dEra)
+			l = r"$T = {:1.1f}$ GeV".format(eT)
+			axes[0, iL].plot(E, dEc/E, line[iT], color=color[iT], label=l+', coll')
+			axes[1, iL].plot(E, dEr/E, line[iT], color=color[iT], label=l+', rad')
+			axes[1, iL].plot(E, dEra/E, 'o'+line[iT], color=color[iT], label=l+', rad+abs')
+			axes[0, iL].set_ylim(-.1, 0.8)
+			axes[1, iL].set_ylim(-.15, 0.8)
+			#axes[2, iL].plot(E, dEr/(dEc+dEr), line[iT], color=color[iT], label=l+', rad/coll')
+			#axes[2, iL].plot(E, dEra/(dEc+dEra), 'o'+line[iT], color=color[iT], label=l+', (rad+abs)/coll')
+			axes[0, iL].plot(E, np.zeros_like(E), 'k-')
+			axes[1, iL].plot(E, np.zeros_like(E), 'k-')
+			#axes[2, iL].set_ylim(0,1)
+			for i in range(2):
+				axes[i, iL].semilogx()
+	f.close()
+
+	axes[0,0].set_ylabel(r"Elastic $\Delta E / E$")
+	axes[1,0].set_ylabel(r"Inelastic $\Delta E / E$ ")
+	axes[0,0].legend(framealpha=0., loc="upper left", fontsize=8)
+	axes[1,0].legend(framealpha=0., loc="upper left", fontsize=8)
+	axes[1,1].set_xlabel(r"$E$ [GeV]")
+	#for i in range(3):
+	#	axes[0,i].set_xticks([])
+	#for i in range(2):
+	#	for j in range(1,3):
+	#		axes[i,j].set_yticks([])
+
+	finish(pad=1, h_pad=0.5, w_pad=0.5, rect=[0.01, 0.02, 0.99, 0.98])
+
+@plot
+def thermalization(_):
+	def norm_boltzmann(T, mass):
+		E = np.linspace(1, 10, 1000)*mass
+		dfdE = np.exp(-E/T)*E*np.sqrt(E**2-mass**2)*4.*np.pi
+		return np.sum(dfdE)*(E[1]-E[0])
+	def thermal_dfdE(T, mass):
+		E = np.linspace(1, 10., 1000)*mass
+		dfdE = np.exp(-E/T)*E*np.sqrt(E**2-mass**2)*4.*np.pi
+		return E, dfdE/norm_boltzmann(T, mass)
+	def S_diff(E, T, M):
+		values = np.log(norm_boltzmann(T, M)) + E/T
+		return np.mean(values), np.std(values)/np.sqrt(len(E)*1.)
+	def S_same(T, mass):
+		E = np.linspace(1, 10., 1000)*mass
+		norm = norm_boltzmann(T, mass)
+		y = (E/T + np.log(norm))*np.exp(-E/T)*E*np.sqrt(E**2-mass**2)*4.*np.pi/norm
+		return np.sum(y)*(E[1]-E[0])
+	def get_xy(ds, mass):
+		E0 = 10.
+		Temp = 0.4
+		dt = 1.0
+		S0 = S_same(Temp, mass)
+		t = np.linspace(0,len(ds)-1,len(ds))
+		S = []
+		for i in range(len(t)):
+			E = ds['{:d}'.format(i)].value[0]
+			S.append(S_diff(E, Temp, mass))
+		S = np.array(S).T
+		return t, S[0]-S0, S[1]
+
+	fig, axes1 = plt.subplots(nrows=1, ncols=1,
+							 figsize=(columnwidth, columnwidth))
+	f = h5py.File("./data/thermalization.hdf5", 'r')
+	left, bottom = 0.5, 0.35
+	width, height = 0.4, 0.3
+	axes2 = fig.add_axes([left, bottom, width, height])
+	for name, fmt, c, label in \
+		zip(['coll', 'coll-rad', 'coll-rad-abs'],
+			[':', '--', '-', '-'], [cr, cg, cb, 'orange'],
+			['charm, coll', 'charm, coll+rad',
+			'charm, coll+rad+abs', 'bottom, coll+rad+abs']):
+		mass = 1.3 if 'charm' in label else 4.2
+		print(mass)
+		t, S, dS = get_xy(f[name], mass)
+		for ia, (ax, ylim) in enumerate(zip([axes1, axes2], [[-2,25], [-1,2]])):
+			ax.plot(t[::2], S[::2], fmt, color=c, label=label, linewidth=1.5)
+			ax.fill_between(t, S-dS*2, S+dS*2, color=c, alpha=0.4)
+			ax.set_ylim(*ylim)
+			ax.plot(t, np.zeros_like(t),'k:')
+			if ia==1:
+				ax.set_xticks([0,100])
+				ax.set_yticks([-1,0,1,2])
+			else:
+				ax.legend()
+				ax.set_title(r"$E_0 = 10.0$ [GeV], $T = 0.4$ [GeV]")
+				ax.set_ylabel(r'$\Delta S$')
+				ax.set_xlabel(r'$t$ [fm/c]')
+	finish(pad=1, h_pad=0.5, w_pad=0.5, rect=[0.02, 0.02, 0.98, 0.98])
+
+
+@plot
+def BoxRaa(quark):
+	x1, y1 = np.loadtxt("./data/BoxRaa-mu1-charm-coll-rad.dat").T
+	x2, y2 = np.loadtxt("./data/BoxRaa-mu1-charm-coll-rad-abs.dat").T
+	x3, y3 = np.loadtxt("./data/BoxRaa-mu1-bottom-coll-rad.dat").T
+	x4, y4 = np.loadtxt("./data/BoxRaa-mu1-bottom-coll-rad-abs.dat").T
+	x1s, y1s = np.loadtxt("./data/BoxRaa-mu1-charm-coll-rad-s.dat").T
+	x2s, y2s = np.loadtxt("./data/BoxRaa-mu1-charm-coll-rad-abs-s.dat").T
+	x3s, y3s = np.loadtxt("./data/BoxRaa-mu1-bottom-coll-rad-s.dat").T
+	x4s, y4s = np.loadtxt("./data/BoxRaa-mu1-bottom-coll-rad-abs-s.dat").T
+	# plots
+	fig, ax = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True,
+						 figsize=(columnwidth, columnwidth*0.8))
+	x = np.concatenate([x1s[:14], x1[3:-15]])
+	y = np.concatenate([y1s[:14], y1[3:-15]])
+	ax.plot(x, y, '--',color=cr, linewidth=2, label='c, coll+rad')
+	x = np.concatenate([x2s[:14], x2[3:-15]])
+	y = np.concatenate([y2s[:14], y2[3:-15]])
+	ax.plot(x, y, '-',color=cr, linewidth=2, label='c, coll+rad+abs')
+	x = np.concatenate([x3s[:14], x3[3:-15]])
+	y = np.concatenate([y3s[:14], y3[3:-15]])
+	ax.plot(x, y, '--',color=cb, linewidth=1., label='b, coll+rad')
+	x = np.concatenate([x4s[:14], x4[3:-15]])
+	y = np.concatenate([y4s[:14], y4[3:-15]])
+	ax.plot(x, y, '-',color=cb, linewidth=1., label='b, coll+rad+abs')
+	ax.set_ylim(0, 1.7)
+	ax.set_xlim(0.45,100)
+	ax.legend(loc=(0.45,0.4))
+
+	ax.set_ylabel(r'$R_{AA}$, quark')
+	ax.annotate(r'$\frac{dN_c}{dp_T^2} \propto \frac{1}{\left(p_T^2 + 2.1^2\right)^{3.9}}$,',
+			 			xy=(0.05, 0.9), xycoords='axes fraction', fontsize=12)
+	ax.annotate(r'$\frac{dN_b}{dp_T^2}\propto \frac{1}{\left(p_T^2 + 7.5^2\right)^{4.9}}$',
+			 			xy=(0.55, 0.9), xycoords='axes fraction', fontsize=12)
+	ax.set_xlabel(r'$p_T$ [GeV]')
+	ax.set_xticks([1,10,100])
+
+	plt.subplots_adjust(wspace=0.)
+	ax.semilogx()
+	ax.set_title(r'$T_0=0.3$ GeV, $\Delta t=3$ fm/c')
+	finish(pad=0.01, h_pad=0.01, w_pad=0.01, rect=[0.01, 0.01, 0.99, 0.99])
+
+@plot
+def trento(_):
+	with h5py.File("ic.hdf5", 'r') as f:
+		s = f['/event_0/matter_density'].value
+		n = f['/event_0/Ncoll_density'].value
+	fig, axes = plt.subplots(nrows=1, ncols=2, sharex=True, sharey=True,
+						 figsize=(columnwidth, .5*columnwidth))
+	for ax, field, title in zip(axes, [s,n], ["Entropy density", r"$N_{\mathrm{coll}}$ density"]):
+		ax.imshow(field, extent=[-10,10,-10,10])
+		ax.set_title(title)
+		if ax.is_first_col():
+			ax.set_ylabel(r"$y$ [fm]")
+		ax.set_xlabel(r"$x$ [fm]")
+		ax.set_xlim(-10,10)
+		ax.set_ylim(-10.10)
+	finish(pad=0.01, h_pad=0.01, w_pad=0.01, rect=[0.01, 0.01, 0.99, 0.99])
+
+@plot
+def coupling(_):
+	fig, ax = plt.subplots(nrows=1, ncols=1, sharex=True, sharey=True,
+						 figsize=(.8*columnwidth, .5*columnwidth))
+	x = np.linspace(0,1,100)
+	ax.plot(x, .7*(x>0.6), color=cr, label='Meidum interaction')
+	ax.plot(x, .4*(x>0.25), color=cb, label='Probe-medium interaction')
+	ax.set_xticks([0,0.25, 0.6, 1.0])
+	ax.set_xticklabels(['0',r'$\longleftarrow \tau_{\mathrm{HQ}} \longrightarrow$',r'$\tau_{\mathrm{hydro}}$',r'$\tau$'])
+	ax.set_yticks([0,0.4, 0.7, 1.0])
+	ax.set_yticklabels(['0',r'$\alpha_s$','',r'$\infty$'])
+	ax.legend(loc=(.02, 0.8), fontsize=8)
+	ax.annotate("Freestream", xy=(0.01, 0.05), xycoords="axes fraction", color=cb, fontsize=7)
+	ax.annotate("Freestream", xy=(0.3, 0.05), xycoords="axes fraction", color=cr, fontsize=7)
+	ax.annotate("Transport", xy=(0.3, 0.44), xycoords="axes fraction", color=cb, fontsize=7)
+	ax.annotate("Hydro", xy=(0.6, 0.735), xycoords="axes fraction", color=cr, fontsize=7)
+	finish(pad=0.01, h_pad=0.01, w_pad=0.01, rect=[0.01, 0.01, 0.99, 0.99])
+
+def main(quark):
+	parser = argparse.ArgumentParser()
+	parser.add_argument('plots', nargs='*')
+	args = parser.parse_args()
+
+	if args.plots:
+		for i in args.plots:
+			if i.endswith('.pdf'):
+				name = os.path.basename(i)
+				plot_path = os.path.dirname(i)
+				i = name[:-4]
+			if i in plot_functions:
+				plot_functions[i](quark)
+				subprocess.call("mv {} {}".format(name, plot_path), shell=True)
+			else:
+				print('unknown plot:', i)
+	else:
+		for f in plot_functions.values():
+			f(quark)
+
+
+if __name__ == "__main__":
+	main('charm')

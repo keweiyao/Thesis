@@ -1,0 +1,2 @@
+figures/external/** filter=lfs diff=lfs merge=lfs -text
+figures/generated/** filter=lfs diff=lfs merge=lfs -text

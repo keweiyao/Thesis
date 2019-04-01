@@ -1,0 +1,185 @@
+\documentclass[11pt,letterpaper,oneside,openany]{book}
+
+\title{Partonic transport model application to heavy flavor}
+\author{Weiyao Ke}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+%\usepackage[light]{roboto}
+
+\usepackage{mathtools}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{verbatim}
+\usepackage[inline]{enumitem}
+
+\usepackage{graphicx}
+\graphicspath{{figures/}{figures/LBT/}}
+
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usetikzlibrary{arrows,backgrounds,calc,matrix,shapes}
+
+\usepackage{listings}
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  %numberstyle=\tiny\color{gray},
+  %keywordstyle=\color{blue},
+  %commentstyle=\color{dkgreen},
+  %stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=4
+}
+
+\definecolor{deepred}{RGB}{146,11,36}
+\definecolor{offblack}{RGB}{35,31,32}
+\usepackage[pdfusetitle,colorlinks=true,allcolors=deepred,bookmarksdepth=2,
+linktoc=section,bookmarksopen=false]{hyperref}
+
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]{\Huge\sffamily\color{offblack}\filcenter
+}{\thechapter}{1ex}{}
+\titleformat*{\section}{\Large\bfseries\color{deepred}}
+\titleformat*{\subsection}{\large\bfseries\color{deepred}}
+\titleformat*{\subsubsection}{\bfseries\color{deepred}}
+\titleformat*{\paragraph}{\bfseries\color{offblack}}
+\titlespacing{\paragraph}{0pt}{*1.4}{*2.5}
+
+\usepackage[font=small,labelfont={bf,color=deepred},labelsep=quad]{caption}
+\newcommand{\graphicsandcaption}[3]{
+  \centering
+  \includegraphics[width=#1\textwidth]{#2}
+  \captionsetup{width=#1\textwidth}
+  \caption{#3}
+}
+
+\usepackage{lettrine}
+\renewcommand{\LettrineFontHook}{\color{deepred}}
+
+\usepackage{lipsum}
+
+\usepackage[style=phys,biblabel=brackets,eprint=true,url=true,
+maxcitenames=3]{biblatex}
+\addbibresource{references.bib}
+
+\newcommand{\fmc}{\ensuremath{\text{fm}/c}}
+\newcommand{\sqrts}{\sqrt{s_\mathrm{NN}}}
+\newcommand{\sigmann}{\sigma^\text{inel}_\mathrm{NN}}
+\newcommand{\nch}{N_\text{ch}}
+\newcommand{\ntrk}{N_\text{trk}^\text{offline}}
+\newcommand{\Np}{N_\text{part}}
+\newcommand{\Nc}{N_\text{coll}}
+\newcommand{\np}{n_\text{part}}
+\newcommand{\nc}{n_\text{coll}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+\newcommand{\vnk}[2]{v_{#1}\{#2\}}
+\newcommand{\order}[1]{\ensuremath{\mathcal{O}(#1)}}
+\newcommand{\del}{\nabla}
+\newcommand{\mn}{^{\mu\nu}}
+\newcommand{\trento}{T\raisebox{-0.5ex}{R}ENTo}
+\newcommand{\T}{\tilde{T}}
+\newcommand{\dmin}{d_\text{min}}
+\newcommand{\tfs}{\tau_\text{fs}}
+\newcommand{\Tsw}{T_\text{switch}}
+\newcommand{\dv}{\mathbf d}
+\newcommand{\kv}{\mathbf k}
+\newcommand{\vv}{\mathbf v}
+\newcommand{\xv}{\mathbf x}
+\newcommand{\yv}{\mathbf y}
+\newcommand{\zv}{\mathbf z}
+\newcommand{\tran}{^\mathrm{T}}
+\newcommand{\note}{[{\color{deepred} ?}]}
+
+\newcommand{\paddedhline}{\noalign{\smallskip}\hline\noalign{\smallskip}}
+\newcommand{\dnchdy}{dN_\text{ch}/d\eta}
+\newcommand{\dndypP}{dN_\text{pPb}/d\eta}
+\newcommand{\dndyPP}{dN_\text{PbPb}/d\eta}
+\newcommand{\x}{\mathbf x}
+\newcommand{\y}{\mathbf y}
+\newcommand{\z}{\mathbf z}
+\newcommand{\trans}{^\intercal}
+
+\newcommand{\Raa}{R_{AA}}
+\newcommand{\vvv}{v_3\{2\}}
+\newcommand{\vnv}{v_n\{2\}}
+\newcommand{\ppi}{\frac{\partial}{\partial p_i}}
+\newcommand{\ppj}{\frac{\partial}{\partial p_j}}
+\newcommand{\ppl}{\frac{\partial}{\partial p_l}}
+\newcommand{\Kpara}{\kappa_{\|}}
+\newcommand{\Kperp}{\kappa_{\perp}}
+\newcommand{\Ppara}{\hat{P}^{\|}}
+\newcommand{\Pperp}{\hat{P}^{\perp}}
+
+
+
+\DeclareMathOperator{\expi}{Ei}
+\DeclareMathOperator{\acosh}{acosh}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\SC}{SC}
+
+
+
+\begin{document}
+
+\frontmatter
+
+\makeatletter
+\begin{titlepage}
+  \centering
+  \sffamily
+  \vspace*{.25\textheight}
+  \Huge\@title \\
+  \vspace{.05\textheight}
+  \LARGE\@author \\
+  \vspace{.05\textheight}
+  \Large Ph.D.\ dissertation \\[.25ex]
+  Advisor: Steffen A.\ Bass \\[.25ex]
+  Department of Physics, Duke University \\
+  \vspace{.05\textheight}
+  \today
+\end{titlepage}
+\makeatother
+
+%\input{chapters/abstract}
+
+% reduce spacing around toc header so that it fits on one page
+\titlespacing{\chapter}{0pt}{-45pt}{30pt}
+\setcounter{tocdepth}{1}
+%\tableofcontents
+% reset to default
+\titlespacing{\chapter}{0pt}{50pt}{40pt}
+
+\mainmatter
+
+\tableofcontents
+
+\input{chapters/Introduction}
+\input{chapters/HIC}
+\input{chapters/simulation}
+\input{chapters/transport}
+\input{chapters/results}
+\input{chapters/conclusion}
+
+
+\backmatter
+
+{\raggedright\printbibliography[heading=bibintoc, title={References}]}
+
+\end{document}
