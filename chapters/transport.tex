@@ -321,7 +321,7 @@ And such contribution can be easily incorporated into the Boltzmann equation giv
 However, the valid range for this approximation is at best $x E \sim$ a few times of the temperature.
 
 
-{\bf The deep-LPM region}: another useful approximation considers the limit $\tau_f$ is so large that many collisions contribute coherently to the branching. 
+{\bf The deep-LPM region (leading behavior)}: another useful approximation considers the limit $\tau_f$ is so large that many collisions contribute coherently to the branching. 
 This corresponds to those energetic split $\omega \gg T$.
 As a result, the transverse momentum $k$ of the branching should be large compared to the average momentum transfer to each scattering centers $q$.
 In this limit, a diffusion approximation to the $\mathcal{C}$ operators is possible.
@@ -329,13 +329,86 @@ The finite difference between $F(k)$ and $F(k+O(q))$ is expanded in $\vec{q}$.
 The zeroth order cancels and the first order $\vec{q}$ contribution  vanishes due to the symmetric $q$ integration.
 Keeping only second order terms in $\vec{q}$, the AMY equation is simplified to a diffusion type equation but with complex diffusion constant and a source term
 \begin{eqnarray}
-- \frac{1}{4} \nabla^2_{\vec{k}}\vec{F} + \frac{i}{\tau_f(k)\hat{q}_3}\vec{F} = \frac{2\vec{k}}{\hat{q}_3}.
+- \frac{1}{4} \nabla^2_{\vec{k}}\vec{F} + i\frac{k^2 + m^2_{\textrm{eff}}}{2x(1-x)E\hat{q}_3}\vec{F} = \frac{2\vec{k}}{\hat{q}_3}.
 \end{eqnarray}
 This approximation of the original collision operator is also known as the harmonic oscillator approximation, because in the impact-parameter space, this approximation leads to a quadratic form of $\Gamma_2 \propto b^2$.
+Finally, $\hat{q}_3$ is the effective transport parameter for conveniences 
+\begin{eqnarray}
+\hat{q}_3(x, Q_0^2) &=& \alpha_s T m_D^2 \ln\left(1+\frac{Q_0^2}{m_D^2}\right) C_{abc}(x).\label{eq:qhat3}
+\end{eqnarray}
+This is obtained by doing the $\mathbf{q}$ integration of the expanded collision operator upto a cut-off scale $Q_0$, below which the small-$q$ approximation is considered to be valid.
+The effective transport parameter also depends on the color structure of the splitting,
+\begin{eqnarray}
+C_{abc}(x) &=&  \frac{C_b+C_c-C_a}{2} + x^2 \frac{C_a+C_c-C_b}{2} +(1-x)^2\frac{C_a+C_b-C_c}{2}
+\end{eqnarray}
+Taking the momentum fraction of the ``$b$" particle to zero $x\rightarrow 0$, this color factor goes to $C_b$; similarly, $x\rightarrow 1$ which corresponds to ``$c$" particle taking vanishing fraction of the total energy, the color factor approaches $C_c$.
+Therefore, in these extreme limits $x\rightarrow 0$ or $1$, the effect transport parameters looks like the daughter with softer momentum.
+Of course, with finite $x, 1-x$, the color factor becomes a combination of the colors of the whole splitting system.
 
+Neglecting the thermal mass, the solution to the this diffusion equation can be obtained analytically,
+\begin{eqnarray}
+\vec{F} = i 4x(1-x)E^2 \frac{\vec{k}}{k^2} \left[\exp\left(\frac{-i^{1/2}k^2}{\sqrt{2x(1-x)E\hat{q}_3}}\right)-1\right]
+\end{eqnarray}
+And the radiation rate can be obtained accordingly \cite{Arnold:2008zu},
+\begin{eqnarray}\label{eq:AMY-LL}
+\frac{dR_{bc}^{a,\textrm{LL}}}{dx} &=& \frac{\alpha_s P_{bc}^{a(0)}}{\pi\sqrt{2}}
+\sqrt{\frac{\hat{q}_3(x, Q_0^2)}{2x(1-x)E}}
+\end{eqnarray}
+Such a result is often referred to as the leading log solution, because it is an expansion in terms of $1/\ln(N)$ with N the number of coherent collision centers.
+An interesting scale $\sqrt{2x(1-x)E\hat{q}_3}$ shows up in such calculation which governs the typical transverse momentum of the splitting, or equivalently $\sqrt{\hat{q}_3/2x(1-x)E}$ which governs the rate at which the splitting happens.
+A simple interpretation for these scales are obtained by considering the diffusion nature of this approximation.
+The splitting parton has a formation time $\tau_f \sim 2x(1-x)/k^2$, within which many soft interactions contribute to the broadening of $k^2$.
+From the change of variance in the diffusion dynamics, the average of $k^2$ is linearly proportional to the diffusion constant and time, $\langle k^2\rangle \sim \hat{q}_3\tau_f$.
+Combining with the expression of formation time, one arrives at the above typical transverse momentum and typical formation time.
 
+Compared to the ``incoherent expectation", the actual radiation rate is reduced by a factor of,
+
+{\bf The deep-LPM region (next-to-leading-log level)}:
+The previously introduced leading (log) result has both a charming simplicity and a clear physical interpretation explaining what happens in in the deep-LPM region $\ln(N) \sim \ln(xE/T) \gg 1$
+Together with the Bethe-Heitler (incoherent) limit at $xE \lesssim T$, one can already build a pretty good understanding of 
+This cut-off scale is generally unknown and bring an uncertainty in this approximation. 
+However, treating the large-$Q$ part of the collision kernel as a perturbation to this approximation, authors of [] and [] has found that the optimal value for $Q_0$ to be the order of $k_\perp^2$ itself.
 \subsection{Thin medium: opacity expansion}
+
 \subsection{Numerical solution}
+To go beyond the above approximation and investigate how different limiting regimes are connected, one has to employ numerical approaches to study the exact propagation. 
+At first sight, it looks the Green's-function can be easily solved in the impact-parameter space using numerical method developed for time-dependent  Schr\"odinger equation.
+However, there are several difficulties in doing so.
+First, this is a time consuming 2+1 dimension problem.
+Second, the physical results is a finite difference of two Green's functions that are singular as $t_1 \rightarrow t_2$, so it can be sensitive to numerical regulation.
+And third, the result is sensitive to the specify representation of the $\delta$-function initial condition.
+For these reasons, we choose to employ the approach described in arXiv:1006.2379 to solve the problem in the momentum space.
+
+Here is our detailed numerical implementation following the appendix of arXiv:1006.2379.
+Going to momentum space, the cancellation between the in-medium propagator against the vacuum propagator is done automatically, upto difference related to the thermal masses and the induced radiation rate is,
+\begin{eqnarray}
+\frac{dR^{a}_{bc}(t)}{dx} = \frac{P^{a(0)}_{bc}(x)}{2\pi x(1-x)E} \mathfrak{Re} \int \frac{d\mathbf{p}^2}{(2\pi)^2} \int_0^t d\tau e^{\frac{-i\tau}{\tau_f(p)}} \vec{p}\cdot \vec{\Psi}(\vec{p}, \tau)
+\end{eqnarray}
+with the time evolution of the vector-valued wave function solved in the interaction picture with the initial condition,
+\begin{eqnarray}
+\frac{\partial \vec{\Psi}}{\partial \tau} &=& - e^{\frac{-i\tau}{\tau_f(p)}} \hat{C}\left[e^{\frac{i\tau}{\tau_f(p)}}\vec{\psi}(\vec{p}, \tau)\right]\\
+\vec{\Psi}(\vec{p}, \tau=0) &=& \hat{C}\left[\frac{i\vec{p}}{p^2+m^2_{\textrm{eff}}}\right]
+\end{eqnarray}
+The $\hat{C}$ operation involves finite difference and two-dimensional integration over the transverse momentum $p$. 
+Fortunately the integration over the azimuths angle of $p$ can be performed analytically at least for the leading order collision kernel with fixed coupling constant.
+Reparametrize the vector function using the azimuthal symmetry argument $\vec{\Psi} = \vec{p}/(p^2+m^2_{\textrm{eff}})^2 \Phi(p^2)$.
+The evolution equation for the scalar function $\Phi$ is,
+\begin{eqnarray}
+&&\frac{\partial \Phi(p^2)}{\partial \tau} = - \alpha_s T \sum_n c_n \int dq^2 \left\{\frac{\Phi(p^2)}{|p^2-q^2|} - \frac{\Phi(p^2)}{\sqrt{(p^2+q^2+m_n^2)^2 - 4p^2q^2}}\right. \\\nonumber
+&&\left.- \exp\left(i\tau\frac{p^2-q^2}{2x(1-x)E}\right)\frac{\Phi(q^2)}{2p^2}\frac{(p^2+m^2_{\textrm{eff}})^2}{(q^2+m^2_{\textrm{eff}})^2} \left[\frac{p^2+q^2}{|p^2-q^2|} - \frac{p^2+q^2+m_n^2}{\sqrt{(p^2+q^2+m_n^2)^2 - 4p^2q^2}}\right]\right\}\\
+&&\Phi(\tau=0)= i\sum_n c_n \int dq^2 \left\{\frac{p^2+m^2_{\textrm{eff}}}{|p^2-q^2|} - \frac{p^2+m^2_{\textrm{eff}}}{\sqrt{(p^2+q^2+m_n^2)^2 - 4p^2q^2}}\right. \\\nonumber
+&&\left.-\frac{(p^2+m^2_{\textrm{eff}})^2}{2p^2(q^2+m^2_{\textrm{eff}})} \left[\frac{p^2+q^2}{|p^2-q^2|} - \frac{p^2+q^2+m_n^2}{\sqrt{(p^2+q^2+m_n^2)^2 - 4p^2q^2}}\right]\right\}
+\end{eqnarray}
+Here, the summation goes over the different pieces of three-body collision kernel, where the original integration variable $\vec{q}$ has been shifted to $\vec{p}-\vec{q}$, $\vec{p}+x\vec{q}$, and $\vec{p}+(1-x) \vec{q}$ accordingly.
+The color factors are $c_1 = (C_b+C_c-C_a)/2$, $c_2 = x^2(C_a+C_c-C_b)/2$, $c_3 = (1-x)^2(C_a+C_b-C_c)/2$, and screening masses $m_1^2 = m_D^2$, $m_2^2 = x^2 m_D^2$, $m_3^2 = (1-x)^2 m_D^2$.
+The azimuthal integration over $\phi_q$ has been performed analytically, and the resultant operator only involves an integration over $q^2$ from zero to infinity.
+One may notice that one of the denominator $|q^2-p^2|$ can vanish.
+But as $q^2$ tends to $p^2$, the subtracted term in the second line also approaches the expression in the first line, and therefore leaves the function to be integrated finite.
+
+Now, the problem has been reduced to an initial value problem of a 1+1 D first order differential-integral equation, and can be solved quite efficiently using finite difference and numerical quadrature methods.
+
+
+
 
 
 \section{A modified Boltzmann approach to include the LPM effect}
@@ -547,21 +620,7 @@ To make it more useful, we benchmark it to theory calculations in an infinite me
 \subsection{Matching the ansatz to semi-analytic calculation}
 
 
-At leading-log (LL) order, a small-$q$ expansion was performed to obtained a diffusion approximation to $\mathcal{C}$ below a certain cut-off $q<Q_0$.
-The resulting leading-log solution is \cite{Arnold:2008zu},
-\begin{eqnarray}\label{eq:AMY-LL}
-\frac{dP_{bc}^{a,\textrm{LL}}}{dt dx} &=& \frac{\alpha_s P_{bc}^{a(0)}}{\pi\sqrt{2}}
-\sqrt{\frac{\hat{q}_3(x, Q_0^2)}{2x(1-x)E}}
-\end{eqnarray}
-Where the $\hat{q}_3$ is defined as an effective transport parameter for conveniences,
-\begin{eqnarray}
-\hat{q}_3(x, Q_0^2) &=& \alpha_s T m_D^2 \ln\left(1+\frac{Q_0^2}{m_D^2}\right) C_{abc}(x).\label{eq:qhat3}
-\end{eqnarray}
-And it depends on the color structure of the splitting,
-\begin{eqnarray}
-C_{abc}(x) &=&  \frac{C_b+C_c-C_a}{2} + x^2 \frac{C_a+C_c-C_b}{2} \\\nonumber
-&+& (1-x)^2\frac{C_a+C_b-C_c}{2}
-\end{eqnarray}
+
 Comparing the leading-log formula to the simple ansatz in the modified Boltzmann approach, there is indeed a piece that plays the row of inverse formation time $\langle\tau_f^{-1}\rangle \sim \sqrt{\hat{q}_3 / 2x(1-x)E}$. 
 However, the effective $\hat{q}_3$ is differed by an $x$-dependent color factor $C_{abc}$ from the broadening expected from one daughter parton re-scattering that is implemented in our algorithm.
 This is improved by defining an $x$-dependent $a$ parameter,
