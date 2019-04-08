@@ -693,12 +693,13 @@ Therefore, this approach natural provides an interpolation of the deep-LPM for e
 
 Now we will determine the form of $a$ and $b$ parameters with guidance from the theory in the deep-LPM region.
 In the leading-log formula, the average inverse formation time is $\langle\tau_f^{-1}\rangle \sim \sqrt{\hat{q}_3 / 2x(1-x)E}$. 
-One notice that the effective $\hat{q}_3$ that determines the formation time is not the same as the $\hat{q}$ of the daughter parton on which one performs rescatterings in a Boltzmann-like simulation.
-It is related to by a process- and $x-$ dependent color combination $C_{abc}$.
+One notice that the effective $\hat{q}_3$ is different from the $\hat{q}$ of a daughter parton, where we perform momentum broadening.
+$\hat{q}_3$ is related to the gluon $\hat{q}$ by the process- and $x-$dependent factor $C_{abc}$ that has been defined before.
 For this reason, we chose the $a$ parameter to be this color combination for each branching channel.
 \begin{eqnarray}
 a \rightarrow a_{abc}(x) = \frac{C_A}{C_{abc}(x)}
 \end{eqnarray}
+In this way, the formation time for different processes is determined by performing the rescattering broadening of the gluon.
 
 From the previous theory discussion, we know that there is a logarithmic ambiguity in the cut-off scale $Q_0$ in $\hat{q}_3$, and can be determined at the next-to-leading-log level to be the same order as the branching transverse momentum.
 Let us examine what is the $Q_0$ scale in our Botlzmann simulation and how to improve that.
@@ -713,20 +714,18 @@ Since at high energy, the cross-section evolves slowly with $\sqrt{s}$, we can d
 \end{eqnarray}
 Therefore, the average $Q_0^2$ from the independent transport simulation is $6ET$, compared to NLL choice of $\sqrt{\hat{q} \omega}$
 The prediction from such simulation would be systematically deviated from theory prediction in a logarithmic manner, varying energy, temperature and coupling constant.
-To use the correct scale
-We absorbed this effect into a scale-dependent $b$ parameter to correct the na\"ive choice of $Q_0 \sim \sqrt{6ET}$ that comes from the matrix-element integration,
+To use the correct scale, we define a scale-dependent acceptance probability to correct the na\"ive choice of $Q_0 \sim \sqrt{6ET}$ with a $b$ parameter,
 \begin{eqnarray}
 b &=& 0.75\sqrt{\frac{\ln(\hat{Q}_1^2 )}{\ln(\hat{Q}_0^2 )}}.
 \label{eq:NLL-b}
 \end{eqnarray}
 with $\hat{Q}_1^2$ and $\hat{Q}_0^2$ given by,
 \begin{eqnarray}
-\hat{Q}_1^2 &=& 1 + \frac{\sqrt{\omega\hat{q}}}{m_D^2} \approx 1 + \frac{\tau_f}{\tilde{\lambda}}; 
-\hat{Q}_0^2 = 1 + \frac{6ET}{m_D^2}
+\hat{Q}_1^2 &=& 1 + \frac{\sqrt{\omega\hat{q}}}{m_D^2} \approx 1 + \frac{\tau_f}{\tilde{\lambda}}\\
+\hat{Q}_0^2 &=& 1 + \frac{6ET}{m_D^2}
 \end{eqnarray}
-The prefactor $0.75$ was tuned when comparing the modified-Boltzmann simulation to the NLL solutions in the next section, and will be the same for the rest of the paper.
-
-As a remark, this logarithmic correction comes from the $q^2 dq^2 /q^4$ integration of the collision kernel at large-$q^2$.
+The $0.75$ is a constant determined when tuning the simulation to theoretical calculations in the next section, and it will be the same throughout the entire work.
+The origin of this logarithmic ambiguity comes from the perturbative large-$q^2$ tail the vacuum $\hat{t}$-channel matrix-element.
 Therefore, if one assumes and implements certain collision kernel that vanishes sufficiently fast at large-$q$, this logarithm factor in $b$ is unnecessary. 
 
 \subsection{Mass effect}
