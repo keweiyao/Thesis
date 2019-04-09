@@ -690,7 +690,6 @@ This approach also generalizes to medium with non-constant temperature profile a
 In cases where the formation time is short that the acceptance probability is bigger than unity, the acceptance is set to one and the incoherent rate is recovered as the branching with $\tau_f < \tilde{\lambda}$ has entered the Bethe-Heitler regime.
 Therefore, this approach natural provides an interpolation of the deep-LPM for energetic branching and the Bethe-Heitler regime for soft branching in a large medium.
 
-
 Now we will determine the form of $a$ and $b$ parameters with guidance from the theory in the deep-LPM region.
 In the leading-log formula, the average inverse formation time is $\langle\tau_f^{-1}\rangle \sim \sqrt{\hat{q}_3 / 2x(1-x)E}$. 
 One notice that the effective $\hat{q}_3$ is different from the $\hat{q}$ of a daughter parton, where we perform momentum broadening.
@@ -725,44 +724,89 @@ with $\hat{Q}_1^2$ and $\hat{Q}_0^2$ given by,
 \hat{Q}_0^2 &=& 1 + \frac{6ET}{m_D^2}
 \end{eqnarray}
 The $0.75$ is a constant determined when tuning the simulation to theoretical calculations in the next section, and it will be the same throughout the entire work.
-The origin of this logarithmic ambiguity comes from the perturbative large-$q^2$ tail the vacuum $\hat{t}$-channel matrix-element.
-Therefore, if one assumes and implements certain collision kernel that vanishes sufficiently fast at large-$q$, this logarithm factor in $b$ is unnecessary. 
+The origin of this logarithmic ambiguity comes from the perturbative large-$q^2$ tail the vacuum $\hat{t}$-channel matrix-element, which is of course a reasonable assumption based on perturbative physics. 
+However, if one assumes an absence of such a slowly decaying tail in $q^2$, such as non-perturbative physics motivated coupling between hard parton and the medium, the logarithmic part in the $b-$parameter is not necessary.
 
 \subsection{Mass effect}
+Heavy quark's large mass $M\gg T$ and unique flavor make it an excellent probe and we would like to apply the aforementioned approach to study heavy flavor as well. 
+Of course, both the theory and the method described should only work in the the limit that the parton energy is still large compared to the heavy quark mass.
+In the region $p \lesssim M/g$ at weak coupling, the $M/E \ll 1$ breaks down and the elastic energy loss starts to dominate over radiate processes.
 
-\subsection{Running coupling constant}
-Finally, we discuss the prescription of the running coupling constant in the modified Boltzmann approach.
-We used the leading order running coupling constant with $n_f = 3$ and $\Lambda = 0.2$ GeV, 
+Considering that heavy quark introduces a mass correction to the Fermion propagator, it looks that the simplest change is to include the mass effect in both the formation time and the matrix-element,
+\begin{eqnarray}
+\tau_f = \frac{2x(1-x)E}{k_\perp^2} \rightarrow \frac{2x(1-x)E}{k_\perp^2 + x^2 M^2}
+\end{eqnarray}
+and 
+\begin{eqnarray}
+\overline{|M|^2}_{2\leftrightarrow 2}(m=0) \rightarrow \overline{|M|^2}_{2\leftrightarrow 2}(m=M)\\
+\overline{|M|^2}_{2\leftrightarrow 3}(m=0) \rightarrow \overline{|M|^2}_{2\leftrightarrow 3}(m=M)
+\end{eqnarray}
+For elastic scatterings, this replacement using the massive version of the two-body matrix-element is justified because subsequent elastic collisions are incoherent at weak coupling limit.
+For inelastic scatterings, again the problem comes from the coherence over multiple scattering centers.
+At high energy, a heavy quark acquires an average transverse momentum $\hat{q} \tau_f$ larger than the typical transverse momentum of the few body matrix-element $\overline{|M|^2}_{2\leftrightarrow 3}$.
+As a result, the mass-effect should less important compared to the scale $\hat{q} \tau_f$ than comparing to the transverse momentum acquired from a single collision center. 
+
+To solve this problem in the simulation, we choose to use the dead-cone approximation for the radiation off a heavy quark.
+The $2\rightarrow 3$ and $1\rightarrow 2$ branching of the heavy quark is sampled from the mass-less matrix-element, while the formation time is determined using the massive formula.
+The key change is that the acceptance probability is modified by the dead-cone factor,
+\begin{eqnarray}
+\frac{b\lambda}{\tau_f} \rightarrow \frac{b\lambda}{\tau_f} \left(\frac{k_\perp^2}{k_\perp^2+x^2M^2}\right)^2
+\end{eqnarray}
+but note that the $k_\perp$ here is the branching transverse momentum after the elastic momentum broadening, and on average $\langle k_\perp^2 \rangle = \langle k_{0,\perp}^2 \rangle + \langle\tau_f\hat{q}\rangle$, where $\langle k_{0,\perp}^2 \rangle$ is the average transverse momentum sampled from the the $2\rightarrow 3$ matrix-element.
+One may argue the accuracy of approximating the massive version of the complicated multiple scattering matrix-element using a dead-cone approximation.
+To evaluate this procedure, we will also compare the radiation spectrum off the heavy quark to the exact solution with mass effect.
+
+
+\subsection{Implementing the running of $\alpha_s$}
+There are two places in the transport model where the running of the strong coupling constant might be important:
+the coupling between the hard patron and the medium, and the coupling constant for the branching vertices.
+These two types of processes are often happen at different scales.
+
+For the $\hat{t}$-channel elastic interaction the scale would be the $\hat{t}$-channel momentum transfer, the typical scale is on the order of the screening mass $|\hat{t}| \sim m_D^2$.  
+Using leading order running of $\alpha_s$ $n_f = 3$ and $\Lambda = 0.2$ GeV, 
 \begin{eqnarray}
 \alpha_s(Q^2) = \frac{4\pi}{9\ln\left(Q^2/\Lambda^2\right)}
 \end{eqnarray}
-To avoid the pole when $Q$ approaches the non-perturbative scale, we introduce a cut-off using a medium scale $Q_{\textrm{med}} = \pi T$. 
-Therefore the actual coupling constant is $\alpha_s(\max\{Q, Q_{\textrm{med}}\})$.
-Following the prescription described in \cite{Arnold:2008zu}, the coupling constant associated to the collision kernel $\mathcal{C}$ are evaluated at $q_\perp^2$ and the resulting $\hat{q}$ can be integrated approximately to get the running version of the Eq. \ref{eq:qhat3},
-\begin{eqnarray}
-\hat{q}_3^{\textrm{running}} \approx \frac{4\pi}{9}\left(g^2(m_D^2) - g^2(Q_0^2)\right) 1.27 T^3 C_{abc}(x)
-\label{eq:q3running}
-\end{eqnarray}
-Where the scale $Q_0$ is of order $m_D [E/T \ln(E/T)]^{1/4}$.
-And the scale of the $\alpha_s$ associated to the splitting  vertex in equation \ref{eq:AMY-LL} is chosen at the typical transverse momentum $k_\perp^2 \sim \sqrt{2x(1-x)E\hat{q}_3}$.
+the coupling constant will blow up with the scale getting close to the non-perturbative scale $\Lambda^2$, and applying leading order perturbative calculation to such regions is problematic. 
+However, in phenomenological application, the temperature of the medium inevitably evolves down to the critical temperate and the scale of the elastic scattering processes is getting too close to $\Lambda^2$.
+We therefore introduce a minimum scale in the running coupling, proptional to the temperature $Q_{\textrm{med}} = \mu \pi T$, to regulate the leading order running formula.
+Of course, regulating $\alpha_s$ to a finite number using such a medium scale does not necessarily improve the accuracy of using the leading order  calculation in this temperature range. 
+For example $\alpha_s(2\pi T)$ ranges from $0.28$ to $0.45$ ($g \sim 1.9 -- 2.4$) for temperature decreasing from $T=0.4$ GeV to $T_c$, which are extremely large values considering the next-to-leading-order correction to the probe-medium correction is $O(g)$.  
+As a result, in the model-to-data comparison, we also try to parametrize the non-pertubative contribution by a diffusion processes in our model to prevent the attempt to explain the coupling to sQGP in a pure pertrubative framework.
 
-In the modified Boltzmann approach, such a running coupling prescription is straightforward for the elastic part.
-The transport coefficients $\hat{q}_S$ and $\hat{q}_{S, L}$ in Eq. \ref{eq:qS} and Eq. \ref{eq:qSL} for the diffusion sector should be integrated using the running coupling constant.
-The $\alpha_s$ associated to the $2\rightarrow 2$ scattering matrix-elements (including the ones that appears in the $2\rightarrow 3$ matrix-elements) are evaluated at the $t$-channel momentum transfer squared.
-The scale $k_\perp^2$ for the splitting vertex coupling requires an additional treatment.
-In the presence of the LPM effect, $k_\perp$ comes from the summation over multiple scatterings within the formation time,
-\begin{eqnarray}\label{eq:kTn}
-\vec{k}_{\perp, t_0+\tau_f}^2 = \left(\vec{k}_{\perp,t_0}+\vec{q}_1+\cdots+\vec{q}_n\right)^2.
-\end{eqnarray} 
-However, the initial splitting processes are generated using incoherent processes with the coupling evaluated at $\vec{k}_{\perp}^2(t_0)$.
-This is on average $\sqrt{\omega/T}$ times smaller than $\vec{k}_{\perp}^2(t_0+\tau_f)$ in the deep LPM region.
-Therefore the effective coupling after multiple scattering is smaller than the one we used in incoherent calculation and allows for a rejection implementation by modifying the acceptance probability $p$ in Eq. \ref{eq:rejection} to
+Unlike the coupling between hard parton and the medium, the scale for the hard-to-hard splitting of partons are much harder than the screening mass.
+In a static medium, this is because that splitting with a short formation time (compared to the mean-free-path) involves a large transverse momentum $k_\perp^2 > 2x(1-x)E /\lambda \sim m_D \omega/T$, while splitting with longer formation time receives multiple scattering contribution and the average $k_\perp^2$ scales like $\sqrt{2x(1-x)E\hat{q}} \sim m_D^2 \sqrt{\omega/T}$.
+Therefore for splitting where both the daughter patrons are hard $xE, (1-x)E \gg T$, the running of the splitting vertex coupling is under better control than the probe-medium coupling.
+For the case of an expanding and fluctuating medium, we shall use a realistic simulation to study the distribution of the actually couplings in the model to access the applicability of the perturbative approach.
+
+Here is detailed implementation of running $\alpha_s$ in our transport model. 
+From \cite{Arnold:2008zu}, the collision kernel $\mathcal{C}$ couplings are evaluated at $\hat{t}$-channel momentum transfer $q_\perp^2$.
+This involve both the $\alpha_s$ in the large-$q$ matrix-element ($2\leftrightarrow 2$, and the elastic matrix-element factorized in $2\leftrightarrow 3$) as well as the $\alpha_s$ in the soft transport coefficients $\hat{q}_S$ and $\hat{q}_{S, L}$.
+The running of the splitting vertex, taking into account the possible multiple scatterings, is a two-step implementation. 
+First, the $\alpha_s$ for the splitting vertex in the few body matrix-element is evaluated at $k_\perp^2$.
+Next, at the end of the elastic broadening for each splitting processes, the acceptance probability is multiplied by a running coupling factor
 \begin{eqnarray}
 p^{\textrm{running}} = p\times \frac{\alpha_s(k_{\perp,t_0+\tau_f}^2)}{\alpha_s(k_{\perp,t_0}^2)}.
 \end{eqnarray}
-This final step completes the inclusion of running coupling effect in the modified Boltzmann approach.
+Where $k_{\perp,t_0}^2$ is the transverse momentum when the splitting is generate from the few-body processes, while $k_{\perp,t_0+\tau_f}^2$ is the final transverse momentum including the elastic broadening, and is on average greater than $k_{\perp,t_0}^2$.
 
-\section{results}\label{section:results}
+\subsection{Comment on an incorrect LPM effect implementation}
+Before we proceed to validate transport model to theoretical calculations.
+We find it beneficial clarify an incorrect implementation of the LPM effect that can be very confusing. 
+
+In this approach, the splitting is also first generated through an incoherent processes at time $t_0$, and then the self-consistently determination the formation time by elastic broadening. 
+But its LPM suppression is introduced by requiring no other radiation is allowed from this radiator within the time from $t_0$ to $t_0 + \tau_f$.
+This clearly introduces a correlation between subsequent emission, while the LPM effect concerns only the one particle emission rate.
+While in our approach, the suppression is implemented by accepting the process with probability $\sim \lambda_{el}/\tau_f$, and more importantly, other emissions are unaffected by the current ``imaginary splitting" as most of them would be rejected without causing any physical effect.
+
+A closer investigation reveals bigger problem.
+Moreover, this ``blocking radiation" approach effectively reduces every $\tau_f/\lambda_{inel}$ incoherent emission to one, resulting only an overall reduction in the radiation spectrum without changing its shape.
+And the suppression factor $\lambda_{inel}/\tau_f$ is different from the expected one, this is in fact an order of $\alpha_s$ wrong as the mean-free-path of the incoherent radiation rate contains one more power of $\alpha_s$ than $\lambda_{el}$.
+
+
+\section{Validate the modified transport approach to theoretical calculation}
+
+
 \begin{figure}
 \includegraphics[width=\columnwidth]{spectrum.png}
 \caption{The $q\rightarrow q+g$ splitting rate in an infinite medium from a quark with $E=1$ TeV,and a coupling constant $\alpha_s = 0.1$. The top plot shows the simulated spectrum $dR/d\omega$ (red-dashed line) and power law fit (green-dotted and blue-dash-dotted lines) in different gluon energy regions, separated by energy scales $\omega_{BH}\approx 2\pi T$. The middle plot compares to the simulation to NLL solution to the AMY equation, and the ratio is shown in the bottom plot}
@@ -832,6 +876,12 @@ there are no scattering centers at $L-\tau_f<0$ and thus introduces a reduction 
 \label{fig:spectra-L-alphas=0.3}
 \end{figure}
 
+\begin{figure}
+\includegraphics[width=\columnwidth]{spectrum_L_100.png}
+\caption{Comparison of the path-length dependent rate $dR/d\omega$ from the simulation using $\alpha_s = 0.3$ to the theoretical calculation for splitting $q\rightarrow q+g$ \cite{CaronHuot:2010bp}. The quark energy is $16$ GeV.}
+\label{fig:spectra-L-alphas=0.3}
+\end{figure}
+
 In Figure \ref{fig:spectra-L-alphas=0.3}, the $q\rightarrow q+g$ rate simulated in a semi-infinite medium is compared to the full calculations obtained in \cite{CaronHuot:2010bp}.
 The energy of the quark is 16 GeV, and $\alpha_s = 0.3$.
 The medium temperature of the left and the right columns are 0.2 GeV and 0.4 GeV respectively.
@@ -896,6 +946,12 @@ We take four choices of the expansion rate $\nu = 1/2, 3/4, 1, 3/2$, correspondi
 The ratio $R_\nu$ from both theory and simulation are shown in Fig. \ref{fig:Bjorken-BDMPS} for a 100 GeV quark with $\alpha_s=0.3$.
 Again, for $\omega/T \gg 1$, the simulation displays the expected decreasing of medium-induced radiation due to the dropping of temperature.
 In the future, we are looking forward to making direct comparison to the solution of Eq. \ref{eq:full-theory} with both varying temperature and adding medium flow effects.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{mass.png}
+\caption{Comparison of the path-length dependent rate $dR/d\omega$ from the simulation using $\alpha_s = 0.3$ to the theoretical calculation for splitting $q\rightarrow q+g$ \cite{CaronHuot:2010bp}. The quark energy is $16$ GeV.}
+\label{fig:spectra-L-alphas=0.3}
+\end{figure}
 
 \subsection{Summary}
 We have investigated the modification to the incoherent Boltzmann transport approach to include the LPM effect for parton splitting processes in the deep LPM region, with the guidance from the LL and the NLL solutions of the AMY equation.
