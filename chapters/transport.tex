@@ -984,9 +984,10 @@ The results are shown as the ratio between the simulations and the NLL solution.
 Within in each figure, the mother parton energy are 10 GeV, 100 GeV and 1000 GeV from the top to bottom plot.
 We have used two coupling constants at $\alpha_s = 0.1$ (red solid lines) and $\alpha_s = 0.3$ (blue dashed lines).
 
-\subsection{Hard matrix-elements}
 
-The vacuum matrix-elements are,
+
+\subsection{Hard matrix-elements}
+The vacuum matrix-elements for two-body large-$Q$ elastic scatterings are,
 \begin{eqnarray}
 \overline{|M_{22,Qq}|^2} &=& \frac{64\pi^2\alpha_s^2}{9} \frac{(M^2-u)^2 + (s-M^2)^2 + 2 M^2 t}{t^2}
 \nonumber
@@ -1006,17 +1007,40 @@ The vacuum matrix-elements are,
 \nonumber
 \\
 &-& \left. 16 \alpha_s^2 \frac{(s-M^2)(M^2-u)-M^2(s-u)}{t(M^2-u)}\right\}
-\nonumber
-\\
-|M_{2\rightarrow 3}|^2 &=& |M_{2\rightarrow 2}|^2 48 \pi \alpha_s (1-\bar{x})^2
-\nonumber
-\\
-&\times&\left(\frac{\vec{k}_\perp}{k_\perp^2 + x^2 M^2} + \frac{\vec{q}_\perp - \vec{k}_\perp}{(\vec{q}_\perp-\vec{k}_\perp)^2 + x^2 M^2}
-\right)^2 
 \end{eqnarray}
 In medium, the denominator of the squared gluon propagator is replaced by $t^2 \rightarrow t(t-m_D^2)$. 
 For the radiation processes, we also include a gluon mass to regulate soft divergence $x^2M^2 \rightarrow x^2M^2 + (1-x)m_g^2$, where $m_g^2 = m_D^2/2$ is the squared asymptotic gluon mass. 
 
+For large-Q $2\rightarrow 3$ inelastic processes $g\rightarrow q+\bar{q}$, $q+q\rightarrow q+g+q$ and $g+q\rightarrow g+g+q$.
+In medium frame, one of them will be the hard parton with energy $E\gg T$, while the other a thermal parton with $E\sim T$.
+We perform the calculation in the the center-of-mass frame of the two incoming parton and let the hard parton to be moving towards the $+z$ direction with momentum $p_1$, and the medium parton moving to the $-z$ direction with $p_2$.
+The momentum transfer between the hard parton and the medium parton is denoted as $q$ and thought to be large enough $q\gg Q_{\textrm{cut}}$ so we neglect the thermal correction to its propagator.
+The hard parton, splits into two daughter partons with momenta $k$ and $p_1 + q - k$, where we shall consider the kinematic region that the rapidity of $k$ in the center-of-mass frame is positive $y_k > 0$.
+Of course, the medium parton also splits, but they will only contribute to the backward region $y_k<0$ under the approximation scheme we apply.
+
+The approximations we made in deriving the matrix-elements the collinear condition $k_\perp^2, q_\perp^2 \ll x(1-x) \hat{s}$, with $s = 2p_1p_2(1-\cos\theta_{12})$, and $x = k^+/\sqrt{s} = k_\perp e^y_k /\sqrt{s}$.
+Combining these condition, we see that the approximation indeed requires $y_k \gg \ln(k_\perp/\sqrt{s})$ so that $y_k$ cannot be arbitrarily small and $y_k>0>\gg -\ln(\sqrt{s}/k_\perp)$ is a reasonable range of application.
+In side a medium $\hat{s}$ is $6 ET$ on average, and we expect this approximation to breakdown when either the typical values of $q_\perp^2$ becomes comparable to $x(1-x)6ET$ or when $y_k<0$ ($x < k_\perp/\sqrt{s} \sim k_\perp/\sqrt{6ET}$).
+We shall briefly mention the treatment of the $y_k<0$ region in the end.
+
+The light-cone momentum for $p_1$ , $p_2$ and $k$ can written down directly using $\sqrt{s}$, $x$ and $k_\perp$, then applying the above collinear condition, the expression for $q$ (and therefore $p_3$ and $p_4$) is obtained by kinematic constraint up to corrections of order $\{k_\perp, q_\perp^2\}/x(1-x)\hat{s}$.
+\begin{eqnarray}
+p_1 &=& (\sqrt{s}, 0, \vec{0})\\
+p_2 &=& (0, \sqrt{s}, \vec{0})\\
+k &=& (x\sqrt{s}, \frac{k_\perp^2}{x\sqrt{s}}, \vec{k}_\perp)\\
+q &\sim& (-\frac{q_\perp^2}{\sqrt{s}}, \frac{q_\perp^2 + k_\perp^2/x - 
+2\vec{q}_\perp \cdot \vec{k}_\perp}{(1-x)\sqrt{s}}, \vec{k}_\perp)
+\end{eqnarray}
+We follow the derivation in [] to choose the light-cone gauge with light-like vector $n = (0, 1, 0)$, and the gauge fixing condition $n\cdot A =0$ eliminates the ``+" component in the gluon (with momentum $p$) polarization vector, and is written down by further applying the transverse condition $\epsilon \cdot p = 0$ (up to a higher order correction to its normalization)
+\begin{eqnarray}
+\epsilon(p) &\sim& (0, \frac{2\vec{\epsilon}_\perp\cdot\vec{p}_\perp}{p^+}, \vec{\epsilon}_\perp)
+\end{eqnarray}.
+With these preparations, our approximation only $\hat{t}$ momentum exchange with the medium parton is included.
+The matrix-element is factorized into an amplitude for the splitting process (approximated in the collinear limit) times the amplitude for two-body collision with the medium parton.
+We shall only derive explicitly the cases where the medium parton is a quark, for colliding with medium anti-quark and gluon, it is sufficient to replace the $H+q\xrightarrow{\hat{t}} H+q$ amplitude by $H+\bar{q}\xrightarrow{\hat{t}} H+\bar{q}$ and $H+g\xrightarrow{\hat{t}} H+g$.
+The connect of these results to the Bethe-Heitler limit of the AMY integral equation will be elucidated in the end.
+
+\paragraph*{Gluon splitting to quark-anti-quark pair}
 \begin{figure}
 \centering
 \includegraphics[width=.5\textwidth]{Large-Q-g2qqbar-A.pdf}\\
@@ -1024,47 +1048,94 @@ For the radiation processes, we also include a gluon mass to regulate soft diver
 \includegraphics[width=.49\textwidth]{Large-Q-g2qqbar-B.pdf}\hfill
 \includegraphics[width=.49\textwidth]{Large-Q-g2qqbar-C.pdf}
 \caption{Three diagrams $A$ (Top), $B$ (Bottom left), $C$ (Bottom right) that contribute to the large angle scattering induced gluon splitting into quark-anti-quark pair.}
+\label{fig:feyn-g2qqbar}
 \end{figure}
 
-
-\begin{eqnarray}
-p_1 &=& (\sqrt{s}, 0, \vec{0})\\
-p_2 &=& (0, \sqrt{s}, \vec{0})\\
-k &=& (x\sqrt{s}, \frac{k_\perp^2}{x\sqrt{s}}, \vec{k}_\perp)\\
-q &\sim& (-\frac{q_\perp^2}{\sqrt{s}}, \frac{q_\perp^2 + k_\perp^2/x - 2\vec{q}_\perp \cdot \vec{k}_\perp}{(1-x)\sqrt{s}}, \vec{k}_\perp)\\
-n &=& (0, 1, 0)\\
-\epsilon(p) &\sim& (0, \frac{2\vec{\epsilon}_\perp\cdot\vec{p}_\perp}{p^+}, \vec{\epsilon}_\perp)
-\end{eqnarray}
-
-The first diagram:
+Three Feynman diagrams contribute to the kinematic region $y_k >0$ in the current approximation, as shown in figure \ref{fig:feyn-g2qqbar}.
+We start from the amplitude for diagram $A$.
 \begin{eqnarray}
 i M_A &=& (-ig)^2(-g)f^{abc}(t^b)_{j'j}(t^c)_{i'i} \epsilon_\lambda^\mu(p_1) \\\nonumber
 &&\frac{-i}{(p_1+q)^2}\left(g^{\rho\rho'}-\frac{n^{\rho}(p_1+q)^{\rho'}+n^{\rho'}(p_1+q)^\rho}{n\cdot (p_1+q)}\right) \bar{u}^s(p_1+q-k)\gamma_{\rho'}v^{s'}(k) \\ \nonumber
 &&\frac{-i}{q^2}\left(g^{\nu\nu'}-\frac{n^{\nu}q^{\nu'}+n^{\nu'}q^\nu}{n\cdot q}\right) \bar{u}^{\sigma}(p_4)\gamma_{\nu'}u^{\sigma'}(p_2) \\ \nonumber
-&& \left[g_{\mu\nu}(p_1-q)_\rho + g_{\nu\rho}(2q+p_1)_\rho + g_{\rho\mu}(-2p_1 -q)_\nu \right]\\
-&\approx& -g^3 f^{abc}(t^b)_{j'j}(t^c)_{i'i} \delta^{\sigma\sigma'} \epsilon^\mu(p_1) \\\nonumber
+&& \left[g_{\mu\nu}(p_1-q)_\rho + g_{\nu\rho}(2q+p_1)_\rho + g_{\rho\mu}(-2p_1 -q)_\nu \right]
+\end{eqnarray}
+Next, express the projection matrix of the gluon propagator with momentum $p_1+q$ by the sum of tensor products of its polarization vectors, and identify the amplitude $iP_{A,\lambda'}^{ss'}$ for a gluon with polarization $\lambda'$ to split into the quark and anti-quark pair with spin $s$ and $s'$.
+Also, use the high energy approximation of the current $\bar{u}^i(a)\gamma^\alpha u^j(b)$ by $(a+b)^\alpha \delta^{ij}$,
+\begin{eqnarray}
+i M_A &\approx& -g^3 f^{abc}(t^b)_{j'j}(t^c)_{i'i} \delta^{\sigma\sigma'} \epsilon^\mu(p_1) \\\nonumber
 &&\frac{1}{(p_1+q)^2} \sum_{\lambda'=\pm}\epsilon_{\lambda'}^{\rho}(p_1+q)\underbrace{\epsilon_{\lambda'}^{*,\rho'}(p_1+q) \bar{u}^s(p_1+q-k)\gamma_{\rho'}v^{s'}(k)}_{iP_{A,\lambda'}^{ss'}} \\ \nonumber
 &&\frac{1}{q_\perp^2}\left(g^{\nu\nu'}-\frac{n^{\nu}q^{\nu'}+n^{\nu'}q^\nu}{n\cdot q}\right) (2p_2-q)_{\nu'} \\ \nonumber
 && \left[g_{\mu\nu}(p_1-q)_\rho + g_{\nu\rho}(2q+p_1)_\rho + g_{\rho\mu}(-2p_1 -q)_\nu \right] \\
 &=& -g^3 f^{abc}(t^b)_{j'j}(t^c)_{i'i} \frac{1}{(p_1+q)^2}\frac{1}{q_\perp^2} \sum_{\lambda'=\pm}iP_{A,\lambda}^{ss'} \delta^{\sigma\sigma'}  \\ \nonumber
-&& \epsilon_\lambda^\mu(p_1)2p_2^{\nu} \epsilon_{\lambda'}^{\rho}(p_1+q) \left[g_{\mu\nu}(p_1-q)_\rho + g_{\nu\rho}(2q+p_1)_\rho + g_{\rho\mu}(-2p_1 -q)_\nu \right]\\
-&\approx& -g^3 f^{abc}(t^b)_{j'j}(t^c)_{i'i}\delta^{\sigma\sigma'}\frac{2s}{q_\perp^2} \frac{x(1-x)}{(\vec{k}_\perp-x \vec{q}_\perp)^2} iP_{A,\lambda}^{ss'} 
+&& \epsilon_\lambda^\mu(p_1)2p_2^{\nu} \epsilon_{\lambda'}^{\rho}(p_1+q) \left[g_{\mu\nu}(p_1-q)_\rho + g_{\nu\rho}(2q+p_1)_\rho + g_{\rho\mu}(-2p_1 -q)_\nu \right].
 \end{eqnarray}
-The second and third diagram,
+Finally, we evaluate the contraction in the second line using the expression for $p_1, q$ and $\epsilon$, and keep only terms that is leading in $q_\perp^2/s$ to get,
 \begin{eqnarray}
-i M_B &=& i g^3 (t^b t^a)){i'i} t^b{j'j} \delta^{\sigma\sigma'} \frac{2s}{q_\perp^2} \frac{x(1-x)}{k_\perp^2}  iP_{B,\lambda}^{ss'} \\
+i M_A \approx -g^3 f^{abc}(t^b)_{j'j}(t^c)_{i'i}\delta^{\sigma\sigma'}\frac{2s}{q_\perp^2} \frac{x(1-x)}{(\vec{k}_\perp-x \vec{q}_\perp)^2} iP_{A,\lambda}^{ss'}.
+\end{eqnarray}
+
+Diagram B and C are similar and we only write down diagram B in detail.
+\begin{eqnarray}
+i M_B &=& (-ig)^3 (t^bt^a)_{i'i}(t^b)_{j'j} \epsilon_\lambda^\mu(p_1) \\\nonumber
+&&\frac{-i}{q^2}\left(g^{\nu\nu'}-\frac{n^{\nu}q^{\nu'}+n^{\nu'}q^\nu}{n\cdot q}\right) \\\nonumber
+&&\bar{u}^s(p_1+q-k)\gamma_{\nu}\frac{i(\slashed{p_1}-\slashed{k})}{(p_1-k)^2}\gamma^{\mu}v^{s'}(k) \\ \nonumber
+&&\bar{u}^{\sigma}(p_4)\gamma_{\nu'}u^{\sigma'}(p_2)
+\end{eqnarray}
+Again, represent the tensor structure of the fermion propagator by the sum of tensor products of the spinors, identify the splitting amplitude $iP_{B,\lambda'}^{ss'}$ and use the high energy limit of the current,
+\begin{eqnarray}
+i M_B &\approx& ig^3 (t^bt^a)_{i'i}(t^b)_{j'j}  \\\nonumber
+&&\frac{-i}{q_\perp^2}\left(g^{\nu\nu'}-\frac{n^{\nu}q^{\nu'}+n^{\nu'}q^\nu}{n\cdot q}\right) (2p_2-q)_\nu' \\\nonumber
+&&\frac{1}{2p_1\cdot k} \sum_\sigma \bar{u}^s(p_1+q-k)\gamma_{\nu} u^{\sigma}(p_1-k) \underbrace{\epsilon_\lambda^\mu(p_1)\bar{u}^{\sigma}(p_1-k) \gamma^{\mu}v^{s'}(k)}_{iP_{B,\lambda}^{\sigma s'}}\\
+&\approx& ig^3 (t^bt^a)_{i'i}(t^b)_{j'j} \frac{-i}{q_\perp^2}\frac{1}{2p_1\cdot k} iP_{B,\lambda}^{ss'}\\\nonumber
+&&\left(g^{\nu\nu'}-\frac{n^{\nu}q^{\nu'}+n^{\nu'}q^\nu}{n\cdot q}\right) (2p_2-q)_{\nu'} (2p_1-q+2k)_\nu 
+\end{eqnarray}
+Note that $iP_{B}$ is different from $iP_{A}$ as the initial splitting parton has a different transverse momentum from diagram $A$.
+Finally, evaluate the contraction and get,
+\begin{eqnarray}
+i M_B &=& i g^3 (t^b t^a)){i'i} t^b{j'j} \delta^{\sigma\sigma'} \frac{2s}{q_\perp^2} \frac{x(1-x)}{k_\perp^2}  iP_{B,\lambda}^{ss'}
+\end{eqnarray}
+Diagram C can be obtained similarly,
+\begin{eqnarray}
 i M_C &=& -i g^3 (t^a t^b)){i'i} t^b{j'j} \delta^{\sigma\sigma'} \frac{2s}{q_\perp^2} \frac{x(1-x)}{(\vec{k}_\perp-\vec{q}_\perp)^2}  iP_{C,\lambda}^{ss'} 
 \end{eqnarray}
-The sum of all three diagrams, applying $f^{abc}t^c = -i[t^a, t^b]$
+To sum the contributions from all three diagrams, applying $f^{abc}t^c = -i[t^a, t^b]$ to $iM_A$ and the result is,
 \begin{eqnarray}
 i (M_A+M_B+M_C) &=& ig^3 \frac{2s}{q_\perp^2} (t^b)_{j'j} x(1-x)\\\nonumber
-&&\left\{(t^a t^b)_{i'i} \left(\frac{iP_{A,\lambda}^{ss'} }{(\vec{k}_\perp-x \vec{q}_\perp)^2} - \frac{iP_{C,\lambda}^{ss'}}{(\vec{k}_\perp-\vec{q}_\perp)^2}\right) -(t^a t^b)_{i'i}\left(\frac{iP_{A,\lambda}^{ss'} }{(\vec{k}_\perp-x \vec{q}_\perp)^2} - \frac{iP_{B,\lambda}^{ss'}}{k_\perp^2}\right) \right\}
+&&\left\{(t^a t^b)_{i'i} \left(\frac{iP_{A,\lambda}^{ss'} }{(\vec{k}_\perp-x \vec{q}_\perp)^2} - \frac{iP_{C,\lambda}^{ss'}}{(\vec{k}_\perp-\vec{q}_\perp)^2}\right) \right. \\\nonumber
+&&\left.-(t^a t^b)_{i'i}\left(\frac{iP_{A,\lambda}^{ss'} }{(\vec{k}_\perp-x \vec{q}_\perp)^2} - \frac{iP_{B,\lambda}^{ss'}}{k_\perp^2}\right) \right\}
 \end{eqnarray}
 
-
-The splitting amplitude:
+Now we have to address what those splitting amplitudes are.
+Label the four momenta as $p_g = c$, $p_q = a$, $p_{\bar{q}} = b$.
+And use the following representation for the spinors,
 \begin{eqnarray}
-&&\epsilon_{\lambda, \mu} \bar{u}_s(a)\gamma^\mu v_{s'}(b)\\
+u^s(p) = (\sqrt{p\cdot \sigma} \xi^s, \sqrt{p\cdot \bar{\sigma}} \xi^s)^T
+v^s(p) = (\sqrt{p\cdot \sigma} \eta^s, -\sqrt{p\cdot \bar{\sigma}} \eta^s)^T
+\end{eqnarray}
+where $\sigma_{i=\{1,2,3\}}$ are Pauli matrices, $\sigma = (1_{2\times 2}, \vec{\sigma})$, and $\bar{\sigma} = (1_{2\times 2}, -\vec{\sigma})$.
+The square root of the matrix is,
+\begin{eqnarray}
+\sqrt{p\cdot \sigma} =
+\left.
+\begin{bmatrix}
+p^- & -p_L^\perp \\
+-p_R^\perp & p^+
+\end{bmatrix}\right.^{1/2} 
+= \frac{1}{\sqrt{2(E\pm M)}}(p\cdot\sigma \pm \mathbf{1}M)\\
+\sqrt{p\cdot \bar{\sigma}} =
+\left.
+\begin{bmatrix}
+p^+ & p_\perp^- \\
+p_R^\perp & p^-
+\end{bmatrix}\right.^{1/2} 
+= \frac{1}{\sqrt{2(E\pm M)}}(p\cdot\bar{\sigma} \pm \mathbf{1}M)\\
+\end{eqnarray}
+where $M$ is the mass of the particle, $p^\pm = E\pm p_z$, and $p_{R,L}^\perp = p_x \pm  i p_y$.
+Currently, for now we only consider the massless case, the mass effect will be discussed in the end.
+
+Neglecting the mass, the splitting amplitude reads,
+\begin{eqnarray}
+&&\epsilon_{\lambda, \mu}(c) \bar{u}_s(a)\gamma^\mu v_{s'}(b)\\
 &=&\frac{1}{\sqrt{2a}\sqrt{2b}}(\xi^T_s a\cdot\sigma, \xi^T_{s} a\cdot \bar{\sigma})
 \begin{bmatrix}
 \epsilon\cdot\bar{\sigma} & 0 \\
@@ -1111,7 +1182,7 @@ b^\perp_R & b^-
 \xi_s^T
 \begin{bmatrix}
 -a^\perp_L b^- \delta_{\lambda L} - a^- b^\perp_L \delta_{\lambda R} + a^\perp_L b^\perp_R\frac{c^\perp_\lambda}{c^+} &
--a^\perp_L b^\perp_L \delta_{\lambda L} + a^- b^+ \delta_{\lambda R} + a^\perp_L b^+\frac{c^\perp_\lambda}{c^+}
+a^\perp_L b^\perp_L \delta_{\lambda L} + a^- b^+ \delta_{\lambda R} - a^\perp_L b^+\frac{c^\perp_\lambda}{c^+}
 \\
 a^+ b^- \delta_{\lambda L} + a^\perp_R b^\perp_R \delta_{\lambda R} - a^+ b^\perp_R\frac{c^\perp_\lambda}{c^+} &
 -a^+ b^\perp_L \delta_{\lambda L} - a^\perp_R b^+ \delta_{\lambda R} + a^+ b^+\frac{c^\perp_\lambda}{c^+}
@@ -1128,56 +1199,130 @@ a^+ b^- \delta_{\lambda L} + a^\perp_R b^\perp_R \delta_{\lambda R} - a^+ b^\per
 \end{bmatrix}
 \eta_{s'}
 \end{eqnarray}
-Dropping terms that is of order $(+)(-)$ or $(\perp)(\perp)$ or $(\perp)(-)$,
+Keep the leading terms in the collinear limit which are products of $(+)(+)$ or $(+)(\perp)$ components of the momenta, and drop terms that are of order $(+)(-)$, $(\perp)(\perp)$ and $(\perp)(-)$,
 \begin{eqnarray}
 &&\epsilon_{\lambda, \mu} \bar{u}_s(a)\gamma^\mu v_{s'}(b)\\
 &=& \frac{1}{\sqrt{2ab}}
 \xi_s^T
 \begin{bmatrix}
 a^\perp_L b^+ \delta_{\lambda L} + a^+ b^\perp_R \delta_{\lambda R} - a^+ b^+\frac{c^\perp_\lambda}{c^+} & 0\\
-0 & -a^+ b^\perp_L \delta_{\lambda L} - a^+ b^\perp_R \delta_{\lambda R} + a^+ b^+\frac{c^\perp_\lambda}{c^+}
+0 & -a^+ b^\perp_L \delta_{\lambda L} - a^\perp_R b^+ \delta_{\lambda R} + a^+ b^+\frac{c^\perp_\lambda}{c^+}
 \end{bmatrix}
 \eta_{s'}
 \end{eqnarray}
-The module square of one splitting amplitude, sum over spins and average over polarization is ($a^+ = xc^+, b^+ = (1-x)c^+$ and $c = a+b$),
+There are four combinations for the possible initial state polarization and final state spins
+\begin{eqnarray}
+\epsilon_{\lambda, \mu} \bar{u}_s(a)\gamma^\mu v_{s'}(b) = \frac{x\vec{a} - (1-x)\vec{b}}{\sqrt{2x(1-x)}}
+\begin{cases}
+x, \hfill \lambda=L, s=\uparrow\\
+-(1-x), \hfill \lambda=L, s=\downarrow\\
+(1-x), \hfill \lambda=R, s=\uparrow\\
+-x, \hfill \lambda=R, s=\downarrow\\
+\end{cases}
+\end{eqnarray}
+Where we have use $a^+ = (1-x)c^+, b^+ = xc^+$ and $c_\perp = a_\perp+b_\perp$.
+Sum over the spins and average over polarization for the squared amplitude,
 \begin{eqnarray}
 \frac{1}{2}\sum_\pm |P|^2 = \frac{2(x^2 + (1-x)^2)}{x(1-x)} \left((1-x)\vec{a}_\perp-x\vec{b}_\perp\right)^2.
 \end{eqnarray}
 This result goes back to the standard splitting function if it is computed in the frame where $a_\perp = -b_\perp$. 
-However, there is no such frame that $a_\perp = -b_\perp$ satisfies simultaneously for the splitting in diagram A, B and C, therefore the result gets complicated,
+However, there is no such frame that $a_\perp = -b_\perp$ satisfies simultaneously for the splitting in diagram A, B and C, therefore different amplitude needs to be inserted for each diagram and we find,
 \begin{eqnarray}
-\frac{1}{2d_F 2d_A}\sum_{\lambda, s, s', \sigma, \sigma', a, b}|M^2|_{g+q\rightarrow q+\bar{q}+q} &=& g^6 \frac{2C_F}{d_A}\frac{4s^2}{q_\perp^4}x(1-x)\overbrace{\frac{(x^2+(1-x)^2)}{2}}^{P(x)}  \\\nonumber
-&\times&\left(C_F \vec{A}^2 + C_F \vec{B}^2 - (2C_F- C_A)\vec{A}\cdot\vec{B}\right)
+\frac{\sum_{\lambda, s, s', \sigma, \sigma', a, b}|M^2|_{g+q\rightarrow q+\bar{q}+q}}{2d_F 2d_A} &=& g^4 \frac{2C_F}{d_A}\frac{4s^2 x(1-x)}{q_\perp^4}  \\\nonumber
+&\times& g^2\frac{(x^2+(1-x)^2)}{2} \left(C_F \vec{A}^2 + C_F \vec{B}^2 - (2C_F- C_A)\vec{A}\cdot\vec{B}\right)
 \end{eqnarray}
 Where the $\vec{A}$ and $\vec{B}$ is,
 \begin{eqnarray}
 \vec{A} &=& \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2} -  \frac{\vec{k}_\perp - \vec{q}_\perp}{(\vec{k}_\perp - \vec{q}_\perp)^2} \\
 \vec{B} &=& \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2} -  \frac{\vec{k}_\perp}{\vec{k}_\perp^2}
 \end{eqnarray}
+Therefore the final squared matrix-element has been factorized into the two body scattering part (first line) and the collinear splitting part (second line) with the desired leading order QCD splitting function. 
 
-Similarly for $g+q\rightarrow g+g+q$, and $q+q\rightarrow q+g+q$
+\paragraph*{Quark splits to quark and gluon}
+\begin{figure}
+\centering
+\includegraphics[width=.5\textwidth]{Large-Q-q2qg-A.pdf}\\
+\vspace{1em}
+\includegraphics[width=.49\textwidth]{Large-Q-q2qg-B.pdf}\hfill
+\includegraphics[width=.49\textwidth]{Large-Q-q2qg-C.pdf}
+\caption{Three diagrams $A$ (Top), $B$ (Bottom left), $C$ (Bottom right) that contribute to the large angle scattering induced a quark splitting into a quark and a gluon.}
+\label{fig:feyn-q2qg}
+\end{figure}
+
+The Feynman diagrams to be included for $q+q\rightarrow q+g+q$ are shown in Figure \ref{fig:feyn-q2qg}.
+The calculation uses exactly the same technique we used for the gluon splitting channel, and we directly presents the result.
 \begin{eqnarray}
-\overline{|M^2|}_{g+q\rightarrow g+g+q} &=& g^6 \frac{C_A}{d_F}\frac{4s^2}{q_\perp^4}x(1-x) ]\overbrace{C_A\frac{1+x^4+(1-x)^4}{x(1-x)}}^{P(x)}   \\\nonumber
-&\times&\left(\vec{A}^2 + \vec{B}^2 - \vec{A}\cdot\vec{B}\right)\\
-\vec{A} &=& \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2} -  \frac{\vec{k}_\perp - \vec{q}_\perp}{(\vec{k}_\perp - \vec{q}_\perp)^2} \\
-\vec{B} &=& \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2} -  \frac{\vec{k}_\perp}{\vec{k}_\perp^2}
-\end{eqnarray}
-
-and
-
-\begin{eqnarray}
-\overline{|M^2|}_{g+q\rightarrow g+g+q} &=& g^6 \frac{C_F}{d_F}\frac{4s^2}{q_\perp^4}x(1-x) \overbrace{C_F\frac{1+(1-x)^2}{x}}^{P(x)}  \\\nonumber
-&\times&\left(\vec{A}^2 + \vec{B}^2 - \left(2-\frac{C_A}{C_F}\right)\vec{A}\cdot\vec{B}\right)\\
+\overline{|M^2|}_{g+q\rightarrow g+g+q} &=& 
+ g^4 \frac{C_F}{d_F}\frac{4s^2}{q_\perp^4}x(1-x) \\\nonumber
+&\times&g^2\frac{1+(1-x)^2}{x}  
+\left(C_F\vec{A}^2 + C_F\vec{B}^2 - \left(2C_F-C_A\right)\vec{A}\cdot\vec{B}\right)\\
 \vec{A} &=& \frac{\vec{k}_\perp - \vec{q}_\perp}{(\vec{k}_\perp - \vec{q}_\perp)^2} -  \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2} \\
 \vec{B} &=& \frac{\vec{k}_\perp - \vec{q}_\perp}{(\vec{k}_\perp - \vec{q}_\perp)^2} -  \frac{\vec{k}_\perp}{\vec{k}_\perp^2}
 \end{eqnarray}
 
+
+\paragraph*{Gluon splitting to two gluons}
+\begin{figure}
+\centering
+\includegraphics[width=.5\textwidth]{Large-Q-g2gg-A.pdf}\\
+\vspace{1em}
+\includegraphics[width=.49\textwidth]{Large-Q-g2gg-B.pdf}\hfill
+\includegraphics[width=.49\textwidth]{Large-Q-g2gg-C.pdf}
+\caption{Three diagrams $A$ (Top), $B$ (Bottom left), $C$ (Bottom right) that contribute to the large angle scattering induced gluon splitting into two gluons.}
+\label{fig:feyn-g2gg}
+\end{figure}
+
+Finally, for $g+q\rightarrow g+q+g$, the Feynman diagrams are shown in Figure \ref{fig:feyn-g2gg}. 
+The simplification of the two body collision amplitude can be done in a similar manner as the previous two channels. 
+Here we only write down the splitting amplitude $g\rightarrow g+ g$ in detail for each diagram.
+Suppressing the color index, we label the initial gluon with $\epsilon_1^\mu(p)$, and the two daughter gluons with $\epsilon_2^\nu(k)$ and $\epsilon_3^\rho(q)$.
+The splitting amplitude is then (omitting the factor $-gf^{abc}$)
+\begin{eqnarray}
+iP &=& \epsilon^\mu_1\epsilon^\nu_2\epsilon^\rho_3
+\left[
+g_{\mu\nu} (p+k)_{\rho} +  g_{\nu\rho} (p+k)_{\mu} + g_{\rho\mu} (-q-p)_{\nu}
+\right]\\
+&=& -\vec{\epsilon}_{1,\perp}\cdot \vec{\epsilon}_{2,\perp} \left[(p+k)^+\frac{\vec{\epsilon}_{3,\perp}\cdot \vec{q}_\perp}{q^+} - \vec{\epsilon}_{3,\perp}\cdot (\vec{p}_\perp+\vec{k}_\perp)\right] \\\nonumber
+&&-\vec{\epsilon}_{2,\perp}\cdot \vec{\epsilon}_{3,\perp} \left[(-k+q)^+\frac{\vec{\epsilon}_{1,\perp}\cdot \vec{p}_\perp}{p^+} - \vec{\epsilon}_{1,\perp}\cdot (-\vec{k}_\perp+\vec{q}_\perp)\right]
+\\\nonumber
+&&-\vec{\epsilon}_{3,\perp}\cdot \vec{\epsilon}_{1,\perp} \left[(-q-p)^+\frac{\vec{\epsilon}_{2,\perp}\cdot \vec{k}_\perp}{k^+} - \vec{\epsilon}_{2,\perp}\cdot (-\vec{q}_\perp-\vec{p}_\perp)\right]
+\end{eqnarray}
+There are four possible combinations of the polarization vectors, and their respective amplitude is computed as,
+\begin{eqnarray}
+iP = \sqrt{2}\left[x\vec{q}_\perp - (1-x)\vec{k}_\perp\right]\times 
+\begin{cases}
+\frac{1-x+x^2}{x(1-x)}, \hfill \lambda_1=\lambda_2=\lambda_3\\
+-1, \hfill \lambda_1\neq\lambda_2=\lambda_3 \\
+\frac{1}{x}, \hfill \lambda_1=\lambda_3\neq\lambda_2\\
+\frac{1}{1-x}, \hfill \lambda_1=\lambda_2\neq\lambda_3
+\end{cases}
+\end{eqnarray}
+Summing over the squared amplitude of all four cases and average over the initial gluon polarization, one indeed get the desired leading order QCD splitting function,
+\begin{eqnarray}
+2\frac{1+x^2+(1-x)^4}{x^2(1-x)^2} \left[x\vec{q}_\perp - (1-x)\vec{k}_\perp\right]^2.
+\end{eqnarray}
+
+Substitute the the amplitude in each diagram, the final squared matrix-element is 
+\begin{eqnarray}
+\overline{|M^2|}_{g+q\rightarrow g+g+q} &=&
+g^4 \frac{C_A}{d_F}\frac{4s^2x(1-x)}{q_\perp^4} \\\nonumber
+&\times&g^2\frac{1+x^4+(1-x)^4}{x(1-x)}   
+\left(C_A\vec{A}^2 + C_A\vec{B}^2 - C_A\vec{A}\cdot\vec{B}\right)\\
+\vec{A} &=& \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2} -  \frac{\vec{k}_\perp - \vec{q}_\perp}{(\vec{k}_\perp - \vec{q}_\perp)^2} \\
+\vec{B} &=& \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2} -  \frac{\vec{k}_\perp}{\vec{k}_\perp^2}
+\end{eqnarray}
+
+\paragraph*{Regulating the $2\rightarrow 3$ squared matrix-elements}
 The divergence in the $q$ integration is removed by the requirement that this few-body matrix-element only applies to processes with $q>Q_{\textrm{cut}}$.
 The collinear divergence when $k$ approaching $q$, $xq$ is regulated by including a gluon thermal mass. 
 In practice, these collinear region will be further suppressed by the LPM effect.
 The cross-section is obtained by integrating over the final state phase-space, where we have chosen to parameterize the three particle final state in terms of $k_\perp^2$, the rapidity of $k$ in the center-of-mass frame $y_k$, and the solid angle of the recoil medium particle.
 
+\paragraph*{Soft limit: the Gunion-Bertsch approximation}
 
+\paragraph*{Results for the backward ($y_k < 0$) region}
+
+\paragraph*{Relation to the Bethe-Heitler limit of the AMY formalisim}
 Now we display the connection between the $2\rightarrow 3$ cross section and the Bethe-Heitler limit of the AMY equation.
 In the Bethe-Heitler limit, the AMY integral equation can be solved approximately by treating $1/\tau_f$ as the leading factor. 
 One get the splitting rate for each different channels (denoting $\vec{a}/a^2$ as $\vec{\phi}_{a}$), 
@@ -1257,4 +1402,4 @@ C_A\vec{\phi}_{k}\cdot \left( \vec{\phi}_{k}-\vec{\phi}_{k+q} \right)
 which is the exactly the same integration as the one obtained from the Bethe-Heitler limit of the AMY equation.
 The equivalence between these two expressions of the $g\rightarrow g+g$ channel and the $g\rightarrow q+\bar{q}$ channel can also be shown similarly.
 
-
+\paragraph*{Mass effect in the $2\rightarrow 3$ squared matrix-elements}
