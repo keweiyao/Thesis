@@ -792,60 +792,88 @@ p^{\textrm{running}} = p\times \frac{\alpha_s(k_{\perp,t_0+\tau_f}^2)}{\alpha_s(
 \end{eqnarray}
 Where $k_{\perp,t_0}^2$ is the transverse momentum when the splitting is generate from the few-body processes, while $k_{\perp,t_0+\tau_f}^2$ is the final transverse momentum including the elastic broadening, and is on average greater than $k_{\perp,t_0}^2$.
 
-\subsection{Comment on an incorrect LPM effect implementation}
-Before we proceed to validate transport model to theoretical calculations.
-We find it beneficial clarify an incorrect implementation of the LPM effect that can be very confusing. 
-
-In this approach, the splitting is also first generated through an incoherent processes at time $t_0$, and then the self-consistently determination the formation time by elastic broadening. 
-But its LPM suppression is introduced by requiring no other radiation is allowed from this radiator within the time from $t_0$ to $t_0 + \tau_f$.
-This clearly introduces a correlation between subsequent emission, while the LPM effect concerns only the one particle emission rate.
-While in our approach, the suppression is implemented by accepting the process with probability $\sim \lambda_{el}/\tau_f$, and more importantly, other emissions are unaffected by the current ``imaginary splitting" as most of them would be rejected without causing any physical effect.
-
-A closer investigation reveals bigger problem.
-Moreover, this ``blocking radiation" approach effectively reduces every $\tau_f/\lambda_{inel}$ incoherent emission to one, resulting only an overall reduction in the radiation spectrum without changing its shape.
-And the suppression factor $\lambda_{inel}/\tau_f$ is different from the expected one, this is in fact an order of $\alpha_s$ wrong as the mean-free-path of the incoherent radiation rate contains one more power of $\alpha_s$ than $\lambda_{el}$.
-
-
-\section{Validate the modified transport approach to theoretical calculation}
-
+\section{Validate the modified transport approach to theoretical calculation: large and static medium}
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{spectrum.png}
+\centering{
+\includegraphics[width=.7\columnwidth]{spectrum.png}
+}
 \caption{The $q\rightarrow q+g$ splitting rate in an infinite medium from a quark with $E=1$ TeV,and a coupling constant $\alpha_s = 0.1$. The top plot shows the simulated spectrum $dR/d\omega$ (red-dashed line) and power law fit (green-dotted and blue-dash-dotted lines) in different gluon energy regions, separated by energy scales $\omega_{BH}\approx 2\pi T$. The middle plot compares to the simulation to NLL solution to the AMY equation, and the ratio is shown in the bottom plot}
 \label{fig:spectrum}
 \end{figure}
 
+
+In this section, we first compare the splitting rate $dR/d\omega$ that comes out of the modified Boltzmann approach simulation to the NLL approximation in the infinite medium limit.
+In practice, to define a Monte-Carlo transport simulation an infinite medium limit and an eikonal limit of parton propagation, an ensemble of parton of certain species are initialized at a fixed energy $E_0$ and will be let propagate in the same direction.
+Each time when a parton scatters elastically or splits, its splitting kinematics are taken down $\omega, k_\perp, t_0, \tau_f$, then the mother parton's energy is reset back to its initial value.
+For elastic re-scatterings in the implementation of the LPM effect, the parton's energy is re-scaled back to the value before scatterings without changing its direction.
+The system is evolved for a sufficiently long time $t_{\max}$, and only branchings with branching time within $[t_{\min}, t_{\max}]$ are analyzed to focus on the infinite time behavior of the transport model.
+
+We start by taking a detailed look at the $q\rightarrow q+g$ channel.
+Its differential rate $dR/d\omega$ for a 1 TeV quark propagate through a medium of $T=0.5 GeV$ with coupling constant $\alpha_s = 0.1$ is shown in 
+figure \ref{fig:spectrum}.
+The vertical axis is the differential branching rate $dR/d\omega$, and the horizontal axis is the energy of the final state gluon $\omega$.
+To better understand our result, we have put three ``landmark'' energy scales in the upper plot, which are the initial parton energy $E$, an estimate of the Bethe-Heitler energy $\omega_{\textrm{BH}}\hat{q}_g \lambda_g^2 \sim 2\pi T$, and the screening mass $m_g = m_D/\sqrt{2}$.
+In the LPM regime $\omega_{\textrm{BH}} < \omega$, the spectrum falls off as a power law with fitted exponent $-1.50$ (the blue dash-dotted line), and the in the Bethe-Heitler regime above the screening mass $m_g < \omega < \omega_{\textrm{BH}}$, the fitted power law exponent is close to $-1$ (the green dotted line).
+These exponents are in good agreement with the theoretically expectation that $dR_{\textrm{BH}}/d\omega \propto \omega^{-1}$ and $dR_{\textrm{LPM}}/d\omega \propto \omega^{-3/2}$.
+The screening mass regulates the soft divergence of the spectrum below $m_g$.
+One may notice a tiny increase of the spectrum when $\omega \rightarrow E$, this is region where the gluon takes a larger fraction of the initial quark's energy.
+
+In the middle plot, we compare this result from simulation directly to the NLL solution of the AMY equation. 
+As a remark, we have tuned the prefactor in the $b$-parameter to be $0.75$  by comparing to this theory prediction at $\alpha_s=0.1, E=1 \textrm{TeV}, T = 0.5 \textrm{GeV}$ for the $q\rightarrow q+g$ channel.
+For the rest of the comparison with different coupling, parton energy, temperature, and channels, this parameter will {\bf not} be further tuned.
+The simulation agrees with the NLL solution very well when $\omega \gg \omega_{\textrm{BH}}$ where the formula is valid.
+The bottom plot show the ratio between the simulation and the theory, an level of $\pm 10\%$ agreement in the deep-LPM region is achieved in the static case.
+
 \begin{figure}
-\includegraphics[width=\columnwidth]{channel_rate.png}
+\centering{
+\includegraphics[width=.7\columnwidth]{channel_rate.png}
+}
 \caption{The splitting rate of $q\rightarrow q+g^*$, $g\rightarrow g+g^*$, and $g\rightarrow q^* + \bar{q}$ as a function of the parton energy labeled by the star. The mother parton with $E=1$ TeV evolves inside an infinite medium with $T=0.5$ GeV. The simulations (thick dashed lines) are compared to the NLL solutions (thin solid lines).}
 \label{fig:channel_rate}
 \end{figure}
 
+Next, we would like to compare the simulation all the three channels in figure \ref{fig:channel_rate}.
+The setup is the same as the figure \ref{fig:spectrum}.
+The red, green and blue lines correspond to the differential branching rate of processes $q\rightarrow q+g^*$, $g\rightarrow g^*+g^*$ and $g\rightarrow q^*+\bar{q}$; the thin back lines are the NLL solution to the AMY equation.
+The ``${}^*$'' sign denotes the final state parton whose energy is $\omega$.
+For the case two final state gluons, both are taken into account in the simulation as they are identical particles.
+We have discussed the feature the $q\rightarrow q+g$ in the previous paragraph. 
+The spectrum shape of $g\rightarrow g+g$ process is very similar to the quark splitting channel in the range $\omega \ll E$, with a higher value.
+The rate is symmetric with respect to $\omega = E/2$ due to its symmetric final states (though it is hard to tell from this double-log plot), so at large $\omega$, the rate goes up again.
+The spectrum of $g\rightarrow q+\bar{q}$ is also symmetric with respect to $\omega = E/2$.
+Though its final state consists of two different particle, the splitting function is still symmetric in this case.
+We see that the simulation achieves a good agreement with the NLL solution in the deep-LPM region $\omega/T > 10$.
+
+Next, we would like validate the simulation with different coupling constant and parton energies.
+We choose both a relative small coupling $\alpha_s = 0.1 (g \approx 1.1)$ and a value closer to the phenomenology coupling $\alpha_s = 0.3 (g \approx 1.9)$, and vary the energy from $10$, $10^2$, to $10^3$ GeV.
+The ratios between the simulation and the NLL solutions are shown in figure \ref{fig:sys-q2qg} and \ref{fig:sys-g2gg-g2qqbar}.
+From these systematic comparison.
+One see that the simulation reproduces the correct scaling in the LPM region, although due to the decreasing of the parton energy, this region also shrinks.
+The overall performance of the modified Boltzmann transport in describing the inelastic processes in a large medium is good and under control.
+One remaining problem is that the systematic deviation for the $g\rightarrow q+\bar{q}$ channel is bigger than the other two channels, as we did not include the backward region in its $2\rightarrow 3$ matrix-elements.
+
+
+
 \begin{figure}
-\includegraphics[width=\columnwidth]{running.png}
-\caption{Top plot: comparison of modified Boltzmann simulation with the NLL solution  with running coupling.
-Three initial guesses of the 
-The ratio between simulation and theory is shown in the bottom plot.}
-\label{fig:running}
+\centering{
+\includegraphics[width=.5\columnwidth]{spectrum_E_q2qg.png}
+}
+\caption{Ratios of splitting rate $dR/\omega$ between the modified Boltzmann simulation and the NLL solution for $q\rightarrow q+g$ splitting. The quark energies are $E$ is 10, 100, and 100 GeV from top to the bottom plot. 
+And two coupling constants are used: $\alpha_s = 0.1$ (red solid lines) and $\alpha_s = 0.3$ (blue dashed lines).
+$\omega$ stands for the gluon energy.
+The horizontal dashed lines denote $\pm 10\%$ deviation from unity. }
+\label{fig:sys-q2qg}
 \end{figure}
 
-In this section, we compare the splitting rate $dR/d\omega$ that comes out of the modified Boltzmann approach simulation to the NLL approximation in the infinite medium limit.
+\begin{figure}
+\centering{
+\includegraphics[width=.5\columnwidth]{spectrum_E_g2gg.png}\includegraphics[width=.5\columnwidth]{spectrum_E_g2qqbar.png}
+}
+\caption{Same as figure \ref{fig:sys-q2qg}, but for $g \rightarrow g + \bar{g}$ (left) and $g \rightarrow q + \bar{q}$ (right)}
+\label{fig:sys-g2gg-g2qqbar}
+\end{figure}
 
-The differential rate in an infinite medium $dR/d\omega$ is shown in Figure \ref{fig:spectrum} for a 1 TeV quark splitting into a gluon and a quark.
-The temperature of the medium is $T=0.5$ GeV, and a rather small coupling constant $\alpha_s = 0.1$.
-Please also refer to Appendix \ref{app:tune-spectrum} for a full comparison varying both the parton energy and the coupling constant.
-The horizontal axis is the radiated gluon energy.
-In the upper plot, we divided the spectrum into different regions by the gluon thermal mass $m_\infty$ and an estimated Bethe-Heitler energy $\lambda_g m_D^2 \sim 2\pi T$.
-The spectrum with above the is suppressed due the use of a finite mass.
-In the Bethe-Heitler region $\omega < 2\pi T$, the spectrum scales like $\omega^{-1}$ which comes from the incoherent radiation rate.
-In the LPM region $2\pi T < \omega < E$, the spectrum is dominated by coherent multiple scatterings and scales like $\omega^{-3/2}$.
-The power-law fits in each domain are very close to the expected scaling.
-In the middle plot, we compare the simulation to the NLL solution with self-consistent $Q_1^2$ from Eq. \ref{eq:Q1-sf}. 
-The ratio between the two is shown in the bottom plot.
-There is a good agreement in the LPM region between the simulation and the theory calculation, which we have used as guidance in developing our Monte-Carlo approach.
-
-A comparison of the other channels $g\rightarrow g+g$ and $g\rightarrow q+\bar{q}$ to the theory calculations are shown in Figure \ref{fig:channel_rate}.
-For the splitting parton energy much greater than temperature $\omega > 10 T$, the simulation agrees well with the theory. 
 
 Finally, we compare the running coupling calculation with the theory curve in Fig. \ref{fig:running} for the $g\rightarrow g+g$ channel.
 The theory curves (black lines) are obtained combining Eq. \ref{eq:AMY-LL} and Eq. \ref{eq:q3running}.
@@ -854,32 +882,80 @@ For this 1 TeV parton, the scale $Q_0$ is actually very large and the running of
 The simulation was performed using the running coupling prescription described in Section \ref{section:running}.
 The overall shape of the spectrum in the deep LPM region is again well described by the modified Boltzmann simulation. 
 
+In the end of this section, we also validate the implementation of the running coupling constant.
+As we have discussed in the previous section, the scale for the interaction vertex with the medium is chosen at the momentum transfer $|\hat{t}|$, and the scale for the branching vertex at its transverse momentum $k_\perp^2$, including the elastic broadening effect.
+And the detailed implementation in the simulation has been discussed.
+On the theoretical side, these effects can be included by changing the effective $\hat{q}_3$ in the NLL formula to 
+\begin{eqnarray}
+\hat{q}_3^{\textrm{running}} \approx \frac{4\pi}{9}\left(g^2(m_D^2) - g^2(Q_0^2)\right) 1.27 T^3 C_{abc}(x)
+\label{eq:q3running}
+\end{eqnarray}
+And then evaluate the splitting $\alpha_s$ around an averaged scale (note that $k_\perp^2$ in the simulation fluctuates a lot),
+\begin{eqnarray}
+\langle k_\perp^2\rangle \sim m_D^2 \sqrt{E/T\ln(E/T)}
+\end{eqnarray}  
+We use $g\rightarrow g+g$ channel as an example in figure \ref{fig:running}.
+The red line is from the modified transport simulation, and the different black lines are theory curves varying the choice of the branching vertex scale around the center value by a factor of 2.
+The ratios are shown in the bottom plots, we see that the spectrum shape is still well described by our simulation in the running coupling case. 
+Of course, there is an ambiguity (though rather small) is comparing the absolute magnitude due to different choice of scale in the theoretical formula.
 
-In the previous section, we have shown that the modified Boltzmann equation simulation has a good agreement with the theoretical calculation for parton splitting in the LPM regime in an infinite medium.
-Towards future phenomenological application, we would like to investigate a few more complex scenarios involving finite and expanding medium.
+\begin{figure}
+\centering{
+\includegraphics[width=.7\columnwidth]{running.png}
+}
+\caption{Top plot: comparison of modified Boltzmann simulation with the NLL solution  with running coupling.
+The ratio between simulation and theory is shown in the bottom plot.}
+\label{fig:running}
+\end{figure}
 
-For calculation in a finite medium, there is an intricate interference pattern near the boundary which requires solving the original equation using a finite medium temperature profile. 
-Or for the case of a thin medium, such effect can be analyzed order by order in the ``opacity ($L/\lambda$) expansion". 
-One important effect in a finite medium is the path-length dependent radiation rate for $L \lesssim \tau_f$, which is important for heavy-ion collisions phenomenology, considering the formation time of very energetic splitting can be comparable to the size of the QGP fireball.
-Though the modified Boltzmann approach has been constructed to mimic the rate $dR/d\omega$ in the infinite medium limit, and does not recover the exact form of spectrum for a finite medium, it still predicts an $L$-dependent rate and we would like to check whether it is significantly different from the theory expectation.
-The origination of the path-length dependence in the modified Boltzmann approach is that the gluons sampled at $t=t_0$ are not considered as independent objects until $t = t_0+\tau_f$, meaning the splittings at time $t$ is initiated by inelastic processes at $t-\tau_f$.
-As a result, in a semi-infinite medium with a step function like temperature profile, 
+
+\section{Finite / expanding medium and mass effect}
+We have made clear before that this approach is designed for interpolating the Bethe-Heitler region and the deep-LPM region in a large medium, and from the validation in the previous section, it indeed works very well.
+However, the medium created in heavy-ion collisions were never in the large and static limit, its finite time and spatial extend, local hot spots fluctuations and the fast radial expansion can all make significant impact on the hard parton propagation. 
+Therefore, we need to investigate how our approach would behave in a few more complex scenarios: a finite medium and and expanding medium, before applying such a model to phenomenological usage.
+
+\paragraph{A semi-infinite medium}
+Consider the semi-infinite medium with the static temperature profile,
 \begin{eqnarray}
 T = \begin{cases}
 0 , z<0\\
 T_0, z>0
 \end{cases}
 \end{eqnarray}
-there are no scattering centers at $L-\tau_f<0$ and thus introduces a reduction in the radiation rate for small path-length.
+And hard partons are created at $z=0$ and propagate into the medium.
+Deep inside the medium, the medium induced radiation should be getting asymptotically close to the calculation in an infinite medium.
+However, at the boundary, there is a complicated interference between medium scatterings centers and the hard production vertex.
+For a thin medium where the path length is short compared to the formation time, these interference terms can be worked out in the ``opacity ($L/\lambda$) expansion", or by analyzing the propagator in the path-integral formalism with the semi-infinite temperature profile.
+This boundary effect results in a path length dependence of the medium induced branching rate that starts from zero at $t=0$ and gradually approach the asymptotic value in a large medium.
+The resulting parton energy loss rate is significantly reduced due to this effect, and scales quadratic with the path length $\Delta E \propto L^2$ near the boundary (at larger times, it transits to $\Delta E \propto L$).
+This feature can have significant phenomenology impact in understanding the nuclear modification factor and the azimuthal anisotropy of the leading particles, heavy flavors and jets.
+
+It is true that our approach is designed for a large medium, but it also displays certain finite size effect. 
+Of course, it is can not reach an quantitative level of agreement with the theory at $L \lesssim \tau_f$ since the interference pattern is not implemented.
+The cause of the finite size effect in our approach can be understood as following.
+Remember that the branchings in the modified transport approach takes a finite amount of time, and those branching that becomes independent at time $t$ are actually initiated by a $2\rightarrow 3$ processes at from a wide range of scattering centers in the past $t' = t - \tau_f$.
+Therefore, if the medium is semi-infinite, and there were no scattering centers before $t' = t-\tau_f < 0$, then the medium-induced contribution to the branchings at time $t$ will be reduced.
+This reduction gets weaker and weaker when the condition $t-\tau_f > 0$ can be satisfied by more and more induced branchings and eventually, when $t\gg \langle \tau_f\rangle$, this boundary effect dies off in the simulation. 
+Next, we would like to check if this simulation boundary effect qualitatively mimic the interference physics that happens near the boundary.
+
 
 \begin{figure}
-\includegraphics[width=\columnwidth]{spectrum_L.png}
+\centering
+\includegraphics[width=.7\columnwidth]{spectrum_L.png}
 \caption{Comparison of the path-length dependent rate $dR/d\omega$ from the simulation using $\alpha_s = 0.3$ to the theoretical calculation for splitting $q\rightarrow q+g$ \cite{CaronHuot:2010bp}. The quark energy is $16$ GeV.}
 \label{fig:spectra-L-alphas=0.3}
 \end{figure}
 
+In Figure \ref{fig:spectra-L-alphas=0.3}, the differential rate obtained from simulation is compared to the numerical solution of the full leading order calculation inside a finite medium.
+The horizontal axis is the time of travel by the hard parton (path length divided by the speed of light), and each subplot shows how the branching rate changes as a function of time with different medium temperatures ($T=0.2$ GeV on the left, $T=0.5$ GeV on the right) and at different branching parton energy ($\omega=3$ GeV at the top, $\omega=8$ GeV at the bottom).
+The theory curves are taken from the references [] for a 16 GeV parton with coupling constant $\alpha_s = 0.3$, and the red lines are our simulation.
+The theory curve first increases linearly and then turn over to a constant value in the large medium limit for $t \gg \sqrt{2x(1-x)E/\hat{q}_3}$.
+The simulation, as expected, reproduces the large time limit of the rate.
+Moveover, we find that our current implementation also predicts the qualitative ``turn over'' of the spectra at finite path length.
+
 \begin{figure}
-\includegraphics[width=\columnwidth]{spectrum_L_100.png}
+\centering
+\includegraphics[width=.7\columnwidth]{spectrum_L_100.png}
 \caption{Comparison of the path-length dependent rate $dR/d\omega$ from the simulation using $\alpha_s = 0.3$ to the theoretical calculation for splitting $q\rightarrow q+g$ \cite{CaronHuot:2010bp}. The quark energy is $16$ GeV.}
 \label{fig:spectra-L-alphas=0.3}
 \end{figure}
@@ -955,38 +1031,7 @@ In the future, we are looking forward to making direct comparison to the solutio
 \label{fig:spectra-L-alphas=0.3}
 \end{figure}
 
-\subsection{Summary}
-We have investigated the modification to the incoherent Boltzmann transport approach to include the LPM effect for parton splitting processes in the deep LPM region, with the guidance from the LL and the NLL solutions of the AMY equation.
-The running coupling effect has also been implemented in this approach.
-The overall level of agreement between the simulated results and theoretical calculations in the infinite medium limit is promising given the simplicity and limits of this Monte-Carlo procedure. 
-Although it was developed for the deep LPM regime, the current approach captures qualitative features of the path-length dependence of medium induced splittings and the qualitative change of the spectrum shape in an expanding medium compared to the static case.
-Of course, it is important to improve this method for the case of a thin medium.
-Another interest of study would be a consistent inclusion of the heavy quark mass effect into the current approach.
-We shall seek for improvements in these aspects in future works.
-
-Designing such a modified Boltzmann transport approach and performing systematic comparison to theoretical calculations have allowed us to reduce and estimate the uncertainty in implementing the medium-induced splitting processes in the transport models. 
-This is instrumental for performing an examination of theory assumptions and a more meaningful phenomenological extraction of jet transport properties from future model-to-data comparison in transport model based studies.
-
-\begin{figure}
-\includegraphics[width=.5\columnwidth]{spectrum_E_q2qg.png}
-\includegraphics[width=.5\columnwidth]{spectrum_E_g2gg.png}
-\includegraphics[width=.5\columnwidth]{spectrum_E_g2qqbar.png}
-\caption{Ratios of splitting rate $dR/\omega$ between the modified Boltzmann simulation and the NLL solution for $q\rightarrow q+g$ splitting. The quark energies are $E$ is 10, 100, and 100 GeV from top to the bottom plot. 
-And two coupling constants are used: $\alpha_s = 0.1$ (red solid lines) and $\alpha_s = 0.3$ (blue dashed lines).
-$\omega$ stands for the gluon energy.
-The horizontal dashed lines denote $\pm 10\%$ deviation from unity. }
-\label{fig:q2qg}
-\end{figure}
-
-In this appendix, we provide comparisons of splitting rate at different values of energy and coupling constant for the reader's references.
-Fig. \ref{fig:q2qg}, Fig. \ref{fig:g2gg} and Fig. \ref{fig:g2qqbar} shows the comparison for channels $q\rightarrow q+g$, $g\rightarrow g+g$ and $g\rightarrow q+\bar{q}$ respectively.
-The results are shown as the ratio between the simulations and the NLL solution.
-Within in each figure, the mother parton energy are 10 GeV, 100 GeV and 1000 GeV from the top to bottom plot.
-We have used two coupling constants at $\alpha_s = 0.1$ (red solid lines) and $\alpha_s = 0.3$ (blue dashed lines).
-
-
-
-\subsection{Hard matrix-elements}
+\section{Hard matrix-elements}
 The vacuum matrix-elements for two-body large-$Q$ elastic scatterings are,
 \begin{eqnarray}
 \overline{|M_{22,Qq}|^2} &=& \frac{64\pi^2\alpha_s^2}{9} \frac{(M^2-u)^2 + (s-M^2)^2 + 2 M^2 t}{t^2}
@@ -1319,8 +1364,28 @@ In practice, these collinear region will be further suppressed by the LPM effect
 The cross-section is obtained by integrating over the final state phase-space, where we have chosen to parameterize the three particle final state in terms of $k_\perp^2$, the rapidity of $k$ in the center-of-mass frame $y_k$, and the solid angle of the recoil medium particle.
 
 \paragraph*{Soft limit: the Gunion-Bertsch approximation}
+The result we obtained for the $g\rightarrow g+g$ and $q\rightarrow q+g$ channel has a soft limit that goes back to the well known Gunion-Bertsch form. 
+By soft limit, we require the radiated gluon energy to be small enough such that $xq_\perp \ll k_\perp$.
+Then, the splitting amplitudes for both $g\rightarrow g+g$ and  $q\rightarrow q+g$ are simplified into the same form,
+\begin{eqnarray}
+\overline{|M|}^2_{22} x(1-x)g^2 \frac{2(1-x+O(x^2))}{x} C_A \left(\frac{\vec{k}_\perp}{k_\perp^2}-\frac{\vec{k}_\perp-\vec{q}_\perp}{(\vec{k}_\perp-\vec{q}_\perp)^2}\right)^2
+\end{eqnarray}
+Neglecting the $O(x^2)$ terms in the splitting function, the result is the same as the improved verison of the Gunion-Bertsch cross-section in the full Boltzmann partonic transport model BAMPS,
+\begin{eqnarray}
+\overline{|M|}^2_{22} 8\pi C_A\alpha_s (1-x)^2 \left(\frac{\vec{k}_\perp}{k_\perp^2}-\frac{\vec{k}_\perp-\vec{q}_\perp}{(\vec{k}_\perp-\vec{q}_\perp)^2}\right)^2
+\end{eqnarray}
 
 \paragraph*{Results for the backward ($y_k < 0$) region}
+We have mentioned in the beginning of the derivation that the condition $k_\perp^2 < x(1-x)\hat{s}$ restricts the splitting to be happen only for the parton moving in the $+z$ direction in the center-of-mass frame ($y_k > 0$).
+For splitting that happens in the backward region, one need to use another set of diagrams, where the splitting comes from the parton that moves in the $-z$ direction in the center-of-mass frame. 
+The result is, of course, similar to the previous results, but with the definition of $x$ and $q$ changed to $x = k^-/\sqrt{s}$, and $q = p_1-p_3$.
+
+To combine the results that is obtained in different regions of phase space ($y_k > 0$ and $y_k < 0$), we follow [] and defines,
+\begin{eqnarray}
+\bar{x} &=& \frac{(k + |k_z|)}{\sqrt{s}} = \frac{k_\perp e^{|y_k|}}{\sqrt{s}}\\ 
+\bar{q} &=& \Theta(y_k)(p_2-p_4) + \Theta(-y_k)(p_1-p_3)
+\end{eqnarray}
+which replaces the original $x$ and $q$ in our formula, and the resultant matrix-elements can be used for both forward and backward regions.
 
 \paragraph*{Relation to the Bethe-Heitler limit of the AMY formalisim}
 Now we display the connection between the $2\rightarrow 3$ cross section and the Bethe-Heitler limit of the AMY equation.
@@ -1403,3 +1468,125 @@ which is the exactly the same integration as the one obtained from the Bethe-Hei
 The equivalence between these two expressions of the $g\rightarrow g+g$ channel and the $g\rightarrow q+\bar{q}$ channel can also be shown similarly.
 
 \paragraph*{Mass effect in the $2\rightarrow 3$ squared matrix-elements}
+As a remark, putting heavy flavor mass directly into the these matrix-elements are certainly legitimate if one only focus on $2\rightarrow 3$ processes.
+But once we want to approximate the effect of multiple scatterings:
+$(n \rightarrow n+1) \approx (2 \rightarrow 3)(2 \rightarrow 2)\cdots(2 \rightarrow 2)\times \textrm{corrections}$, it is not advantages to put the mass effect into the $(2 \rightarrow 3)$ part, but into the last step of corrections, which is the approach we used.
+Nevertheless, for completeness and for future reference, we also present the $2\rightarrow 3$ matrix-elements with mass effect.
+
+First, even with a heavy flavor mass, we are still working under the assumption that $M \ll E$, and will only keeps terms when $M$ is making direct comparison to $k_\perp, q_\perp$.
+The kinematics are now changed to,
+\begin{eqnarray}
+p_1 &=& (\sqrt{s}, 0, \vec{0})\\
+p_2 &=& (0, \sqrt{s}, \vec{0})\\
+k &=& (x\sqrt{s}, \frac{k_\perp^2}{x\sqrt{s}}, \vec{k}_\perp)\\
+q &\sim& (-\frac{q_\perp^2\sqrt{s}}{s-M^2}, \frac{x(\vec{q}_\perp-\vec{k}_\perp)^2 + (1-x)k_\perp^2 + x^2M^2}{x(1-x)\sqrt{s}}, \vec{k}_\perp)
+\end{eqnarray}
+The approximation for the matrix-elements still proceeds as before: identifying the splitting amplitude and factorized it from the two-body collision amplitude.
+
+For the massive version of the splitting amplitude.
+Previously, we only include the diagonal contribution from the amplitude $\epsilon_{\lambda, \mu}(c) \bar{u}_s(a) \gamma^\mu v_{s'} (b)$ of $g\rightarrow q+\bar{q}$, but for massive quarks, we also need to include the off-diagonal component that accounts for flipping helicity. 
+Also, with a mass term, 
+\begin{eqnarray}
+\sqrt{p\cdot \sigma} &=& \frac{p\cdot \sigma + M}{\sqrt{2(E+M)}} \approx \frac{p\cdot \sigma + M}{\sqrt{2E}} \\
+\sqrt{p\cdot \bar{\sigma}} &=& \frac{p\cdot \bar{\sigma} + M}{\sqrt{2(E+M)}} \approx \frac{p\cdot \bar{\sigma} + M}{\sqrt{2E}}
+\end{eqnarray}
+where we have omitted the mass in the denominator since it only involves corrections of order $M/E$.
+From this one can see that the previous calculation can be used for the massive case with the substitution  $a^\pm \rightarrow a^\pm +M$ and $b^\pm \rightarrow b^\pm +M$.
+Then, the splitting amplitude becomes,
+\begin{eqnarray}
+\epsilon_{\lambda, \mu} \bar{u}_s(a)\gamma^\mu v_{s'}(b)&=& \frac{1}{\sqrt{2ab}}
+\xi_s^T A_{ss'} \eta_{s'}\\
+A_{\uparrow\uparrow} &=&
+\delta_{\lambda L} 2b_z a^\perp_L + \delta_{\lambda R} 2a_z b^\perp_R + \frac{c^\perp_\lambda}{c^+} (a^\perp_L b^\perp_R - a^+ b^+) \\
+A_{\downarrow\downarrow} &=&
+-\delta_{\lambda L}2a_z b^\perp_L - \delta_{\lambda R}2b_z a^\perp_R - \frac{c^\perp_\lambda}{c^+} (a^\perp_R b^\perp_L - a^+ b^+) \\
+A_{\uparrow\downarrow} &=&
+\delta_{\lambda L} 2a^\perp_L b^\perp_L + \delta_{\lambda R} (a^+b^-+a^-b^+) - \frac{c^\perp_\lambda}{c^+} (a^+b^\perp + a^\perp b^+) \\
+A_{\downarrow\uparrow} &=&
+ \delta_{\lambda L} (a^+b^-+a^-b^+) + \delta_{\lambda L} 2a^\perp_R b^\perp_R - \frac{c^\perp_\lambda}{c^+} (a^+b^\perp + a^\perp b^+) 
+\end{eqnarray}
+where we have included the off-diagonal components.
+
+
+\section{Comment on other implementations of the inelastic processes}
+Before we proceed to validate transport model to theoretical calculations.
+We find it beneficial to discuss other inelastic processes implementations for reader's references. 
+We shall term the two approaches the ``coherence factor" approach and the ``blocking radiation" approach.
+Through out the discussion in this section, one shall found that the ``coherence factor" approach qualitatively agrees with the power counting of the LPM suppression, although it only includes the effect of one medium scattering centers and its formulation is logarithmic dependent on the infrared cut-off.
+While the blocking radiation approach do not reproduce the power counting of of the LPM effect.
+These points shall be analyzed quantitatively later in the result section by comparing the ``energy loss" of a fixed energy parton simulated with each of these approach.
+Now we shall briefly discuss these two other approaches and comment on their advantages and problems.
+
+
+\paragraph*{The coherence factor approach}
+This approach is first implemented in the improved Langevin equation, borrowing the idea from the higher-twist calculation of the medium induced radiation.
+The higher-twist formula is derived the medium induced radiation of a high virtual parton, by including the interference of the hard production vertex and one medium scattering center.
+The radiation rate reads,
+\begin{eqnarray}
+\frac{dN_g}{dx dk_\perp^2 dt} = \frac{\alpha_s P(x)\hat{q}_g}{\pi k_\perp^4} 2\left(1-\cos\frac{t-t_0}{\tau_f}\right), \tau_f = \frac{2x(1-x)E}{k_\perp^2}
+\end{eqnarray}
+Here the radiation rate is a time-dependent one due to the interference between the hard production (at time $t_i$) vertex and the medium (at time $t$).
+Note that the interference factor cancels the collinear divergence and the only divergence comes from soft emission $x\rightarrow 0$.
+
+The use of this formula in generating the first radiation is unambiguous. 
+However, the treatment of multiple emissions can be very different in different models.
+For example, one can compute the average number of emission by integrating this formula along the trajectory of the hard parton through and then samples samples the fluctuating number of emission with a Poisson distribution.
+But of course, this would assume the parton energy is not significantly changed during the process, and it is not clear how the presence of more than one scattering center would change this picture.
+Here we would like to discuss an method in dealing with multiple emission using the high twist formula in a time evolution manner.
+The algorithm goes as follows:
+\begin{itemize}
+\item[1.] Choose an infrared cut-off for the gluon energy $x_c \propto T/E$, and a small enough time step $\Delta t$, so that the average number of emission is much smaller than $1$ to suppress multiple emission within $\Delta t$,
+\begin{eqnarray}
+\langle N_g \rangle = \Delta t \int_{x_c}^1 dx \int dk_\perp^2 \frac{dN_g(t-t_0)}{dx dk_\perp^2 dt} \ll 1.
+\end{eqnarray}
+\item[2.] Sample N according to a Poisson distribution with $\langle N_g \rangle$. For $\langle N_g \rangle \ll 1$, it is sufficient to sample the two leading cases of $N=0, 1$, as the probability to have more than 1 emission is negligible ($P_{N>2} = 1-e^{-\langle N_g \rangle}-e^{-\langle N_g \rangle}/\langle N_g \rangle = O(\langle N_g \rangle^2) \ll P_1 \ll P_0$).
+\item[3.] If $N=0$ then propagate the parton to the $t+\Delta t$. If $N=1$, then sample the emission gluon's $x$, and $\vec{k_\perp}$ by the differential rate. {\bf Meanwhile, $t_0$ is set to $t$}, so that the next emission's probability will accumulated from zero again.
+\item[4.] Proceed for the next time step.
+\end{itemize}
+We found that the key step here is resetting the clock $t_0 = t$ for the parton after every emission.
+As a result, from the second emission, the time difference that appears in the interference factor $t-t_0$ are the one measuring between two medium scattering centers.
+Therefore, we will not interpret this procedure as the high-twist rate (interference between initial hard vertex and one medium collision center) starting from the second emission;
+instead we understand it as an ansatz, from the second emission, to treat medium-induced emission in a large medium, as it do not require any information to the production vertex.
+
+Having this in mind, one wonders if this ansatz reproduces any in-medium radiation features predicted in the theory, considering it only includes one medium scattering center in the formula.
+Certainly, it is not immediately clear to see what this procedure predicts  expect through simulations. 
+But if one pondering on the meaning of the ``clock resetting" procedure, then, one realizes that the typical time separation are a time scale within which the emission probability is of order one,
+\begin{eqnarray}
+1 \sim \int_{t_0}^{t} dt\int_{x_c}^1 dx \int dk_\perp^2 \frac{dN_g(t-t_0)}{dx dk_\perp^2 dt}
+\end{eqnarray}
+With this key observation, after a few step of algebra, we are able to learn some qualitative feature of this ansatz.
+Taking the soft approximation $P(x) \sim 2/x$, $\tau_f\sim 2xE/k_\perp^2$, and perform the time integral first, then the $k_\perp$ integral with limits from $0$ to $xE$.
+\begin{eqnarray}
+1 &\sim& 4\alpha_s\hat{q}\Delta t \int_{x_c}^1 \frac{dx}{x} \int \frac{dk_\perp^2}{k_\perp^4}\left(1-\frac{\sin(\Delta t/\tau_f)}{\Delta t/\tau_f}\right)\\
+&=& \alpha_s\hat{q}_g \Delta t^3 \int_{\frac{\Delta t E x_c}{2}}^{\frac{\Delta t E}{2}} 
+\frac{du}{u^2} \frac{u^2 \mathrm{Si}(u) -2u + \sin(u) + u\cos(u)}{u^2}\\
+&=& \alpha_s\hat{q}_g \Delta t^3 \left.\frac{u^3\mathrm{Ci}(u)-3u^2\mathrm{Si}(u) - u^2 \sin(u) +3u-\sin(u) - 2u\cos(u)}{3u^3}\right|_{\frac{\Delta t E x_c}{2}}^{\frac{\Delta t E}{2}} 
+\end{eqnarray}
+This final integral of $x$ (reparametrize by $u = xE\Delta t/2$) would have been logarithmic divergent if we had not cut it at $x_c$ at the lower bound.
+The complicated integrated result has the following expansion at small $u$: $\frac{1}{18}(6\ln(u)+6\gamma_E - 17)$ and decay $0$ at infinite therefore a good proxy is to use the small-$u$ expansion but cut-off the upper bound of $u$ at its zero, and finally
+\begin{eqnarray}
+1 &\sim&  \frac{\alpha_s\hat{q}\Delta t^3}{3}\ln\frac{2}{ x_c E \Delta t } \propto (g^2 T \Delta t)^3 \ln\frac{2}{ x_c E \Delta t }
+\end{eqnarray}
+Now, it is clear that this procedure of implementing multiple emission inside the medium resets the clock in the interference factor every $1/g^2T$ up to certain logarithm dependence on the infrared cut-off, which is the order of the elastic collision mean-free-path.
+Put this estimated $\Delta t$ back into the interference factor $2(1-\cos(\Delta t/\tau_f))$, one indeed find that the radiation spectrum will be strongly suppressed if the formation time is much greater than $\Delta t\sim \lambda_{el}$.
+
+This suppression certainly mimic some property of the in-medium LPM effect, but is introduced by a very different mechanism.
+Remember that the LPM effect is the suppression of single particle emission rate through multiple collision with the medium, without any information about how subsequent emissions are correlated. 
+While the interference factor approach mimic the effect of the LPM suppression through correlation between subsequent emissions.
+This will introduce several problems: 
+\begin{itemize}
+\item[1.] The correlation between subsequent emissions is in fact physics beyond leading order and requires new type of diagrams to be computed.
+\item[2.] As we have seen, this procedure is affected by the choice of the infrared cut-off. Though its dependence is very weak, it is still a dependence that we try to avoid.
+\end{itemize}
+
+\paragraph*{The blocking radiation approach}
+Another approach we also found in literature has been termed ``the blocking radiation approach" in the thesis, however, we would like to show that this approach is wrong in the sense that it suppresses radiation with $\tau_f > \lambda_{\textrm{inel}}^{\textrm{incoh}}$ but not $\tau_f > \lambda_{\textrm{el}}$, which is a power of $\alpha_s$ off.
+
+In this approach, the splitting is also first generated through an incoherent processes at time $t_0$, and then the self-consistently determination the formation time by elastic broadening. 
+But its LPM suppression is introduced by requiring no other radiation is allowed from this radiator within the time from $t_0$ to $t_0 + \tau_f$.
+This clearly introduces a correlation between subsequent emission, while the LPM effect concerns only the one particle emission rate.
+While in our approach, the suppression is implemented by accepting the process with probability $\sim \lambda_{el}/\tau_f$, and more importantly, other emissions are unaffected by the current ``imaginary splitting" as most of them would be rejected without causing any physical effect.
+
+A closer investigation reveals bigger problem.
+Moreover, this ``blocking radiation" approach effectively reduces every $\tau_f/\lambda_{inel}$ incoherent emission to one, resulting only an overall reduction in the radiation spectrum without changing its shape.
+And the suppression factor $\lambda_{inel}/\tau_f$ is different from the expected one, this is in fact an order of $\alpha_s$ wrong as the mean-free-path of the incoherent radiation rate contains one more power of $\alpha_s$ than $\lambda_{el}$.
