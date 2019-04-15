@@ -964,6 +964,40 @@ The comparison of simulation and numerical solutions are shown in figure \ref{fi
 \label{fig:spectra-L-alphas=0.3-E100}
 \end{figure}
 
+\paragraph{An expanding medium}
+Fast radial expansion is another important feature of the created quark-gluon plasma. 
+It causes the temperature at the medium rapidity to decrease drastically in the early stages of the expansion and introduces another time scale in which the medium temperature changes notably.
+Assume a simplified power-law changing temperature profile
+\begin{eqnarray}
+T(\tau; \nu)^3 = T_0^3\left(\frac{\tau_0}{\tau}\right)^{2-1/\nu}.
+\end{eqnarray}
+The $\nu$ parameter controls the rate of expansion. 
+$\nu = 1/2$ is the static medium limit, and $\nu=1$ is the Bjorken flow/
+We can define the following medium expansion time, over which the transport parameter changes significantly,
+\begin{eqnarray}
+\tau_{\textrm{ex}} = \left(\frac{d\ln(T^3)}{d \tau} \right)^{-1} = \frac{\tau}{2-1/\nu}.
+\end{eqnarray}
+and clearly, the large is the $\mu parameter$, the smaller the expansion time scale is.
+With $\tau_0 \sim 1$ fm/$c$, the expanding time scale can be short enough that energetic branchings already probes the changing temperature profiles within its formation time $\tau_f > \tau_{\textrm{ex}}$.
+One consequences of this fast changing of temperature is that, for these branchings $\tau_f > \tau_{\textrm{ex}}$, the transition probability over a finite amount of time can not be well approximated by integrating rates that are calculated in an infinite box defined by the local temperatures,
+\begin{eqnarray}
+\frac{dP(t_1, t_2)}{d\omega} \neq \int_{t_1}^{t_2} \frac{dR_{\infty}(T(t))}{d\omega} dt,
+\end{eqnarray}
+where is the rate obtained by solving the branching rate in the infinite medium setup. 
+This approach is employed in transport models like MARTINI and [], we also intend to study the when does this fast expansion starts to make a different in phenomenological applications.
+Our approach, on the other hand, can take into account the changing of the medium temperature (and also flow velocity).
+This is because, the rescattering procedures from which the LPM suppression is determined is performed along the trajectory of the hard partons and therefore naturally includes the effect of the cooling of the medium.
+The typical formation time determined by the rescattering procedure is also changed by the expansion.
+Recall that in a static medium the dimensionless combination that enters the leading-log formula is the $t/\tau_f \sim t \sqrt{\omega/\hat{q}}$, but with a $\hat{q}$ that is decreasing with temperature.
+The self-consistent determination of the formation time requires the following relation to hold on average,
+\begin{eqnarray}
+t_2 - t_1 &=& \frac{2x(1-x)E}{k_{\perp}^2)(t_1) + \int_{t_0}^{t} \hat{q}(\tau) d\tau},\\
+\hat{q}(\tau) &=& \hat{q}(\tau_0) \left(\frac{\tau_0}{\tau}\right)^{2-1/\nu}
+\end{eqnarray}
+Neglecting the initial transverse momentum at $t=t_1$, we have the characteristic time scale $\Delta t = t_2 - t_1$ of this procedure in the expanding medium temperature profile as
+\begin{eqnarray}
+1 = \sqrt{\frac{\hat{q}(t_0)}{2x(1-x)E}} \tau_0 \sqrt{\frac{\nu-1}{\nu}} \left(\frac{\Delta t}{\tau_0}\right)^{1/2\nu}
+\end{eqnarray}
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{spectrum_Bjorken.png}
@@ -971,53 +1005,35 @@ The comparison of simulation and numerical solutions are shown in figure \ref{fi
 \label{fig:Bjorken-BDMPS}
 \end{figure}
 
-\paragraph{An expanding medium}
-Fast radial expansion is another important feature of the created quark-gluon plasma. 
-It causes the temperature at the medium rapidity to decrease drastically in the early stages of the expansion and introduces another time scale in which the medium temperature changes notably.
-With an simplified power-law changing tempature profile
-\begin{eqnarray}
-\tau_{\textrm{ex}} = \left(\frac{d\ln(T^3)}{d \tau} \right)^{-1},
-\end{eqnarray}
-to be understood as the time scale over which the local $\hat{q}\propto T^3$ changes notably.
-For simplicity, parametrize the temperature profile as a power law fall-off function of the proper time at mid-rapidity,
-\begin{eqnarray}
-T(\tau; \nu)^3 = T_0^3\left(\frac{\tau_0}{\tau}\right)^{2-1/\nu},
-\end{eqnarray}
-where the static case is recovered when $\nu=1/2$, and $\nu=1$ corresponds to the temperature profile of a Bjorken flow.
-The resultant expansion time scale is
-\begin{eqnarray}
-\tau_{\textrm{ex}} = \frac{\tau}{2-1/\nu}.
-\end{eqnarray}
-If this time scale is smaller than the formation time of the splitting, then the medium cannot be well approximated by having a constant temperature when we resumes the multiple scatterings.
-Fortunately, in the current modified Boltzmann approach, since we propagate the splitting process in real time, the fast changing of the medium temperature does affect the multiple scatterings that contribute to this specific splitting.
-
-We would like to compare the response of the modified Boltzmann approach to an expanding medium to theoretical calculations.
-The theoretical formula we used is obtained in the BDMPS framework 
-by the authors of \cite{Baier:1998yf} using the power law type temperature profile. 
-The total splitting probability is,
+To make comparison to theoretical calculations to see if the simulation procedure also gives a reasonable description in an expanding medium, we make use of a result obtained in the BDMPS framework \cite{Baier:1998yf}.
+Using the power-law decreasing temperature profile, the obtained branching probability is,
 \begin{eqnarray}
 \frac{dP}{d\omega} &=& \frac{\alpha_s}{2\pi E}P_{q\rightarrow qg}(x)\mathfrak{Re}\int_{\tau_0}^{\tau_0+L}\frac{dt_f}{t_f}\int_{\tau_0}^{t_f}\frac{dt_i}{t_i} \frac{1}{\nu^2}\\
 \nonumber
-&& \left.\left[ I_{\nu-1}(z_i)K_{\nu-1}(z_f)-I_{\nu-1}(z_f)K_{\nu-1}(z_i)\right]^{-2}\right|_{\omega}^{\omega=\infty},\\
+&& \left.\left[ I_{\nu-1}(z_i)K_{\nu-1}(z_f)-I_{\nu-1}(z_f)K_{\nu-1}(z_i)\right]^{-2}\right|_{\omega=xE}^{\omega=\infty},\\
 z_{i,f} &=& 2i\nu \sqrt{\frac{\hat{q}_g(1-x+C_F/C_A x^2)}{2(1-x)\omega}} \tau_0 \left( \frac{t_{i,f}}{\tau_0}\right) ^{1/2\nu}
 \end{eqnarray}
 for the $q\rightarrow q+g$ splitting.
-For $\nu=1/2$, this expression reduces to the static BDMPS result \cite{Baier:1996kr}. 
+This result goes back to the static BDMPS result \cite{Baier:1996kr} when $\nu=1/2$.
+One potential problem of comparing the formula to our simulation is that this BDMPS calculation works in the multiple-soft limit (leading log).
+Therefore, we used only the diffusion-induced radiation in the simulation and turned off the large-$Q$ $2\rightarrow 3$ scattering part.
+Also as mentioned before, in the absent ot the pertrubative tail in the collision kernel, $b=0.75$ is used without the logarithmic correcting factor.
+The simulation uses a medium with initial temperature $T_0=1$ GeV at $\tau_0=0.2$ fm/$c$ and lasts until $\tau = 20$ fm/$c$ using four different expansion rate $\nu = 1/2, 3/4, 1, 3/2$.
+These choice of numbers corresponds to a static medium, a slowly expanding medium, the Bjorken flow, and a faster-than-Bjorken expansion.
 
-As a remark, the BDMPS calculation considers the multiple-soft limit of the collision kernel and therefore does not include the logarithm that comes from the perturbative tail $1/q_\perp^4$. 
-Accordingly, we turn off the large-$Q$ matrix-element scatterings and only retain diffusion plus diffusion-induced radiation components in our simulation.
-Besides, $b=0.75$ is used without the logarithmic correction factor in Eq. \ref{eq:NLL-b}, and the same $\hat{q}_g = m_D^2 C_A\alpha_s T$ are input to the theory and the simulation.
-To suppress other difference in the simulation and the theory, instead of making direct comparison of the spectrum $dP/d\omega$ to the BDMPS result, we compare the ratio of the splitting probability in an expanding medium to that of a static medium
+Due to the difference between the simulation and the exact multiple soft formula, so we will not try to make a strong statement over the direct comparison of the spectra (left of figure \ref{fig:Bjorken-BDMPS}); instead, We will focus more on the ratio between the expanding calculation/simulation over the static calculation/simulation (right of figure \ref{fig:Bjorken-BDMPS}) to see if we can describe the change of the shape of the spectra due to the dropping temperature.
+We found that when $\omega \gg T_0$, the degree of change in the radiation spectra is well reproduced by the modified transport simulations.
+
+
+\paragraph{Mass effect}
+Finally, we will check the performance of our procedure for the heavy quark.
+For short, to implement mass effect to the modified transport approach for inelastic scatterings, we use massive kinematics for the heavy quarks, include the mass term in the formation time, and implement the dead cone approximation that includes the contribution from elastic broadening of the transverse momentum.
+The theory curves are obtained by solving the exact equation with a effective mass term
 \begin{eqnarray}
-R_\nu = \frac{dP(T=T(\tau;\nu))/d\omega}{dP(T=T_0)/d\omega}
+m_{\textrm{eff}}^2 = (1-x)m_g^2 + x^2 M^2
 \end{eqnarray}
-between simulation and theory to focus on the response to a fast dropping temperature profile compared to the static case.
-
-The medium expansion starts at $\tau_0=0.2$ fm/$c$ with $T_0=1$ GeV and stops at $\tau = 20$ fm/$c$.
-We take four choices of the expansion rate $\nu = 1/2, 3/4, 1, 3/2$, corresponding to a static medium, a slowly expanding medium, Bjorken flow, and a faster-than-Bjorken expansion respectively.
-The ratio $R_\nu$ from both theory and simulation are shown in Fig. \ref{fig:Bjorken-BDMPS} for a 100 GeV quark with $\alpha_s=0.3$.
-Again, for $\omega/T \gg 1$, the simulation displays the expected decreasing of medium-induced radiation due to the dropping of temperature.
-In the future, we are looking forward to making direct comparison to the solution of Eq. \ref{eq:full-theory} with both varying temperature and adding medium flow effects.
+which includes both the thermal mass of the gluon and the current mass of the heavy quark.
+We present the comparison between the simulation and the theory in terms of the path-length dependent differential branching rate at different temperatures and different $x$ values for a 100 $GeV$ heavy quark using $\alpha_s=0.3$ (figure \ref{mass.png}).
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{mass.png}
