@@ -922,7 +922,7 @@ T = \begin{cases}
 T_0, z>0
 \end{cases}
 \end{eqnarray}
-And hard partons are created at $z=0$ and propagate into the medium.
+and hard partons are created at $z=0$ and propagate into the medium.
 Deep inside the medium, the medium induced radiation should be getting asymptotically close to the calculation in an infinite medium.
 However, at the boundary, there is a complicated interference between medium scatterings centers and the hard production vertex.
 For a thin medium where the path length is short compared to the formation time, these interference terms can be worked out in the ``opacity ($L/\lambda$) expansion", or by analyzing the propagator in the path-integral formalism with the semi-infinite temperature profile.
@@ -936,12 +936,12 @@ The cause of the finite size effect in our approach can be understood as followi
 Remember that the branchings in the modified transport approach takes a finite amount of time, and those branching that becomes independent at time $t$ are actually initiated by a $2\rightarrow 3$ processes at from a wide range of scattering centers in the past $t' = t - \tau_f$.
 Therefore, if the medium is semi-infinite, and there were no scattering centers before $t' = t-\tau_f < 0$, then the medium-induced contribution to the branchings at time $t$ will be reduced.
 This reduction gets weaker and weaker when the condition $t-\tau_f > 0$ can be satisfied by more and more induced branchings and eventually, when $t\gg \langle \tau_f\rangle$, this boundary effect dies off in the simulation. 
-Next, we would like to check if this simulation boundary effect qualitatively mimic the interference physics that happens near the boundary.
+We would like to check if this simulation boundary effect qualitatively mimic the interference physics that happens near the boundary.
 
 
 \begin{figure}
 \centering
-\includegraphics[width=.7\columnwidth]{spectrum_L.png}
+\includegraphics[width=.8\columnwidth]{spectrum_L.png}
 \caption{Comparison of the path-length dependent rate $dR/d\omega$ from the simulation using $\alpha_s = 0.3$ to the theoretical calculation for splitting $q\rightarrow q+g$ \cite{CaronHuot:2010bp}. The quark energy is $16$ GeV.}
 \label{fig:spectra-L-alphas=0.3}
 \end{figure}
@@ -951,25 +951,19 @@ The horizontal axis is the time of travel by the hard parton (path length divide
 The theory curves are taken from the references [] for a 16 GeV parton with coupling constant $\alpha_s = 0.3$, and the red lines are our simulation.
 The theory curve first increases linearly and then turn over to a constant value in the large medium limit for $t \gg \sqrt{2x(1-x)E/\hat{q}_3}$.
 The simulation, as expected, reproduces the large time limit of the rate.
-Moveover, we find that our current implementation also predicts the qualitative ``turn over'' of the spectra at finite path length.
+Moreover, we find that the current implementation also predicts the qualitative ``turn over'' of the spectra at finite path length.
+The original paper only publish this calculation for a $16$ GeV quark. 
+To validate if this qualitative agreement also holds at higher parton energies, we implement the numerical approach described in [] and compute the theoretical curves for $E=100$ GeV partons.
+The comparison of simulation and numerical solutions are shown in figure \ref{fig:spectra-L-alphas=0.3-E100} and again, we found a qualitative agreement with the theoretical finite size effect.
+
 
 \begin{figure}
 \centering
-\includegraphics[width=.7\columnwidth]{spectrum_L_100.png}
-\caption{Comparison of the path-length dependent rate $dR/d\omega$ from the simulation using $\alpha_s = 0.3$ to the theoretical calculation for splitting $q\rightarrow q+g$ \cite{CaronHuot:2010bp}. The quark energy is $16$ GeV.}
-\label{fig:spectra-L-alphas=0.3}
+\includegraphics[width=.8\columnwidth]{spectrum_L_100.png}
+\caption{The same as figure \ref{fig:spectra-L-alphas=0.3-E100}, but the initial quark energy is $100$ GeV.}
+\label{fig:spectra-L-alphas=0.3-E100}
 \end{figure}
 
-In Figure \ref{fig:spectra-L-alphas=0.3}, the $q\rightarrow q+g$ rate simulated in a semi-infinite medium is compared to the full calculations obtained in \cite{CaronHuot:2010bp}.
-The energy of the quark is 16 GeV, and $\alpha_s = 0.3$.
-The medium temperature of the left and the right columns are 0.2 GeV and 0.4 GeV respectively.
-Top and bottom rows show the differential rates for the emitted gluon  energy $\omega = 3$ GeV and $\omega = 8$ GeV \footnote{In practical simulation, the rate are obtained by counting gluons within a finite energy range $\omega\pm 0.5$ GeV}.
-The different rate $dR/d\omega$ are plotted as function of the path length $L$.
-It is evident that theoretical rates (black solid lines) first grow approximately linearly with $L$ and then bend over to transit to $L$-independent ones.
-The simulation describes the large $L$ limit well and also approximately captures the point at which the transition happens.
-But there are systematic deviations compared to the theory at small path-length.
-Therefore it will be of great interest to improve to the current simulation approach at small path-length in the future. 
-For example, one possible solution would be using the results from the opacity expansion in the simulation for those splittings that happened close to the boundary and developing matching conditions to the approach we used for the deep LPM regime.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{spectrum_Bjorken.png}
@@ -977,10 +971,10 @@ For example, one possible solution would be using the results from the opacity e
 \label{fig:Bjorken-BDMPS}
 \end{figure}
 
-The expansion of the medium is another important aspects for heavy-ion collision phenomenology.
-The created QGP fireballs undergo dramatic expansion, causing the medium temperature at mid-rapidity to drop quickly in the first few fm$/c$.
-This introduces another macroscopic scale in additional to the path length, which is the inverse medium expansion rate. 
-In the context of this work, we shall define this expansion time scale as the inverse changing rate of $T^3$,
+\paragraph{An expanding medium}
+Fast radial expansion is another important feature of the created quark-gluon plasma. 
+It causes the temperature at the medium rapidity to decrease drastically in the early stages of the expansion and introduces another time scale in which the medium temperature changes notably.
+With an simplified power-law changing tempature profile
 \begin{eqnarray}
 \tau_{\textrm{ex}} = \left(\frac{d\ln(T^3)}{d \tau} \right)^{-1},
 \end{eqnarray}
