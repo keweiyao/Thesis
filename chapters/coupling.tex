@@ -42,7 +42,7 @@ This is discussed in section 2.
 The heavy flavor hadronization model is introduced in section 3, which is a previously developed model that interpolates high-$p_T$ fragmentation processes and low-$p_T$ in medium recombination production of heavy hadrons.
 Finally, in section 4, we also briefly introduced how this simulation framework of open heavy flavor can be coupled to the quarkonium evolution, but for more details, please refers to the thesis work [].
 
-\section{Coupling transport dynamics to initial production}
+\section{Initial production of heavy flavor}
 The initial hard processes are computed using perturbative QCD based or related Monte-Carlo event generator.
 The general set up for such a computation in proton-proton collision is the factorization theorem \ref{fig:factorization}.
 Where the perturbative QCD calculation provides the physics at short distance (a hard scale $Q^2$): the partonic matrix-elements $\hat{\sigma}_{ij\rightarrow kl}$.
@@ -68,7 +68,7 @@ The advantages are
 \begin{itemize}
 \item[1.] Sampling / weighting the inclusive cross-section is fast.
 \item[2.] Provide interface to nuclear PDFs.
-\item[3.] Goes back to NLO accurate cross-section at low $p_T$.
+\item[3.] First principal approach for proton-proton collision.
 \end{itemize} 
 However, there are also disadvantages, 
 \begin{itemize}
@@ -77,9 +77,7 @@ However, there are also disadvantages,
 \item[3.] Lacking the exclusive final state. Again, it is not a problem for open-heavy flavor study. But to describe full jets, one really needs an exclusive partonic final state of the virtuality evolution to initilize the partonic transport model.
 \end{itemize}
 
-
 \paragraph{Initialize from Monte-Carlo event generator.}
-
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{factorization.png}
@@ -87,6 +85,93 @@ However, there are also disadvantages,
 %https://indico.cern.ch/event/680421/contributions/3096162/attachments/1697092/2731944/J.Huston_Introduction_to_QCD_from_an_LHC_perspective-02.pdf
 }
 \label{fig:factorization}
+\end{figure}
+
+Another approach to generate initial hard process is to use high energy Monte-Carlo event generator, such as Pythia [].
+Pythia implements the leading order (LO) matrix-elements for hard QCD processes, including LO production of heavy flavor particles,
+$g+g\rightarrow Q+\bar{Q}$ and $q+\bar{q}\rightarrow Q+\bar{Q}$.
+A parton shower will be generated based on the hard processes.
+In fact, in high energy collisions, the LO production of heavy flavor is only a fraction of the total heavy flavor cross-section, the rest of them are created in the parton showers from the so-called gluon splitting and flavor creation processes.
+The former corresponds to a situation where the heavy flavor pair comes from a final state gluon splitting; and the latter produces the pair in initial state gluon splitting and is put-on shell by the hard scattering.
+These contributions also mimic certain pair correlations with non back-to-back angular correlations.
+
+The disadvantage is of course the event generator is not a first principal computation of the heavy flavor production.
+However, there are many benefits of having an exclusive final state.
+\begin{itemize}
+\item Although the parton shower is evolved as a function of virtuality $Q^2$. A qualitative space-time picture can be built by measuring the formation time of each branching by $2x(1-x)E/k_\perp^2$. In this way, we will see that the vacuum radiation off a heavy quark can last for a long time.
+\item With the space-time picture, it is easier to analyze what kind of vacuum branchings should be modified in the presence of a medium.
+\item Can be used to initialize the full transport model to study jets. 
+\end{itemize}
+
+\paragraph{Heavy flavor production baseline} In the course of our study, we used both the FONLL program and the Pythia event generator to initialize the momentum space. 
+It is important to check that first whether they predict similar heavy flavor production in nuclear collisions and proton-proton collisions, and second if they provide good descriptions of the experimental measurement in proton-proton collisions.
+In the upper plot of figure \ref{fig:pythia-fonll}, we compare the $p_T$ differential cross-section of $p+p\rightarrow c$ from FONLL calculations (lines) and from Pythia simulations (symbols), and for Pb+Pb collision (red) and p+p collision (blue) at the LHC energy $\sqrt{s}=5.02$ TeV.
+For p+p system, we use the CT10 parton distribution function and for Pb+Pb system, the nuclear modification to the parton distribution is using the EPS09 parametrizaiton.
+
+We note that the absolute value of the cross-sections are different.
+Fortunately, the observables that we are interested in nuclear collisions are always ratios such as the nuclear modification factor $R_{AA}$, and the momentum-space anisotropy of heavy meson $v_n$ which is dimensional less. 
+Therefore the shape of the spectra is the key feature we would like to compare between the two calculation and we have rescaled the FONLL curve.
+We see that their shapes are very similar.
+When calculation $R_{AA}$, we are dividing the cross-section from nuclear collision to that of the proton-proton collision.
+To see how much the modulation in $R_{AA}$ is contributed by the nuclear PDF effects, we take the ratio between the AA and pp results in the upper plots to get an ``$R_{AA}$" for the nuclear PDF effects in the bottom plots.
+We can see that FONLL and Pythia simulation predicts consistent modulation: the initial production AA spectra of charm quark at low-$p_T$ is suppressed compared to the pp spectra, due to the shadowing effect of the small-$x$ gluon. 
+At higher $p_T$, the ratio increase and slightly shoots over  unity, this is because the there is an anti-shadowing region of the gluon at larger-$x$.
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{pythia-vs-fonll.png}
+\caption{}
+\label{fig:pythia-fonll}
+\end{figure}
+
+\section{Interfacing vacuum shower with in-medium transport}
+Interfacing the vacuum shower that evolves with virtuality and the transport equation that evolves with time is a difficult task. 
+We shall provide a reasoning for the prescription we use following some of the recent developments [].
+Start by considering a splitting of a hard parton which is created at the boundary of a brick medium.
+This splitting has a formation time depending on its transverse momentum (or virtuality) $\tau_f \sim 2x(1-x)E/k_\perp^2$.
+It is very likely that the radiated gluon (or the quark) interacts with a scattering center in the medium, denoted by the crossed circle.
+If the virtuality of the splitting is very large, then the formation time is small.
+The argument is that scatterings at time $t$ that is well separated from the formation time $\tau_f \ll t$ are independently from the initial vacuum-like splitting process; while scatterings within $\tau_f$ can change the branching probability.
+So, we determine whether the vacuum branching should be modified in medium by the number of scatterings before $\tau_f$.
+
+\begin{itemize}
+\item For a branching with large virtuality (left of figure \ref{fig:vac-med-interface}) that $N = \tau_f/\lambda \ll 1$ (translates into $k_\perp^2 \gg \alpha_s  \omega T$). 
+There chance for the medium interaction to modify the vacuum branching is negligible.
+\item Hold the energy of the radiaion, while decrease its transverse momentum (middle of figure \ref{fig:vac-med-interface}) so that $N = \tau_f/\lambda \lesssim 1$ ($k_\perp^2 \gtrsim \alpha_s  \omega T$). 
+Now, there is order one scatterings with the medium. 
+The transverse momentum of the gluon is modified a little but still dominated by the initial virtuality.
+The probability for the branching should also be modified.
+For example, a higher twist expansion in terms of $1/k_\perp^2$ takes into account the effect of one interaction with the medium.
+\item Further decreasing the initial virtuality of the branching (right of figure \ref{fig:vac-med-interface}) until $N = \tau_f/\lambda \gg 1$.
+Now the final transverse momentum has to be determined self-consistently to be $k_\perp^2 \sim \sqrt{\hat{q}\omega} \sim \alpha_s\sqrt{\omega T^3}$. 
+When this happens, the initial virtuality of the splitting is completely dominated by the medium effects (a medium scale at $\sqrt{\hat{q}\omega}$). 
+And the branching probability should be replaced by a medium-induced calculation.
+\end{itemize}
+Summarizing the two extreme regions:
+Vacuum branchings with $k_\perp^2 \gg \alpha_s \omega T$ is not modified, while branchings with $k_\perp^2 \sim \sqrt{\hat{q}\omega}$ should be treated as medium-induced process instead of vacuum radiation.
+It is therefore natural to use $k_\perp^2$ and the fraction of $k_\perp^2$ that is contributed by the medium broadening $\Delta k_\perp^2$ to separate the medium-induced radiation and the vacuum-like radiation.
+Since medium induced radiations treated by the transport equation always have $k_\perp^2 = \Delta k_\perp^2$,  our interfacing prescription is then to simply cut-out the vacuum branchings generated by Pythia in the region $k_\perp^2 <  \Delta k_\perp^2$ (this is also known as the vetoed region in the literature).
+
+\begin{table}[h]
+\centering
+\caption{Treating Pythia branchings inside the medium}
+\begin{tabular}{ccc}
+\hline
+\multirow{2}{*}{Formed inside medium} & $k_\perp^2 > C \Delta k_\perp^2$ & Unmodified\\
+ & $k_\perp^2 < C \Delta k_\perp^2$ & Removed\\
+Formed outside medium & Unmodified & \\
+\hline
+\end{tabular}
+\label{tab:med-vac}
+\end{table}
+
+Since we are interested in heavy quarks,
+
+
+\begin{figure}
+\includegraphics[width=.35\textwidth]{largeQ.pdf}\includegraphics[width=.35\textwidth]{mediumQ.pdf}\includegraphics[width=.35\textwidth]{smallQ.pdf}
+\caption{}
+\label{fig:vac-med-interface}
 \end{figure}
 
 
