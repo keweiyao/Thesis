@@ -273,19 +273,60 @@ Second, an instantaneous recombination process breaks energy conservation and de
 To solve these problems, one really needs a dynamical modeling of the hadronization physics in the future,
 which is already a hard problem even in the vacuum.
 
-\paragraph{Fragmentation} the heavy flavor fragmentation function is the Peterson parametrization,
-\begin{eqnarray}
-f(z) \propto \frac{1}{z(1-\frac{1}{z} - \frac{\epsilon}{1-z})^2}
-\end{eqnarray}
-where $\epsilon$ is a parameter that dependences on the heavy quark mass.
+
 \paragraph{Recombination}
 The recombination model was introduced in []. 
 The basic idea is that the probabilities for a heavy quark to recombine with medium parton(s) into heavy mesons and baryons are calculated as the wave-function overlap of the initial state quark wave-function and final state hadron wave-function, integrated over the thermal distribution of the medium parton,
 \begin{eqnarray}
-\frac{dP_{p_Q \rightarrow p_M}}{dp_M^3} &=& \int dp^3_{\bar{q}} \frac{dn_{\bar{q}}}{dp^3} f^W_{M}(\vec{p}_Q, p)\delta^{(3)}(\vec{p}_M-\vec{p_Q}-\vec{p}) \\
-\frac{dP_{p_Q \rightarrow p_B}}{dp_B^3} &=& \int dp^3_{q}dp'^3_{q'} \frac{dn_{q}}{dp^3}\frac{dn_{q'}}{dp'^3} f^W_{B}(\vec{p}_Q, p, p')\delta^{(3)}(\vec{p}_B-\vec{p_Q}-\vec{p}-\vec{p}') 
+\frac{dP_{p_Q \rightarrow p_M}}{dp_M^3} &=& \int dp^3_{\bar{q}} n_{\bar{q}} f^W_{M}(\vec{p}_Q, p)\delta^{(3)}(\vec{p}_M-\vec{p_Q}-\vec{p}) \\
+\frac{dP_{p_Q \rightarrow p_B}}{dp_B^3} &=& \int dp^3_{q}dp'^3_{q'} n_{q} n_{q'} f^W_{B}(\vec{p}_Q, p, p')\delta^{(3)}(\vec{p}_B-\vec{p_Q}-\vec{p}-\vec{p}') 
 \end{eqnarray}
 On the left are the differential probability for a heavy quark with momentum $p_Q$ to hadronize into a heavy meson or a heavy baryon through recombination.
 They are equal to Wigner function overlap $f^W$ for meson and baryon integrated over light quark / anti-quark distribution function, subject to momentum conservation.
+Here, it is evident that a energy conservation is not imposed in this instantaneous $2\rightarrow 1$ coalescence approach.
+The quark / anti-quark distribution function is the Fermi-Dirac one, neglecting the chemical potential, 
+\begin{eqnarray}
+n = \frac{g_q V}{e^{\beta p\cdot u} + 1}
+\end{eqnarray}
+with $u$ the fluid velocity and the $p$ the four momentum of the light quark / anti-quark.
+$g$ is the degeneracy of the quark, and $V$ is a test volume that will eventually be canceled by the normalization factor in the the Wigner function.
+As a remark, we have assumed in the transport model that the thermal partons are massless, since the thermal mass contribute one extra power of $g$ and is not included in the leading order computation.
+However, for the recombination near the critical temperature, non-perturbative constituent masses are assigned to light quarks, $m_u = m_d = 300$ MeV and $m_s = 475$ MeV.
+Modeling the meson wave-function $\phi_M$ with a Gaussian form and the meson Wigner function can be computed as,
+\begin{eqnarray}
+\phi_M(\vec{r}) &=& \left(\frac{1}{\pi \sigma^2}\right)^{3/4} e^{-\frac{r^2}{2\sigma^2}}\\
+f_M^{W}(\vec{r}, q^2) &=& g_M N \int d^3 \vec{a} e^{-i\vec{q}\cdot \vec{a}} \phi_M(\vec{r}+\vec{a}/2) \phi_M^*(\vec{r}-\vec{a}/2) \\
+f_M^{W}(q^2)  &=& \frac{g_M N}{V} (2\sqrt{\pi}\sigma)^3 e^{-\sigma^2 q^2}, \vec{q} = \frac{E_2\vec{p}_1 - E_1\vec{p}_2}{E_1+E_2}
+\end{eqnarray} 
+Where in the last step, a spatial averaged Wigner function within the test volume $V$ is defined.
+And the transition probability is,
+\begin{eqnarray}
+\frac{dP_{p_Q \rightarrow p_M}}{dp_M^3} &=& N\int dp^3_{\bar{q}} \frac{g_q g_M}{e^{\beta p\cdot u} + 1} (2\sqrt{\pi}\sigma)^3 e^{-\sigma^2 q^2} \delta^{(3)}(\vec{p}_M-\vec{p_Q}-\vec{p})
+\end{eqnarray}
+One can see the cancellation of the test volume in the distribution function and the Wigner function.
+The $\sigma$s are the key parameters, and is related to the reduced mass of the two body system $\mu = m_1 m_2/(m_1+m_2)$ and the frequencty of the  potential $\omega$ by $\sigma = 1/\sqrt{\mu \omega}$.
+These frequency is estimated from the charge radius of different heavy mesons to be $0.106$ GeV for charmed hadron and $0.059$ GeV for the bottom mesons.
+
+The same can be applied to heavy baryon recombination, with the three-body Wigner function in the Gaussian approximation as,
+\begin{eqnarray}
+f_B^W(q_1^2, q_2^2) = \frac{N g_B}{V^2} (2\sqrt{\pi\sigma_{1,2}\sigma_{12,3}})^6 e^{-q_{1,2}^2 \sigma_{1,2}^2 - q_{12,3}^2 \sigma_{12,3}^2}.
+\end{eqnarray}
+With the three body system analyzed as a two ``two-body system'' between the pair $p_1$ and $p_2$, and between the composite pair $p_3$ and $p_1+p_2$, so that
+\begin{eqnarray}
+\vec{q}_{1,2} &=& \frac{E_2 \vec{p}_1 -E_1\vec{p}_2}{E_1+E_2}\\
+\vec{q}_{12,3} &=& \frac{E_3 (\vec{p}_1+\vec{p}_1) - (E_1+E_2)\vec{p}_3}{E_1+E_2 + E_3}\\
+\sigma_{1,2}^{-1} &=& \sqrt{\omega \frac{m_1m_2}{m_1+m_2}}\\
+\sigma_{12,3}^{-1} &=& \sqrt{\omega \frac{(m_1+m_2)m_3}{m_1+m_2+m_3}}
+\end{eqnarray}
+
+\paragraph{Fragmentation} At high momentum, heavy quark hadronize through the fragmentation mechanism that produces a heavy hadron that carries a certainty fraction of the origin quark energy $z = p_H/p_Q$.
+The probability distribution of $z$ is known as the fragmentation function, and here the Peterson parametrization is used,
+\begin{eqnarray}
+f(z) \propto \frac{1}{z(1-\frac{1}{z} - \frac{\epsilon}{1-z})^2}
+\end{eqnarray}
+where $\epsilon$ is a parameter that dependences on the heavy quark mass.
+
+To synthesis the competing mechanisms of fragmentation and recombination that dominates at high momentum and low momentum respectively, one first samples the recombination probability and determines whether the heavy quark coalesces with the medium partons. 
+If not, its hadronization will be handled by the Pythia fragmentation routine with the Peterson fragmentation function.
 
 \section{Coupling open-heavy flavor to quarkonium evolution}
