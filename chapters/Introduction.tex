@@ -105,6 +105,58 @@ The phenomenology of relativistic heavy-ion collisions is discussed in detail in
 
 
 \section{Relativistic heavy-ion collision}
+In recent years, the Relativistic Heavy-Ion Collider (RHIC) at Brookhaven National Laboratory and subsequently the Large Hadron Collider (LHC) at CERN have discovered a new state of matter in ultra-relativistic heavy-ion collisions, referred to as the quark-gluon plasma (QGP).
+The three key observations that lead to 
+the discovery of the QGP are the measured strong collective flow of bulk matter, parton recombination as manifest in constituent quark number scaling laws and jet energy-loss (i.e. jet quenching). 
+
+The observed collective flow reveals that the bulk medium of the QGP undergoes a strong collective expansion after its initial creation.
+This behavior can be explained in surprisingly great detail by models using relativistic viscous hydrodynamics.
+Jet quenching refers to the strong suppression of the yield of high transverse momentum hadrons in nuclear collisions, compared to the scaled yield in proton-proton collisions where medium effects are assumed to be small.
+Calculations have shown that this suppression is a consequence of jets losing energy to the hot, dense and color-deconfined medium. 
+
+Heavy quarks (charm and bottom) are often seen as complementary probes of the QGP, but partly also belong to the category of jet observables, depending on their transverse momenta. Their large masses (compared to the prevailing temperatures generated in collisions at current heavy-ion colliders) constrain their production to early reaction times via hard perturbative Quantum-Chromodynamics (pQCD) processes. Flavor conservation ensures that the overwhelming majority of heavy quarks survive the entire reaction, allowing them to probe the full space-time evolution of the reaction.
+These two features are particular attractive to theorists as these flavor-tagged particles are much easier to track in the calculations than the evolution of a full jet.
+The mass also sets an additional energy scale to the problem and brings rich physics to the heavy-flavor sector.
+In the high transverse momentum region, heavy quarks lose energy mainly through radiative processes connecting them to jet energy loss studies {Wicks:2007am, Djordjevic:2004nq, Xu:2014tda, Kang:2016ofv}, whereas
+in the low transverse momentum region their large mass delays their thermalization, providing a window to study the equilibration process {Moore:2004tg,Riek:2010fk,Cao:2013ita}.
+Heavy flavors are therefore ideal and unique probes to determine QGP properties.
+
+The in-medium propagation of heavy quarks is often studied in a kinetic approach that is linearized with respect to the heavy quark distribution function and the medium particle distribution function is assumed to be thermal, obtained from hydrodynamic models.
+The linearization implies that any effects of the heavy quark interactions on the medium are neglected.
+
+The linearized Boltzmann transport equation and the Langevin equation are both widely used linearized models but make different assumptions regarding the nature of the interaction and thus often focus on different regimes in the heavy quark phase space {Auvinen:2009qm,Cao:2016gvr, Cao:2017hhk, PhysRevD.37.2484, Moore:2004tg}.
+The linearized Boltzmann transport equation is based on elementary scattering processes that can be directly calculated, e.g. via pQCD.
+However, calculations in the presence of a medium are extremely complicated even at leading order {Arnold:2002zm}.
+Also, the pQCD processes are often plagued by soft divergences that need to be regulated by a medium scale proportional to temperature. Moreover, at current collision energies the relevant temperature is not high enough which creates ambiguities for the pQCD calculation through the scale dependence of the strong coupling constant $\alpha_s$.
+
+The Langevin equation takes a different approach: 
+it assumes that heavy quark receives frequent but soft momentum kicks from the medium, making a statistical description of the interaction possible -- in terms of ``drag" and ``diffusion" coefficients.
+These transport coefficients encode the first and second moments of the momentum-exchange rate but are agnostic to further details of the elementary processes and medium properties.
+There are efforts to calculate these transport coefficients in various approaches including lattice QCD {Moore:2004tg,CaronHuot:2008uh, Gossiaux:2008jv,He:2012df,Riek:2010fk,vanHees:2007me,Scardina:2017ipo,Ding:2012sp,Banerjee:2011ra,Francis:2015daa}. Our group has taken a complementary approach, using experiment data to calibrate our Langevin based transport model to measured observables and thus extract the transport coefficients directly from data via a Bayesian analysis {Xu:2017obm}. The drawback of this approach is that it does not in itself provide a fundamental understanding of the interaction mechanism but can only provide guidance to direct calculations of the transport coefficients in terms of compatibility to experimental observation.
+
+In this work, we propose to combine the strengths of the linearized Boltzmann equation approach with that of the Langevin equation to develop a hybrid transport model for the evolution of heavy quarks in a QGP medium.
+In this hybrid model, called {\tt Lido} ({\bf Li}nearized Boltzmann with {\bf d}iffusion m{\bf o}del),  the heavy quarks scatter off medium particles described by a linearized Boltzmann equation with pQCD matrix elements (the scattering component), and between scatterings propagate according to a Langevin equation (the diffusion component) with empirical temperature- and momentum-dependent transport coefficients to describe the soft non-perturbative components of the interaction missing from the above scattering picture.
+Both elastic and inelastic scatterings are included in the scattering component with the soft divergence screened by a Debye mass $m_D$ and the Landau-Pomeranchuk-Migdal (LPM) effect taken into account effectively.
+The scattering process inside a medium is a multi-scale problem that includes a momentum transfer scale $Q$ and a medium scale that is proportional to the temperature $\mu\pi T$.
+The QCD coupling constant has a scale dependence that we choose to be the maximum of $Q$ and $\mu\pi T$, which means the typical scale of an in-medium process is cut off by the medium scale.
+The details of the running coupling constant we have utilized can be found in Appendix \ref{appendix:alphas}.
+The medium scale parameter $\mu$ is the only parameter in the scattering component and we assume it encodes the uncertainty in the pQCD matrix-element approach in our models.
+The diffusion component has several parameters depending on the way in which transport coefficients are parametrized. 
+The idea is to include non-perturbative contributions in terms of these transport coefficients.
+For future studies, we will also consider absorbing small-momentum-transfer elastic pQCD scatterings and the associated radiation into a radiation-improved Langevin equation component of the model.
+We would like to point out that a rigorous separation of matrix-element based scattering and diffusion has been proposed for the study of light parton jet energy loss up to next-to-leading order in pQCD {Ghiglieri:2015ala}.
+In our study, we don't require the diffusion component to be perturbative in nature.
+
+All parameters of the model will be calibrated to data using Bayesian inference {Novak:2013bqa,Bernhard:2015hxa}.
+This approach takes experimental uncertainties into account and provides the probability distributions for all model parameters given the experimental data.
+The Bayesian technique is particularly useful for focusing on a subset of parameters such as the transport coefficients.
+It allows the marginalization over all other parameters and computes the probability distribution for the parameters of interest. 
+The marginalization provides a parameter range that is not only preferred by the experiments, but also already includes uncertainties in the other model parameters.
+Therefore the Bayesian technique reveals what actually can be learned from the data, considering both experimental accuracy and model uncertainties.
+The Bayesian methodology has been successfully applied to the extraction of initial condition and bulk transport coefficients of the soft QGP medium {Novak:2013bqa, Pratt:2015zsa, Bernhard:2015hxa, Bernhard:2016tnd, Auvinen:2017fjw} and to the heavy quark sector for the extraction of the heavy quark momentum diffusion parameter $\hat{q}$ using a radiation improved Langevin equation {Xu:2017obm, Cao:2013ita}.
+In this work, we shall perform a likewise extraction of the heavy quark transport properties using the proposed {\tt Lido} model and compare with previous calculations to see how the results dependent on the use of different transport approaches.
+
+
 Heavy ion collisions are major experimental tools to study nuclear matter at high energy density.
 In this chapter, I shall introduce the basics of collider physics to be used extensively in the rest of this thesis. 
 This includes concepts and terminologies from both hadron and nuclear collisions. 
