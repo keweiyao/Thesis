@@ -108,9 +108,56 @@ And for practical usage, a truncation of the number of PCs already gives a good 
 In the end, one can always go back from the PC space to the original physical space by $y = V^{-1} z$.
 
 \section{Model emulator}
-With limited information on a finite number of design points contained in the matrices $D$ and $M$, the original mapping is approximated by a model emulator (a surrogate model) using the Gaussian process.
-The Gaussian process provide a non-parametric interpolation for scalar function and also works for high dimensional input.
-The 
+With limited information on a finite number of design points contained in the matrices $D$ and $M$, the original mapping is approximated by a model emulator (a surrogate model) using the Gaussian Process (GP).
+The Gaussian Process provide a non-parametric interpolation for scalar function and also works for high dimensional input.
+We shall let the readers refer to [] for the technique details related to the GP and only summarize the basic ideas.
+
+Taking a uni-variate case as an example, given an array of input and an array of scalar output, the common way to interpolate the the data are, e.g., polynomial interpolation.
+However, polynomial interpolation only uses local information of the grid, and its performance can be sensitive to the error of the output (e.g. statistical fluctuation in the measurement / simulation).
+Moreover, it is hard to generate to a high-dimensional Lain-hypercube design because the design points are not arranged on a grid.
+A GP does not make any assumption on the function form of the interpolation, but infer the output at a given input point based on how the output at the present point correlates with other points that has been given.
+Mathematically, one assumes that the array of output $\vec{y}^*$ to be predicted at input $\vec{x^*}$ forms a multi-variate normal distribution with the output $\vec{y}_{\textrm{train}}$ at the training points $\vec{x}_{\textrm{train}}$,
+\begin{eqnarray}
+\begin{bmatrix}
+\vec{y}^* \\
+\vec{y}_{\textrm{train}}
+\end{bmatrix}
+\sim
+\mathcal{N}\left(
+\begin{bmatrix}
+\mu^* \\
+\mu_{\textrm{train}}
+\end{bmatrix},
+\begin{bmatrix}
+\mathbf{\Sigma}(\vec{x}^*, \vec{x}^*)& \mathbf{\Sigma}(x^*, x_{\textrm{train}}) \\
+\mathbf{\Sigma}(\vec{x}_{\textrm{train}}, \vec{x}^*)& \mathbf{\Sigma}(\vec{x}_{\textrm{train}}, \vec{x}_{\textrm{train}})
+\end{bmatrix}
+\right)
+\end{eqnarray}
+Here, without a loss of generality the mean vectors $\mu^*$ and $\mu_{\textrm{textrm}}$ are often set to zero.
+The $\mathrm{\Sigma}$'s forms the co-variance matrix, and each of them has the same shape of the outer product of its two argument vectors.
+Its matrix-element often takes a squared exponential form,
+\begin{eqnarray}
+\Sigma(x_i, x_j) = \sigma^2 \exp\left(-\frac{(x_i-x_j)^2}{2l^2}\right) 
+\end{eqnarray}
+Where the auto correlation is $\sigma^2$ at the same input, and correlation decays exponentially with squared separation of the input points.
+In such a way, points that are close in inputs will also be close in outputs.
+
+Because, we have known the the value of the training output for sure, one obtains the probability distribution of $\vec{y}^*$ by conditioning the training output on a set of fixed values,
+\begin{eqnarray}
+\vec{y}^* \sim &&\mathcal{N}\left(
+\mathbf{\Sigma}(\vec{x}^*, \vec{x}_{\textrm{train}} )
+\mathbf{\Sigma}^{-1}(\vec{x}_{\textrm{train}}, \vec{x}_{\textrm{train}} )\vec{y}_{\textrm{train}},\right.\\\nonumber
+&&\left.
+\mathbf{\Sigma}(\vec{x}^*, \vec{x}^*) - 
+\mathbf{\Sigma}(\vec{x}^*, \vec{x}_{\textrm{train}} )
+\mathbf{\Sigma}^{-1}(\vec{x}_{\textrm{train}}, \vec{x}_{\textrm{train}} )
+\mathbf{\Sigma}(\vec{x}_{\textrm{train}},\vec{x}^*)
+\right)
+\end{eqnarray}
+Note that the conditional multi-variate distribution is still a normal distribution, with modified mean and covariance matrix.
+One can easily check that if the predicting input approaches one of the training input, the distribution of the output approaches an delta function at the training output.
+
 
 
 
