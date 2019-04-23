@@ -211,7 +211,8 @@ While the phenomenological value of $g$ is in fact not small, and one may questi
 Although the non-pertubative physics varies in different calculations, their dynamical effect are often modeled by a diffusion processes.
 
 \section{Transport approach in the incoherent limit}
-In this section, we describe the Monte Carlo model in detail. The partonic processes are categorized into elastic (particle number conserving) and inelastic processes (particle number non-conserving). 
+In this section, we describe the Monte Carlo model in detail. 
+The partonic processes are categorized into elastic (particle number conserving) and inelastic processes (particle number non-conserving). 
 The inelastic processes are further divided into parton-splitting and parton-jointing contribution. 
 In this section, we shall first proceed using local and incoherent calculation of such processes and will discuss in great detail in the next section on including the LPM effect in a Boltzmann-like transport approach.
 
@@ -307,11 +308,71 @@ The distribution function of the hard parton under goes soft diffusion and diffu
 Hard collision with the medium are included as $2\leftrightarrow 2$ and $2\leftrightarrow 3$ collision terms.
 The next section devotes to the inclusion of LPM effect to such an incoherent transport equation.
 
-\section{Monte Carlo solver of the linearized Boltzmann equation}
-This subsection discuss the technical of solving the linearized Boltzmann equation using particle-based simulation.
-This method starts from representing the distribution function by particle states. 
-For linearized Boltzmann equation, it is sufficient to consider the dynamics of one such particle.
-The particle undergoes free-transport in between subsequent collisions, and differential collision probability per unit time, the collision rate, is simply the collision integral, with the distribution function replaced by a delta-distribution $\delta^{3}(x-x'- v(t-t')) \delta^3(p-p')$.
+\section{A Monte Carlo solver of diffusion plus scattering}
+As introduced in the previous section, the {\tt Lido} model consists of a linearized-Boltzmann equation of scatterings $\mathcal{C}[f_Q]$ and a diffusion component that appears as a Fokker-Planck operator $\mathcal{D}[f_Q]$ in the transport equation:
+\begin{eqnarray}
+\nonumber
+  \frac{p \cdot \partial f_Q}{E}  &=& 
+\mathcal{C}[f_Q] - \frac{\partial}{\partial p_i}\left(A_i -\frac{1}{2}\frac{\partial}{\partial p_j}B_{ij} \right) f_Q \\
+  &=& 
+\left( \mathcal{\hat{C}} + \mathcal{\hat{D}} \right) f_Q,
+\end{eqnarray}
+The two operations ``diffusion'' and ``scatterings''  are treated by very different simulation technique and the results of the order of operation also matters.
+However, with a small enough time step, the order of operation only changes the distribution function at $O(\Delta t^2)$.
+This can be seen with the formal solution of the equation,
+\begin{eqnarray}
+\nonumber
+f_Q(x,p) &=& \exp\left\{ \int_{x'}^x \gamma u \cdot dx \left( \mathcal{\hat{C}} + \mathcal{\hat{D}} \right) \right\} f_Q(x',p)\\
+&\approx & e^{\Delta t \hat{C}}e^{\Delta t \hat{D}} f_Q(x', p) + \mathcal{O}(\Delta t^2)
+\end{eqnarray}
+
+Our Monte Carlo method starts from representing the distribution function by delta-function like particle states $\delta^{3}(x-x'- v(t-t')) \delta^3(p-p')$. 
+For linearized transport equations, it is sufficient to consider the dynamics of one such particle.
+Within a small time step $\delta t$, particles undergoes scatterings with certainty probability.
+And then in between subsequent collisions, the particle is propagated by diffusion transport.
+The details of the Monte-Carlo solver are explained in this section.
+
+\paragraph{The diffusion solver}
+The Fokker-Planck equation in its general form is,
+\begin{eqnarray}
+\frac{\partial f}{\partial t} + v\cdot\frac{\partial f}{\partial x}
+= \ppi \left(A(p^2) p_i + \frac{1}{2}\ppj B_{ij}(p^2)\right)f 
+\end{eqnarray}
+$A$ is drag term. The momentum diffusion term can be can be decomposed into,
+\begin{eqnarray}
+B_{ij} = \Kpara \frac{p_i p_j}{p^2} + \Kperp \left(\delta_{ij} - \frac{p_i p_j}{p^2}\right)
+\end{eqnarray}
+To guarantee the system has a thermalization solution, $A$, $\Kpara$ and $\Kperp$ are not independent.
+Given a static and homogeneous medium at equilibrium with temperature $T$, $f = N\exp\left(-\beta E\right)$, the equation reduces to
+\begin{eqnarray}
+0 &=& \ppi(\phi p_i f)\\
+\phi &=& A - \frac{\Kpara}{2TE} + \frac{\partial \Kpara}{\partial p^2} + \frac{\Kpara-\Kperp}{p^2}.
+\end{eqnarray}
+The Einstein relation $\phi = 0$ guarantees the exist of a equilibrium solution,
+\begin{eqnarray}
+A = \frac{\Kpara}{2TE} - \frac{\partial \Kpara}{\partial p^2} - \frac{\Kpara-\Kperp}{p^2}
+\end{eqnarray}
+The Langevin equation governs the evolution of an ensemble of test particles whose distribution is the solution of the Fokker-Plank equation.
+\begin{eqnarray}
+f(t,x,p) \approx \sum_{i} \delta^3(x-x_i(t)) \delta^3(p-p_i(t))
+\end{eqnarray}
+The Langevin equation in the post-point discretization scheme is,
+\begin{eqnarray}
+\Delta \vec{x}_i &=& \frac{p}{E}\Delta t\\
+\Delta \vec{p}_i &=& -\Gamma \vec{p}_i \Delta t + \sqrt{\tensor{B}(p+\Delta p) \Delta t  }\vec{\xi}
+\end{eqnarray}
+$\Gamma$ is the Langevin drag term.
+The relation between $A$ and $\Gamma$ in the post-point scheme is,
+\begin{eqnarray}
+p_j \Gamma  = p_jA + \left(\sqrt{\Kpara}\Ppara_{lk} + \sqrt{\Kperp}\Pperp_{lk}\right) \ppl \left( \sqrt{\Kpara}\Ppara_{kj} + \sqrt{\Kperp}\Pperp_{kh} \right).
+\end{eqnarray}
+This finally reduces to,
+\begin{eqnarray}
+\Gamma &=& A + \frac{\partial \Kpara}{p^2} + \frac{2\sqrt{\Kpara\Kperp} - 2\Kperp}{p^2} \\
+ &=& \frac{\Kpara}{2TE} - \frac{1}{p^2}\left( \sqrt{\Kpara} - \sqrt{\Kperp} \right)^2.
+\end{eqnarray}
+
+\paragraph{The scattering solver}
 For a two-body scattering, neglecting the quantum statistics, the collision rate in the rest frame of the medium is,
 \begin{eqnarray}
 R_a(p) = \sum_{b,c,d}\frac{1}{2E_a}\int \frac{dp_b^3}{(2\pi)^3 2E_b} f_0(p_b) \int d\Phi_m |M^2|_{ab\rightarrow cd}
@@ -1047,13 +1108,24 @@ Deviations observed at small path length is understand as the limitation of our 
 The deviation at small $x$ is interesting, particularly, the theory almost predicts an identical heavy quark radiation spectra as the light quark. This absent of dead cone at small-$x$ is already observed in early works of heavy quark energy loss study in both the GLV framework and the BDMPS framework.
 This means that the treatment of the mass effect is not as simple as the dead-cone approximation and should be improved in the future.
 
-\section{Hard matrix-elements}
-The vacuum matrix-elements for two-body large-$Q$ elastic scatterings are,
+\section{Few-body hard matrix-elements}
+Because the medium modification to few body scatterings above the the momentum transfer cut-off is neglected, their matrix-elements are given by the corresponding vacuum calculation.
+
+\subsection{$2\leftrightarrow 2$ processes}
+The two body scatterings between quarks and are standard and we quote the results from existing references.
+For a light parton scattering, we write the matrix-element in the vacuum with only $\hat{t}$-channel contribution, the $\hat{s}$ and $\hat{u}$ channel contribution are suppressed at high energy.
 \begin{eqnarray}
-\overline{|M_{22,Qq}|^2} &=& \frac{64\pi^2\alpha_s^2}{9} \frac{(M^2-u)^2 + (s-M^2)^2 + 2 M^2 t}{t^2}
+\overline{|M_{q_1q_2\rightarrow q_1q_2}|^2} &=& \frac{64\pi^2 \alpha_s^2}{9} \frac{s^2+u^2}{t^2} \\
+\overline{|M_{gg\rightarrow gg}|^2} &\approx& 72\pi^2 \alpha_s^2 \frac{-su}{t^2}
+ \\
+\overline{|M_{qg\rightarrow qg}|^2} &\approx& 16\pi^2 \alpha_s^2 \frac{s^2+u^2}{t^2}
+\end{eqnarray}
+For the heavy quark, since we are also interested in its diffusion dynamics at low $p_T$, we uses the exact leading order matrix-element in the vacuum.
+\begin{eqnarray}
+\overline{|M_{Qq\rightarrow Qq}|^2} &=& \frac{64\pi^2\alpha_s^2}{9} \frac{(M^2-u)^2 + (s-M^2)^2 + 2 M^2 t}{t^2}
 \nonumber
 \\
-\overline{|M_{22,Qg}|^2} &=& \pi^2 \left\{
+\overline{|M_{Qq\rightarrow Qq}|^2} &=& \pi^2 \left\{
 32\alpha_s^2 \frac{(s-M^2)(M^2-u)}{t^2} \right.
 \nonumber
 \\
@@ -1069,9 +1141,13 @@ The vacuum matrix-elements for two-body large-$Q$ elastic scatterings are,
 \\
 &-& \left. 16 \alpha_s^2 \frac{(s-M^2)(M^2-u)-M^2(s-u)}{t(M^2-u)}\right\}
 \end{eqnarray}
-In medium, the denominator of the squared gluon propagator is replaced by $t^2 \rightarrow t(t-m_D^2)$. 
-For the radiation processes, we also include a gluon mass to regulate soft divergence $x^2M^2 \rightarrow x^2M^2 + (1-x)m_g^2$, where $m_g^2 = m_D^2/2$ is the squared asymptotic gluon mass. 
 
+\begin{figure}
+\includegraphics[width=\textwidth]{feyn-el.pdf}
+\caption{Elastic processes: The first diagram corresponds to heavy quark ($Q$) - light quark ($q$, $\bar{q}$) scattering. The last three diagrams contribute to heavy quark ($Q$) - gluon ($g$) scattering.}\label{plots:feyn-elastic}
+\end{figure}
+
+\subsection{$2\rightarrow 3$ matrix-elements}
 For large-Q $2\rightarrow 3$ inelastic processes $g\rightarrow q+\bar{q}$, $q+q\rightarrow q+g+q$ and $g+q\rightarrow g+g+q$.
 In medium frame, one of them will be the hard parton with energy $E\gg T$, while the other a thermal parton with $E\sim T$.
 We perform the calculation in the the center-of-mass frame of the two incoming parton and let the hard parton to be moving towards the $+z$ direction with momentum $p_1$, and the medium parton moving to the $-z$ direction with $p_2$.
@@ -1641,141 +1717,7 @@ Here $L_c^0 = \sqrt{E/\hat{q}_0}$ with $\hat{q}_0 = C_A \alpha_s T m_D^2$ estima
 All three implementations show the non-linear increase of $\Delta E$ as function of $L$.
 The ``modified rescattering" approach stays close to the theory calculations when $L<L_c^0$ for all cases, while the other two approaches deviate systematically as $\alpha_s$ is varied, similar to our previous findings for the energy-loss in the infinite matter case.
 
-\section{Heavy quark propagation in a hybrid transport model}\label{section:model}
-As introduced in the previous section, the {\tt Lido} model consists of a linearized-Boltzmann equation of scatterings $\mathcal{C}[f_Q]$ and a diffusion component that appears as a Fokker-Planck operator $\mathcal{D}[f_Q]$ in the transport equation:
-\begin{eqnarray}
-\nonumber
-  \frac{p \cdot \partial f_Q}{E}  &=& 
-\mathcal{C}[f_Q] - \frac{\partial}{\partial p_i}\left(A_i -\frac{1}{2}\frac{\partial}{\partial p_j}B_{ij} \right) f_Q \\
-  &=& 
-\left( \mathcal{\hat{C}} + \mathcal{\hat{D}} \right) f_Q,
-\end{eqnarray}
-with a formal solution,
-\begin{eqnarray}
-\nonumber
-f_Q(x,p) &=& \exp\left\{ \int_{x'}^x \gamma u \cdot dx \left( \mathcal{\hat{C}} + \mathcal{\hat{D}} \right) \right\} f_Q(x',p)\\
-&\approx & e^{\Delta t \hat{C}}e^{\Delta t \hat{D}} f_Q(x', p) + \mathcal{O}(\Delta t^2)
-\end{eqnarray}
-Technically, this can be solved by the split step method within a tiny time step $\Delta t = \gamma u \cdot dx$, during which we apply the operation of scattering and diffusion subsequently up to corrections of $\mathcal{O}(\Delta t^2)$.
-Next, we discuss the physics included in each components in detail. 
-\subsection{Scattering component}
-The scattering of heavy quarks with medium particles is treated with a linearized Boltzmann equation,
-\begin{eqnarray}
-    \frac{p \cdot \partial f_Q}{E} = \mathcal{C}[f_Q].
-\end{eqnarray}
-The left hand side represents the free evolution of the heavy quark distribution function. 
-Scatterings with medium partons modify the distribution function via the collision integral on the right.
-The medium partons are assumed to obey classical statistics for simplicity, whose thermal occupancy number follows the Maxwell--J\"uttner distribution, 
-\begin{eqnarray}
-f_{q,\bar{q}, g}(t,x,p) = \exp\left(-\frac{p \cdot u(t,x)}{T(t,x)}\right),
-\end{eqnarray}
-and any non-equilibrium corrections are neglected.
-The space-time evolution of the temperature field $T$ and velocity field $u^\mu$ are obtained in an event-by-event 2+1D viscous relativistic hydrodynamic calculation {Heinz:2005bw,Song:2007ux,Shen:2014vra}.
-We solve $f_Q(t,x,p)$ using Monte Carlo techniques by representing the distribution function with an ensemble of heavy quarks.
-Within a given time step $\Delta t$, each heavy quark scatters according to its reaction probability $\Delta P$.
-We always calculate $\Delta P$ in the rest frame of the fluid cell with given temperature $T$ and velocity field $u^\mu$.
-In this reference frame, the heavy quark with energy $E_1$ can collide with medium particles that together form an $n$-body initial state denoted as $\{\textrm{in}\}$, and the outgoing particles after the collision form the $m$-body final state $\{\textrm{out}\}$.
-The probability for a heavy quark to undergo an interaction of a certain type inside the fluid cell per unit time is the so called scattering rate $\Gamma$,
-\begin{eqnarray}\label{eq:rate}
-    \frac{dP}{dt} &=& \Gamma(E_1, T, t) \nonumber \\
-    &=& \frac{d}{\nu} \frac{(2\pi)^3\delta}{\delta f_Q(p_1)}\int d\Phi(n,m) \prod_{\textrm{\{in\}}} f_i(p_i) 
-\overline{|M|^2},
-\end{eqnarray}
-where the $d\Phi(n,m)$ is the $(n+m)$-body phase-space integration,
-\begin{eqnarray}
-\nonumber
-d\Phi(n,m) = (2\pi)^4\delta^4\left(P_{\textrm{in}}-P_{\textrm{out}}\right)\prod_{\{\textrm{in, out}\}} \frac{dp_i^3}{2E_i(2\pi)^3} 
-\end{eqnarray}
-$\overline{|M|^2}$ is the initial state spin-color averaged scattering matrix-element squared.
-The factor $d$ denotes the degeneracy of the incoming medium particles and $\nu$ is the symmetry factor of identical particles in the initial / final state of the collision.
-If a scattering process occurs within $\Delta t$ according to the probability $\Delta P=\Gamma \Delta t$, the details of the initial and final states can be obtained by sampling the differential scattering rate over the $(m+n-1)$-body phase space.
-The many-body phase-space sampling may look formidable at first sight, but can be factorized into sequential initial-state and final-state sampling as long as one uses classical statistics and a simple version of the medium screening effect.
-The relevant sampling details can be found in Appendix \ref{appendix:sample}.
-The time step $\Delta t$ is chosen small enough so that the probability of multiple scatterings is negligible. 
-
-Focusing on the processes to be included in the collision term, 
-it has been shown that at leading order, an energetic parton can scatter elastically with a medium parton (light quark and anti-quark or gluon) or emit a gluon triggered by multiple soft collisions which we call an inelastic process based on its particle number changing nature {Arnold:2002zm}.
-We will keep using the terms ``elastic" and ``inelastic" to distinguish between these two types of processes and their associated energy loss.
-For elastic processes, quark-gluon scattering contributes three diagrams corresponding to $s, t,$ and $u$ channel momentum exchange; quark-quark scattering only has a $t$ channel contribution. 
-These diagrams are shown in Fig. \ref{plots:feyn-elastic} and the matrix-elements for these processes in vacuum are available at leading order in pQCD (see \ref{appendix:matrix-element}).
-In these expressions, the characteristic $t-$channel gluon propagator causes a divergence in the cross-section as the momentum transfer vanishes,
-\begin{eqnarray}
-d\sigma \propto \frac{1}{t^2} dt.
-\end{eqnarray}
-In a quark-gluon plasma medium, those soft gluon excitations constantly interact with thermal particles causing this divergence to be screened by a Debye mass in the static limit {Moore:2004tg}.
-Generally, the gluon propagator should be replaced by a hard-thermal loop (HTL) propagator {Peshier:1998dy}.
-Using a HTL propagator involves a complicated self energy that depends on the medium reference frame, making it hard to implement in a cross-section based Monte-Carlo approach, where the calculation and sampling is easiest performed in the CoM frame of the collision.
-Hence we choose to adopt the simple replacement $t^2 \rightarrow (t-\Lambda_{\textrm{QCD}}^2)(t - m_D^2)$ (up to an additional factor of $\Lambda_{QCD}^2$) that takes dynamic scattering center effects into account {Djordjevic:2008iz}.
-
-At large heavy quark energies, inelastic processes shown in Fig. \ref{plots:feyn-inelastic} become important.
-We start from the case of gluon emission associated with the scattering with one medium particle, the effective treatment of multiple scatterings will be discussed later.
-The corresponding matrix-elements are derived in an improved Gunion and Bertsch approximation in the high energy and soft gluon limit {PhysRevD.25.746,Fochler:2013epa}, with the heavy quark mass effect (the dead-cone effect) included {Uphoff:2014hza}.
-Although the inelastic diagrams seem to involve one more power of $\alpha_s$, it actually contributes at leading order to the energy loss due to the small transverse momentum emission that we screened by the asymptotic gluon thermal mass $m_D/\sqrt{2}$ {Ghiglieri:2015ala}.
-The available phase space for radiating a gluon also grows with the heavy quark incident energy and it eventually becomes the dominant energy loss mechanism at high energies.
-The Boltzmann equation including only the gluon radiation ($2\rightarrow 3$) process would violate detailed balance. We therefore include the reverse process namely gluon absorption ($3\rightarrow 2$) so that detailed balance is preserved and the model approaches the correct thermal equilibrium at large times.
-The absorption process has been studied within the full Boltzmann equation {Xu:2004mz} for light partons but so far has not been implement for heavy quarks and for any linearized transport models.
-In the rate equation, the matrix-element for the absorption relates to the radiation matrix-element by sending the final state gluon to the initial state ($k^\mu \rightarrow -k^\mu$).
-This initial state medium gluon brings an additional Boltzmann factor $e^{-k/T}$ to the differential rate.
-For the fast moving heavy quark, most of the thermal gluons move in the opposite direction of the heavy quark in the center of mass frame,
-so the probability for an energetic heavy quark to absorb a thermal gluon is extremely small. 
-On the other hand, low energy heavy quarks can efficiently absorb gluons with $k \sim T$, and the reverse process plays an indispensable role for thermalization. 
-In the next section we shall analyze numerically under what conditions the gluon absorption is important.
-
-A complication of inelastic processes is that the radiated (absorbed) gluon takes a finite amount of time to be fully resolved from (merged into) the parent parton.
-This typical time scale is called the gluon formation time $\tau_f$, during which the effects of multiple collisions add up coherently in a destructive manner to suppress the gluon emission spectrum {Wang:1994fx, Baier:1996kr, Zakharov:1996fv}, known as the LPM effect in analogy to QED {PhysRev.103.1811}.
-The formation time for gluons with a thermal mass splitting from the heavy quark is {Cao:2013ita},
-\begin{eqnarray}
-\tau_f &=& \frac{2x(1-x)E}{k_\perp^2 + x^2M^2 + (1-x)m_D^2/2}, x = \frac{k+k_z}{E+p_z}.
-\end{eqnarray}
-For certain phase space regions of the radiated gluon, this time scale can be comparable to or even much larger than the mean free path $\lambda$, making this a non-local task in a Monte Carlo approach.
-This creates a paradox in the Boltzmann equation formulation where all scatterings are point-like (compared to $\lambda$) in space-time.
-A possible solution to this paradox has been proposed by {ColemanSmith:2012vr}: it suggests treating this long-lived system of heavy quark plus primitive gluon as a continuum specie of "particles" that can propagate within its life time and scatter with medium partons.
-However in this work, we still treat the radiation in a point-like interaction manner for simplicity and mimic this LPM effect by restricting the phase space integral of the emission / absorption gluon with a coherence factor,
-\begin{eqnarray}\label{eq:LPM}
-dk^3/2k \rightarrow 2\left(1 - \cos\left((t-t_0)/\tau_f\right) \right)dk^3/2k,
-\end{eqnarray}
-where $t-t_0$ is the time elapsed from the last emission / absorption.
-This factor is determined by requiring that the differential radiation rate reduces to the higher twist formula used by {Cao:2013ita} in the limit that gluon is soft ($x\ll 1$) and its transverse momentum is much larger than the medium momentum transfer ($k_\perp^2 \gg q_\perp^2$).
-With this prescription, the rate of emitting a gluon with $\tau_f \gg t-t_0$ is suppressed as required at the expense of the collision rate becoming history ($t-t_0$) dependent.
-It is not trivial to ascertain whether the Boltzmann equation with a history-dependent rate should thermalize as $t\rightarrow \infty$, so we test and confirm this in the next section.
-
-\begin{figure}
-\includegraphics[width=.5\textwidth]{feyn-el.pdf}
-\caption{Elastic processes: The first diagram corresponds to heavy quark ($Q$) - light quark ($q$, $\bar{q}$) scattering. The last three diagrams contribute to heavy quark ($Q$) - gluon ($g$) scattering.}\label{plots:feyn-elastic}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=.5\textwidth]{feyn-inel.pdf}
-\caption{Inelastic processes: a heavy quark collides with a medium light (anti-)quark or gluon and radiates an additional gluon.}\label{plots:feyn-inelastic}
-\end{figure}
-
-\subsection{Diffusion component}
-The Fokker-Planck part of the transport equation can be solved by propagating heavy quarks using Langevin equations in between subsequent pQCD scatterings.
-The Langevin equations in the pre-point Ito scheme are {Rapp:2009my},
-\begin{eqnarray}
-\Delta \vec{x}_i &=& \frac{\vec{p}_i}{E} \Delta t	\\
-\Delta \vec{p}_i &=& -\eta_D \vec{p}_i \Delta t + \Delta t \vec{\xi}(t)
-\end{eqnarray}
-The first equation is the spatial transport.
-In the second equation, the momenta of heavy quarks are changed by a drag term with coefficient $\eta_D$ and a thermal random force $\vec{\xi}$. 
-The random force has zero mean and the covariance structure:
-\begin{eqnarray}
-\langle \xi_i \xi_j \rangle = B_{ij} = \frac{\Kpara}{\Delta t} \frac{p_i p_j}{p^2} + \frac{\Kperp}{\Delta t} \left(\delta_{ij} - \frac{p_i p_j}{p^2}\right)
-\end{eqnarray}
-In this study, we assume an isotropic non-perturbative diffusion $\Kpara=\Kperp=\kappa$.
-The drag coefficient $\eta_D$ and the momentum diffusion coefficient $\kappa$ need to satisfy the Einstein relation in the pre-point Ito scheme to guarantee the approach of the correct thermal equilibrium {Rapp:2009my},
-\begin{eqnarray}
-\eta_D &=& \frac{\kappa}{2TE} - \frac{d\kappa}{dp^2}
-\end{eqnarray}
-We choose to parametrize the momentum diffusion constant $\kappa$ and the drag is determined as above.
-If temperature is the only scale in the problem, we expect $\kappa$ to scale as $T^3$.
-It is also natural to expect non-perturbative contribution may be large at low energy and low temperature, so we arrive at the following simple ansatz,
-\begin{eqnarray}
-\frac{\kappa}{T^3} = \kappa_D\left(x_D + (1-x_D)\frac{\textrm{ GeV}^2}{ET}\right).
-\end{eqnarray}
-Here, $\kappa_D$ is the strength of diffusion at $ET = 1\textrm{ GeV}^2$, and $x_D$ interpolates between the two types of energy-temperature dependence.
-
-\section{Tests in a static medium}\label{section:test}
+\section{Heavy quark energy loss and thermalization in static medium}
 \begin{figure}
 \includegraphics[width=\columnwidth]{thermalization.pdf}
 \caption{The approach to thermalization of the linear Boltzmann equation with elastic processes only (red dot), elastic and radiation processes (green dashed), and elastic with both radiation and absorption processes (blue solid). The static medium has a temperature $T = 0.4$ GeV. $10^4$ heavy quarks are initialized with $E = 10$ GeV at $t = 0$.}\label{plots:thermalization}

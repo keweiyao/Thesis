@@ -1,6 +1,36 @@
 \chapter{Results}
 
 \section{Calibration with a simpler implementation of the LPM effect}
+\begin{center}
+\begin{table}[h]
+\caption{ALICE dataset}\label{table:ALICE-obs} 
+\begin{tabularx}{\columnwidth}{XXX}
+\hline 
+ Observables & Centrality & Reference\\ 
+\hline 
+$D$-meson $v_2$ & 30-50\% & {Acharya:2017qps}\\ 
+\hline 
+Event-engineered $D$-meson $v_2$ & 30-50\% & {Grosa:2017zcz}\\ 
+\hline 
+$D$-meson $R_{AA}$ & 0-10, 30-50, 50-80\% & {Acharya:2018hre}\\
+\hline 
+\end{tabularx}
+\end{table}
+\begin{table}[h]
+\caption{CMS dataset}\label{table:CMS-obs} 
+\begin{tabularx}{\columnwidth}{XXX}
+\hline 
+Observables & Centrality & Reference\\ 
+\hline 
+D${}^0$-meson $v_2$ & 0-10, 10-30, 30-50\% & {Sirunyan:2017plt}\\ 
+\hline 
+D${}^0$-meson $R_{AA}$ & 0-10\%, 0-100\% & {Sirunyan:2017xss}\\ 
+\hline 
+B${}^{\pm}$-meson $R_{AA}$ & 0-100\% & {Sirunyan:2017oug}\\ 
+\hline 
+\end{tabularx}
+\end{table}
+\end{center}
 
 The parameters of our model in the heavy-flavor sector are:
 \begin{itemize}
@@ -112,8 +142,6 @@ The transport coefficient $\hat{q}$ and spatial diffusion constant $D_s$ are ext
 \caption{Posterior range of the heavy quark spatial diffusion coefficient. The blue boxed region is for bottom quarks and the red slashed region for charm quarks. The shaded region indicates a previous extraction in {Xu:2017obm}. Square and dimond symbols are lattice calculations in the static heavy quark limit {Banerjee:2011ra, Francis:2015daa}; triangular symbols are lattice calculations with physical charm quark mass {Ding:2012sp}.}\label{plots:posterior_Ds}
 \end{figure}
 
-
-\section{Validation and Predictions}\label{section:prediction}
 We now apply the calibrated model to predict observables that have already been measured but were excluded in the calibration (validation) and also predict new observables.
 In principal, any parameter set sampled according to the posterior probability distribution in the high-likelihood region (95\% credible for example) is equally good to make predictions and the resultant differences represent the systematic uncertainties of the calculation.
 For simplicity, we only run a single set of high likelihood parameters listed in Table \ref{table:high-likelihood-parameters} for a large number of events.
@@ -175,7 +203,6 @@ We understand this finite $v_1$ in the following way
 when $q_3$ is finite, the direction of $q_3$ defines a plane to which the medium evolution is reflection asymmetric and this asymmetry causes heavy quarks to loose energy differently depending on the direction of motion being along or against the direction of $q_3$.
 Since $q_3$ originates from triangular initial state fluctuations, a finite signal would be another indication of heavy quark energy loss coupling to initial condition fluctuations and bulk collectivity.
 
-\section{Discussion and Conclusion}\label{section:conclusion}
 \begin{figure}
 \includegraphics[width=0.5\textwidth]{qhat_full.pdf}
 \caption{Comparison of the heavy quark transport coefficient (left: $\hat{q}$, right $D_s$) with (solid lines) and without (dashed lines) the inclusion of the inelastic contribution. Thin blue lines denote the bottom quark and thick red lines denote the charm quark region. Blue symbols are lattice calculations in static heavy quark limit {Banerjee:2011ra} and red symbols are lattice calculations with physical charm quark mass {Ding:2012sp}.}\label{plots:transport_full}
@@ -206,9 +233,55 @@ The diffusion component to the overall transport coefficients is small, with the
 The calibrated model predicts the centrality and $p_T$ dependence of the $B$-meson nuclear modification factor and flows and a non-zero $D$-meson direct flow with respect to $n=3$ event plane.
 The extracted heavy quark transport coefficient $\hat{q}$ at finite momenta in the QGP phase is consistent within uncertainties with previous calibrations using an improved Langevin approach as well as with lattice QCD calculations.
 
-\subsection{Compare with the improved Langevin model calibration}
+\section{Comparison with the improved Langevin model calibration}
 
 \section{Calibration with a more sophisticated transport model}
+Finally, we apply the LIDO model to the extraction of the heavy quark transport coefficients.
+In this analysis, the aspects we want to improve is that 
+\begin{itemize}
+\item A more sophisticated implementation of the LPM effect to reduce modeling uncertainty of the radiative process.
+\item An interpolation of the diffusion picture and the scattering picture to take into account modeling uncertainty and an easy parametrization of the non-perturbative effect.
+\item A better treatment of the interfacing between the high-virtuality evolution and the low-virtuality transport equation.
+\end{itemize}
+How we improve on each of these aspects has been elaborated in details in section [] and section [].
+
+\paragraph{Model parameters}
+Again we first describe the parameters and their prior range in table \ref{table:new:prior}
+\begin{itemize}
+\item[1] A medium scale parameter $\mu$ in the effect coupling that cuts off the running of $\alpha_s$ below the scale $\mu\pi T$, $\alpha_s(Q) = \frac{2\pi}{9}\left(\ln\frac{\max\{Q, \mu\pi T\}}{\Lambda_{\textrm{QCD}}}\right)^{-1}$.
+\item[2] The energy loss starting time $\tau_i$.
+\item[3] A matching scale parameter $R_v$ between the vacuum-like and medium-induced radiation $Q_{\textrm{sw}}^2 = R_v\Delta k_\perp^2$, where $\Delta k_\perp^2$ is the transverse momentum a vacuum branching could acquire from its in-medium transport.
+\item[4] The switch scale parameter $c$ of momentum transfer between the scattering dynamics and the diffusion dynamics $Q_{\textrm{cut}}^2 = c m_D^2$.
+\item[5-9] These five numbers $K,a,b,p,q$ parametrizes a correction, whose origin can be either perturbative or non-perturbative, to the leading order transport coefficient,
+\begin{eqnarray}
+\Delta\hat{q} &=& \frac{K T^3}{\left[1+\left(a\frac{T}{T_c}\right)^p\right]\left[1+\left(b\frac{E}{T}\right)^q\right]}
+\end{eqnarray}
+\item[10] Finally, a $\gamma$ parameter relates the correction to the longitudinal transport parameter to the transverse one.
+\begin{eqnarray}
+\Delta\hat{q}_L &=& \frac{\Delta\hat{q}}{2} \left(\frac{E}{M}\right)^{\gamma}.
+\end{eqnarray}
+Note that such a construction goes back to an isotropic diffusion when velocity approaches zero ($E\rightarrow M$).
+\end{itemize}
+
+\begin{table}
+\centering
+\caption{Prior range of parameters}\label{table:new:prior}
+\begin{tabular}{ccc}
+Symbol & Description & Range \\
+\hline
+$\xi = \frac{\tau_i}{\tau_0}$ & energy loss starting time & (.1, .9) \\
+$c = \frac{Q_{\textrm{cut}}^2}{m_D^2}$ & soft/hard switching scale & $(.1, 10.)$ \\
+$R_v = \frac{Q_{\textrm{sw}}^2}{\Delta k_\perp^2}$ & vac/medium-ind. switching scale & $(0.14, \infty)$\\
+$\mu$ & Running $\alpha_s$ stops at $Q = \mu\pi T$ & $(.6, 10)$ \\
+$K$ & Norm for $\Delta \hat{q}$ & $(0, 20)$\\ 
+$p$ & Additional $T$-dep power  & $(-2, 2)$\\ 
+$q$ & Additional $E$-dep power  & $(-1, 1)$\\ 
+$a$ & Additional $T$-dep scale  & $(-.5, 3)$\\ 
+$b$ & Additional $E$-dep scale  & $(-.5, 3)$\\ 
+$\gamma$ & Relation of $\Delta \hat{q}$ and $\Delta \hat{q}_L$  & (-1, 1)\\ 
+\end{tabular}
+\end{table}
+
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{New-analysis/design.png}

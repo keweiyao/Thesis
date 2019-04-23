@@ -16,6 +16,7 @@
 \usepackage{tabularx}
 \usepackage{booktabs}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{verbatim}
 \usepackage[inline]{enumitem}
@@ -127,6 +128,25 @@ maxcitenames=3]{biblatex}
 \newcommand{\Ppara}{\hat{P}^{\|}}
 \newcommand{\Pperp}{\hat{P}^{\perp}}
 
+
+\DeclareFontFamily{OMS}{oasy}{\skewchar\font48 }
+\DeclareFontShape{OMS}{oasy}{m}{n}{%
+         <-5.5> oasy5     <5.5-6.5> oasy6
+      <6.5-7.5> oasy7     <7.5-8.5> oasy8
+      <8.5-9.5> oasy9     <9.5->  oasy10
+      }{}
+\DeclareFontShape{OMS}{oasy}{b}{n}{%
+       <-6> oabsy5
+      <6-8> oabsy7
+      <8->  oabsy10
+      }{}
+\DeclareSymbolFont{oasy}{OMS}{oasy}{m}{n}
+\SetSymbolFont{oasy}{bold}{OMS}{oasy}{b}{n}
+
+\DeclareMathSymbol{\smallleftarrow}     {\mathrel}{oasy}{"20}
+\DeclareMathSymbol{\smallrightarrow}    {\mathrel}{oasy}{"21}
+\DeclareMathSymbol{\smallleftrightarrow}{\mathrel}{oasy}{"24}
+\newcommand{\tensor}[1]{\overset{\scriptscriptstyle\smallleftrightarrow}{#1}}
 
 
 \DeclareMathOperator{\expi}{Ei}
