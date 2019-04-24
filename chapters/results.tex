@@ -256,6 +256,7 @@ Again we first describe the parameters and their prior range in table \ref{table
 \begin{eqnarray}
 \Delta\hat{q} &=& \frac{K T^3}{\left[1+\left(a\frac{T}{T_c}\right)^p\right]\left[1+\left(b\frac{E}{T}\right)^q\right]}
 \end{eqnarray}
+$K$ is the overall magnitude of the correction. $a$ and $p$ parametrize an deviation from the $T^3$ scaling of the $\hat{q}$ near $T_c$, while $b$ and $q$ parametrize the energy dependence.
 \item[10] Finally, a $\gamma$ parameter relates the correction to the longitudinal transport parameter to the transverse one.
 \begin{eqnarray}
 \Delta\hat{q}_L &=& \frac{\Delta\hat{q}}{2} \left(\frac{E}{M}\right)^{\gamma}.
@@ -288,6 +289,28 @@ $\gamma$ & Relation of $\Delta \hat{q}$ and $\Delta \hat{q}_L$  & (-1, 1)\\
 \caption{•}
 \label{fig:new:design}
 \end{figure}
+
+We sampled 250 design points and 50 validation points. 
+The distribution of the design points in the 10-dimensional parameter space is displayed in figure \ref{fig:new:design}.
+One notice that for $c, R_v, \mu, a$ and $b$ parametersand the prior is flat their $\log$ space
+This means that if we transform them back to the original space, the prior distribution will not be flat.
+The reason we did these is because these parameters either causes a logarithmic slow change in the model or its prior uncertainty is large that it can be vary by orders of magnitude.
+For example, the $\mu$ parameter enters the logarithmic running of $\alpha_s$ and we can rewrite the maximum possible $\alpha_s$ as,
+\begin{eqnarray}
+\alpha_{s,\max}(T) = \frac{2\pi}{9}\frac{1}{\ln(\mu) + \ln(\pi T/\Lambda_{\textrm{QCD}})}
+\end{eqnarray}
+Therefore, we choose assign a uniform prior to $\ln(\mu)$ so that $\alpha_s$ also varies notable within the prior range.
+As for the $c$ parameter, it controls the boundary of the scattering and diffusion approximation, within a reasonable range of $c$, the diffusion dynamics and the scattering dynamics results in a similar amount of energy loss as has been shown in section [], and difference is seen in more subtle observables, therefore it is also assumed to be flat in the $\log$ space.
+For $R_v, a$ and $b$, we did this to allow an order of magnitude change in the parameters as we want to test both the large and small number limits.
+
+To get an idea of what the prior range of the transport parameters looks like, we combine those parameters that enters the computation of the total $\hat{q}$ (including scattering, perturbative diffusion and parametrized correction contribution) and plot them as function of temperature and energy in figure \ref{fig:new:design-qhat}. 
+On the left, 250 design's $\hat{q}$ as function of temperatures are shown. Each subplots corresponds to a charm quark energy of $1.4$ GeV, $11.4$ GeV and $101.3$ GeV.
+The prior range of $\hat{q}$ varies over a order of magnitude.
+On the right of the figure, we show the ratio between the two times of the total $\hat{q}_L$ and $\hat{q}$, if the transport parameters are isotropic, this ratio should be unity.
+Due to the inclusion of the large-$Q$ scattering contribution and the parametric correction term, this ratio is not unity so that the prior allows a spectrum of anisotropic transport parameters.
+Of course, this ratio always goes to unity when the heavy quark is at rest by construction.
+
+The computation of the model on the design points is performed on the NERSC super-computing system using over two million CPU hours.
 
 \begin{figure}
 \centering
