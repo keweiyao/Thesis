@@ -1,46 +1,164 @@
-\chapter{Hydrodynamics-based modeling of soft physics }
-High energy nuclear collisions, designed to compress and heat nuclear matter beyond the QCD transition temperature, evidence a strongly coupled QGP liquid that is well described by hydrodynamic simulations with a small but nonzero specific shear viscosity {Muronga:2004sf, Chaudhuri:2006jd, Romatschke:2007mq, Dusling:2007gi, Song:2007ux, Luzum:2008cw}.
-These simulations necessitate, among other ingredients, initial conditions for the spatial distribution of energy (or entropy) deposited in the collision.
-Although theoretical and phenomenological models have made considerable progress describing aspects of the initial conditions---for example, charged particle yields and multiparticle correlations at midrapidity {Gale:2012rq, Niemi:2015qia, Bhalerao:2015iya, Bernhard:2016tnd}---the search for a comprehensive theory which describes the full three-dimensional structure of the produced fireball remains an outstanding challenge.
+\chapter{Bulk medium evolution and initial condition}
+In this chapter, I shall introduce a hydrodynamic based model for describing the bulk medium evolution in the heavy-ion collision.
+After the basic description of the modeling, I will show an application of this simulation framework in reverse engineering the three-dimensional initial entropy deposition, which is one of my published research projects.
 
-When studying midrapidity observables, it is common to assume boost invariance and neglect longitudinal structures {Miller:2007ri, Drescher:2006ca, Schenke:2012wb, Niemi:2015qia, Moreland:2014oya, Chatterjee:2015aja}.
-While this is a good approximation at midrapidity on an event-averaged basis in symmetric heavy-ion collisions, it is not clear how the inclusion of local event-by-event longitudinal fluctuations affects the collision dynamics.
-Meanwhile, recent interest in the collective phenomena of small asymmetric collisions {Abelev:2014mda, Aad:2014lta, Aad:2013fja, CMS:2012qk, Chatrchyan:2013nka, Khachatryan:2015waa, Khachatryan:2015oea, Khachatryan:2016ibd, Adare:2014keg, Adare:2015cpn, Adare:2015ctn}, where boost-invariant approximations are notably poor, demands a more realistic description of the QGP rapidity profile.
-It has also been realized that rapidity dependent model observables provide new sensitive handles on the temperature dependence of the QGP shear viscosity as well as different schemes of longitudinal entropy deposition {Denicol:2015bnf, Bozek:2010bi}.
+\section{A Hydrodynamics-based multi-stage modeling}
+\subsection{The hydrodynamic equations}
+There has been vast experimental evidences that supports the use of an relativistic viscous hydrodynamics in describing the dynamical evolution of the medium created in the heavy-ion collision.
+At mid-rapidity, the hydrodynamic-based model can achieve a high precision of agreement with a global comparison to experimental data. 
+This data also support the use of a small but nonzero specific shearviscosity {Muronga:2004sf, Chaudhuri:2006jd, Romatschke:2007mq, Dusling:2007gi, Song:2007ux, Luzum:2008cw}, and more recent studies and global Bayesian analysis also suggest the use of a finite bulk viscosity.
 
-Rapidity dependent initial condition models have been proposed and studied in a number of previous works. 
-These include Monte Carlo Glauber extensions {Bozek:2015bha, Rybczynski:2013yba}, models based on concepts of minijet production, extended strings, flux-tubes and microscopic hadron transport {Wang:1991hta, Zhang:1999bd, Werner:2010aa, Bozek:2015bna, Petersen:2008dd}, as well as recent developments in color-glass condensate (CGC) effective field theory {Schenke:2016ksl, Dumitru:2011wq, Hirano:2012kj}.
-Although ideally, one seeks to compare basic model predictions, e.g.\ charged particle yields and flow harmonics as a function of both centrality and rapidity across various collision systems, validating individual models against the full range of measured observables is naturally more complicated than with boost-invariant initial conditions and current efforts to assess model predictions have been limited in scope.
+\paragraph{Ideal hydrodynamics} Hydrodynamics is a macroscopic description that propagates the energy momentum tensor of the system without an microscopic knowledge of the degrees of freedom.
+The first four equations comes from the the energy-momentum conservation,
+\begin{eqnarray}
+\partial_\mu T^{\mu\nu} = 0
+\end{eqnarray}
+where $T^{\mu\nu}$ is the energy momentum tensor and $\partial_\mu = \partial/\partial x^\mu$. 
+Here we have choose the metric as $g^{\mu\nu} = \diag\{1, -1, -1, -1\}$.
+If one assumes ideal hydrodynamics that the system always relax to local thermal equilibrium fast enough compared to other time scale, then $T^{\mu\nu}$ can be expressed as
+\begin{eqnarray}
+\partial_\mu T^{\mu\nu} = e u^\mu \nu - P (g^{\mu\nu}-u^{\mu\nu})
+\end{eqnarray}
+where $u^\mu$ is the flow velocity such that in the co-moving frame  $T^{\mu\nu}$ has the diagonal form $T^{\mu\nu} = \diag\{e, -P, -P, -P\}$.
+Therefore $e$ and $P$ are the energy density and pressure of the thermalized matter in the rest frame.
+There are five unknowns $e, P, u_x, u_y, u_z$ ($u_t$ is determined by $u^2 = 1$), but conservation laws only provide four equations.
+A fifth equation is the equation of state (EoS) $P = P(e)$ that encodes thermodynamic properties of the medium (in this case, the nuclear medium at finite temperature) which closes the set of ideal-hydrodynamic equation.
+\paragraph{Inputs from first principal calculation} The lattice QCD simulation has determined the QCD equation of state to high precision with physical masses of the light flavor.
+It is not a prior known that the lattice QCD EoS computed for an infinite matter in infinite time is the best choice for describing a transient, finite size system, however, using the lattice input does result in reasonable agreement with the data.
+Moreover, there has been a study that try to constrain the from of EoS from experimental data and the ``calibrated'' EoS is very close the Lattice prediction.
+Most of the currently hydrodynamic studies already uses the state-of-the-art lattice results.
+\paragraph{Viscosity correction and QCD transport coefficient}
+The medium created in heavy-ion collision undergoes fast longitudinal and transverse expansion, and the thermalization rate may not be fast enough to keep the system in fully thermal equilibrium,
+\begin{eqnarray}
+T^{\mu\nu} = u^\mu u^\nu e - (g^{\mu\nu}- u^\mu u^\nu) (P+\Pi) + \pi^{\mu\nu}
+\end{eqnarray}
+Here $T_0$ is the thermal part, and $\pi$ is the shear viscosity correction, and $\Pi$ is the bulk viscosity correction to the pressure.
+Relativistic viscosity hydrodynamics that expands the transport description in terms of the Knudsen number is developed to taken into account viscous effects.
+At first order, this is well-known Naiver-Stokes equations, where the $\pi$, $\Pi$ are given by the constitutive relations,
+\begin{eqnarray}
+\pi^{\mu\nu} &=& 2\eta\sigma^{\mu\nu}\\
+\Pi &=& -\zeta\theta
+\end{eqnarray}
+Here the corrections to the energy momentum tensor are proportional to the first gradient of the macroscopic field $\sigma^{\mu\nu} = \partial^{\langle \mu} u^{\nu\rangle}, \theta = \partial\cdot u$.
+The proportional constant are known as the (first order) transport coefficient of the QCD matter, which encodes the dynamical information of the system. 
+Especially their dimensionless ratio to the entropy density $\eta/s$ and $\zeta/s$ are important indicator of the interaction strength and the scale-violation of the QCD matter and are of great physical importance.
+There have been many effort to either computing these quantities from first principles and effective models or extracting these numbers in a model-to-data comparison.
+Coming back to the hydrodynamic modeling, it is shown that one has to go to second order in the expansion to the render the correction compatible with special relativity and $\pi$, $\Pi$ becomes dynamical quantities which tends to relax to the Naiver-Stokes limit.
+\begin{eqnarray}
+\nonumber
+\tau_\pi \dot{\pi}^{\langle\mu\nu\rangle}+\pi^{\mu\nu} &=& 2\eta\sigma^{\mu\nu}- \delta_{\pi\pi}\pi^{\mu\nu}\theta + \phi_7 \pi_{\alpha}^{\langle\mu}\pi^{\nu\rangle\alpha}-\tau_{\pi\pi}\pi_{\alpha}^{\langle\mu}\sigma^{\nu\rangle\alpha} + \lambda_{\pi\Pi}\Pi\sigma^{\mu\nu},
+\\
+\nonumber
+\tau_{\Pi}\dot{\Pi} + \Pi &=& -\zeta\theta - \delta_{\Pi\Pi}\Pi\theta + \lambda_{\Pi\pi}\pi^{\mu\nu}\sigma_{\mu\nu}.
+\end{eqnarray}
+The $\delta, \phi, \lambda$ are known as second order transport coefficients.
+This complicated set of equations together with the conservation law and the EoS forms the viscosity hydrodynamic equations.
+Nowadays, well tested numerical packages have been developed solving these equations in the context of heavy-ion collisions.
 
-A complementary approach to model-by-model assessment is to parametrize the QGP initial conditions, embed the resulting profiles in realistic transport simulations, and constrain their functional form using a systematic model-to-data comparison {Novak:2013bqa, Pratt:2015zsa, Sangaline:2015isa, Bernhard:2016tnd}.
-While such data-driven methods cannot, for example, explain the physical processes which deposit entropy in the collision, they can determine the necessary outcome of initial condition models, provide guidance to first-principle calculations, and be used to robustly quantify QGP transport properties in the presence of confounding model uncertainties.
+\paragraph{Boost-invariance approximation and beyond}
+In general, the hydrodynamic equations have to be solved as a 3+1 dimensional problem.
+But a reduction to a 2+1 dimension is possible, if one assume the fast expansion along the beam-axis (longitudinal) direction has an approximated symmetry near mid-rapidity.
+This approximate symmetry is first proposed by Bjorken in [] that the system at different rapidity looks similar upto a longitudinal boost, so that one may first obtain the solution to the 2+1 dimension problem at one space-time rapidity ($\eta_s = 0$) and then boost the solution to other $\eta_s$.
+A direct consequences of this symmetry is that the observables should not depends on space-time rapidity.
+The $\eta_s$-dependence cannot be directly detected, but can be related to the the rapidity / pseudo-rapidity for the reason below.
+Suppose that the Lorentz contracted nuclei interact at $z=0$ and produce excitations that free-stream in the longitudinal direction, then for each of these excitation
+\begin{equation}
+  \frac{z}{t} = \frac{p_z}{E}.
+\end{equation}
+This approximation the equivalence of $\eta_s$ and $y$ at early stages of the collision:
+\begin{equation}
+  \eta_s = \frac{1}{2}\log\frac{t+z}{t-z} \sim y = \frac{1}{2}\log\frac{E+p_z}{E-p_z}.
+\end{equation}
+If one further assumes these initial excitations are mass-less partons, then the rapidity can be approximated by pseudorapidity as $E\approx |p|$.
+The event-averaged rapidity-distribution of charged particles $dN_{\textrm{ch}}/dy$ in both proton-proton and symmetric nuclei-nuclei collisions at the LHC energy falls at large rapidity but has a slowly varying profile at mid-rapidity within $|y|<2$, which is a motivation to apply the boost-invariant at mid-rapidity as a first approximation.
 
-Constraining parametric initial condition models presents its own unique challenges.
-Initial condition calculations feed into hydrodynamic simulations which introduce additional unconstrained model parameters, and evaluating the resulting multistage model using a single set of parameters may involve $\mathcal{O}(10^4)$ hydrodynamic events and significant computational effort.
-The effect of each model parameter on final state observables is, in general, highly correlated, and thus model parameters cannot be tuned individually.
-Any effort to constrain model parameters, either by brute force methods or by hand, thus quickly become intractable.
+However, since $dN_{\textrm{ch}}/dy$ are event-averaged quantities, its being flat within $|y|<2$ does not rule out that event-by-event particle production fluctuation can break the approximation, and these fluctuations, local in transverse plane, can be different at different transverse location.
+Moreover, asymmetric nuclear collision such as $p+Pb, p+Au, d+Au, He+Au$, etc clearly breaks the boost-invariance even on an event averaged level. 
+Therefore, the study of longitudinal fluctuation related observables or the search for hydrodynamic  behavior in small collision system clearly requires one to go beyond the boost-invariance approximation.
 
-Bayesian methods may be used to constrain computationally intensive models which depend on multiple highly correlated parameters {OHagan:2006ba, Higdon:2014tva, Dave:pca}.
-Recently, the framework was applied to event-by-event boost-invariant viscous hydrodynamics to estimate QGP initial condition and medium properties with quantitative uncertainty {Bernhard:2016tnd}.
-In this study, we relax the boost-invariant approximation and perform the first Bayesian analysis of parametric QGP initial conditions including longitudinal structure.
+\subsection{Particularization and microscopic transport}
+The longitudinal expansion and the transverse expansion driven by the pressure difference cools down the system temperature and density rapidly and eventually the relaxation rate is too low for the the hydrodynamic approach to apply.
+When this happens, one can switch to the microscopic transport description of the system.
+This switching is usually done near or below the pseudo-critical temperature $T_{sw} \lesssim T_c$ so that the energy momentum tensor can be particularized as an ensemble of hadrons .
+This choice $T_{sw} \lesssim T_c$ avoids the problem of modeling quark / gluon dynamics and hadronization in the strong coupled regime near $T_c$, and whether a hydrodynamics with lattice EoS and a hadronic transport model with cross-sections as inputs are both valid in this regime is another question.
+The hydrodynamic $T^{\mu\nu}$ is usually particlized at a constant energy density / temperature hypersurface using the Cooper-Frye formula,
+\begin{eqnarray}
+dN_i^a(p) = \frac{g^a f^a(p) dp^3}{(2\pi)^3}  \frac{p^{\mu}}{E} \Delta \sigma_{i,\mu} 
+\end{eqnarray}
+Where the particle yield of specie ``$a$'' with momentum $p$ from the $i^{\textrm{th}}$ surface element $\sigma_{i,\mu}$ equals its phase space density times the surface area (with units of a 3D volume) parallel to the  four velocity $p^\mu/E$.
+This distribution function should include both a thermal part and a viscous correction, $f = f_0 + \delta f$.
+There are more than one way to construct the viscous correction $\delta f$  from $e, P, n, \Pi$ and $\pi^{\mu\nu}$ based on different assumptions of the form of corrections.
+In this work, we shall use a non-additive $\delta f$ correction that has been developed and implemented by [] and [], and please refer to the references for the original formulation and numerical implementations details.
 
-We parametrize salient features of local rapidity-dependent entropy deposition using a cumulant-generating function with tunable mean, standard deviation, and skewness.
-Each cumulant of the longitudinal rapidity profile is expressed as a parametric function of participant nucleon densities, and the resulting profiles are normalized to recover established scaling behavior at midrapidity {Moreland:2014oya, Bernhard:2016tnd}.
-The approach is used to investigate two simple models for asymmetric entropy deposition: one where the skewness parameter is proportional to the relative difference in participant nucleon density of each nucleus, and a second proportional to the absolute difference.
-These models are chosen to bracket a reasonable range of underlying scaling behavior and can be used to estimate model uncertainties in the unknown form of the chosen parametization.
+The particlized hadronic system is then solved by the Ultra-relativistic Quantum Molecular Dynamics (UrQMD) model until the system is dilute enough and interactions ceases (kinetic freezeout). 
+The UrQMD in the context of hadronic cascade (afterburner) includes processes like resonance decays, elastic and inelastic scatterings, and string formations and fragmentations.
 
-The global parameter estimation methods employed in this work necessitate a fast and efficient method to calculate the predictions of the model using an arbitrary set of parameter values.
-For this purpose, we evaluate a comprehensive hybrid model that couples viscous hydrodynamics to a hadronic afterburner using a relatively small number of parameter configurations and interpolate the result using a Gaussian process emulator {Rasmussen:2006gp}.
-While this works well for boost-invariant simulations, 3+1D viscous hydrodynamics requires an order-of-magnitude more computation time.
-We mitigate this additional overhead by running our 3+1D hydrodynamic simulations {Karpenko:2013wva} in ideal (nonviscous) mode on a coarse space-time grid which significantly accelerates the computation.
-We argue that the use of ideal hydrodynamics is acceptable since we calibrate the model on multiplicity observables which receive little modification from QGP viscosity.
-It has also been shown that the two particle pseudorapidity correlations are largely insensitive to viscosity of the QGP phase {Denicol:2015bnf}, although we do include a UrQMD hadronic afterburner in the calculation of these observables {Bass:1998ca, Bleicher:1999xi}.
+\subsection{Pre-equilibrium stage}
+At very early times of the collision, the system is off equilibrium. 
+However, viscous hydrodynamic assumes a closeness to the local thermal equilibrium  (there are also recent efforts in studying the effectiveness of hydrodynamics outside of its traditional range of application []).
+A successful prediction using an early onset of hydrodynamic evolution at $\tau_0\lesssim 1$fm/$c$ suggests a fast hydrodynamization, whose exact mechanism is still a debatable question. 
+There are different modelings of this pre-equilibrium stage, including solving the classical Yang-Mills equation [], partonic transport models [], a collision-less Boltzmann equation [], and the linear response method of the effective kinetic approach [].
 
-Once the parametric initial conditions have been constrained to fit p+Pb and Pb+Pb charged particle pseudorapidity densities and pseudorapidity correlations, we use high likelihood initial condition parameter sets with a 3+1D viscous hybrid model {Karpenko:2013wva} to calculate novel three-dimensional observables such as pseudorapidity-dependent anisotropic flows, event-plane decorrelations and flow correlations.
-We find that both parametrizations simultaneously describe p+Pb and Pb+Pb charged particle distributions and central to mid-central pseudorapidity correlations in Pb+Pb collisions with good agreement.
+Such a pre-equilibrium stage was not included in my study of the 3D initial condition, where the simulation starts at $\tau_0 = 0.6$ fm/$c$ assuming local thermal equilibrium.
+For my later study of the heavy flavor dynamics, a 2+1D collision-less Boltzmann equation implemented by [] was later used in obtaining the medium evolution history.
+In such a model, the initial energy density ($\tau = 0^+$) at mid-rapidity  is thought to be carried by mass-less partons that propagates at the speed of light in the transverse direction. 
+The initial distribution function is assumed to have a factorized form $f(x_\perp, p_\perp, \tau=0) = n(x, \tau=0) \times dN/dp_\perp^2$.
+The momentum distribution $dN/dp_\perp^2$ do not evolve as the collisions are neglected, while the spatial density evolves as
+\begin{eqnarray}
+n(\vec{x}, \tau) = \int n(\vec{x}', \tau=0) \delta^{(2)}(\vec{x} - \vec{x}'- \tau) d\vec{x}'^2
+\end{eqnarray}
+Then, the model assumes a sudden hydrodynamization at time $\tau_{\textrm{hydro}}$, where the free-streamed,
+\begin{eqnarray}
+T^{\mu\nu}(x_\perp, \tau_{\textrm{hydro}}) = \int f(x_\perp, p_\perp, \tau=0) \frac{p^\mu p^\nu}{E} dp^3
+\end{eqnarray}
+is used for initializing the hydrodynamic equations by the Landau matching procedure [].
+
+\subsection{Initial condition}
+Unlike the dynamical models that are governed by a few equations / laws with a few parameters, the initial condition model parameterizes many more unknowns.
+For different initial condition models, these unknowns can be initial color density of the nuclear wave function, the effective size of a nucleon, the form factor of nucleon-nucleon inelastic cross-section, and the amount of fluctuations in particle production / energy deposition, etc.
+There are two classes of initial condition models:
+\begin{itemize}
+\item Models that takes into the particle production dynamics. Such as minijet production, strings productions and flux-tubes, hadronic transport,and color-glass condensate (CGC) effective field theory based models {Wang:1991hta, Zhang:1999bd, Werner:2010aa, Petersen:2008dd, Schenke:2016ksl, Dumitru:2011wq, Hirano:2012kj}.
+\item Parametric models that provides macroscopic initial conditions without a dynamical component. Such as Monte-Carlo Glauber models and its extensions [Bozek:2015bna], and the \trento model to be explained [Scott].
+\end{itemize}
+I shall focus on the development of a parametric model \trento to help the understanding of the initial three-dimensional entropy deposition.
 
 
-\section{Three-dimensional Initial Condition Model}
+\paragraph{The original (boost-invariant) \trento\ model}
+The original \trento\ model is proposed as a flexible ansatz to investigate a family of entropy / energy deposition behaviors at mid-rapidity.
+
+First, the impact parameter $\vec{b}_{AB}$ between the two colliding nuclei $A$ and $B$ is sampled at random.
+Then, the 3D nucleons positions inside each nuclei are sampled according to the Woods-Saxon distribution (for heavy nuclei, for light nuclei such as Deuteron, Helium, Oxygen where the nucleon distribution is not well approximated by a Woods-Saxon form, the sampling are different),
+\begin{eqnarray}
+\frac{df_N}{r^2 dr d\phi d\cos\theta} = \frac{1}{\exp\{\frac{r-R(1+\beta_2 Y_{20}(\theta)+\beta_4 Y_{40}(\theta))}{a}\}+1}
+\end{eqnarray}
+including the quadrupole and hexadecapole deformation of certain nuclei.
+The randomized nucleon position is critical to explain the odd order of flow harmonics observed in experiments [].
+
+Then, the collision between the two nuclei is analyzed at the nucleon level. 
+Every nucleon pair $\{i, j\}$ with $i$ from nuclei $A$ and $j$ from nuclei $B$ has a certainty probability to undergo an inelastic collision, given the impact parameter $\vec{b} = \vec{b}_{AB} + \vec{x}_{i, \perp} -  \vec{x}_{j, \perp}$,
+\begin{eqnarray}
+P(b; \sigma) = 1 - \exp\left[-\sigma T_{pp}(b)\right],
+\label{dsigma_db}
+\end{eqnarray}
+where $T_{pp}(b)$ is the overlapping function between the density of the nucleon,
+\begin{eqnarray}
+T_{pp}(b) = \int d\vec{x}_\perp^2 T_p(\vec{x}_\perp-\vec{b}/2) T_p(\vec{x}_\perp+\vec{b}/2)
+\end{eqnarray}
+And each nucleon is assumed to have a Gaussian density profile, 
+\begin{eqnarray}
+T_p(\vec{x}_\perp^2) = \frac{1}{2\pi w^2} \exp\left(-\frac{\vec{x}^2}{2w^2}\right)
+\end{eqnarray}
+with the width of the nucleon $w$ a free parameter.
+The $\sigma$ is an effective constituent cross-section that is determined by reproducing the experimental measured proton-proton inelastic cross-section at a given beam energy,
+\begin{eqnarray}
+\sigma_{pp}^\text{inel}(\sqrt{s}) = \int d\vec{b}^2 P(b; \sigma(\sqrt{s}))
+\end{eqnarray}
+
+
+\paragraph{Parametrize the longitudinal dependence in \trento}
+
+
 
 In the present study we seek to parametrize and constrain the full three-dimensional structure of the produced QGP medium.
 It is thus essential that any resulting model maintain good agreement with charged particle multiplicity distributions and flow harmonics at midrapidity.
@@ -58,10 +176,7 @@ Here we briefly summarize its key features.
 
 The model samples independent nucleon positions from spherical (or deformed) Woods-Saxon density distributions, shifts the nucleons in each nucleus by a random impact parameter offset $b$, and projects each coordinate onto the transverse plane.
 Participant nucleons are then sampled according to the pairwise inelastic collision probability
-\begin{equation}
-  \label{dsigma_db}
-  \dfrac{d\sigma_{NN}^\text{inel}}{2\pi b\, db} = 1 - \exp\left[-\sigma_{gg} T_{pp}(b)\right],
-\end{equation}
+
 where $b$ is now the impact parameter between two nucleons, $\sigma_{gg}$ is an effective partonic cross section tuned to fit the measured inelastic proton-proton cross section at a given beam energy, and $T_{pp}$ is the proton-proton overlap function
 \begin{equation}
   T_{pp}(b) = \int d^2\x\, T_p(\x)\,T_p(\x - \mathbf b).
@@ -98,15 +213,6 @@ Corresponding model predictions simultaneously fit charged particle yields, mean
 The factorized expression in Eq.~\eqref{factorized} extends entropy deposition at midrapidity $f(\x)$ to nonzero rapidity using a rapidity-dependent mapping $g(\x, \eta)$ which multiplies $f$ to incorporate nontrivial longitudinal structure.
 Before constructing the form of this longitudinal dependence, we elucidate our use of spacetime rapidity $\eta_s$, rapidity $y$, and pseudorapidity $\eta$.
 
-Assuming for simplicity that, at early times, the initially produced partons are massless and free-streaming in the $z$ direction, then
-\begin{equation}
-  \frac{z}{t} = \frac{p_z}{|\mathbf p|}.
-\end{equation}
-This approximation allows the equivalence of $\eta_s$ and $\eta$ at early stages of the collision:
-\begin{equation}
-  \eta_s = \frac{1}{2}\log\frac{t+z}{t-z} \sim \eta = \frac{1}{2}\log\frac{|\mathbf p|+p_z}{|\mathbf p|-p_z}.
-\end{equation}
-Experimentally, the event-averaged rapidity $(y)$ distribution of charged particles in proton-proton collisions resembles a Gaussian, while the conversion to pseudorapidity creates a dip at midrapidity due to the Jacobian $dy/d\eta$.
 Therefore, we first parametrize the rapidity dependence of the system and then perform a change of variables from $y$ to $\eta$ using the relations
 \begin{align}
   g(\x, \eta)\, d\eta &= g(\x, y)\, dy, \\[1ex]
