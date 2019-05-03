@@ -154,6 +154,24 @@ The $\sigma$ is an effective constituent cross-section that is determined by rep
 \begin{eqnarray}
 \sigma_{pp}^\text{inel}(\sqrt{s}) = \int d\vec{b}^2 P(b; \sigma(\sqrt{s}))
 \end{eqnarray}
+Applying the probabilistic collision criteria of equation \ref{dsigma_db} to each pair of nucleons, the nucleons that suffer at least one inelastic collisions are called participant and the total number of binary inelastic collisions are denoted as $N_{\textrm{bin}}$.
+The minimum-biased event sample in the \trento model are defined all events that has at least one binary collision, 
+
+The above procedure is similar to the that of an Monte-Carlo Glauber model in determine the nuclear inelastic cross-section.
+The key step of \trento is an ansatz that maps from the participants in a particular event to the energy / entropy density deposited at the mid-rapidity.
+We fist define the participant densities,
+\begin{equation}
+T_{A, B}(\x) = \sum_{i\in \textrm{Parts}_{A, B}} w_i\, T_p(\x - \x_i).
+\end{equation}
+The summation goes over the participants in nuclei $A$ and $B$, and each participant contribute a fluctuating contribution proportional to its transverse density $T_p$.
+The fluctuating weight $w_i$ follows a $\Gamma$-distribution with unit mean and variance $1/k$ where $k$ is a parameter.
+This fluctuating contribution is put in to mimic the multiplicity fluctuation in the proton proton collisions.
+The entropy / energy density deposit at mid-rapidity is assumed to be a function of $T_A$ and $T_B$ only at each transverse location,
+\begin{eqnarray}
+\frac{dS}{d\eta dx_\perp^2}(\vec{x}) = f(T_A(\vec{x}), T_B(\vec{x})).
+\end{eqnarray}
+This is mainly because that time $\tau=0^+$, the causality requires that the entropy production at one location cannot be correlated with the information that is far away in the transverse plane. 
+And second, the parton that contribute to the bulk particle production in high energy collisions are low energy gluons that has a longitudinal wavelength longer than the contracted proton thickness in the $z$-direction; therefore, the entropy production should not be sensitive to the details of how the participants aligned but only its $z$-integrated density.
 
 
 \paragraph{Parametrize the longitudinal dependence in \trento}
@@ -174,23 +192,10 @@ We simulate entropy deposition at midrapidity using the parametric model \trento
 The initial condition model was recently embedded in an event-by-event hybrid model which couples viscous hydrodynamics to a microscopic kinetic description {Shen:2014vra} and its parameters constrained using Bayesian parameter estimation {Bernhard:2016tnd}.
 Here we briefly summarize its key features.
 
-The model samples independent nucleon positions from spherical (or deformed) Woods-Saxon density distributions, shifts the nucleons in each nucleus by a random impact parameter offset $b$, and projects each coordinate onto the transverse plane.
-Participant nucleons are then sampled according to the pairwise inelastic collision probability
 
-where $b$ is now the impact parameter between two nucleons, $\sigma_{gg}$ is an effective partonic cross section tuned to fit the measured inelastic proton-proton cross section at a given beam energy, and $T_{pp}$ is the proton-proton overlap function
-\begin{equation}
-  T_{pp}(b) = \int d^2\x\, T_p(\x)\,T_p(\x - \mathbf b).
-\end{equation}
-The proton thickness function $T_p$ is described by a simple Gaussian density profile
-\begin{equation}
-  T_p(\x) = \frac{1}{2 \pi w^2} \exp\bigg({-}\frac{\x^2}{2 w^2}\bigg),
-  \label{nucleon_profile}
-\end{equation}
 with effective proton width $w$.
 Once the participants in each nucleus are determined according to Eq.~\eqref{dsigma_db}, a participant nuclear thickness function $\T$ is constructed by summing the proton thickness function of each wounded nucleon, e.g., the participant thickness function of nucleus $A$ is given by
-\begin{equation}
-  \T_A(\x) = \sum\limits_{i=1}^{N_\text{part}} w_i\, T_p(\x - \x_i).
-\end{equation}
+
 Here $w_i$ is a random weight sampled from a gamma distribution with unit mean and variance $1/k$, where $k$ is a tunable shape parameter.
 This additional source of fluctuation is added to reproduce the negative binomial distribution of the charged particle multiplicity in minimum bias proton-proton collisions {Bozek:2013uha}.
 
