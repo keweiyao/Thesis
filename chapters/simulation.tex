@@ -2,7 +2,7 @@
 In this chapter, I shall introduce a hydrodynamic based model for describing the bulk medium evolution in the heavy-ion collision.
 After the basic description of the modeling, I will show an application of this simulation framework in reverse engineering the three-dimensional initial entropy deposition, which is one of my published research projects.
 
-\section{A Hydrodynamics-based multi-stage modeling}
+\section{A Hydrodynamics-based dynamical modeling}
 \subsection{The hydrodynamic equations}
 There has been vast experimental evidences that supports the use of an relativistic viscous hydrodynamics in describing the dynamical evolution of the medium created in the heavy-ion collision.
 At mid-rapidity, the hydrodynamic-based model can achieve a high precision of agreement with a global comparison to experimental data. 
@@ -113,7 +113,7 @@ T^{\mu\nu}(x_\perp, \tau_{\textrm{hydro}}) = \int f(x_\perp, p_\perp, \tau=0) \f
 \end{eqnarray}
 is used for initializing the hydrodynamic equations by the Landau matching procedure [].
 
-\subsection{Initial condition}
+\section{Initial condition model}
 Unlike the dynamical models that are governed by a few equations / laws with a few parameters, the initial condition model parameterizes many more unknowns.
 For different initial condition models, these unknowns can be initial color density of the nuclear wave function, the effective size of a nucleon, the form factor of nucleon-nucleon inelastic cross-section, and the amount of fluctuations in particle production / energy deposition, etc.
 There are two classes of initial condition models:
@@ -124,7 +124,7 @@ There are two classes of initial condition models:
 I shall focus on the development of a parametric model \trento to help the understanding of the initial three-dimensional entropy deposition.
 
 
-\paragraph{The original (boost-invariant) \trento\ model}
+\subsection{The original (boost-invariant) \trento\ model}
 The original \trento\ model is proposed as a flexible ansatz to investigate a family of entropy / energy deposition behaviors at mid-rapidity.
 
 First, the impact parameter $\vec{b}_{AB}$ between the two colliding nuclei $A$ and $B$ is sampled at random.
@@ -168,173 +168,149 @@ The fluctuating weight $w_i$ follows a $\Gamma$-distribution with unit mean and 
 This fluctuating contribution is put in to mimic the multiplicity fluctuation in the proton proton collisions.
 The entropy / energy density deposit at mid-rapidity is assumed to be a function of $T_A$ and $T_B$ only at each transverse location,
 \begin{eqnarray}
-\frac{dS}{d\eta dx_\perp^2}(\vec{x}) = f(T_A(\vec{x}), T_B(\vec{x})).
+\frac{dS(\vec{x})}{d\eta dx_\perp^2} \textrm{ or } \frac{dE(\vec{x})}{d\eta dx_\perp^2} = f(T_A(\vec{x}), T_B(\vec{x})).
 \end{eqnarray}
-This is mainly because that time $\tau=0^+$, the causality requires that the entropy production at one location cannot be correlated with the information that is far away in the transverse plane. 
-And second, the parton that contribute to the bulk particle production in high energy collisions are low energy gluons that has a longitudinal wavelength longer than the contracted proton thickness in the $z$-direction; therefore, the entropy production should not be sensitive to the details of how the participants aligned but only its $z$-integrated density.
+This simplification is possible because at $\tau=0^+$, causality requires that the entropy production at one location cannot be correlated with the information at a different transverse location. 
+Also, the partons that contribute to the bulk low-$p_T$ particle production at high $\sqrt{s}$ are predominately low energy gluons whose longitudinal wavelength is longer than the contracted proton radius in the $z$-direction; therefore, the entropy production should not be sensitive to the details of how the participants aligned but only its $z$-integrated density.
+\trento\ parametrizes this mapping from $T_A$ and $T_B$ to the energy / entropy deposition using a ``generally mean'' ansatz,
+\begin{eqnarray}
+f(T_A, T_B; p) = \left(\frac{T_A^p + T_B^p}{2}\right)^{1/p}.
+\end{eqnarray}
+$p$ is a tunable parameter and with a few special values, it reduces to the well known average procedures as in table \ref{tab:trento-p}
+\begin{table}
+\centering
+\caption{\trento\ $p$-parameter}\label{tab:trento-p}
+\begin{tabular}{ccc}
+\hline
+$p\in \mathbb{R}$ & $f(x, y)$ & Entropy / energy production\\
+\hline
+$-\infty$ & $\min\{x, y\}$ &  dominated by the thinner target\\
+$-1$ & $2xy/(x+y)$ &   the harmonic mean scaling\\
+$0$ & $\sqrt{xy}$ &  the geometric mean scaling\\
+$1$ & $(x+y)/2$ &  the arithmetic mean (participant) scaling\\
+$+\infty$ & $\max\{x, y\}$ &  dominated by the thicker target \\
+\hline
+\end{tabular}
+\end{table}
+This way the model is able to parametrize a class of entropy / energy production scheme and includes certain type of initial condition uncertainty.
+Through a global model-to-data comparison, this $p$ parameter has been calibrated to be very close to 0, suggesting the data favors a mid-rapidity entropy / energy deposition that scales as $(T_A T_B)^{0.5}$.
+A similar scaling is also found in the EKRT initial condition model based on pQCD plus saturation physics.
 
+\subsection{Parametrize the longitudinal dependence in \trento}
+The \trento\ model has been doing successful phenomenology for obserables at mid-rapidity [].
+My later work focus on extending the parametrization to a rapidity-dependent initial condition, and seek for a reverse-engineered 3D entropy production from the rapidity-dependent observables.
 
-\paragraph{Parametrize the longitudinal dependence in \trento}
-
-
-
-In the present study we seek to parametrize and constrain the full three-dimensional structure of the produced QGP medium.
-It is thus essential that any resulting model maintain good agreement with charged particle multiplicity distributions and flow harmonics at midrapidity.
-We consequently adopt a factorized approach and express the initial entropy density $s$ at the hydrodynamic starting time $\tau_0$ as
+One constrain in extending the model is that it should reduces to the boost-invariant version of the model at mid-rapidity; therefore, I take the following decomposition of $s(\x, \eta_s)$ at the hydrodynamic starting time $\tau_0 = 0.6$ fm/c,
 \begin{equation}
-  s(\x, \eta_s)\vert_{\tau=\tau_0} \propto f(\x) \times g(\x, \eta_s),
+  s(\x, \eta_s)\vert_{\tau=\tau_0} \propto f(T_A(\x), T_B(\x)) \times g(T_A(\x), T_B(\x), \eta_s),
   \label{factorized}
 \end{equation}
-where $\x = (x, y)$ is a position in the transverse plane, $\eta_s$ is the spacetime rapidity, $f$ denotes the entropy density in the transverse plane at midrapidity, and $g$ is some rapidity-dependent function such that $g(\x, 0)=1$.
-
-\subsection{Midrapidity calculation}
-We simulate entropy deposition at midrapidity using the parametric model \trento\ {Moreland:2014oya}, which is constructed to interpolate a subspace of all initial condition models including (but not limited to) specific calculations in CGC effective field theory.
-The initial condition model was recently embedded in an event-by-event hybrid model which couples viscous hydrodynamics to a microscopic kinetic description {Shen:2014vra} and its parameters constrained using Bayesian parameter estimation {Bernhard:2016tnd}.
-Here we briefly summarize its key features.
-
-
-with effective proton width $w$.
-Once the participants in each nucleus are determined according to Eq.~\eqref{dsigma_db}, a participant nuclear thickness function $\T$ is constructed by summing the proton thickness function of each wounded nucleon, e.g., the participant thickness function of nucleus $A$ is given by
-
-Here $w_i$ is a random weight sampled from a gamma distribution with unit mean and variance $1/k$, where $k$ is a tunable shape parameter.
-This additional source of fluctuation is added to reproduce the negative binomial distribution of the charged particle multiplicity in minimum bias proton-proton collisions {Bozek:2013uha}.
-
-Initial entropy deposition at midrapidity is then described by an eikonal function $s(\x, 0) \propto f(\x)$ which maps participant nucleon density to local entropy deposition.
-For this mapping, the \trento\ model adopts a flexible parametric form known as the generalized mean,
-\begin{equation}
-  \label{gen_mean}
-        f(\x) \propto \left( \frac{\T_A^p + \T_B^p}{2} \right)^{1/p},
-\end{equation}
-where the continuous parameter $p$ smoothly interpolates among different types of entropy deposition schemes {Bernhard:2016tnd}.
-For example, $p=1$ is exactly a wounded nucleon model, while $p\sim-0.67$ simulates entropy deposition in the original KLN model {Drescher:2006ca}, and $p \sim 0$ closely mimics the behavior of both IP-Glasma {Schenke:2012wb} and EKRT {Niemi:2015qia} saturation calculations.
-
-\trento\ initial condition parameters have been constrained using Bayesian parameter estimation and calibrated to fit identified particle yields, mean transverse momenta, and flow cumulants in ${\sqrts=2.76}$~TeV Pb+Pb collisions {Bernhard:2016tnd}.
-The analysis established 90\% credible intervals for the effective nucleon width {$w \approx 0.5 \pm 0.1$ fm} and entropy deposition parameter ${p \approx 0.0 \pm 0.2}$, while the nucleon fluctuation shape parameter $k$ was essentially unconstrained by data.
-Corresponding model predictions simultaneously fit charged particle yields, mean transverse momenta, and flow cumulants at the 10\% level or better across all centralities and hence corroborate the effective initial condition mappings predicted by IP-Glasma and EKRT theory calculations.
-
-
-\subsection{Extension to nonzero rapidity}
-
-The factorized expression in Eq.~\eqref{factorized} extends entropy deposition at midrapidity $f(\x)$ to nonzero rapidity using a rapidity-dependent mapping $g(\x, \eta)$ which multiplies $f$ to incorporate nontrivial longitudinal structure.
-Before constructing the form of this longitudinal dependence, we elucidate our use of spacetime rapidity $\eta_s$, rapidity $y$, and pseudorapidity $\eta$.
-
-Therefore, we first parametrize the rapidity dependence of the system and then perform a change of variables from $y$ to $\eta$ using the relations
-\begin{align}
-  g(\x, \eta)\, d\eta &= g(\x, y)\, dy, \\[1ex]
-  \frac{dy}{d\eta} &= \frac{J \cosh \eta}{\sqrt{1 + J^2 \sinh^2 \eta}},
-  \label{jacobian}
-\end{align}
+$f$ is the entropy production at midrapidity as explain above.
+Now $g$ parametrize the rapidity-dependence and is always normalized such that $g(T_A(\x), T_B(\x)), 0)=1$.
+Qualitatively, the breaking of boost-invariance can come from the initial asymmetry of the incoming nuclear matter $T_A \neq T_B$ and various sources of fluctuation in particle production.
+We listed the sources of these contributions and indicated what contribution has been included and what is not,
+\begin{itemize}
+\item In asymmetric collisions like $p$-$A$ and non-central $A$-$A$, the local thickness functions are imbalanced $T_A \neq T_B$.
+\item Even in central $A$-$A$ collision, nuclear / nucleon configuration fluctuations also contribute to the asymmetry. These are included as the randomized nucleon position fluctuation and the $\gamma$-fluctuation of the nucleon thickness function.
+\item Initial stage dynamical evolution which can introduce dynamical fluctuations and non-vanishing flow in the $z$-direction is not included.
+\end{itemize}
+Therefore, the asymmetry in the extended \trento\ model only comes from the imbalanced and fluctuating participant density function.
+We parametrize this function in terms of rapidity and then transformed to the space-time rapidity.
+\begin{eqnarray}
+g(\x, \eta) &=& g(y; T_A(\x), T_B(\x)) \frac{J \cosh \eta_s}{\sqrt{1 + J^2 \sinh^2 \eta_s}},
+\label{jacobian}
+\end{eqnarray}
 where the species-dependent factor $J$ is replaced with an effective value $J \approx \langle p_T \rangle / \langle m_T \rangle$.
-We then invoke $\eta_s \sim \eta$ for an initial condition of massless partons, so that the rapidity-dependent entropy profile is
-\begin{equation}
-  s(\x, \eta_s)\vert_{\tau=\tau_0} \propto f(\x)\, g(\x, y)\, \frac{dy}{d\eta}.
-\end{equation}
+Instead of determining a single number at mid-rapidity, we need to map $T_A$ and $T_B$ to a function $g(y; T_A(\x), T_B(\x))$ that has infinite degrees of freedom.
+To do these, we choose to parametrize how the $y$-cumulents of $g$ changes with $T_A$ and $T_B$, and reconstruct the function using its first few cumulants (mean $\mu$, standard deviation $\sigma$, and skewness $\gamma$)
+\begin{eqnarray}
+g(\x, y) &=& \mathcal{F}^{-1}\{\tilde{g}(\x, k)\}, \\
+\log \tilde{g} &=&  i \mu k - \frac{1}{2}\sigma^2 k^2 - \frac{1}{6} i \gamma \sigma^3 k^3  e^{-\frac{1}{2}\sigma^2 k^2} + \cdots \label{cgf}
+\end{eqnarray}
+where for the skewness term, we have included an exponential that systematically includes higher order cumulants to regulate the behavior of the function at large $y$.
+Numerically, we have found that within the range of $|y| < 3.3\sigma$, the reconstructed function has a good behavior and remains positive definite.
 
-\begin{table}
-  \caption{
-    \label{tab:parametrization}
-    Rapidity-dependent initial condition parametrizations with two different models for the skewness parameter. The constant $T_0 = 1$~fm$^{-2}$ preserves desired dimensionality.
-  }
-
-    \begin{tabular}{lccc}
-      & \multicolumn{3}{c}{Distribution cumulant:} \\
-      \noalign{\smallskip}\cline{2-4}\noalign{\smallskip}
-      Model & \multicolumn{1}{c}{mean $\mu$} & \multicolumn{1}{c}{std.\ $\sigma$} & \multicolumn{1}{c}{skewness $\gamma$} \\
-      \paddedhline \noalign{\smallskip}
-        Relative  & $\frac{1}{2} \mu_0 \ln\left(\frac{T_A e^{y_b}+T_B e^{-y_b}}{T_A e^{-y_b} + T_B e^{y_b}}\right)$ & $\sigma_0$ & $\gamma_0 \dfrac{T_A - T_B}{T_A + T_B}$ \smallskip\\
-        Absolute & $\frac{1}{2} \mu_0 \ln\left(\frac{T_A e^{y_b}+T_B e^{-y_b}}{T_A e^{-y_b} + T_B e^{y_b}}\right)$  & $\sigma_0$ & $\gamma_0 (T_A - T_B)/T_0$\smallskip
-    \end{tabular}
-
-\end{table}
-
-At this point, we require a parametric mapping $g(\x, y)$ which encodes nontrivial longitudinal structure and extends the model to forward and backward rapidity.
-Rather than assert an explicit functional form, we parametrize $g$ using cumulants and construct the function from the inverse Fourier transform of its cumulant-generating function,
-\begin{align}
-  g(\x, y) &= \mathcal{F}^{-1}\{\tilde{g}(\x, k)\}, \label{gfunc} \\
-  \log \tilde{g} &=  i \mu k - \frac{1}{2}\sigma^2 k^2 - \frac{1}{6} i \gamma \sigma^3 k^3 + \cdots \label{cgf}
-\end{align}
-The function is then normalized, $g(\x, 0)=1$, in order to preserve the desired scaling behavior at midrapidity.
-This ansatz naturally enables us to control different aspects of the longitudinal entropy deposition (width, skewness, etc) independently.
-In the present study, we consider the first three cumulants; including higher-order cumulants is possible but increases the model complexity.
-
-Different rapidity-dependent initial condition models are described by different parametrizations of the generating-function cumulants.
-Two existing approaches include so-called ``shifted" and ``tilted" models for longitudinal entropy deposition {Bozek:2010bi}.
-Shifted initial conditions assume that each participant's entropy profile is Gaussian in rapidity space with its mean rapidity shifted to the center of mass rapidity
+The remaining task is to parametrize the way these cumulants depends on the participant density,
+\begin{itemize}
+\item For the mean parameter, we assume it is proportional to the center-of-mass rapidity of the local incoming nuclear matter $\mu = \mu_0\eta_\text{cm}$,
 \begin{equation}
   \eta_\text{cm}=\frac{1}{2} \log \left[\frac{T_A e^{y_b}+T_Be^{-y_b}}{T_A e^{-y_b}+T_B e^{y_b}}\right]
 \end{equation}
 where $y_b$ is the beam rapidity.
 
-Alternatively, tilted initial conditions omit a translational rapidity shift and opt for a linear tilting factor
-\begin{align}
-  s(\x, \eta_s) = s(\x) [1+\eta_s\, \mathcal{A}(\x)],
-\end{align}
-where $\mathcal{A}$ is some local measure of nuclear thickness asymmetry, with the property that
-\begin{align}\label{asym}
-  \mathcal{A}(T_A, T_B) = -\mathcal{A}(T_B, T_A).
-\end{align}
-In terms of cumulants, the shifted model alters the mean $\mu$ of the local rapidity distribution, and the tilted model mainly affects the skewness $\gamma$.
-However, in general, all of the first few cumulants of the distribution could be nonzero, i.e.\ nature may opt for an initial entropy deposition scheme which is both shifted and tilted along the beam axis.
-
-We therefore parametrize the first three cumulants $\mu$, $\sigma$, and $\gamma$ of the local rapidity distribution $g(\x, y)$ using three corresponding coefficients $\mu_0$, $\sigma_0$, and $\gamma_0$ which modulate the local rapidity distribution's shift, width, and skewness, respectively.
-These parametrizations, listed in Table~\ref{tab:parametrization}, include two different models for the skewness factor $\gamma$.
-The first, a relative-skewness model, uses a common dimensionless asymmetry measure
+\item For the standard deviation, currently we leave it as a global parameter independent on the transverse location $\sigma = \sigma_0$, but only a function of the center-of-mass energy.
+\item Finally, for the skewness, there is no clear reason to choose a particular form, so we tested two parametrizations. And in the end, we will check whether the 3D initial condition extracted from data is sensitive to the different choice of parametrizations.
+These two choices are termed ``relative skewness'' and ``absolute skewness''.
+\begin{itemize}
+\item The ``relative skewness'' parametrization assume a skewness proportional to the relative difference of $T_A$ and $T_B$,
 \begin{equation}
-  \mathcal{A}(T_A, T_B) = \gamma_0\frac{T_A - T_B}{T_A + T_B},
+  \mathcal{A}(T_A, T_B) = \gamma_r\frac{T_A - T_B}{T_A + T_B},
 \end{equation}
-which saturates when $T_A \gg T_B$ and vice versa, while the second, an absolute-skewness model, employs a dimensionful construction given by
+\item The ``absolute skewness'' parametrization assume a skewness proportional to the direct difference of $T_A$ and $T_B$,
 \begin{equation}
-  \mathcal{A}(T_A, T_B) = \gamma_0 \frac{T_A - T_B}{T_0},
+  \mathcal{A}(T_A, T_B) = \gamma_a \frac{T_A - T_B}{T_0},
 \end{equation}
-where $T_0=1$~fm$^{-2}$ restores the desired dimensionality.
+where a unit for thickness function $T_0=1$~fm$^{-2}$ restores dimensionless of the $\gamma$ parameter.
+\end{itemize}
+\end{itemize}
+We have summarized the two parametrizations in table \ref{tab:parametrization}, and $\mu_0$, $\sigma_0$, $\gamma_r$ or $\gamma_a$, along with the effective Jacobian $J$ are the four additional parameters one introduced for the three-dimensional extended \trento model.
+\begin{table}
+\centering
+\caption{Table}\label{tab:parametrization}
+\begin{tabular}{lccc}
+\paddedhline
+Model & mean $\mu$ & std.\ $\sigma$ & skewness $\gamma$ \\
+\paddedhline \noalign{\smallskip}
+Relative  & $\frac{1}{2} \mu_0 \ln\left(\frac{T_A e^{y_b}+T_B e^{-y_b}}{T_A e^{-y_b} + T_B e^{y_b}}\right)$ & $\sigma_0$ & $\gamma_r \dfrac{T_A - T_B}{T_A + T_B}$ \smallskip\\
+Absolute & $\frac{1}{2} \mu_0 \ln\left(\frac{T_A e^{y_b}+T_B e^{-y_b}}{T_A e^{-y_b} + T_B e^{y_b}}\right)$  & $\sigma_0$ & $\gamma_a (T_A - T_B)/T_0$\smallskip\\
+\paddedhline 
+\end{tabular}
+\end{table}
 
-\begin{figure}[t]
-  \includegraphics{regulate}
-  \caption{Left: Unregulated skewness values lead to ill-behaved rapidity distributions. The distributions scale non-monotonically with skewness parameter $\gamma$ and go negative at large rapidities. Right: Replacing $\gamma$ by Eq.~\eqref{regulateEq} achieves desired monotonic scaling and suppresses negative regions.}
-  \label{fig:regulate}
+In figure \ref{fig:3d-example}, we show two sample events from a $Pb$-$Pb$ collision (top plots) and a $p$-$Pb$ collision (bottom plots) generated by \trento\ .
+The 3D initial entropy densities are sliced at mid-rapidity $\eta_s=0$ (left plots) and at the $x=0$ plane (right plots).
+The mid-rapidity results are identical to the one predicted in the original \trento\ model.
+The model is capable of generating fluctuating longitudinal structures that are local in the transverse plane, and breaks the boost-invariance both locally and globally.
+For the $p$-$Pb$ event, one can clearly sees that one hot spot extends into the proton going side $\eta_s >0$, while the participant clusters from the lead nuclei pushes the entropy production into the lead going side $\eta_s <0$.
+
+\begin{figure}
+\centering
+\includegraphics{trento3d_example}
+\caption{Initial entropy density in sample Pb+Pb (upper) and p+Pb (lower) events for cross sections of the $\eta=0$ and $x=0$ planes (left and right columns). Event is constructed using the relative skewness model in Table~\ref{tab:parametrization} with $\mu_0=1$, $\sigma_0=3$ and $\gamma_0=6$ along with midrapidity parameters from {Bernhard:2016tnd}.}
+\label{fig:3d-example}
 \end{figure}
 
-\begin{figure}[b]
-  \includegraphics{trento3d_example}
-  \caption{Initial entropy density in sample Pb+Pb (upper) and p+Pb (lower) events for cross sections of the $\eta=0$ and $x=0$ planes (left and right columns). Event is constructed using the relative skewness model in Table~\ref{tab:parametrization} with $\mu_0=1$, $\sigma_0=3$ and $\gamma_0=6$ along with midrapidity parameters from {Bernhard:2016tnd}.}
-  \label{fig:3d-example}
-\end{figure}
+\section{Reverse engineering the 3D initial condition}
+In the final section of this chapter, I shall demonstrate applying both the hydrodynamic-based bulk simulation and the flexible \trento-3D initial condition to reverse engineer the 3D entropy deposition at the onset of hydrodynamics at the LHC energies.
+Experimentally, one can only measure rapidity-dependent observables on an event averaged level, which already integrates the contribution of particle production over the transverse plane; while our parametrization in the \trento\ model only involves local functions of the participant density function.
+Therefore, it is indeed a nontrivial task to infer the functional form of local entropy production $s(\x, \eta_s)$ from these ``global'' measurements.
+The suitable statistical technique for parameter inference is the Bayesian 
+analysis, which will be introduced in a great detail in chapter \ref{}.
 
-There is, however, a problem with the reconstructed function in Eq.~\eqref{gfunc}.
-Rapidity distributions with large skewness are ill-behaved and oscillate to negative values for large $\eta$, as shown in the left panel of Fig.~\ref{fig:regulate}.
-The conditions to ensure a positive definite Fourier transform are quite involved; instead, we employ the following substitution for $\gamma$ to regulate the distribution:
-\begin{equation}
-  \gamma \rightarrow \gamma \exp \left({-}\frac{1}{2}\sigma^2k^2 \right). \label{regulateEq}
-\end{equation}
-This leaves the skewness of the distribution intact while contributions from higher-order cumulants are included systematically.
-The performance of the procedure depends on the domain of reconstruction.
-For reasonable values of skewness, it is found to perform well within the range ${-3.3\, \sigma \le \eta \le 3.3\, \sigma}$.
-Fig.~\ref{fig:regulate} shows the reconstructed function before and after the regulation procedure using four different skewness values.
-The procedure strongly suppresses negative regions of charged particle density (in realistic calculations they are set to zero), and preserves a clear monotonic trend with increasing skewness.
-The regulated generating function approach thus produces distributions which are both positive and well behaved over a wide range of rapidity and skewness.
+\subsection{Sensitive observables to the initial entropy deposition}
+\paragraph{The single particle spectra}
+The most direct observable is the charged particle pseudo-rapidity density $\dnchdy$ measured for different collision systems and centralities.
+The ALICE collaboration and the ATLAS collaboration has measured this quantity for both $Pb$-$Pb$ system ($-3.5<\eta<5.0$) and $p$-$Pb$ system ($|\eta| < 2.7$) {Abbas:2013bpa,ALICE:2015kda,Aad:2015zza}.
+$\dnchdy$ can very well constrain the global rapidity profile and the centrality dependence of the mode, while the limitation being that it is less sensitive to the amount of longitudinal fluctuation.
 
-In Fig.~\ref{fig:3d-example} we show the resulting entropy density $s(\x, \eta_s)$ produced by randomly generated Pb+Pb and p+Pb collisions (top and bottom panels respectively) using a set of typical parameter values, annotated in the figure caption.
-The left column shows the entropy density at midrapidity $\eta_s=0$, while the right column shows a cross section of the entropy density in the plane defined by $x=0$.
-We observe large entropy density fluctuations in the transverse plane arising from nucleon position fluctuations as well as significant forward-backward rapidity fluctuations which track the local asymmetry of projectile and target nucleon densities.
-The event profiles---although not yet optimized---exhibit rich longitudinal structures which clearly break boost invariance.
+\paragraph{Two particle pseudo-rapidity correlation}
+A good probe of event-by-event longitudinal fluctuations is the two-particle pseudorapidity correlation observable $C(\eta_1, \eta_2)$.
+The long range part of $C(\eta_1, \eta_2)$ can be shown to sensitive to initial state.
+This is because correlation between particles separated by a large gap at proper time $\tau$ in rapidity can only come from proper time before $\tau e^{-|\eta_1-\eta_2|/2}$ even if the information travels at the speed of light.
+For example, if one assumes the two particles separated by 4 units of rapidity are emitted at a constant $\tau = 8$ fm/$c$ hydrodynamic freeze-out hyper-surface and neglects the long range correlation that is built by the hadronic cascade, then any correlation must have come from before the proper time $ 8 e^{-2}\approx 1$ fm/c.
 
-At this point it is important to emphasize that the present entropy deposition parametrization is a purely \emph{local function} of nuclear overlap density.
-In subsequent sections, we optimize the model parameters to fit \emph{global} pseudorapidity-dependent charged particle yields which have their transverse structure integrated out.
-Obtaining quality fits to data thus remains a nontrivial task, as the model convolves a local entropy deposition mapping with a background distribution of fluctuating nuclear overlap density.
-
-\section{Experimental observables}
-The three-dimensional initial entropy profile and its longitudinal fluctuations directly relate to the average charged particle multiplicity and event-by-event fluctuations observed in the final state. 
-The ALICE collaboration has published the centrality dependent pseudorapidity densities $\dnchdy$ in Pb+Pb collisions with a wide pseudorapidity coverage $-3.5<\eta<5.0$ {Abbas:2013bpa,ALICE:2015kda}, and the ATLAS collaboration has measured centrality-dependent $\dnchdy$ in p+Pb collisions within $|\eta| < 2.7$ {Aad:2015zza}.
-However, such centrality binned $\dnchdy$ measurements only probe the initial entropy density averaged over many events. 
-Information on the event-by-event fluctuations is carried by two-particle pseudorapidity correlation $C(\eta_1, \eta_2)$.
-In particular, the long range contributions to the correlation function (LRC) are sensitive to the event-by-event initial state fluctuations and are ideal for examining stochastic properties of the three-dimensional initial conditions.
-
-We follow {Bzdak:2012tp, Jia:2015jga, ATLAS:2015kla} and decompose the event-by-event charged particle pseudorapidity distribution within the acceptance $[-Y, Y]$ using normalized Legendre polynomials
-\begin{align}
-  \frac{dN}{d\eta} &= \biggl\langle\frac{dN}{d\eta}\biggr\rangle \biggl[1 + \sum_{n=0}^\infty a_n T_n\left(\frac{\eta}{Y}\right) \biggr], \\[.5ex]
-  T_n(x) &= \sqrt{n + \frac{1}{2}}\, P_n(x).
-\end{align}
-The two-particle correlation function $C(\eta_1, \eta_2)$ is then calculated from the normalized multiplicity distribution $R(\eta) = dN/d\eta /\langle dN/d\eta\rangle$ and is decomposed into symmetrized polynomials $T_{mn}(\eta_1, \eta_2)$
+To see how $C(\eta_1, \eta_2)$ is related to the longitudinal fluctuation of the entropy deposition / particle production, we follow the analysis in  {Bzdak:2012tp, Jia:2015jga, ATLAS:2015kla} to decompose $\dnchdy$ for each event in a finite pseudo-rapidity window $[-Y, Y]$ using the normalized Legendre polynomials basis,
+\begin{eqnarray}
+T_n(x) &=& \sqrt{n + \frac{1}{2}} P_n(x)
+\end{eqnarray}
+And the event-wise charged particle distribution is then,
+\begin{eqnarray}
+\frac{dN}{d\eta} &=& \biggl\langle\frac{dN}{d\eta}\biggr\rangle \biggl[1 + \sum_{n=0}^\infty a_n T_n\left(\frac{\eta}{Y}\right) \biggr]
+\end{eqnarray}
+Where $\biggl\langle\frac{dN}{d\eta}\biggr\rangle$ is the reference multiplicity at mid-rapidity for an ensemble of events.
+$a_0$ is the total multiplicity fluctuation and $a_1$ controls how the multiplicity distribution is tilted in rapidity in each event and so on.
+Two-particle correlation $C(\eta_1, \eta_2)$ measures the variance of these $a_n$ coefficients.
+>>>HERE<<< Because to have one  $R(\eta) = dN/d\eta /\langle dN/d\eta\rangle$ and is decomposed into symmetrized polynomials $T_{mn}(\eta_1, \eta_2)$
 \begin{align}
   C(\eta_1, \eta_2) &= \left\langle R(\eta_1) R(\eta_2)\right\rangle \\
   &= 1 + \sum_{m, n}\langle a_m a_n\rangle  T_{mn}(\eta_1, \eta_2),  \\
@@ -440,107 +416,20 @@ Loosely speaking, the physics model maps the $m\times n$ parameter design matrix
 \end{equation}
 where $m=100$ is the number of design points, ${n=9}$ is the number of input parameters, and $p$ is the number of measured outputs.
 
-\subsection{Model emulator}
-
-Once the design matrix is specified and the model has been run at each design point to construct a corresponding observable matrix, we train a set of Gaussian process emulators to reproduce the predictions of the model.
-A Gaussian process emulator is a powerful nonparametric regression method which can be used to interpolate a scalar function of one or more input parameters.
-For example, given a set of multivalued inputs ${X=\{\x_1, \x_2, \ldots, \x_n\}}$, and a corresponding list of scalar outputs $\mathbf y=\{y_1, y_2, \ldots, y_n \}$, a Gaussian process emulator can be used to interpolate the function $f: \x \mapsto y$ subject to a pre-specified covariance function $\sigma(\x,\x')$.
-We use an existing implementation of Gaussian process regression in this work {2014arXiv1403.6015A}.
-
-Since Gaussian processes are fundamentally scalar functions, while our model produces vector outputs, we first transform the model outputs (normalized by experimental data) using principal component analysis.
-The principal components $z$ are orthogonal, uncorrelated linear combinations of the original outputs and may be used to reduce the dimensionality of the output space, since the first several principal components often account for the majority of the model's variance {Dave:pca}.
-Independent Gaussian processes are thus trained to emulate the first $q < p$ principal components of the centrality-dependent charged-particle pseudorapidity distribution for the two systems and the rms $a_1$ of Pb+Pb collisions separately.
-
-We choose to include $q=6,$ $6,$ and $4$ principal components for $\dndyPP$,\, $\dndypP$ and rms $a_1$ which account for 99.5\% of the observed variance.
-For the emulator covariance function $\sigma(\x, \x')$, we adopt a simple Gaussian form
-\begin{equation}
-  \sigma(\x, \x') = \sigma_\text{GP}^2 \exp\Biggl[ -\sum_{k=1}^n \frac{(x_k - x'_k)^2}{2\ell_k^2} \Biggr] + \sigma_n^2\delta_{\x\x'},
-\end{equation}
-which is well-suited for continuously differentiable, smoothly-varying models.
-The variance of the Gaussian process $\sigma^2_\text{GP}$, correlation lengths $l_k$, and noise variance $\sigma_n^2$ are estimated from the model outputs by numerically maximizing the likelihood
-\begin{equation}
-  \log P = -\frac{1}{2}\mathbf y\trans \Sigma^{-1} \mathbf y - \frac{1}{2} \log | \Sigma | - \frac{m}{2} \log 2 \pi,
-\end{equation}
-where $\Sigma$ is the covariance matrix from applying the covariance function $\sigma$ to each pair of design points.
-
-\begin{figure*}
-  \includegraphics{post_obs}
-  \caption{
-  Left and Middle: Centrality and pseudorapidity dependence of the charged particle pseudorapidity density $\dndyPP$ at $\sqrts=2.76$~TeV and $\dndypP$ at $\sqrts=5.02$~TeV.
-  Bands represents model emulator calculations $\dnchdy$ from the Bayesian posterior.
-  Symbols are experimental data from ALICE {Abbas:2013bpa,ALICE:2015kda} and ATLAS {Aad:2015zza}.
-  Rapidity cuts on model centrality selection are matched to experiment.
-  Right: 
-  The root-mean-square of the Legendre expansion coefficient $a_1$ estimated from two-particle pseudorapidity correlations plotted as a function of collision centrality.
- Bands represents model emulator calculations $\dnchdy$ from the Bayesian posterior, while lines are results from full event-by-event viscous hybrid model simulations using selected parameters from the Bayesian posterior.
-  Symbols with errors are experimental data from ATLAS {SoorajRadhakrishnanfortheATLAS:2015eqq}.  
-  }
-  \label{fig:post_obs}
-\end{figure*}
-\subsection{Bayesian calibration and Bayes factor}
-
-The parameter space of the emulated model is finally explored using Markov chain Monte Carlo (MCMC) methods.
-The posterior probability for the \emph{true} model parameters $\x_\star$ is given by Bayes' theorem,
-\begin{equation}
-  P(\x_\star| X, Y, \y_\text{exp}) \propto P(X, Y, \y_\text{exp} | \x_\star) P(\x_\star).
-  \label{bayes}
-\end{equation}
-The left-hand side is the Bayesian \emph{posterior}, the probability of true parameters $\x_\star$ given model design $X$, observable matrix $Y$, and experimental data $\y_\text{exp}$.
-On the right, $P(X, Y, \y_\text{exp}| \x_\star)$ is the likelihood---the probability of observing $(X, Y, \y_\text{exp})$ given a proposal $\x_\star$---and $P(\x_\star)$ is the \emph{prior}, which encapsulates initial knowledge of $\x_\star$.
-
-In this study, we place informative priors on the entropy deposition parameter $p$ using previous results at midrapidity.
-Specifically, we set the priors on $p$ equal to the posterior distributions determined by the Bayesian analysis in Ref.~{Bernhard:2016tnd} which was calibrated to fit charged particle yields, mean transverse momenta, and flows at midrapidity.
-For all remaining parameters, we assign a flat prior which is constant within the design range and zero outside.
-
-We assume a Gaussian form for the likelihood function,
-\begin{align}
-  \begin{aligned}
-  P &= P(X, Y, \y_\text{exp}|\x_\star) \\
-    &= P(X, Z, \z_\text{exp}|\x_\star) \\
-    &\propto\exp\biggl\{-\frac{1}{2}(\z_\star - \z_\text{exp})\trans \Sigma_z^{-1}(\z_\star - \z_\text{exp})\biggr\},
-  \end{aligned}
-  \label{eq:likelihood}
-\end{align}
-which is evaluated using the emulated principal components $\z_\star$ and transformed experimental data $\z_\text{exp}$.
-Here $\Sigma_z$ is the covariance matrix for the principal components, which accounts for the various sources of uncertainty. We used a covariance matrix in the principal component space proportional to the identity matrix $\Sigma_z = \sigma I$, which corresponds to $5\%$, $10\%$, and $20\%$ relative error on the total variance of $\dndypP$,\, $\dndyPP$ and rms $a_1$.
-This procedure effectively gives a larger weight to the p+Pb dataset, as it is more sensitive to the asymmetry parameters of the models, and it also emphasizes fitting single-particle observables over two-particle correlation observables.
-
-Finally, the total log-likelihood of the model given by the p+Pb and Pb+Pb datasets is
-\begin{align}\label{naive-formula}
-\nonumber  \ln P &= \ln P_\text{pPb, $dN/d\eta$} + \ln P_\text{PbPb, $dN/d\eta$} \\
-  &+  \ln P_\text{PbPb, rms $a_1$} + \ln P_{\text{priori}},
-\end{align}
-where $P_\text{piori}$ is the initial prior distribution.
-The posterior is finally constructed by sampling the distribution using an affine-invariant MCMC sampler {emcee}.
-In each MCMC step, the Gaussian process emulators first predict the principal components of the model outputs, the likelihood is then computed from Eq.~\eqref{eq:likelihood}, and the posterior probability is calculated from Bayes' theorem~\eqref{bayes}.
-We use $\mathcal O(10^5)$ burn-in steps and $\mathcal O(10^6)$ production steps to generate the posterior distribution.
-
-A model evaluation measure known as a Bayes factor can then be used to compare the performance of the relative- and absolute-skewness models.
-It is defined as the ratio of the likelihood functions, integrated over each model's parameter space,
-\begin{eqnarray}
-	K = \frac{\int P(\textrm{Exp}|\textrm{Model I}, \vec{p}) d\vec{p}}{\int P(\textrm{Exp}|\textrm{Model II}, \vec{p}) d\vec{p}}\,.
-\end{eqnarray}
-The interpretation of the scale of $K$ is listed in Table \ref{tab:Kfactor}. {Jeffreys:1961}.
-\begin{table}[t]
-  \caption{Interpretation of the scale of $K$}
-    \begin{tabular}{ll}
-      K & Strength of evidence (supports model I) \\
-      \paddedhline
-      $ < 10^{1/2}$	& negative (supports model II)	\\
-	  $10^0$ -- $10^{1/2}$	& barely worth mentioning	\\
-	  $10^{1/2}$ -- $10^1$	& substantial	\\
-	  $10^1$ -- $10^{3/2}$	& strong	\\
-	  $10^{3/2}$ -- $10^2$	& very strong	\\
-	  $>10^2$	& decisive	\\
-    \end{tabular}
-  \label{tab:Kfactor}
-\end{table}
-With $K<1$, the experimental data supports model II; while increasing $K$ above $1$, model I is supported with increasing strength of evidence.
-
-
-
-\section{Calibration results}
 \subsection{Calibrated observables}
+The 3+1D relativistic viscous hydrodynamics code \mbox{vHLLE} {Karpenko:2013wva} is used for the QGP medium evolution. 
+The equation-of-state (EoS) is obtained by interpolating a state-of-the-art lattice-QCD EoS {Bazavov:2014pvz} at high temperature with vanishing baryon density and a hadron resonance gas EoS at low temperature.
+We use a switching energy density $\varepsilon_s = 0.322$~GeV/fm$^3$ ($T_s\sim0.154$~GeV) at which the hydrodynamic description is switched to the UrQMD transport description. 
+The switching temperature $T_s$ is the same as the EoS pseudo-critical temperature $T_c = 0.154$~GeV. 
+The hydrodynamic transport coefficients are given by:
+\begin{align}
+  (\eta/s)(T>T_s)  &=  \text{0.17--0.28}, \\
+  (\zeta/s)(T>T_s) &=  0.0.
+\end{align}
+For simplicity, there is no bulk viscosity and the shear viscosity to entropy ratio is a constant.
+Below $T_s$, the hydrodynamic energy density is particlized into hadrons and UrQMD takes over the time evolution of the hadronic system.
+No additional inputs for the transport coefficients are needed.
+
 To investigate the performance of the calibrated models, we show in Fig.~\ref{fig:post_obs} the resulting observables calculated from each model's calibrated emulators.
 The bands are centered around the mean prediction, and their spread denotes $\pm 2$ standard deviations.
 Both calibrated models are able to simultaneously describe $\dnchdy$ for the two collision systems as functions of rapidity and centrality, illustrating the flexibility of the generating function approach.
@@ -599,7 +488,7 @@ Therefore, with experimental inputs from the charged particle pseudorapidity den
 \end{figure}
 
 
-\section{Predictions for novel observables}
+\subsection{Predictions for novel observables}
 Both the relative- and absolute-skewness models provide comparable descriptions of multiplicity observables in p+Pb and Pb+Pb collisions which makes sense given that they predict effectively identical three-dimensional initial entropy profiles when calibrated to fit experimental data.
 In this section, we proceed to investigate whether they can describe azimuthally sensitive observables such as flows, event-plane decorrelations and symmetric cumulants, and for completeness, we shall conduct the calculation with both models.
 Here we use selected initial condition parameters around the peaks of the posterior distributions for each model (Table \ref{tab:chosen_parameters}) and perform viscous 3+1D hydrodynamic evolution with UrQMD as an afterburner.
@@ -783,8 +672,6 @@ We observe that the normalized symmetric cumulant does not change as a function 
 Future comparison with available data should correspondingly impose strong constraints on our approach for modeling the three-dimensional initial conditions.
 
 
-\section{Conclusion}
-
 In summary, we have proposed a new method to extend arbitrary initial condition models defined at midrapidity to forward and backward pseudorapidity.
 The method describes initial entropy deposition as a purely local function of nuclear participant densities, with the longitudinal profile reconstructed from generating-function cumulants.
 The first three cumulants of the distribution (mean, standard deviation, and skewness) are included.
@@ -815,19 +702,3 @@ For example, it would be interesting to add subnucleonic structure to the nuclea
 Also, in this work we assume that the multiplicity observables are insensitive to viscous effects and use ideal hydrodynamics in the model-to-data comparison process.
 In the calculation of flow observables, we use an over-simplified constant specific shear viscosity and zero bulk viscosity, although there have been many works suggesting preference for a temperature dependent shear viscosity and finite bulk viscosity {Bernhard:2016tnd,Niemi:2015qia, Ryu:2015vwa}.
 We leave these refinements to future work and hope the calibrated initial conditions presented in this study provide a more realistic description of the three-dimensional structure of relativistic heavy-ion collisions which will prove useful in constraining the properties of hot and dense QCD matter.
-
-
-\section{Hybrid model simulation}\label{app}
-
-The 3+1D relativistic viscous hydrodynamics code \mbox{vHLLE} {Karpenko:2013wva} is used for the QGP medium evolution. 
-The equation-of-state (EoS) is obtained by interpolating a state-of-the-art lattice-QCD EoS {Bazavov:2014pvz} at high temperature with vanishing baryon density and a hadron resonance gas EoS at low temperature.
-We use a switching energy density $\varepsilon_s = 0.322$~GeV/fm$^3$ ($T_s\sim0.154$~GeV) at which the hydrodynamic description is switched to the UrQMD transport description. 
-The switching temperature $T_s$ is the same as the EoS pseudo-critical temperature $T_c = 0.154$~GeV. 
-The hydrodynamic transport coefficients are given by:
-\begin{align}
-  (\eta/s)(T>T_s)  &=  \text{0.17--0.28}, \\
-  (\zeta/s)(T>T_s) &=  0.0.
-\end{align}
-For simplicity, there is no bulk viscosity and the shear viscosity to entropy ratio is a constant.
-Below $T_s$, the hydrodynamic energy density is particlized into hadrons and UrQMD takes over the time evolution of the hadronic system.
-No additional inputs for the transport coefficients are needed.
