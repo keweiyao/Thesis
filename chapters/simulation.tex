@@ -338,26 +338,33 @@ C_N(\eta_1, \eta_2) \sim 1 + \frac{3}{2}\langle a_1 ^2 \rangle \frac{\eta_1\eta_
 \end{eqnarray}
 and we shall focus on the $\langle a_1 ^2 \rangle$, which quantifies the amount of linearly-tilting fluctuation.
 
+In additional to the initial condition fluctuation, short range correlation also contributes to the $a_1$ fluctuation {Denicol:2015bnf, Monnai:2015sca}.
+The UrQMD hadronic afterburner is able to model certain type short range correlation coming from resonance decay and collisions, but jet-like correlations is hard to accounted for.
 
+\subsection{Calibration of the 3D initial condition parameters}
+The degrees of freedom of the initial condition model are,
+\begin{itemize}[itemsep=0pt]
+  \item[1--2.] Two normalization factors for Pb+Pb and p+Pb collisions at $\sqrts=2.76$~TeV and 5.02~TeV beam energies. they are not fully independent as the $N_{\textrm{p+Pb}} > N_{\textrm{Pb+Pb}}$ is always imposed in the parameter sweep because one expected more particle production is associated to the same thickness function at higher center-of-mass energy.
+  \item[3.] The generalized mean parameter $p$ which modulates entropy deposition at midrapidity,
+  \item[4.] A gamma shape parameter $k$, which controls the variance of proton-proton multiplicity fluctuations,
+  \item[5.] A Gaussian nucleon width $w$, which determines initial state granularity;
+  \item[6--8.] Three coefficients which modulate the local rapidity distribution's shift $\mu_0$, width $\sigma_0$, and skewness $\gamma_0$,
+  \item[9.] A Jacobian factor $J$ for the conversion from rapidity to pseudorapidity.
+\end{itemize}
+And the range of the parameters is shown in \ref{tab:trento:parameters}.
+One may notice that we did not use different width parameters for the rapidity distribution $\sigma_0$ for $Pb$+$Pb$ and $p$+$Pb$ collisions, though there are different beam energy.
+We made this simplification because the the beam rapidity changes less than $8\%$ from $2.76$ TeV to $5.02$ TeV.
 
-The ATLAS collaboration has measured the centrality dependence of various $\langle a_m a_n\rangle$ in Pb+Pb collisions {ATLAS:2015kla, SoorajRadhakrishnanfortheATLAS:2015eqq} using particles with $p_T > 0.5$~GeV.
-Recent theoretical work on these observables includes a longitudinal extension of IP-Glasma initial conditions {Schenke:2016ksl} and a rapidity-dependent constituent-quark MC-Glauber model which was embedded in three-dimensional hydrodynamic simulations {Denicol:2015bnf, Monnai:2015sca}.
-It was shown that short range correlations (SRC) from resonance decays are a significant contribution to the $\langle a_m a_n\rangle$ signal, while variations in the transport coefficients have a much smaller effect {Denicol:2015bnf}.
-The contributions from LRC and SRC were estimated in a subsequent ATLAS analysis {Jia:2016jlg} using correlations of same- and opposite-signed charged particles with $p_T > 0.2 \textrm{ GeV}$.
-The isolated LRC, which were measured with a lower $p_T$ cut, are a cleaner observable for the study of initial state fluctuations, but they are not yet calculated for central Pb+Pb collisions.
-We therefore perform the calculation {ATLAS:2015kla} with proper modeling of the SRC using the UrQMD model.
-
-\section{Model-to-data comparison}
-
-\begin{table}[t]
-  \caption{Input parameter ranges for the rapidity-dependent parametric initial condition model.}
-
-    \begin{tabular}{lll}
+\begin{table}
+\centering
+\caption{Three-dimensional initial condition parameters}
+\label{tab:trento:parameters}.
+\begin{tabular}{lll}
       Parameter & Description	& Range \\
       \paddedhline
       $N_{\textrm{p+Pb}}$    & Overall p+Pb normalization      & 140.0--190.0 \\
       $N_{\textrm{Pb+Pb}}$   & Overall Pb+Pb normalization     & 150.0--200.0  \\
-      $p^\dagger$	                   & Generalized mean parameter      & -0.3--0.3  \\
+      $p$	                   & Generalized mean parameter      & -0.3--0.3 (with a prior)  \\
       $k$	                   & Multiplicity fluct.\ shape      & 1.0--5.0  \\
       $w$	                   & Gaussian nucleon width     & 0.4--0.6  \\
       $\mu_0$                & Rapidity shift mean coeff.\     & 0.0--1.0  \\
@@ -365,84 +372,23 @@ We therefore perform the calculation {ATLAS:2015kla} with proper modeling of the
       \multirow{2}{*}{$\gamma_0$}             & \multirow{2}{*}{Rapidity skewness coeff.\ }      & 0.0--10.0 (rel) \\
                   &        & 0.0--3.6 (abs)  \\
       $J$	                   & Pseudorapidity Jacobian param.  & 0.6--0.9
-    \end{tabular}
-   \raggedright{$\dagger$ Priori probability distributions fitted from {Bernhard:2016tnd} are applied on this parameter independently within the given ranges.}
-  \label{tab:parameters}
+\end{tabular}  
 \end{table}
 
-The aforementioned rapidity extension introduces several new model parameters which necessitate rigorous optimization.
-For this purpose, we apply established Bayesian methodology {OHagan:2006ba, Dave:pca, Higdon:2014tva, Wesolowski:2015fqa} to constrain the proposed parametric initial conditions and extract intrinsic, local features of the QGP fireball using macroscopic event-averaged quantities.
-Ideally, one would run the full model calculation at each design point and calibrate the model to fit a comprehensive list of experimental measurements.
+The dynamical model consists of both a 3+1D relativistic hydrodynamics and the hadronic afterburner.
+The equation-of-state (EoS) is obtained by interpolating a state-of-the-art lattice-QCD EoS {Bazavov:2014pvz} at high temperature (zero baryon density) to a hadron resonance gas EoS at low temperature.
+The energy density at which hydrodynamic energy momentum tensor is particulized into hadrons is $\epsilon_{sw} = 0.322$~GeV/fm$^3$ corresponding to a switching temperature close to the pseudo-critical temperature $T_{sw} \sim T_c = 0.154$~GeV).
+As a remark, the relativistic hydrodynamics code \mbox{vHLLE} {Karpenko:2013wva} includes the viscous correction, bu we used its ideal mode in the parameter extraction.
+This is because the parameter optimization process requires generating running the model on order hundreds different parameter sets.
+For each parameter set, thoudands of minimum-biased events needed to be gerenated to achieve a good control of the statistical fluctuation, especially for the correlation observable. 
+The full 3+1D viscous hydrodynamics is extremely time consuming, therefore we choose to ran the hydrodynamic model in its ideal mode and on a rather coarse grid.
+While the justification is that the rapidity distribution of the multiplicity and normalized two-particle correlations is less sensitive to the viscous effect.
+In the end, as a validation to this procedure, we will be using a set of high-likelihood parameter set and run the dynamical model with the viscous correction to see if other observables such as the harmonic flow, and event-plane decorrelations can be reasonably described.
 
-Unfortunately, three-dimensional viscous hydrodynamic simulations require an order of magnitude more computing resources than the boost-invariant models previously used in Bayesian analyses.
-This makes it difficult to calibrate on statistically intensive observables such as multiparticle flow correlations which require tens of thousands of minimum bias events at each design point. 
 
-Work is underway to solve these technical challenges by migrating three-dimensional viscous hydrodynamic simulations to graphics cards which offer dramatic performance enhancements over processors at a fraction of the cost {Bazow:2016yra}.
-We instead omit higher order flow observables and calibrate only on the rapidity-dependent charged particle yields and two-particle pseudorapidity correlations which can be calculated with a few thousand events. 
+Eventually, four thousands $Pb$+$Pb$ and ten thousands $p$+$Pb$ events 100 are generated at $100$ set of parameter sets.
+The computed $\dnchdy$ and $a_1$ fluctuation are computed at differnet centrality, and then the Bayesian analysis makes inference on the probability distribution on the parameters by comparing to measurements.
 
-It should also be noted that the data we use for Pb+Pb and p+Pb collisions are taken at different beam energies, ${\sqrts = 2.76}$~TeV and 5.02~TeV respectively.
-Because phenomenological model parameters generally change with beam energy, it is not fully consistent to optimize a single set of parameters to fit experimental observables at two different energies.
-Here we assume that all model parameters, except for the overall entropy normalizations, do not change drastically with the beam energy of the two datasets since the beam rapidity changes less than $8\%$ and perform a simultaneous multi-parameter fit using both measurements.
-
-We now briefly summarize the procedure used to apply Bayesian methodology to the newly constructed parametric initial condition model. For a more comprehensive explanation see {Novak:2013bqa, Bernhard:2015hxa, Bernhard:2016tnd}. All steps are repeated for both the relative and absolute skewness models described in Table~\ref{tab:parametrization}.
-
-\subsection{Parameter design}
-
-The three-dimensional parametric initial conditions are specified using nine model parameters.
-Five control entropy deposition at midrapidity:
-\begin{itemize}[itemsep=0pt]
-  \item[1--2.] two normalization factors for Pb+Pb and p+Pb collisions at $\sqrts=2.76$~TeV and 5.02~TeV beam energies,
-  \item[3.] the generalized mean parameter $p$ which modulates entropy deposition at midrapidity,
-  \item[4.] a gamma shape parameter $k$, which controls the variance of proton-proton multiplicity fluctuations,
-  \item[5.] and a Gaussian nucleon width $w$, which determines initial state granularity;
-\end{itemize}
-the remaining four parameters add rapidity dependence to the model:
-\begin{itemize}[itemsep=0pt]
-  \setcounter{enumi}{6}
-  \item[6--8.] three coefficients which modulate the local rapidity distribution's shift $\mu_0$, width $\sigma_0$, and skewness $\gamma_0$,
-  \item[9.] and a Jacobian factor $J$ for the conversion from rapidity to pseudorapidity.
-\end{itemize}
-
-Given the large number of iterations required by multidimensional Monte Carlo optimization methods and the non-negligible computation time needed to sample initial condition events and evolve them through hydro, it is intractable to explore the aforementioned parameter space using direct model evaluation.
-To circumvent this issue, we train emulators using a limited number of parameter configurations to reproduce the charged-particle pseudorapidity density and the two-particle pseudorapidity correlations predicted by evolving the initial condition model through hydrodynamics.
-These emulators interpolate the predictions of the model between training points and provide essentially instant predictions at uncharted regions of parameter space.
-
-The emulators are trained using 100 unique parameter configurations sampled from the parameter ranges listed in Table~\ref{tab:parameters}.
-Each parameter design point is distributed in the nine dimensional space using a maximin Latin hypercube design---a space-filling algorithm that maximizes the minimum distance between pairs of points in the multidimensional space.
-
-With the parameter design in hand, we run $4\times 10^3$ Pb+Pb and $10^4$ p+Pb initial condition events through hydrodynamics at each of the 100 points and calculate the charged-particle pseudorapidity density and two-particle pseudorapidity correlations.
-The centrality bins are defined by charged particle multiplicity using the same kinematic cuts used by experiments: $|\eta|<0.8$ for Pb+Pb collisions and ${-4.9 < \eta < -3.1}$ for p+Pb collisions.
-The resulting $\dnchdy$ and rms $a_1$ are concatenated to an observable array for each input parameter set.
-Loosely speaking, the physics model maps the $m\times n$ parameter design matrix $X$ to an $m \times p$ observable matrix $Y$:
-\begin{equation}
-  \begin{pmatrix}
-    x_{1,1} & \cdots & x_{1,n} \\
-    \vdots  & \ddots & \vdots \\
-    x_{m,1} & \cdots & x_{m,n} \\
-  \end{pmatrix}
-  \xrightarrow{\text{Model}}
-  \begin{pmatrix}
-    y_{1,1} & \cdots & y_{1,p} \\
-    \vdots  & \ddots & \vdots \\
-    y_{m,1} & \cdots & y_{m,p} \\
-  \end{pmatrix},
-  \label{design-obs}
-\end{equation}
-where $m=100$ is the number of design points, ${n=9}$ is the number of input parameters, and $p$ is the number of measured outputs.
-
-\subsection{Calibrated observables}
-The 3+1D relativistic viscous hydrodynamics code \mbox{vHLLE} {Karpenko:2013wva} is used for the QGP medium evolution. 
-The equation-of-state (EoS) is obtained by interpolating a state-of-the-art lattice-QCD EoS {Bazavov:2014pvz} at high temperature with vanishing baryon density and a hadron resonance gas EoS at low temperature.
-We use a switching energy density $\varepsilon_s = 0.322$~GeV/fm$^3$ ($T_s\sim0.154$~GeV) at which the hydrodynamic description is switched to the UrQMD transport description. 
-The switching temperature $T_s$ is the same as the EoS pseudo-critical temperature $T_c = 0.154$~GeV. 
-The hydrodynamic transport coefficients are given by:
-\begin{align}
-  (\eta/s)(T>T_s)  &=  \text{0.17--0.28}, \\
-  (\zeta/s)(T>T_s) &=  0.0.
-\end{align}
-For simplicity, there is no bulk viscosity and the shear viscosity to entropy ratio is a constant.
-Below $T_s$, the hydrodynamic energy density is particlized into hadrons and UrQMD takes over the time evolution of the hadronic system.
-No additional inputs for the transport coefficients are needed.
 
 To investigate the performance of the calibrated models, we show in Fig.~\ref{fig:post_obs} the resulting observables calculated from each model's calibrated emulators.
 The bands are centered around the mean prediction, and their spread denotes $\pm 2$ standard deviations.
