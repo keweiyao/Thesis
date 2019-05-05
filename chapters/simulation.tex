@@ -294,7 +294,10 @@ The ALICE collaboration and the ATLAS collaboration has measured this quantity f
 $\dnchdy$ can very well constrain the global rapidity profile and the centrality dependence of the mode, while the limitation being that it is less sensitive to the amount of longitudinal fluctuation.
 
 \paragraph{Two particle pseudo-rapidity correlation}
-A good probe of event-by-event longitudinal fluctuations is the two-particle pseudorapidity correlation observable $C(\eta_1, \eta_2)$.
+A good probe of event-by-event longitudinal fluctuations is the two-particle pseudorapidity correlation observable $C(\eta_1, \eta_2)$,
+\begin{eqnarray}
+C(\eta_1, \eta_2) = \frac{ \left\langle N(\eta_1)N(\eta_2) \right\rangle}{\left\langle N(\eta_1)\right\rangle\left\langle N(\eta_2) \right\rangle}
+\end{eqnarray}
 The long range part of $C(\eta_1, \eta_2)$ can be shown to sensitive to initial state.
 This is because correlation between particles separated by a large gap at proper time $\tau$ in rapidity can only come from proper time before $\tau e^{-|\eta_1-\eta_2|/2}$ even if the information travels at the speed of light.
 For example, if one assumes the two particles separated by 4 units of rapidity are emitted at a constant $\tau = 8$ fm/$c$ hydrodynamic freeze-out hyper-surface and neglects the long range correlation that is built by the hadronic cascade, then any correlation must have come from before the proper time $ 8 e^{-2}\approx 1$ fm/c.
@@ -310,21 +313,32 @@ And the event-wise charged particle distribution is then,
 Where $\biggl\langle\frac{dN}{d\eta}\biggr\rangle$ is the reference multiplicity at mid-rapidity for an ensemble of events.
 $a_0$ is the total multiplicity fluctuation and $a_1$ controls how the multiplicity distribution is tilted in rapidity in each event and so on.
 Two-particle correlation $C(\eta_1, \eta_2)$ measures the variance of these $a_n$ coefficients.
->>>HERE<<< Because to have one  $R(\eta) = dN/d\eta /\langle dN/d\eta\rangle$ and is decomposed into symmetrized polynomials $T_{mn}(\eta_1, \eta_2)$
-\begin{align}
-  C(\eta_1, \eta_2) &= \left\langle R(\eta_1) R(\eta_2)\right\rangle \\
-  &= 1 + \sum_{m, n}\langle a_m a_n\rangle  T_{mn}(\eta_1, \eta_2),  \\
-  T_{mn}(\eta_1, \eta_2) &= \frac{T_n(\eta_1)T_m(\eta_2) + T_m(\eta_1)T_n(\eta_2)}{2}.
-\end{align}
-Centrality fluctuations introduce nonzero $\langle a_0 a_n\rangle$ and are removed by renormalizing $C(\eta_1, \eta_2)$,
-\begin{align}
-  C_N(\eta_1, \eta_2) &= \frac{C(\eta_1, \eta_2)}{C_1(\eta_1)C_2(\eta_2)},\\[.5ex]
-  C_{1,2}(\eta_{1,2}) &= \int_{-Y}^{Y}C(\eta_1, \eta_2)\frac{d\eta_{2,1}}{2Y}.
-\end{align}
-The forward-backward multiplicity fluctuations characterized by $\langle a_m a_n\rangle$ with $m, n > 0$ can then be projected out from the renormalized correlation function as
-\begin{align}
-  C_N(\eta_1, \eta_2) \sim 1 + \frac{3}{2}\langle a_1 ^2 \rangle \frac{\eta_1\eta_2}{Y^2} + \cdots.
-\end{align}
+Define the normalized event-wise distribution $R(\eta) = dN/d\eta /\langle dN/d\eta\rangle$, then the two particle correlations can be expressed as the event averaged products of $R$.
+\begin{eqnarray}
+C(\eta_1, \eta_2) &=& \left\langle R(\eta_1) R(\eta_2)\right\rangle \\
+&=& 1 + \sum_{m, n}\langle a_m a_n\rangle  T_{mn}(\eta_1, \eta_2)
+\end{eqnarray}
+with $T_{mn}$ defined as,
+\begin{eqnarray}
+T_{mn}(\eta_1, \eta_2) &=& \frac{T_n(\eta_1)T_m(\eta_2) + T_m(\eta_1)T_n(\eta_2)}{2}.
+\end{eqnarray}
+Therefore, $
+\langle a_m a_n\rangle$ can be extracted from two particle correlation.
+Combinations like $\langle a_0 a_n\rangle$ reflects how the event-wise rapidity fluctuation correlates with multiplicity fluctuation, which can is canceled to first order by another normalization and define,
+\begin{eqnarray}
+ C_N(\eta_1, \eta_2) &= \frac{C(\eta_1, \eta_2)}{C_1(\eta_1)C_2(\eta_2)}\\
+\end{eqnarray}
+with the marginalized function,
+\begin{eqnarray}
+C_{1,2}(\eta_{1,2}) &= \int_{-Y}^{Y}C(\eta_1, \eta_2)\frac{d\eta_{2,1}}{2Y}.
+\end{eqnarray}
+And $C_N$ is directly related to the rapidity fluctuation of particle production,
+\begin{eqnarray}
+C_N(\eta_1, \eta_2) \sim 1 + \frac{3}{2}\langle a_1 ^2 \rangle \frac{\eta_1\eta_2}{Y^2} + \cdots.
+\end{eqnarray}
+and we shall focus on the $\langle a_1 ^2 \rangle$, which quantifies the amount of linearly-tilting fluctuation.
+
+
 
 The ATLAS collaboration has measured the centrality dependence of various $\langle a_m a_n\rangle$ in Pb+Pb collisions {ATLAS:2015kla, SoorajRadhakrishnanfortheATLAS:2015eqq} using particles with $p_T > 0.5$~GeV.
 Recent theoretical work on these observables includes a longitudinal extension of IP-Glasma initial conditions {Schenke:2016ksl} and a rapidity-dependent constituent-quark MC-Glauber model which was embedded in three-dimensional hydrodynamic simulations {Denicol:2015bnf, Monnai:2015sca}.
