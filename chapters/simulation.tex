@@ -275,7 +275,7 @@ For the $p$-$Pb$ event, one can clearly sees that one hot spot extends into the 
 
 \begin{figure}
 \centering
-\includegraphics{trento3d_example}
+\includegraphics{trento3d/trento3d_example}
 \caption{Initial entropy density in sample Pb+Pb (upper) and p+Pb (lower) events for cross sections of the $\eta=0$ and $x=0$ planes (left and right columns). Event is constructed using the relative skewness model in Table~\ref{tab:parametrization} with $\mu_0=1$, $\sigma_0=3$ and $\gamma_0=6$ along with midrapidity parameters from {Bernhard:2016tnd}.}
 \label{fig:3d-example}
 \end{figure}
@@ -385,280 +385,206 @@ The full 3+1D viscous hydrodynamics is extremely time consuming, therefore we ch
 While the justification is that the rapidity distribution of the multiplicity and normalized two-particle correlations is less sensitive to the viscous effect.
 In the end, as a validation to this procedure, we will be using a set of high-likelihood parameter set and run the dynamical model with the viscous correction to see if other observables such as the harmonic flow, and event-plane decorrelations can be reasonably described.
 
-
-Eventually, four thousands $Pb$+$Pb$ and ten thousands $p$+$Pb$ events 100 are generated at $100$ set of parameter sets.
-The computed $\dnchdy$ and $a_1$ fluctuation are computed at differnet centrality, and then the Bayesian analysis makes inference on the probability distribution on the parameters by comparing to measurements.
-
-
-To investigate the performance of the calibrated models, we show in Fig.~\ref{fig:post_obs} the resulting observables calculated from each model's calibrated emulators.
-The bands are centered around the mean prediction, and their spread denotes $\pm 2$ standard deviations.
-Both calibrated models are able to simultaneously describe $\dnchdy$ for the two collision systems as functions of rapidity and centrality, illustrating the flexibility of the generating function approach.
-
-The results for rms $a_1$ are compared to preliminary data from ATLAS {ATLAS:2015kla} in Fig.~\ref{fig:post_obs}.
-Both models capture the increasing trend of rms $a_1$ as function of centrality.
-Hybrid model calculations agree with experimental measurements within $20\%$ for $0$--$50\%$ centralities ($N_{\textrm{part}} \gtrsim 75$) but underestimate the data at more peripheral centralities.
-We notice that in {ATLAS:2015kla}, \mbox{HIJING} calculations reproduce rms $a_1$ for $N_{\textrm{part}} \lesssim 80$ but overpredict the signal at larger $N_{\textrm{part}}$.
-This suggests that hydrodynamic calculations and microscopic models are complementary in understanding longitudinal fluctuations.
-
-Averaging the likelihood function over an ensemble of posterior parameter sets for each model gives the model likelihood, from which the Bayes factor is calculated,
-\begin{eqnarray}
-K = \frac{\text{Relative-skewness model}}{\text{Absolute-skewness model}} = 2.5 \pm 0.2. 
-\end{eqnarray}
-This value is too close to unity to make a decisive statement regarding the preference of one model over the other {Jeffreys:1961}.
-Indeed, the absolute-skewness model is slightly better in capturing the asymmetries in p+Pb collisions; while the relative-skewness model exhibits a larger curvature for rms $a_1$, closer to experiment.
-This is not a surprise since these two models give effectively the same local entropy profile as shown in the previous subsection.
-
-In summary, both models describe the p+Pb and Pb+Pb charged-particle pseudorapidity densities in all centrality bins to 10\% accuracy.
-It also describes the rms $a_1$ from central to mid-central Pb+Pb collisions.
-Both models fail to describe the rms $a_1$ in peripheral collisions which suggests that additional sources of fluctuation are needed in addition to nuclear thickness function fluctuations.
-Relevant sources could include initial dynamical fluctuations such as string fragmentation, subnucleonic fluctuations, and finite-particle effects.
-
-\begin{figure*}
-  \includegraphics{posterior}
-  \caption{Posterior distributions of the model parameters, listed in Table~\ref{tab:parameters}, for the relative-skewness (blue lower diagonal) and absolute-skewness (red upper diagonal) models. The diagonal panels are the marginal likelihood distributions of individual model parameters, while off-diagonal panels are joint distributions for pairs of model parameters.}
-  \label{fig:posterior}
-\end{figure*}
-
-\subsection{Posterior distribution of model parameters}
-Fig.~\ref{fig:posterior} presents the Bayesian posterior probability distributions for the relative- and absolute-skewness models (blue lower- and red upper-triangular matrices respectively).
-Diagonal panels show the marginal posterior distribution of individual model parameters (all other parameters integrated out), while off-diagonal panels show the joint distribution for pairs of model parameters, reflecting their correlations.
-
-The posterior distributions contain a wealth of information; here we summarize a few key observations:
-\begin{itemize}[itemsep=0pt, leftmargin=2\parindent]
-  \item Both models prefer the entropy deposition parameter $p$ close to $0$, consistent within the range of the prior distribution extracted from {Bernhard:2016tnd}.
-  \item The p+p multiplicity fluctuation parameter is well constrained and distributed about $k=2.0$ for both models.
-    These $k$ values are also consistent with the range of the previous estimates obtained from fits to p+p, p+Pb, and Pb+Pb multiplicity distributions at midrapidity {Moreland:2014oya}.
-  \item The relative-skewness model prefers a larger nucleon width than the absolute-skewness model. 
-  For future studies, one may also use more granular protons with subnucleonic structure instead of Gaussian protons.
-  \item The calibrated relative-skewness model exhibits almost zero shift about the mean and large skewness, while the absolute-skewness model prefers a shift close to the center-of-mass rapidity and a moderate skewness. 
-\end{itemize}
-Superficially, it appears that the models prefer qualitatively different mechanisms for longitudinal entropy deposition; however, for realistic values of the nuclear thickness function in heavy-ion collisions, the behavior of the two calibrated models is nearly identical, despite the use of two possible skewness parametrizations, as is shown in Fig.~\ref{fig:post_dsdy}.
-The lines and bands in Fig.~\ref{fig:post_dsdy} correspond to the mean and $1\sigma$ uncertainty of the calibrated models predictions. 
-We vary the nuclear thickness functions $T_A$ and $T_B$ from $0.2~\text{fm}^{-2}$ to $2.6~\text{fm}^{-2}$. The maximum of the nuclear thickness function for a Pb nucleus in an optical Glauber model is about $2.2~\text{fm}^{-2}$. However, the event-by-event $T_A$ and $T_B$ may exceed this value in the presence of nucleonic fluctuations.
-The calibrated relative- and absolute-model predictions agree within $1\sigma$ uncertainty band.
-This observation has an important implication.
-The two models adapt their parameters independently to describe the data and they coincide on one functional form of initial entropy deposition in terms of $T_A$ and $T_B$.
-Therefore, with experimental inputs from the charged particle pseudorapidity densities and two-particle pseudorapidity correlations, a systematic model-to-data comparison can extract the form of the three-dimensional initial entropy distribution for relativistic heavy-ion collisions at the LHC.
-
 \begin{figure}
-  \includegraphics{post_dsdy}
-  \caption{Applying parameters sampled from the posterior probability distribution to Eq.~\eqref{cgf} along with Eq.~\eqref{regulateEq}, this plot shows the resulting local entropy profile $ds/d\eta$ varying $T_A$ and $T_B$ from $0.2~\text{fm}^{-2}$ to $2.6~\text{fm}^{-2}$. The lines are the mean predictions and the bands denote $1\sigma$ model uncertainties.
-  }
-  \label{fig:post_dsdy}
+\includegraphics[width=\textwidth]{trento3d/post_obs.pdf}
+\caption{}
+\label{fig:trento:post_obs}
 \end{figure}
 
+Eventually, four thousands $Pb$+$Pb$ and ten thousands $p$+$Pb$ events are generated at $100$ set of parameter sets.
+The computed $\dnchdy$ and $a_1$ fluctuation are computed at different centrality, and then the Bayesian analysis makes inference on the probability distribution on the parameters by comparing to measurements.
+After the parameter calibration, the $\dnchdy$ and $a_1$ fluctuation as function of centrality is compared to measurements in figure \ref{fig:trento:post_obs}.
+We found the single particle distribution can be well reproduced by the calibrated initial condition plus dynamical evolution, while the correlation observables can be described upto 50\% centrality. 
+For more peripheral $Pb$+$Pb$ collisions, the hydrodynamical based model significantly underestimate the $a_1$ fluctuation.
+We understand this as the consequence of inadequate modeling of the short range correlation for peripheral collisions, as these contributions becomes more important when the multiplicity is small ($\dnchdy\sim 250$ and $N_{\textrm{part}} \sim 75$ at 50\% centrality).
+In fact, the authors of {ATLAS:2015kla} compared the measurements to the \mbox{HIJING} event generator that is based on mini-jet production.
+It is found that these jet-like correlations agrees well with the $a_1$ fluctuation for peripheral collisions with $N_{\textrm{part}} \lesssim 80$, while it overshoots the data for more central collision.
+The hydrodynamic model and mini-jet production model may need to be combined to fully understand the rms $a_1$, that at larger centrality, mini-jet production dominates the fluctuation of the $\dnchdy$, while as multiplicity increases and the final state interactions becomes more frequent, the short range correlation is diluted and the event-by-event asymmetry in the single-particle distribution dominates rms $a_1$.
 
-\subsection{Predictions for novel observables}
-Both the relative- and absolute-skewness models provide comparable descriptions of multiplicity observables in p+Pb and Pb+Pb collisions which makes sense given that they predict effectively identical three-dimensional initial entropy profiles when calibrated to fit experimental data.
-In this section, we proceed to investigate whether they can describe azimuthally sensitive observables such as flows, event-plane decorrelations and symmetric cumulants, and for completeness, we shall conduct the calculation with both models.
-Here we use selected initial condition parameters around the peaks of the posterior distributions for each model (Table \ref{tab:chosen_parameters}) and perform viscous 3+1D hydrodynamic evolution with UrQMD as an afterburner.
-These observables are a nontrivial test of the proposed model as they resolve azimuthal correlations which have not been included in the calibration process.
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{trento3d/posterior.pdf}
+\caption{Posterior distributions of the model parameters, listed in Table~\ref{tab:parameters}, for the relative-skewness (blue lower diagonal) and absolute-skewness (red upper diagonal) models. The diagonal panels are the marginal likelihood distributions of individual model parameters, while off-diagonal panels are joint distributions for pairs of model parameters.}
+\label{fig:trento:posterior}
+\end{figure}
 
-\begin{table}[t]
-  \caption{Selected high-probability parameter sets}
-    \begin{tabular}{lll}
-      Parameter & rel-skew	& abs-skew \\
-      \paddedhline
-      $N_{\textrm{Pb+Pb}}^\dagger$   & 150.0     & 154.0  \\
-      $p$	    & 0.0      & 0.0  \\
-      $k$	    & 2.0     & 2.0  \\
-      $w$	    & 0.59     & 0.42  \\
-      $\mu_0$   & 0.0     & 0.75  \\
-      $\sigma_0$ & 2.9    & 2.9  \\
-   	  $\gamma_0$ & 7.3		& 1.0	\\
-      $J$	     & 0.75 & 0.75	\\
-    \end{tabular}
-  \raggedright{$\dagger$ Normalization tuned with ideal hydro is reduced when using viscous hydro.}
-  \label{tab:chosen_parameters}
+Regarding the performances of different parametrization of the skewness (``relative'' and ``absolute'' skewness), the ``relative'' skewness one does better in reproducing the uprising trend of rms $a_1$, while the absolute skewness one better describes the large $dnchdy$ asymmetry in the top 1\% $p$+$Pb$ collisions.
+However, there is no strong evidence to favor any of them over the other.
+We will see later that this is because the two parametrizations, though take different forms, actually results in a similar function form of $ds/d\eta(\eta; T_A, T_B)$ for typical values of $T_A$ and $T_B$ of a heavy nuclei.
+
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{trento3d/post_dsdy}
+\caption{Applying parameters sampled from the posterior probability distribution to Eq.~\eqref{cgf} along with Eq.~\eqref{regulateEq}, this plot shows the resulting local entropy profile $ds/d\eta$ varying $T_A$ and $T_B$ from $0.2~\text{fm}^{-2}$ to $2.6~\text{fm}^{-2}$. The lines are the mean predictions and the bands denote $1\sigma$ model uncertainties.
+}
+\label{fig:trento:post_dsdy}
+\end{figure}
+
+Looking at the posterior distribution of the parameters in figure \ref{fig:trento:posterior}, where the red and blue lines and color map corresponds to the parameter distribution of the ``absolute'' and ``relative'' skewness respectively.
+One found that for the normalization parameters $N_{\textrm{PbPb}}$ and $N_{\textrm{pPb}}$, mid-rapidity entropy deposition parameter $p$, nucleon thickness function fluctuation parameter $k$, the width of the rapidity distribution $\sigma_0$ and the effective Jacobian $J$ have similar probability distributions between the two parametrizations.
+However, the distribution of the asymmetry related parameters $\mu_0$ and $\gamma_0$ (anti-correlated) are very different between the two.
+This is because the Bayesian calibration looks for the high-likelihood region of the parameter space to explain the data, and the two different prarametrizations can achieve this same goal by optimizing the parameter combinations differently.
+For the ``relative'' skewness one, this is the region where a small shift of the mean $\mu$ and a large skewness $\gamma$; for the ``absolute'' skewness one, it corresponds to the region with a large $\mu$ but vanishing $\gamma$.
+This does not mean that there are ``two models'' explaining the same data, because both of them are an oversimplified parametrization of $ds/d\eta(\eta; T_A, T_B)$ with infinitely many degrees of freedom. 
+Instead, we should treat them as an estimation of the systematic uncertainty in extracting the function form of the initial 3D entropy deposition $ds/d\eta(\eta; T_A(\x), T_B(\x))$.
+Therefore, it is more instructive to see the probability distribution of $ds/d\eta$ it self, given different values of $T_A(\x)$ and $T_B(\x)$.
+In Fig.~\ref{fig:trento:post_dsdy}, we samples the calibrated parameter distributions and use them to draw the entropy density as function of rapidity at different values of $T_A$ and $T_B$. 
+Again, the red and blue colors represents ``absolute'' and ``relative'' skewness parametrizations; the lines shows the median prediction and the bands are one standard deviation uncertainties. 
+In each row and each column, $T_A$ and $T_B$ varies from $0.2~\text{fm}^{-2}$ to $2.4~\text{fm}^{-2}$. 
+For references, the value of the thickness function at the center of a Gaussian proton with nucleon width $0.5$ fm is about $0.6~\text{fm}^{-2}$ and $T_{A,B} = 0.2~\text{fm}^{-2}$ corresponds to a nucleon's thickness at  1.5 width away from its center; while the maximum nuclear thickness function of a Pb nucleus is only about $2.2~\text{fm}^{-2}$.
+Therefore, the chosen range of $T_{A,B}$ already cover the typical ranges and combinations for entropy production in a realistic heavy-ion collision.
+One observe that the functional form of the $ds/dy$ between the two parametrization agrees within one standard deviation, with the deviations increases as the asymmetry increases.
+Certainly, with a sufficient different $T_A$ and $T_B$ combination, the two results will have totally different predictions; however, within the physical range of the thickness function, the two methods converges on a similar behavior,
+We conclude that by applying the hydrodynamic-based model and a flexible 3D initial condition, the form of the local rapidity distribution as function of the incoming participant densities can be reverse engineered using single particle pseudo-rapidity distribution and two-particle pseudo-rapidity correlation.
+
+\subsection{Prediction with the calibrated 3D initial condition}
+The calibrated initial condition is useful in predicting other rapidity-dependent observables.
+Especially, because we have only used multiplicities observables $dnchdy$ and rms $a_1$ in the calibration, a prediction of azimuthal anisotropy related observables would provide an important validation of the initial condition.
+We choose a set of high-likelihood parameters showed in table \ref{tab:chosen_parameters}.
+The selected validation / prediction observables are pseudo-rapidity dependent harmonic flows, event-plane decorrelations and the symmetric cumulants which quantifies the correlation between different flow harmonics.
+
+\begin{table}
+\centering
+\caption{A high likelihood parameter set}
+\begin{tabular}{lll}
+\hline
+Parameter & rel-skew	& abs-skew \\
+\hline
+$N_{\textrm{Pb+Pb}}$   & 150.0     & 154.0  \\
+$p$	    & 0.0      & 0.0  \\
+$k$	    & 2.0     & 2.0  \\
+$w$	    & 0.59     & 0.42  \\
+$\mu_0$   & 0.0     & 0.75  \\
+$\sigma_0$ & 2.9    & 2.9  \\
+$\gamma_0$ & 7.3		& 1.0	\\
+$J$	     & 0.75 & 0.75	\\
+\hline
+\end{tabular}
+\label{tab:chosen_parameters}    
 \end{table}
 
-\subsection{Anisotropic flows} 
-As a preliminary check, we first verify that previous results for the elliptic and triangular flow harmonics $v_2\{2\}$ and $v_3\{2\}$ obtained using \trento\ initial conditions at midrapidity {Bernhard:2016tnd} are indeed recovered by the rapidity-dependent model extension.
-Fig.~\ref{fig:vn_cen} shows the centrality dependence of $p_T$-integrated flow for ${0.2  < p_T < 5.0}$~GeV and $|\eta| < 0.8$ calculated from the \emph{three-dimensional} hybrid model compared to \mbox{ALICE} measurements {Adam:2016izf} using the  $Q$-cumulant method {Bilandzic:2010jr}.
-The 3+1D hydrodynamics code used in this study only partially implements bulk viscous corrections and thus is not yet suitable for quantitative calculations involving finite bulk viscosity.
-We therefore assert a QGP specific bulk viscosity $\zeta/s = 0$ which precludes direct comparison with the boost-invariant VISH2+1 hydrodynamics code {Song:2007ux, Shen:2014vra, Bernhard:2016tnd} and the corresponding shear and bulk viscosities determined by the previous Bayesian analysis {Bernhard:2016tnd}.
-For the QGP specific shear viscosity, we choose constant QGP $\eta/s = 0.17$ and $0.19$ for relative- and absolute-skewness models respectively, which provide good descriptions of the data {Gale:2012rq, Niemi:2015qia}, although it is not a systematic best fit.
-The resulting $v_2\{2\}$ and $v_3\{2\}$ agree with experimental data within $10\%$ and verify that the generating function rapidity extension recovers previous \trento\ initial condition results at midrapidity.
+The elliptic and triangular flow from two-particle correlation $v_2\{2\}$ and $v_3\{2\}$ are calculated at as function of centrality at mid-rapidity (figure \ref{fig:trento:vn_cen}) and as function of pesudo-rapidity at different centrality (figure \ref{fig:trento:vn_eta}).
+The first comparison is just to verify that with the inclusion of the longitudinal dependence, we are still able to describe flow measurement at mid-rapidity with a shear viscosity $\eta/s = 0.17 -- 0.19$ close to other phenomenological studies, though the bulk viscosity is not include.
+The resultant calculation agrees with ALICE measurement within $\pm 10\%$ {Adam:2016izf}.
 
 \begin{figure}
-  \includegraphics{vn_cen}
-  \caption{Elliptic and triangular flow cumulants $v_2\{2\}$ and $v_3\{2\}$ as a function of centrality calculated from 3+1D hybrid model simulations using constant specific shear viscosity $\eta/s=0.17$ and $0.19$ for relative- and absolute-skewness models respectively, zero bulk viscosity $\zeta/s=0$ and hydro-to-micro switching temperature $T_\text{sw}=154$~MeV.
-  The initial condition parameters are selected from the Bayesian posterior.}
-  \label{fig:vn_cen}
+\centering
+\includegraphics[width=.7\textwidth]{trento3d/vn_cen}
+\caption{Elliptic and triangular flow cumulants $v_2\{2\}$ and $v_3\{2\}$ as a function of centrality calculated from 3+1D hybrid model simulations using constant specific shear viscosity $\eta/s=0.17$ and $0.19$ for relative- and absolute-skewness models respectively, zero bulk viscosity $\zeta/s=0$ and hydro-to-micro switching temperature $T_\text{sw}=154$~MeV.
+The initial condition parameters are selected from the Bayesian posterior.}
+\label{fig:trento:vn_cen}
 \end{figure}
 
-We now proceed to calculate the pseudorapidity-dependent flows which provide a sensitive handle on the QGP transverse structure at different rapidity values.
-The ALICE collaboration has measured $v_n\{2\}(\eta)$ and $v_2\{4\}(\eta)$ within the wide pseudorapidity interval $-3.5 < \eta < 5.0$ and extrapolated to zero $p_T$ {Adam:2016ows}. 
-This extrapolation reduces integrated flow relative to measurements with a nonzero $p_T$ cut because it averages over low-$p_T$ particles which generally have less flow.
-The same behavior occurs in hydrodynamic models, although models which mispredict mean $p_T$ also mispredict the corresponding change in flow produced by introducing a $p_T$ cut.
-The hybrid model used in this study omits bulk viscous corrections and thus overpredicts mean $p_T$.
-This means it cannot describe hydrodynamic flow measurements with different $p_T$ cuts using a single value of $\eta/s$.
-To circumvent this issue, we use $\eta/s=0.25$--$0.28$ when comparing to ALICE measurements that are extrapolated to zero $p_T$. 
-Future implementation of realistic bulk viscous corrections would eliminate such fine tuning.
+For the rapidity dependent flow figure \ref{fig:trento:vn_eta}, we used a larger $\eta/s=0.25--0.28$. 
+This inconsistency is because the ALICE measurement extrapolate $p_T$ range for the rapidity-dependent flow down to 0, while the mid-rapidity  $p_T$ cut is $0.2 < p_T < 5.0$ GeV.
+It would not be a problem for the model to describe both with the same transport parameters, if the $p_T$ differential flow and $p_T$ differential particle spectra are both reproduced.
+However, due to the lack of a systematic tuning of the model parameters, including both shear and bulk viscosity, the current mean $p_T$ is too high.
+Therefore, agreement with the $p_T$-integrated flow in one kinematic cut does not guarantee the agreement at $\eta=0$ to measurements that extrapolate to $p_T = 0$.
+Since our primary interest is the $\eta$-dependence of the flow, we have chosen this larger-than-usual shear viscosity to match the $v_2{2}(\eta=0)$ values to data.
+The calculated $v_2\{2\}$, $v_3\{2\}$, and $v_2\{4\}$ gradually decreases from mid-rapidity to forward / backward rapidity, which is also the trend of the data.
+The shape of $v_3\{2\}$ is well described; but for $v_2\{2\}$ and $v_2\{4\}$ in the region $|\eta| > 2.0$, the data decreases much faster than our predictions.
+There could be several reasons for this differences.
+For example, $v_3$ are driven by fluctuations while $v_2$ is driven by a combination of both collision geometry and fluctuations. It is possible that the current initial condition model produce enough amount of fluctuation, but inadequate variance of the the overlapping geometry as function of space-time rapidity.
+It is also showed in a study of at RHIC energies {Denicol:2015bnf} that the decreasing slope of $v_n(\eta)$ can be sensitive to the shear viscosity in the hadronic phase. 
+But in our model, the transport properties of the system below $T_c$ is all encoded in UrQMD and is not tunable. 
+Moreover, we have assumed that hydrodynamization happens at a constant proper time hypersurface. 
+While it is possible a constant entropy density hypersurface is a better criteria, and as a result the matter at larger rapidity experiences less pressure driven expansion.
+To systematically investigate all these effects, a future global parameter calibration including both initial condition parameters, transport parameters, and matching parameters is inevitable and is also feasible given the advance of the dynamical models and programming developments as well as more powerful computing resources.
 
-The pseudorapidity-dependent flows are estimated using the cumulant approach {Bilandzic:2010jr}, where particles of interests (POI) are correlated with reference particles.
-The differential flow is then calculated via,
+
+\begin{figure}
+\includegraphics[width=\textwidth]{trento3d/vn_eta}
+\caption{Pseudorapidity dependence of anisotropic flow coefficients $v_2\{2\}$, $v_3\{2\}$ and $v_2\{4\}$ (blue circle, green triangle and orange diamond shaped symbols) calculated from the hybrid model with constant specific shear viscosity $\eta/s=0.25$ and $0.28$ for relative- and absolute-skewness models respectively (solid and open symbols), compared to data from ALICE (smaller black symbols) with $p_T > 0$~GeV (extrapolated) in different centrality bins. 
+The bands for each theory calculation point indicate $1\sigma$ statistical error, while experimental bands/bars denote $1\sigma$ systematic and statistical errors respectively.}
+\label{fig:trento:vn_eta}
+\end{figure}
+
+The event-plane decorrelation reveals longitudinal structure of the event from a different angle, by quantifying how much the event-plane angles,
 \begin{eqnarray}
-v_n^\prime\{2\} = \frac{d_n\{2\}}{\sqrt{c_n\{2\}}},\\
-v_n^\prime\{4\} = \frac{-d_n\{4\}}{\left(-c_n\{4\}\right)^{3/4}},
+\Psi_n^\text{EP} = \frac{\text{atan2}(\langle \sin n \phi \rangle, \langle\cos n \phi \rangle)}{n},
 \end{eqnarray}
-where $d_n\{2\}$, $d_n\{4\}$ is the two- and four-particle cumulants between the POI and reference particles and $c_n\{2\}$ and $c_2\{4\}$ are the cumulants among reference particles.
-For POI with $\eta > 0$ ($\eta < 0$), the reference particles are restricted to $-0.8 <\eta < 0$ ($0 <\eta < 0.8$) to avoid autocorrelations.
-The results are shown in the left panel of Fig.~\ref{fig:vn_eta} for nine centrality classes.
-The correlation functions $d_n(\eta)$ and $c_n(\eta)$ are symmetrized since the event-averaged pseudorapidity-differential flow for the Pb+Pb system should be invariant with respect to the substitution $\eta \rightarrow -\eta$.
+This event-plane decorrelation been studied using initial conditions from 3D extended Glauber model and A Multi-Phase Transport (AMPT) model {Bozek:2015bna,Jia:2014ysa, Xiao:2012uw,Pang:2015zrq}.
+Recently developments such as solving the gluonic Yang-Mills dynamics in three-dimensions also studied the decorrelation of the initial eccentricity.
+In our model, the geometry at forward and backward rapidity are dominated by the participants density of two different nuclei.
+And in between, the entropy production smoothly transit from one to anther and so are the orientation of the energy density eccentricities that drives the flow of particles.
+Phenomenological speaking, the decorrelation effect is important those observable that involves a large rapidity gap and should be corrected.
+The CMS collaborations quantifies the decorrelation by a three-bins factorization ratio {Khachatryan:2015oea},
+\begin{eqnarray}
+r_n(\eta^a, \eta^b) &= \frac{V_{n\Delta}(-\eta^a, \eta^b)}{V_{n\Delta}(\eta^a, \eta^b)}, \\
+V_{n\Delta}(\eta^a, \eta^b) &= \langle\langle \cos(n\Delta\phi) \rangle\rangle,
+\end{eqnarray}
+where the double average run over all particle pairs and all events.
+The ratio is involves three rapidity bins one near $\eta^b$ and the other two near $\pm\eta^a$.
+This ratio measures the decorrelation between two event planes separated by a larger rapidity gap $\eta^a + \eta^b$ relative to the decorrelation over a smaller gap $|\eta^a - \eta^b|$.
+Experimentally, one would like the reference $\eta^b$ larger to surprises the short range correlations correlation, which produces signals that does not come from the single particle event-plane.
+However, the way we build our model is to extend the mid-rapidity entropy deposition to finite rapidity, and this extension will eventually failed at sufficiently large rapidity because the model behavior at those part is not well constrained.
 
-Both models predict $v_2\{2\}$, $v_2\{4\}$ and $v_3\{2\}$ that decrease from mid to forward/backward rapidity and produce a triangle shaped structure as measured by ALICE.
-Incidentally, the absolute-skewness model agrees with experiment slightly better at large pseudorapidity.
-It has been realized that the slope of $v_n(\eta)$ which produces this triangular shape is highly sensitive to the hadronic shear viscosity {Denicol:2015bnf}, and thus Fig.~\ref{fig:vn_eta} corroborates that UrQMD provides a semi-quantitative description of hadronic viscosity below the QGP transition temperature.
-However, for central to mid-central collisions, the slope of the decreasing $v_2$ as a function of pseudorapidity is underpredicted, resulting in a flatter $v_n(\eta)$ than the experiments.
-The reason for this discrepancy may be complicated.
-Apart from improving initial conditions, a realistic bulk viscosity and a temperature dependent specific shear viscosity should definitely affect the results.
-Another reason could be the use of the QCD EoS and QGP transport coefficient $\eta/s$ in the limit of vanishing baryon chemical potential, which may not be a good approximation at large pseudorapidity even at LHC energies.
+In figure \ref{fig:trento:epd}, we compare the model calculations to data with both a large $4.4<\eta^b<5.0$ (right) and a relative smaller $3.0 < \eta^b< 4.0$ (left).
+The predicted factoziation ratios decreases linearly with the the increasing rapidity gap.
+Using reference particles from $3.0 < \eta^b< 4.0$, the decorrelation is reproduced at larger centrality but not for central collisions.
+Because the $n=2$ event-plane has a preferred direction defined by the impact parameter, while $n=3$ event-plane does not, we observe that $n=2$ factorization ratio decorrelates slower than the $n=3$ ratio, except for the most central collision when $n=2$ event-plane is also dominated by fluctuations.
+Comparing to data with reference particle from $4.4<\eta^b<5.0$, the experimental data stays similar to the the previous case except for central collisions, but the prediction is completely off.
+This is simply because the model fails on the details at large rapidity as we explained earlier.
+Given the present comparison, we conclude that the valid range of the model is $|\eta| < 4.0$.
 
-\begin{figure*}
-  \includegraphics{vn_eta}
-  \caption{Pseudorapidity dependence of anisotropic flow coefficients $v_2\{2\}$, $v_3\{2\}$ and $v_2\{4\}$ (blue circle, green triangle and orange diamond shaped symbols) calculated from the hybrid model with constant specific shear viscosity $\eta/s=0.25$ and $0.28$ for relative- and absolute-skewness models respectively (solid and open symbols), compared to data from ALICE (smaller black symbols) with $p_T > 0$~GeV (extrapolated) in different centrality bins. 
-  The bands for each theory calculation point indicate $1\sigma$ statistical error, while experimental bands/bars denote $1\sigma$ systematic and statistical errors respectively.}
-  \label{fig:vn_eta}
-\end{figure*}
-
-
-
-\begin{figure*}
-  \begin{center}
-  \includegraphics{evt_pln_decorr_near}
-  \quad\quad\quad
-  \includegraphics{evt_pln_decorr_far}
-  \end{center}
-  \caption{Left: The event-plane decorrelation for $n=2,3$ in different centrality bins with the reference particles from $3.0<|\eta^b|<4.0$.
+\begin{figure}
+\centering
+\includegraphics[width=.495\textwidth]{trento3d/evt_pln_decorr_near}
+\hfill
+\includegraphics[width=.495\textwidth]{trento3d/evt_pln_decorr_far}
+\caption{Left: The event-plane decorrelation for $n=2,3$ in different centrality bins with the reference particles from $3.0<|\eta^b|<4.0$.
   Right: The same quantities as the left panel but with the reference particles from $4.4<|\eta^b|<5.0$. 
   Theory bands indicate $1\sigma$ statistical error, while experimental bands/bars denote $1\sigma$ systematic and statistical errors respectively.}
-  \label{fig:epd}
-\end{figure*}
+\label{fig:trento:epd}
+\end{figure}
 
-
-\subsection{Event-plane decorrelation}
-
-Next, we study the event-plane decorrelation as a function of pseudorapidity using the calibrated relative-skewness model. 
-The event planes are defined by the angles
+The last observable is an intricate one that measure how different order of flow harmonics correlated with each other.
+Methods such as event-shape engineering and multi-particle symmetric cumulants are used to extract these information {Schukraft:2012ah, Aad:2015lwa, Bilandzic:2013kga}.
+ALICE experiments adopt the symmetric cumulants $SC$ method {ALICE:2016kpq}.
+It is a four particle correlation involves two different harmonic orders $m$ and $n$
+\begin{eqnarray}
+SC(m, n) &=& \langle\langle \cos(m\phi_1+n\phi_2-m\phi_3-n\phi_4)\rangle\rangle \nonumber \\
+\nonumber &-& \langle\langle\cos[m(\phi_1-\phi_2)]\rangle\rangle\langle\langle\cos[n(\phi_1-\phi_2)]\rangle\rangle \label{eq:scmn}\\
+&=& \langle v_m^2 v_n^2 \rangle - \langle v_m^2\rangle\langle v_n^2\rangle.
+\end{eqnarray}
+It is clear from the second equation that it measures the covariance between $v_n^2$ and $v_m^2$.
+One can also define the normalized symmetric cumulants (NSC),
 \begin{equation}
-  \Psi_n^\text{EP} = \frac{\text{atan2}(\langle \sin n \phi \rangle, \langle\cos n \phi \rangle)}{n},
+NSC(m,n) = \frac{SC(m,n)}{\langle v_m^2\rangle\langle v_n^2\rangle}.
 \end{equation}
-where the average is performed over particles of interest.
-In general, the angles $\Psi_n^\text{EP}$ may change as a function of pseudorapidity due to longitudinal initial state fluctuations and finite particle effects.
-As a consequence, two event-plane angles constructed from sets of particles separated by a finite rapidity gap will decorrelate as the rapidity gap increases.
-This effect is important as it affects not only the calculation of soft observables involving a finite pseudorapidity gap or a large pseudorapidity interval, but also the interpretation of hard probe observables where particles from a rare hard process are often correlated with reference particles from different pseudorapidity bins.
-It has been studied in a number of previous works including a longitudinally torqued fireball model with fluctuating sources {Bozek:2015bna}, AMPT calculations which studied its influence on flow observables {Jia:2014ysa, Xiao:2012uw}, as well as coarse-grained AMPT initial conditions that were embedded in 3+1D ideal hydrodynamic simulations {Pang:2015zrq}.
+These observables are interesting because they are robust against now-flow effects, and have been shown to be sensitive to the temperature dependece of the transport coefficients {Niemi:2012aj}.
+Other analysis show that $SC(4,2)$ probes the non-linear response of the hydrodynamic evolution, while $SC(3,2)$ is more sensitive to initial conditions {Zhu:2016puf}, etc.
 
-The decorrelations receive contributions from both random fluctuations during the evolution process and the systemic twist of the participant plane arising from initial longitudinal fluctuations {Bozek:2015bna}.
-In the present parametric initial condition model, the participant plane twist arises naturally from local longitudinal fluctuations.
-The transverse geometry at forward (backward) space-time rapidity is dominated by the projectile (target) participant density.
-As a result, the participant plane gradually interpolates between the projectile and target densities, leading to a systemic twist in the beam direction.
-The time evolution also contributes to decorrelation among the event-planes.
-For example, early- and late-stage dynamics introduce additional fluctuations that partially randomize event-plane orientations.
-Stochastic contributions from pre-equilibrium dynamics are neglected in the present study, but fluctuations in the hadronic phase are naturally accounted for by the UrQMD transport model.
+The relative- and absolute-skewness calculations are arranged on the left and right of \ref{fig:trento:smn}. Symmetric cumulants $SC(4,2)$ (blue) and $SC(3,2)$ (green) are displayed in the top plots, and $NSC(4,2)$ (blue) and $NSC(3,2)$ (green) in the bottom plots.
+Within each plot, black dots are ALICE measurements at midrapidity $|\eta|<0.8$, which should be compared to the calculation shown in solid lines.
+The calculation shown in dashed lines are our predictions at forward/backward rapidity $2.5 < |\eta| < 3.5$ using,
+\begin{eqnarray}
+SC^\prime(m, n) &=& \langle\langle \cos(m\phi_1+n\phi_2-m\phi_3^\prime-n\phi_4^\prime)\rangle\rangle \\
+\nonumber &-& \langle\langle\cos[m(\phi_1-\phi_2^\prime)]\rangle\rangle\langle\langle\cos[n(\phi_1-\phi_2^\prime)]\rangle\rangle, \label{eq:scmn}
+\end{eqnarray}
+where the two of the particles (primed) are selected from the forward/backward rapidity bins, while the rest of the two still come from the mid-rapidity bin  $|\eta|<0.8$.
 
-The CMS collaboration has measured the event-plane decorrelations in Pb+Pb collisions using the $\eta$-dependent factorization ratio $r_n(\eta^a, \eta^b)$ {Khachatryan:2015oea}, defined as
-\begin{align}
-  r_n(\eta^a, \eta^b) &= \frac{V_{n\Delta}(-\eta^a, \eta^b)}{V_{n\Delta}(\eta^a, \eta^b)}, \\
-  V_{n\Delta}(\eta^a, \eta^b) &= \langle\langle \cos(n\Delta\phi) \rangle\rangle,
-\end{align}
-where the double average means averaging over particles in each event and then averaging over all events in a given centrality class. 
-The use of three $\eta$-bins ($\pm \eta^a$ and $\eta^b$) reduces short range correlations.
-The ratio $r_n(\eta^a, \eta^b)$ reflects the fluctuation of event-plane angles separated by $\eta^a+\eta^b$ relative to the fluctuation of angles separated by  $|\eta^a-\eta^b|$ {Khachatryan:2015oea}.
+At mid-rapidity, the calculated (normalized) symmetric cumulents reproduce the trend of the measurements, and the ``relative'' skewed initial condition does a better quantitative job than the ``absolute'' skewed model.
+At forward and backward rapidity, though the magnitudes of both $SC(m,n)$ and $v_n$, $v_m$ changed, the normalized symmetric cumulants remains the same as the one at mid-rapidity.
+This is a prediction that can be checked in future measurements to put further constraints on the three-dimensional initial condition model.
 
-We compare our calculation to the CMS measurements with both $3.0 < \eta^b < 4.0$ and $4.4 < \eta^b < 5.0$ and momentum cuts $p_T^b > 0$~GeV and ${0.3 < p_T^a < 3.0}$~GeV.
-The $\eta$-dependent factorization ratios $r_2$ and $r_3$ for six centrality classes and different $\eta^b$ cuts are shown in Fig.~\ref{fig:epd}.
-Both models predict a prominent $n=2, 3$ event-plane decorrelation in central collisions which decreases with increasing centrality.
-For midcentral collisions, the nuclear geometry largely defines the $n=2$ participant plane---fluctuations and twisting are perturbations around this predominant direction---and hence $r=2$ decorrelation is reduced.
-On the other hand, the $n=3$ event-plane receives little contribution from the nuclear geometry but is dominated mostly by fluctuations; it therefore has a similar slope over all six centralities.
-In central collisions, the contribution from nuclear geometry is overwhelmed by fluctuations leading to similar $n=2$ and $n=3$ decorrelations.
-The calculations describe the observed $n=2,3$ event-plane decorrelations with $3.0 < \eta^b < 4.0$ very well except the most central $0$--$5\%$ centrality, but systematically overpredict the magnitude of the decorrelations with $4.4 < \eta^b < 5.0$, especially for $0$--$10\%$ central collisions.
-The reason is that the model, by construction, extends well-developed mid-rapidity initial conditions to finite pseudorapidity. 
-Even though it is calibrated to multiplicity observables, it gradually loses its predictive power for fine-structure flow observables when moving far away from mid-rapidity.
-Specifically, the model predicts decorrelations between the event-planes that are stronger for larger $\eta^b$ bins, while the experiment sees that the magnitude of decorrelation saturates when moving from $3.0<\eta^b<4.0$ to $4.4<\eta^b<5.0$.
-Future improvements to the model at large pseudorapidity are clearly needed.
-Nevertheless, the model's explanation of the event-plane decorrelations for $3.0 < \eta^b < 4.0$ remains nontrivial.
-Both models were both calibrated with $\dnchdy$ and rms $a_1$ data.
-These multiplicity observables do not constrain the transverse structure of the event at different pseudorapidities, and hence reproducing $r_2$ and $r_3$ means the calibrated initial condition models not only reproduce global longitudinal entropy deposition and fluctuations, but also capture features of the longitudinal dependence of transverse geometry within $|\eta| \lesssim 4$.
-
-
-\begin{figure*}
-  \includegraphics{smn}
-  \caption{Top row: calculated $SC(4,2)$ and $SC(3,2)$ as functions of centrality compared to ALICE measurements, with the same 3D hybrid model set-up as used for Fig. \ref{fig:vn_cen}.
+\begin{figure}
+\includegraphics[width=\textwidth]{trento3d/smn}
+\caption{Top row: calculated $SC(4,2)$ and $SC(3,2)$ as functions of centrality compared to ALICE measurements, with the same 3D hybrid model set-up as used for Fig. \ref{fig:vn_cen}.
   We conduct calculations in two kinematic ranges: $|\eta|<0.8$ is the pseudorapidity cut used by current the ALICE measurement and $2.5<|\eta|<3.5$ is our prediction for the symmetric cumulants away from mid-rapidity in the Pb+Pb system.
   Bottom row: $SC(m,n)$ normalized by $\langle v_m^2\rangle\langle v_n^2\rangle$ for two two kinematic ranges.
   The left column and right column show results using relative- and absolute-skewness respectively.
-   }
-  \label{fig:smn} 
-\end{figure*}
+}
+\label{fig:trento:smn} 
+\end{figure}
 
-
-\subsection{Flow correlations}
-
-Correlations between different anisotropic flow harmonics can be used to further constrain the initial state geometry {Niemi:2012aj}.
-Experimentally, these correlations can be quantified using either event shape engineering {Schukraft:2012ah, Aad:2015lwa} or the symmetric cumulants $SC(m,n)$ {Bilandzic:2013kga}. 
-Here we focus on the symmetric cumulants which are defined as,
-\begin{align}
-SC(m, n) &= \langle\langle \cos(m\phi_1+n\phi_2-m\phi_3-n\phi_4)\rangle\rangle \nonumber \\
-\nonumber &- \langle\langle\cos[m(\phi_1-\phi_2)]\rangle\rangle\langle\langle\cos[n(\phi_1-\phi_2)]\rangle\rangle \label{eq:scmn}\\
-&= \langle v_m^2 v_n^2 \rangle - \langle v_m^2\rangle\langle v_n^2\rangle.
-\end{align}
-The centrality dependences of $SC(4,2)$ and $ SC(3,2)$ at midrapidity have recently been measured by ALICE {ALICE:2016kpq}. 
-A positive value of $SC(m,n)$ means that a large $v_m$ is more likely to be observed with a large $v_n$, while for negative values of $SC(m,n)$, a large $v_m$ favors small $v_n$.
-The symmetric cumulants $SC(m,n)$ are nearly insensitive to nonflow effects while remaining sensitive to collective effects, initial geometry fluctuations $\langle \varepsilon_m^2 \varepsilon_n^2 \rangle - \langle \varepsilon_m^2 \rangle \langle \varepsilon_n^2 \rangle$ and the QGP specific shear viscosity {ALICE:2016kpq, Zhu:2016puf}.
-To remove its dependence on the magnitudes of $\langle v_m^2\rangle$ and $\langle v_n^2\rangle$, we also calculate the normalized symmetric cumulants
-\begin{equation}
-  NSC(m,n) = SC(m,n)/\langle v_m^2\rangle\langle v_n^2\rangle.
-\end{equation}
-Here we use this tool to not only study the flow correlations at midrapidity, but also reveal its pseudorapidity dependence.
-
-Fig.~\ref{fig:smn} shows the calculated symmetric cumulants compared to ALICE measurements using the relative- and absolute-skewness models with the same transport coefficients as in Fig.~\ref{fig:vn_cen}. 
-We use the same centrality bins as ALICE experiments and the centrality averaged symmetric cumulants are performed with a multiplicity weight as discussed in {Gardim:2016nrr}.
-We first calculate $SC(4,2)$ and $SC(3,2)$ at midrapidity $|\eta|<0.8$ (solid lines) to match the rapidity cuts of the ALICE measurement.
-The negative $SC(3,2)$ is a result of initial eccentricity correlations, while the large positive $SC(4,2)$ is produced by nonlinear correlations between $v_2$ and $v_4$ during the medium evolution {Giacalone:2016afq, Qian:2016fpi, Bhalerao:2014xra, Zhou:2015eya}.
-The resulting symmetric and normalized symmetric cumulants agree with the data quite well and support previous constraints on the QGP initial conditions at midrapidity {Bernhard:2016tnd}. 
-
-Next, we shift our attention away from midrapidity and predict the symmetric (normalized symmetric) cumulants in the rapidity interval $2.5 < |\eta| < 3.5$ (dashed lines) which has not been measured.
-In this calculation, we take two reference particles from $|\eta| < 0.8$ and two POI from $2.5 < |\eta| < 3.5$ and calculate
-\begin{align}
-SC^\prime(m, n) &= \langle\langle \cos(m\phi_1+n\phi_2-m\phi_3^\prime-n\phi_4^\prime)\rangle\rangle \\
-\nonumber &- \langle\langle\cos[m(\phi_1-\phi_2^\prime)]\rangle\rangle\langle\langle\cos[n(\phi_1-\phi_2^\prime)]\rangle\rangle, \label{eq:scmn}
-\end{align}
-where the primed symbols represents the azimuthal angle of POI.
-Magnitudes of both $SC^\prime(4, 2)$ and $SC^\prime(3, 2)$ are significantly suppressed at forward/backward rapidities, in accordance with the behavior of $v_2\{2\}(\eta)$ and $v_3\{2\}(\eta)$ as presented in the text in Fig.~\ref{fig:vn_eta}.
-However the normalized symmetric cumulants $NSC^\prime(4,2)$ and $NSC^\prime(3,2)$ are consistent within uncertainty bands for different pseudorapidity cuts.
-We observe that the normalized symmetric cumulant does not change as a function of psuedorapidity for either the relative- or absolute-skewness model and hence expect it to remain constant in nature as well.
-Future comparison with available data should correspondingly impose strong constraints on our approach for modeling the three-dimensional initial conditions.
-
-
-In summary, we have proposed a new method to extend arbitrary initial condition models defined at midrapidity to forward and backward pseudorapidity.
-The method describes initial entropy deposition as a purely local function of nuclear participant densities, with the longitudinal profile reconstructed from generating-function cumulants.
-The first three cumulants of the distribution (mean, standard deviation, and skewness) are included.
-We set the mean proportional to the center-of-mass rapidity of local nuclear participant densities, and parametrize the standard deviation using a constant rapidity width.
-Two models for the distribution's skewness are investigated: one where the skewness is proportional to the relative nuclear thickness difference, and one where it is proportional to the absolute difference.
-
-We apply the method to extend the parametric \trento\ initial condition model which has been previously used to constrain QGP initial conditions and medium properties at midrapidity. 
-The resulting three-dimensional models are then calibrated using Bayesian parameter estimation to fit p+Pb and Pb+Pb charged particle pseudorapidity densities $\dnchdy$ and the root-mean-square of the two particle pseudo-rapidity correlation's Legendre decomposition coefficient $a_1$ at the LHC.
-After the calibration, both models provide comparable descriptions of experimental $\dnchdy$ and rms $a_1$ data.
-Despite the apparent difference in the skewness ansatz, the calibrated models predict effectively the same behavior for local longitudinal entropy deposition as function of nuclear thickness in heavy-ion collisions.
-
-Using the calibrated relative- and absolute-skewness initial condition models, we study pseudorapidity-dependent anisotropic flows, event-plane decorrelations and flow correlations in Pb+Pb collisions.
-The model nicely describes integrated flows $v_2$ and $v_3$ at midrapidity as well as the pseudorapidity dependence of differential flow for different centrality classes.
-The elliptic and triangular event-plane decorrelations with $3.0 < |\eta^b| < 4.0$ are well explained except for the most central collisions, but both models overpredict the decorrelations with the reference particles $4.4 < |\eta^b| < 5.0$.
-This is because the model is an extension from mid-rapidity calculation and it gradually loses its accuracy at large forward/backward rapidity.
-Both models give a satisfactory description of flow correlation $SC(3,2)$ and $SC(4,2)$ at midrapidity, which can be used to predict their values at forward/backward pseudorapidity where their values have not yet been measured.
-
-The present work expands upon previous efforts to parametrize and constrain local initial condition properties using global final-state observables.
-We show that these local properties are overconstrained by multiplicity observables alone and can be reverse engineered using systematic model-to-data comparison with quantitative uncertainty.
-Specifically, it is a first attempt to use data-driven methods to infer what the entropy density distribution looks like at the hydrodynamic starting time in all three spatial dimensions.
-
-It is clear that local forward/backward fluctuations are responsible for a variety of longitudinally sensitive phenomena beyond mere multiplicity fluctuations.
-The general agreement of the present framework with pseudorapidity dependent flows and event-plane decorrelations corroborates the use of relativistic viscous hydrodynamics in describing the QGP dynamics away from midrapidity region.
-The resulting knowledge can then be used to provide direct feedback for first-principle calculations of the QGP initial conditions, and can also be applied to studies where the QGP initial conditions act as a nuissance parameter, e.g.\ when modeling the propagation of hard probes through the medium in order to measure their response.
-
-The present analysis would benefit from a number of future improvements.
-For example, it would be interesting to add subnucleonic structure to the nuclear thickness functions in order to examine its effect on longitudinal rapidity fluctuations.
-Also, in this work we assume that the multiplicity observables are insensitive to viscous effects and use ideal hydrodynamics in the model-to-data comparison process.
-In the calculation of flow observables, we use an over-simplified constant specific shear viscosity and zero bulk viscosity, although there have been many works suggesting preference for a temperature dependent shear viscosity and finite bulk viscosity {Bernhard:2016tnd,Niemi:2015qia, Ryu:2015vwa}.
-We leave these refinements to future work and hope the calibrated initial conditions presented in this study provide a more realistic description of the three-dimensional structure of relativistic heavy-ion collisions which will prove useful in constraining the properties of hot and dense QCD matter.
+\section{Summary}
+As a summary of this section, I have introduced the hydrodynamic-based  medium evolution model that is very successful in explaining a spectrum of different soft observables.
+The sensitivity of the harmonic flows to the QCD transport coefficients allows one to a model parameter calibration using advanced statistical technique.
+On the other hand, the initial condition for the dynamical model is still a large source of uncertainty in both data interpretation and parameter extraction.
+The \trento\ initial condition model was developed as a flexible ansatz for mid-rapidity entropy / energy deposition so that the initial condition and interested transport coefficients can be calibrated simultaneously to data.
+Finally, I discussed my work on extending the \trento\ initial condition to include rapidity dependence and the use of multiplicity observable to reverse-engineer the functional form of initial 3D entropy deposition.
+The results can be used to predict more rapidity-dependent observables, which is useful to study the medium dynamics in a hydrodynamic approach at large rapidity.
+With the current accuracy, not all observables are reproduced to a similar level of accuracy as the mid-rapidity case.
+This is partly due to the simplicity of the modeling, as well as the lack of global fit of all parameters including both 3D initial conditions and transport coefficients.
+This is an important practice in the future to study how far can one push the application of hydrodynamics into the large rapidity region and how the inclusion of longitudinal fluctuation affects the extracted QCD transport coefficients.
