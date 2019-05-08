@@ -189,7 +189,7 @@ The Einstein relation $\phi = 0$ guarantees the exist of a equilibrium solution,
 A = \frac{\Kpara}{2TE} - \frac{\partial \Kpara}{\partial p^2} - \frac{\Kpara-\Kperp}{p^2}
 \end{eqnarray}
 
-\section{Transport approach in the incoherent limit}
+\section{Hard parton transport in the incoherent limit}
 In this section, we shall first proceed using local and incoherent calculation of such processes and will discuss in great detail in the next section on including the LPM effect in a Boltzmann-like transport approach.
 The partonic processes are categorized into elastic (particle number conserving) and inelastic processes (particle number non-conserving). 
 The inelastic processes are further divided into parton-splitting and parton-jointing contribution. 
@@ -388,7 +388,7 @@ Because quantum statistics introduces factors like $1\pm f(p\cdot u)$ to the fin
 This significantly increases the dimension and complexity of the problem. 
 Fortunately, as we have shown in the last subsection, the screen effect can be neglected at leading order if we restrict the use of the matrix-element scatterings at large momentum transfer. 
 
-\section{Parton-branching (inelastic) process and the Landau-Pomeranchuk-Migdal effect}
+\section{The Landau-Pomeranchuk-Migdal effect of induced splitting}
 The inelastic process characterize the particle number changing processes in the Boltzmann equation.
 In QCD, a direct calculation of such processes in the vacuum at the high energy limit is presented in ... .
 One may expect that this is the leading order contribution to the inelastic channels of the transport equation.
@@ -400,22 +400,22 @@ The light-cone energy difference between the initial and final states is
 \begin{eqnarray}
 \delta E = \frac{k_\perp^2}{2k} + \frac{p_\perp^2}{2p} - \frac{{p'}_\perp^2}{2{p'}} = \frac{ [(1-x)\vec{k}_\perp - x\vec{p}_\perp]^2}{2x(1-x)E}
 \end{eqnarray}
-By the uncertainty principal, the coherence time for such transition on the order of $\tau_f = 1/\delta E$, termed the ``formation time" of the radiated gluon. 
+By the uncertainty principal, the coherence time for such transition on the order of $\tau_f = 1/\delta E$, termed the ``formation time'' of the radiated gluon. 
 Effects within the formation time should be calculated fully coherently.
 However, the formation time can be sufficiently long for collinear branching that it is large compared to the elastic collision mean-free path $\lambda$.
 which happens for small transverse momentum of the splitting that $k_\perp^2, p_\perp^2 < g^2x(1-x)ET$.
 This means that the independent picture of collision induced radiations starts to breakdown, since the average number of collision within radiation becomes a relatively large number $N = \tau_f/\lambda >1$.
-Zakarav and later by [BDMPS] showed that such multiple scatterings can be resummed for the calculation of medium induced radiation.
+Zakharav and later by [BDMPS] showed that such multiple scatterings can be resummed for the calculation of medium induced radiation.
 The probability of radiation,
 \begin{eqnarray}
 \nonumber
-\frac{dP^{a}_{bc}}{d\omega} &=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\\
-&&\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2 \nabla_{\mathbf{b}_1} \cdot\nabla_{\mathbf{b}_2} \left\{G(t_2, \mathbf{b}_2; t_1, \mathbf{b}_1) - G_0(t_2, \mathbf{b}_2; t_1, \mathbf{b}_1) \right\}|_{\mathbf{b}_1, \mathbf{b}_2 \rightarrow 0}
+\frac{dP^{a}_{bc}}{d\omega} &=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2\\ &&\nabla_{\mathbf{b}_1} \cdot\nabla_{\mathbf{b}_2} \left\{G(t_2, \mathbf{b}_2; t_1, \mathbf{b}_1) - G_0(t_2, \mathbf{b}_2; t_1, \mathbf{b}_1) \right\}|_{\mathbf{b}_1, \mathbf{b}_2 \rightarrow 0}
 \end{eqnarray}
 Where the $G$ is the propagator of the following Hamiltonian for the transverse dynamics of the splitting,
 \begin{eqnarray}
 \hat{H} &=& - \frac{\nabla^2_{\mathbf{b}}}{2x(1-x)E} - i \Gamma_3(\mathbf{b})\\
-\Gamma_3(\mathbf{b}) &=& \frac{C_a-C_b+C_c}{2}\Gamma_2(\mathbf{b}) + \frac{C_a-C_c+C_b}{2}\Gamma_2(x\mathbf{b}) + \frac{C_b+C_c-C_a}{2}\Gamma_2((1-x)\mathbf{b})
+\Gamma_3(\mathbf{b}) &=& \frac{C_a-C_b+C_c}{2}\Gamma_2(\mathbf{b}) + \frac{C_a-C_c+C_b}{2}\Gamma_2(x\mathbf{b}) \\
+&&+ \frac{C_b+C_c-C_a}{2}\Gamma_2((1-x)\mathbf{b})
 \end{eqnarray}
 and $G_0$ is the free propagator.
 The interaction terms consists of the transverse broaden of the system $a\rightarrow b+c$. 
@@ -479,7 +479,7 @@ R &\propto& 2g^2 \int d k^2 \int d q^2 \mathcal{A}(q_\perp^2) \left\{
 +\frac{C_A}{2} \frac{\vec{k}}{\vec{k}^2}\cdot\left[\frac{\vec{k}}{\vec{k}^2}-\frac{\vec{k}+(1-x)\vec{q}}{(\vec{k}+(1-x)\vec{q})^2}\right]
 \right\}
 \end{eqnarray}
-though, this expression looks very different from the cross-section formula that we used in the incoherent rate in the Boltzmann equation, they are actually equivalent upon the integration of $dk^2$, we provide detailed explanation of this connection between the Bethe-Heitler approximation of the AMY rate equation and the incoherent rate computed with $2\rightarrow 3$ cross-section in appendix \ref{}.
+though, this expression looks very different from the cross-section formula that we used in the incoherent rate in the Boltzmann equation, they are actually equivalent upon the integration of $dk^2$, we provide detailed explanation of this connection between the Bethe-Heitler approximation of the AMY rate equation and the incoherent rate computed with $2\rightarrow 3$ cross-section in section \ref{transport:ME}.
 
 In the high energy limit $E\gg T \gg \omega$ so that $x\ll 1$, this rate can be approximated by its $x\rightarrow 0$ limit, 
 \begin{eqnarray}
@@ -651,7 +651,7 @@ In principle, the above formula allows for the inclusion of heavy flavor, as lon
 
 In the region where $p/M < 1/g$, the radiation process for heavy quark becomes sub-dominant compared to the elastic collisions.
 
-\section{Adapting transport approach for medium-induced parton branchings in the deep-LPM region}
+\section{A modified transport approach for the LPM effect}
 The LPM effects comes from that the parton splitting is not instantaneous.
 In this section, we shall investigate the possible ways to approximate this effect by different types of modification on top of the particle based Boltzmann transport approach
 We have tried three different approaches. 
@@ -820,7 +820,9 @@ p^{\textrm{running}} = p\times \frac{\alpha_s(k_{\perp,t_0+\tau_f}^2)}{\alpha_s(
 \end{eqnarray}
 Where $k_{\perp,t_0}^2$ is the transverse momentum when the splitting is generate from the few-body processes, while $k_{\perp,t_0+\tau_f}^2$ is the final transverse momentum including the elastic broadening, and is on average greater than $k_{\perp,t_0}^2$.
 
-\section{Validate the modified transport approach to theoretical calculation: large and static medium}
+\section{Validate the modified transport approach using theory}
+
+\subsection{In a large and static medium}
 
 \begin{figure}
 \centering{
@@ -937,7 +939,7 @@ The ratio between simulation and theory is shown in the bottom plot.}
 \end{figure}
 
 
-\section{Finite / expanding medium and mass effect}
+\subsection{In a finite / expanding medium}
 We have made clear before that this approach is designed for interpolating the Bethe-Heitler region and the deep-LPM region in a large medium, and from the validation in the previous section, it indeed works very well.
 However, the medium created in heavy-ion collisions were never in the large and static limit, its finite time and spatial extend, local hot spots fluctuations and the fast radial expansion can all make significant impact on the hard parton propagation. 
 Therefore, we need to investigate how our approach would behave in a few more complex scenarios: a finite medium and and expanding medium, before applying such a model to phenomenological usage.
@@ -1058,7 +1060,7 @@ We found that when $\omega \gg T_0$, the degree of change in the radiation spect
 \label{fig:spectra-L-alphas=0.3}
 \end{figure}
 
-\paragraph{Mass effect}
+\subsection{Mass effect}
 Finally, we will check the performance of our procedure for the heavy quark.
 For short, to implement mass effect to the modified transport approach for inelastic scatterings, we use massive kinematics for the heavy quarks, include the mass term in the formation time, and implement the dead cone approximation that includes the contribution from elastic broadening of the transverse momentum.
 The theory curves are obtained by solving the exact equation with a effective mass term
@@ -1076,6 +1078,7 @@ The deviation at small $x$ is interesting, particularly, the theory almost predi
 This means that the treatment of the mass effect is not as simple as the dead-cone approximation and should be improved in the future.
 
 \section{Few-body hard matrix-elements}
+\label{transport:ME}
 Because the medium modification to few body scatterings above the the momentum transfer cut-off is neglected, their matrix-elements are given by the corresponding vacuum calculation.
 
 \subsection{$2\leftrightarrow 2$ processes}
@@ -1683,72 +1686,3 @@ The path length within each subplot is varied up to four times $L_c^0$.
 Here $L_c^0 = \sqrt{E/\hat{q}_0}$ with $\hat{q}_0 = C_A \alpha_s T m_D^2$ estimating the critical path length below which one expects a clear non-linear path-length dependence.
 All three implementations show the non-linear increase of $\Delta E$ as function of $L$.
 The ``modified rescattering" approach stays close to the theory calculations when $L<L_c^0$ for all cases, while the other two approaches deviate systematically as $\alpha_s$ is varied, similar to our previous findings for the energy-loss in the infinite matter case.
-
-\section{Heavy quark energy loss and thermalization in static medium}
-\begin{figure}
-\includegraphics[width=\columnwidth]{thermalization.pdf}
-\caption{The approach to thermalization of the linear Boltzmann equation with elastic processes only (red dot), elastic and radiation processes (green dashed), and elastic with both radiation and absorption processes (blue solid). The static medium has a temperature $T = 0.4$ GeV. $10^4$ heavy quarks are initialized with $E = 10$ GeV at $t = 0$.}\label{plots:thermalization}
-\end{figure}
-
-Before coupling the heavy quark transport model to a realistic medium, we study the model in a static medium, i.e., the medium is at rest with a fixed temperature.
-All the calculations in this section use $\mu =1$ and $\kappa = 0$.
-
-A first test is to check the implementation of detailed balance to see whether the system reaches the proper thermal equilibrium.
-To quantify the approach of an ensemble of $N$ heavy quarks to a thermal distribution in a medium with temperature $T_0$, we define the following indicator $\Delta S$,
-\begin{eqnarray}
-\Delta S = \frac{1}{N}\sum_{i=1}^{N} \ln f_0(E_i) - \frac{\int f_0(p)\ln f_0(E) dp^3}{\int f_0(p) dp^3}
-\end{eqnarray}
-$f_0 \propto \exp(-E/T_0)$ is the Boltzmann-J\"uttner distribution function. 
-The first term takes the heavy quarks ensemble average of $\ln f_0(E)$ and the second term is proportional to the entropy at $T_0$,
-This difference $\Delta S$ defines a ``distance" of the heavy quark ensemble to the thermal distribution, and it vanishes when the ensemble thermalizes.
-If the ensemble distribution function $f$ is not far from equilibrium and can be characterized by an effective temperature $T_{\textrm{eff}}$ so that $f(E)\sim \exp(-E/T_{\textrm{eff}})$, then this ``distance" measures,
-\begin{eqnarray}
-\nonumber
-\Delta S &\sim& \frac{1}{T_0}\int  e^{-E/T_{\textrm{eff}}} E dp^3 - \frac{1}{T_0}\int e^{-E/T_0} E dp^3 \\
-&=& \frac{T_\textrm{eff}-T_0}{T_0},
-\end{eqnarray}
-which is the fractional deviation of the effective temperature from the temperature of the thermal bath.
-Figure \ref{plots:thermalization} shows the time-evolution of $\Delta S$ of $10^4$ charm quarks inside a thermal bath of $T_0=0.4$ GeV with initial energy $E_0 = 10$ GeV.
-With elastic process only, the system thermalizes after about $50$ fm/$c$.
-If we now include radiative processes, the system reaches equilibrium faster, but it is the wrong equilibrium.
-The effective temperature is lower than the temperature of the thermal bath $T_0$.
-This is the consequence of breaking detailed balance without the reverse process of gluon absorption.
-Finally, we show the case with both radiation and absorption turned on -- here the correct equilibrium is reached after $t\sim 20$ fm/$c$.
-The absorption processes only make a notable difference when the system is not far from equilibrium ($\Delta S < 1$), which is expected from our previous discussion.
-\begin{figure}
-\includegraphics[width=\columnwidth]{Eloss.pdf}
-\caption{Top row: energy loss fraction as function of energy for elastic processes (left) and inelastic processes (right). Bottom row: energy loss fraction as function of path length for elastic processes (left) and inelastic processes (right).}\label{plots:dEE}
-\end{figure}
-\begin{figure}
-\includegraphics[width=\columnwidth]{BoxRaa.pdf}
-\caption{$R_{AA}$ in a static medium for charm and bottom quarks. The medium size  is $3$ fm and has a temperature $T_0 = 0.3$ GeV. The initial state spectrum of charm and bottom quarks for this calculation is a simple power law form with fit parameters from {Cao:2012jt}.}\label{plots:BoxRaa}
-\end{figure}
-
-Next we study heavy quark energy loss in a static medium.
-Na\"ively, energy loss per unit time can be calculated by inserting $\Delta E$ into the integration of the rate equation \ref{eq:rate}. 
-This is straightforward for elastic processes, but since the rates of inelastic processes depend on the interaction history, a meaningful energy loss can only be calculated by performing an actual Monte Carlo simulation.
-And as we will see, this interaction history dependence causes a non-trivial path length (medium size $L$) dependent energy loss.
-In the first row of Figure \ref{plots:dEE}, we show the energy loss fraction $\Delta E/E$ for elastic processes (left) and inelastic processes (right) as function of $E$ for a path length of $5$~fm at temperatures of $T=0.2$ and $0.4$  GeV.
-The elastic energy loss fraction is large at intermediate energy and decreases towards small and large energies.
-At sufficiently low energy, the heavy quark starts to gain energy from the medium on average which manifests as $\Delta E/E < 0$.
-For the case of inelastic energy loss, we study the effect of the gluon absorption process by comparing $\Delta E/E$ with only radiation processes (lines) to $\Delta E/E$ with both gluon radiation and absorption (lines with symbols).
-As expected, we find that the gluon absorption process only affects energy loss significantly for small values of $E/T$.
-At sufficiently low energy, the gluon absorption process allow the heavy quark to gain energy from the medium through the inelastic channel which is key to thermalization.
-In the second row of Figure \ref{plots:dEE}, we show the path length dependence of the two energy loss mechanisms.
-Here, we plot the energy loss fraction per unit length.
-The key observation is that the elastic energy loss increases linearly with path length but the inelastic energy loss increases non-linearly for small path length and then transits to a linear increase at large path length. 
-The non-linear $L-$dependence is a characteristic behavior of the coherence effect in a finite length medium. 
-In our effective LPM implementation, this arises because gluon radiation with $\tau_f \sim k/T^2 \gg L$ is suppressed.
-Therefore for a thin medium, the phase space for gluon radiation is restricted $k < LT^2$, which is also the typical amount of energy loss per radiation.
-Multiplying $k \sim LT^2$ by the number of collisions $N \propto LT$, the inelastic energy loss scales as $\Delta E \sim L^2T^3$.
-For a thick medium, a heavy quark could have multiple radiations with $N \propto L/\tau_f$ and each radiation carries off a typical amount of energy. 
-In this region, the inelastic energy loss rises linearly with $L$.
-What we see in the simulation is a behavior that interpolates between these two qualitative behaviors.
-
-Finally, we calculate the nuclear modification factor $R_{AA}$ of charm and bottom quarks in a static medium $T=0.4$ GeV after evolving for $3$ fm/$c$.
-The initial spectra of the charm and bottom quarks are parametrized in a simple power law form {Cao:2012jt}.
-This simplified setup is intended for comparison with other models with controlled settings.
-In Figure \ref{plots:BoxRaa} we show both $R_{AA}$ of charm and bottom with or without the gluon absorption process. 
-Again, we see that the absorption process only affects observables for relatively low momenta $p_T < 10$ GeV.
-The mass plays an important role in the intermediate $p_T$ region, where a clear separation between charm and bottom $R_{AA}$ is visible.
-The mass effect looses importance at high energy where $p_T$ is the only relevant scale or at low $p_T$ when $M \gg p_T$ and $T$. 

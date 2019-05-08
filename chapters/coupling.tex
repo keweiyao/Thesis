@@ -42,6 +42,76 @@ This is discussed in section 2.
 The heavy flavor hadronization model is introduced in section 3, which is a previously developed model that interpolates high-$p_T$ fragmentation processes and low-$p_T$ in medium recombination production of heavy hadrons.
 Finally, in section 4, we also briefly introduced how this simulation framework of open heavy flavor can be coupled to the quarkonium evolution, but for more details, please refers to the thesis work [].
 
+
+\section{Testing in a static medium}
+\begin{figure}
+\includegraphics[width=\columnwidth]{thermalization.pdf}
+\caption{The approach to thermalization of the linear Boltzmann equation with elastic processes only (red dot), elastic and radiation processes (green dashed), and elastic with both radiation and absorption processes (blue solid). The static medium has a temperature $T = 0.4$ GeV. $10^4$ heavy quarks are initialized with $E = 10$ GeV at $t = 0$.}\label{plots:thermalization}
+\end{figure}
+
+Before coupling the heavy quark transport model to a realistic medium, we study the model in a static medium, i.e., the medium is at rest with a fixed temperature.
+All the calculations in this section use $\mu =1$ and $\kappa = 0$.
+
+A first test is to check the implementation of detailed balance to see whether the system reaches the proper thermal equilibrium.
+To quantify the approach of an ensemble of $N$ heavy quarks to a thermal distribution in a medium with temperature $T_0$, we define the following indicator $\Delta S$,
+\begin{eqnarray}
+\Delta S = \frac{1}{N}\sum_{i=1}^{N} \ln f_0(E_i) - \frac{\int f_0(p)\ln f_0(E) dp^3}{\int f_0(p) dp^3}
+\end{eqnarray}
+$f_0 \propto \exp(-E/T_0)$ is the Boltzmann-J\"uttner distribution function. 
+The first term takes the heavy quarks ensemble average of $\ln f_0(E)$ and the second term is proportional to the entropy at $T_0$,
+This difference $\Delta S$ defines a ``distance" of the heavy quark ensemble to the thermal distribution, and it vanishes when the ensemble thermalizes.
+If the ensemble distribution function $f$ is not far from equilibrium and can be characterized by an effective temperature $T_{\textrm{eff}}$ so that $f(E)\sim \exp(-E/T_{\textrm{eff}})$, then this ``distance" measures,
+\begin{eqnarray}
+\nonumber
+\Delta S &\sim& \frac{1}{T_0}\int  e^{-E/T_{\textrm{eff}}} E dp^3 - \frac{1}{T_0}\int e^{-E/T_0} E dp^3 \\
+&=& \frac{T_\textrm{eff}-T_0}{T_0},
+\end{eqnarray}
+which is the fractional deviation of the effective temperature from the temperature of the thermal bath.
+Figure \ref{plots:thermalization} shows the time-evolution of $\Delta S$ of $10^4$ charm quarks inside a thermal bath of $T_0=0.4$ GeV with initial energy $E_0 = 10$ GeV.
+With elastic process only, the system thermalizes after about $50$ fm/$c$.
+If we now include radiative processes, the system reaches equilibrium faster, but it is the wrong equilibrium.
+The effective temperature is lower than the temperature of the thermal bath $T_0$.
+This is the consequence of breaking detailed balance without the reverse process of gluon absorption.
+Finally, we show the case with both radiation and absorption turned on -- here the correct equilibrium is reached after $t\sim 20$ fm/$c$.
+The absorption processes only make a notable difference when the system is not far from equilibrium ($\Delta S < 1$), which is expected from our previous discussion.
+\begin{figure}
+\includegraphics[width=\columnwidth]{Eloss.pdf}
+\caption{Top row: energy loss fraction as function of energy for elastic processes (left) and inelastic processes (right). Bottom row: energy loss fraction as function of path length for elastic processes (left) and inelastic processes (right).}\label{plots:dEE}
+\end{figure}
+\begin{figure}
+\includegraphics[width=\columnwidth]{BoxRaa.pdf}
+\caption{$R_{AA}$ in a static medium for charm and bottom quarks. The medium size  is $3$ fm and has a temperature $T_0 = 0.3$ GeV. The initial state spectrum of charm and bottom quarks for this calculation is a simple power law form with fit parameters from {Cao:2012jt}.}\label{plots:BoxRaa}
+\end{figure}
+
+Next we study heavy quark energy loss in a static medium.
+Na\"ively, energy loss per unit time can be calculated by inserting $\Delta E$ into the integration of the rate equation \ref{eq:rate}. 
+This is straightforward for elastic processes, but since the rates of inelastic processes depend on the interaction history, a meaningful energy loss can only be calculated by performing an actual Monte Carlo simulation.
+And as we will see, this interaction history dependence causes a non-trivial path length (medium size $L$) dependent energy loss.
+In the first row of Figure \ref{plots:dEE}, we show the energy loss fraction $\Delta E/E$ for elastic processes (left) and inelastic processes (right) as function of $E$ for a path length of $5$~fm at temperatures of $T=0.2$ and $0.4$  GeV.
+The elastic energy loss fraction is large at intermediate energy and decreases towards small and large energies.
+At sufficiently low energy, the heavy quark starts to gain energy from the medium on average which manifests as $\Delta E/E < 0$.
+For the case of inelastic energy loss, we study the effect of the gluon absorption process by comparing $\Delta E/E$ with only radiation processes (lines) to $\Delta E/E$ with both gluon radiation and absorption (lines with symbols).
+As expected, we find that the gluon absorption process only affects energy loss significantly for small values of $E/T$.
+At sufficiently low energy, the gluon absorption process allow the heavy quark to gain energy from the medium through the inelastic channel which is key to thermalization.
+In the second row of Figure \ref{plots:dEE}, we show the path length dependence of the two energy loss mechanisms.
+Here, we plot the energy loss fraction per unit length.
+The key observation is that the elastic energy loss increases linearly with path length but the inelastic energy loss increases non-linearly for small path length and then transits to a linear increase at large path length. 
+The non-linear $L-$dependence is a characteristic behavior of the coherence effect in a finite length medium. 
+In our effective LPM implementation, this arises because gluon radiation with $\tau_f \sim k/T^2 \gg L$ is suppressed.
+Therefore for a thin medium, the phase space for gluon radiation is restricted $k < LT^2$, which is also the typical amount of energy loss per radiation.
+Multiplying $k \sim LT^2$ by the number of collisions $N \propto LT$, the inelastic energy loss scales as $\Delta E \sim L^2T^3$.
+For a thick medium, a heavy quark could have multiple radiations with $N \propto L/\tau_f$ and each radiation carries off a typical amount of energy. 
+In this region, the inelastic energy loss rises linearly with $L$.
+What we see in the simulation is a behavior that interpolates between these two qualitative behaviors.
+
+Finally, we calculate the nuclear modification factor $R_{AA}$ of charm and bottom quarks in a static medium $T=0.4$ GeV after evolving for $3$ fm/$c$.
+The initial spectra of the charm and bottom quarks are parametrized in a simple power law form {Cao:2012jt}.
+This simplified setup is intended for comparison with other models with controlled settings.
+In Figure \ref{plots:BoxRaa} we show both $R_{AA}$ of charm and bottom with or without the gluon absorption process. 
+Again, we see that the absorption process only affects observables for relatively low momenta $p_T < 10$ GeV.
+The mass plays an important role in the intermediate $p_T$ region, where a clear separation between charm and bottom $R_{AA}$ is visible.
+The mass effect looses importance at high energy where $p_T$ is the only relevant scale or at low $p_T$ when $M \gg p_T$ and $T$. 
+
 \section{Initial production of heavy flavor}
 The initial hard processes are computed using perturbative QCD based or related Monte-Carlo event generator.
 The general set up for such a computation in proton-proton collision is the factorization theorem \ref{fig:factorization}.
