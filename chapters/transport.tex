@@ -1073,6 +1073,41 @@ The deviation at small $x$ is interesting, particularly, the theory almost predi
 This means that the treatment of the mass effect is not as simple as the dead-cone approximation and should be improved in the future.
 
 
+\paragraph{Thermalization of heavy quark}
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{thermalization.png}
+\caption{•}
+\label{fig:thermalization}
+\end{figure}
+Heavy quark's large mass made it takes longer time to thermalize and the low-$p_T$ end of the heavy quark production in the heavy-ion collision can carry the information non-equilibrium dynamics.
+To extract the degrees of thermalization, one has to make sure the correct thermalized limited is achieved in the transport model, given enough time of evolution.
+This is trivial for large-angle elastic scatterings and diffusion processes as long as the correct Einstein relation is imposed.
+The $n\rightarrow n+1$ body radiative process is approximated by a initial $2\rightarrow 3$ or $1\rightarrow 2$ process and a sequence of elastic interactions; therefore, in principle the $n+1\rightarrow n$ absription processes need to be treated on the same footing to restore the detailed-balance in the modified-Boltzmann equation.
+This can be done but is over complicated.
+Here we argue that close to a few times of temperature, the LPM effect is not that strong that an incoherent implementation of the absorption is enough to study the bulk of particles close to thermal distribution.
+
+We define a quantity $\Delta S$ to measure the approaching of thermal distribution $f_0 = e^{-E/T}$ of an ensemble of heavy quarks,
+\begin{eqnarray}
+\Delta S = - \langle \ln f_0 \rangle - S_0 \\
+ &=& - \frac{1}{N}\sum_i\ln f_0(E_i) - \frac{\int dp^3 f_0 ln(f_0)}{\int dp^3 f_0}
+\end{eqnarray}
+Where the first term the the ensemble average of the the function $-\ln f_0$, and the subtracted term is proportional to the entropy of distribution $f_0$.
+Note that the quantity is zero if the ensemble thermalize.
+If the system is approaching thermal distribution with an effective temperature such that $f = e^{-E/T'}$, then $\Delta S$ is 
+\begin{eqnarray}
+\Delta S = \frac{\int dp^3 E/T e^{-E/T'}}{\int dp^3 e^{-E/T'}} - S_0 = \frac{T'-T}{T}
+\end{eqnarray}
+which is a measure of the deviation of the effective temperature from the thermal bath temperature.
+
+Using this definition, we plotted $\Delta S$ as a function of time for 1000 heavy quark that are initialized at 10 GeV.
+The temperature of the thermal bath is 0.5 GeV and we used a fixed $\alpha_s = 0.3$.
+Under the influences of diffusion (red) and diffusion plus large-angle elastic collisions (green), $\Delta S$ decreases from a large value until fluctuating around zero after 25 fm/$c$ (red) and $15$ fm/$c$ (green).
+Now, adding the radiative processes (blue), the $\Delta S$ reaches a value below zero, which is the false equilibrium.
+Only after the balancing processes of parton absorption are also included (orange), the correct thermal equilibrium limit is restored. 
+We also found that the absorption process only sets in when the ensemble is close enough to the thermal distribution, as the bue line and the orange line are almost overlapped until $\Delta S$ dropped to 0.3.
+This is because the absorbed gluon follows the thermal distribution in the medium while phase-space for a high energy parton $E\gg T$ to absorb a low energy gluon is very limited $x<T/E$, compared to radiation processes where the value of $x$ is not restricted by the Boltzmann factor $e^{-xE/T}$.
+
 \section{Comments on two other inelastic process implementations}
 I find it beneficial to discuss two other inelastic processes implementations for reader's references. 
 They are termed as the ``coherence factor" approach and the ``blocking radiation" approach.
