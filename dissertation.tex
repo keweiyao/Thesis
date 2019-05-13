@@ -1,8 +1,8 @@
 \documentclass[11pt,letterpaper,oneside,openany]{book}
 
+\pagestyle{plain}%
 \title{Partonic transport model application to heavy flavor}
 \author{Weiyao Ke}
-
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -38,7 +38,7 @@
   showstringspaces=false,
   columns=flexible,
   basicstyle={\small\ttfamily},
-  numbers=none,
+  %numbers=none,
   %numberstyle=\tiny\color{gray},
   %keywordstyle=\color{blue},
   %commentstyle=\color{dkgreen},
@@ -162,6 +162,7 @@ maxcitenames=3]{biblatex}
 \frontmatter
 
 \makeatletter
+
 \begin{titlepage}
   \centering
   \sffamily
@@ -188,7 +189,7 @@ maxcitenames=3]{biblatex}
 \titlespacing{\chapter}{0pt}{50pt}{40pt}
 
 \mainmatter
-
+\pagenumbering{arabic}
 \tableofcontents
 
 \input{chapters/Introduction}
