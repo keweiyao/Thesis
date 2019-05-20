@@ -246,3 +246,31 @@ Eventually, it reaches to a point where the temperature is low enought that the 
 The hadrons can have further interactions and may decay into other hadrons, photons and lepton.
 The dynamical of QGP we are interested in only lasts for $O(10) fm/$c, while we can only observe the remnants at the end of the collisions.
 Therefore, the understanding of the QGP requires both an accurate dynamical modeling of the entire process and the design of sensitive observables.
+
+
+\paragraph{Complex dynamical model with high-dimensional inputs}
+Taking the bulk model as an example, it includes an initial condition, a dynamical model for pre-equilibrium stage, the viscous hydrodynamics, particlization of the hydrodynamic energy momentum tensor and the hadronic decays and rescatterings.
+Each of the module takes both physical parameters and modeling parameters.
+Eventually, one can have more than 10 parameters.
+To generate one event with a model itself is already computationally intensive, while to be able to compare to experimental measurements that average over centrality with a good control of statistical uncertainty, $O(10^4)$ minimum-biased events needed to be generated.
+As a result, a na\"ive linear grid sweep over the 10-dimensional parameter space is certainty not feasible.
+To solve this problem of high-dimensional input complex models requires advanced parameter set design method and reliable interpolation schemes.
+
+
+\paragraph{Model uncertainty and correlation among parameters}
+We are mostly interested in those ``physical parameters / quantities'', for example, the transport coefficients $\eta/s(T)$ and $\zeta/s(T)$ of the medium.
+Other parameters, such the switching time between the pre-equilibrium free-streaming dynamics and the hydrodynamics, and the temperature at which one particlize a hydrodynamic field description into a hadronic ensemble are less interested in the physical sense.
+The appearance of these matching parameters are simply due to we do not have a single ``global model'' that works reasonably well under all circumstances.
+However, one should not think less of these model parameters, because the quantify a significant fraction of the modeling uncertainty.
+The model uncertainty can affect the interpretation of the experimental data, and any quantitative statement we draw about those physical quantities from a model-to-data comparison.
+For example, the  bulk particles anisotropic flows, though proved to be very sensitive to the shear viscosity, are also sensitive to the initial eccentricity of the initial conditions.
+Therefore, the exacted $\eta/s$ becomes correlated with the choice of initial condition models and its parameters.
+The model uncertainty is hard problem, and one can either try to reduce it by improving the model or quantify it when compared to data to prevent an over-interpretation.
+
+\paragraph{A high-dimensional model output / observables}
+The inclusion of more observables also helps to break the model degeneracy and parameter correlation.
+But it can be tricky to quantify the quality of agreement between model and data with a collection of observables (a high dimensional output).
+
+
+The Bayesian analysis framework is introduced to the field by the earily works of and the PhD thesis of Jonah Bernhard [] who has successfully applied the tool to the extraction of the initial condition topology and temperature dependent QGP transport coefficient.
+This chapter provides a concise description of the Bayesian analysis and for full details please refer to the thesis of Jonah Bernhard [].
