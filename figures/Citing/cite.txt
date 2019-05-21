@@ -1,0 +1,81 @@
+%1
+%CMS-HF.png
+@article{Wilkinson:2018cpq,
+      author         = "Wilkinson, Jeremy",
+      title          = "{Open heavy-flavour production in heavy-ion collisions at
+                        the LHC}",
+      booktitle      = "{Proceedings, 13th International Conference on Beauty,
+                        Charm and  Hyperons (BEACH2018): Peniche, Portugal, June
+                        17-23, 2018}",
+      collaboration  = "ALICE, ATLAS, CMS, LHCb",
+      journal        = "J. Phys. Conf. Ser.",
+      volume         = "1137",
+      year           = "2019",
+      number         = "1",
+      pages          = "012032",
+      doi            = "10.1088/1742-6596/1137/1/012032",
+      eprint         = "1809.01899",
+      archivePrefix  = "arXiv",
+      primaryClass   = "nucl-ex",
+      SLACcitation   = "%%CITATION = ARXIV:1809.01899;%%"
+}
+
+%2 
+%ALICE-CMS-D-vn.pdf
+@article{Acharya:2018bxo,
+      author         = "Acharya, Shreyasi and others",
+      title          = "{Event-shape engineering for the D-meson elliptic flow in
+                        mid-central Pb-Pb collisions at $\sqrt{s_{\rm NN}} =5.02$
+                        TeV}",
+      collaboration  = "ALICE",
+      journal        = "JHEP",
+      volume         = "02",
+      year           = "2019",
+      pages          = "150",
+      doi            = "10.1007/JHEP02(2019)150",
+      eprint         = "1809.09371",
+      archivePrefix  = "arXiv",
+      primaryClass   = "nucl-ex",
+      reportNumber   = "CERN-EP-2018-260",
+      SLACcitation   = "%%CITATION = ARXIV:1809.09371;%%"
+}
+
+
+%3
+%ALICE-chg-vn.png
+@article{Adam:2016izf,
+      author         = "Adam, Jaroslav and others",
+      title          = "{Anisotropic flow of charged particles in Pb-Pb
+                        collisions at $\sqrt{s_{\rm NN}}=5.02$ TeV}",
+      collaboration  = "ALICE",
+      journal        = "Phys. Rev. Lett.",
+      volume         = "116",
+      year           = "2016",
+      number         = "13",
+      pages          = "132302",
+      doi            = "10.1103/PhysRevLett.116.132302",
+      eprint         = "1602.01119",
+      archivePrefix  = "arXiv",
+      primaryClass   = "nucl-ex",
+      reportNumber   = "CERN-EP-2016-018",
+      SLACcitation   = "%%CITATION = ARXIV:1602.01119;%%"
+}
+
+%4
+%Hydro-spectra.png
+@article{Muller:2012zq,
+      author         = "Muller, Berndt and Schukraft, Jurgen and Wyslouch,
+                        Boleslaw",
+      title          = "{First Results from Pb+Pb collisions at the LHC}",
+      journal        = "Ann. Rev. Nucl. Part. Sci.",
+      volume         = "62",
+      year           = "2012",
+      pages          = "361-386",
+      doi            = "10.1146/annurev-nucl-102711-094910",
+      eprint         = "1202.3233",
+      archivePrefix  = "arXiv",
+      primaryClass   = "hep-ex",
+      reportNumber   = "CERN-OPEN-2012-005",
+      SLACcitation   = "%%CITATION = ARXIV:1202.3233;%%"
+}
+
