@@ -116,12 +116,13 @@ Though the created matter is so transient and tiny compared to the cosmic nuclea
 Relativistic heavy-ion collision is currently the only tool to access high energy density QCD medium in laboratory.
 Since 2005, the Relativistic Heavy-ion Collider (RHIC) at the Brookheaven National Laboratory (BNL) started colliding gold nuclei at 200 GeV []. 
 The Large Hadron Collider (LHC) started its heavy ion programs later, colliding lead nuclei at 2.76 TeV and 5.02 TeV [].
-Since then, many evidences have been pointing to the discovery of the new state-of-matter: the strongly coupled quark-gluon plasma (sQGP).
+Since then, many evidences have been pointing to the existence a new state-of-matter: the strongly coupled quark-gluon plasma (sQGP).
+
 In this section, I shall introduce useful concepts and terminology in heavy-ion collisions.
 Then I will review a few important experimental evidences and how they can help the understanding of the properties of the sQGP.
 
-\subsection{Nuclear collisions geometry}
-\paragraph{Kinematics} For the case of ultra relativistic collisions, it is advantages to use a new set of coordinates that is related to the Cartesian coordinates by,
+\subsection{Kinematics}
+In ultra relativistic collisions, it is advantages to use a new set of coordinates, related to the Cartesian coordinates by,
 \begin{eqnarray}
 x_\perp &=& x_\perp\\
 \tau &=& \sqrt{t^2 - z^2}\\
@@ -134,147 +135,204 @@ One advantage of using this set of coordinates is that $\tau$ and $\eta_s$ trans
 \tau' &=& \tau,\\
 \eta_s' &=& \eta_s + \frac{1}{2}\ln\frac{1+\beta_z}{1-\beta_z}
 \end{eqnarray}
-Similarly for momentum, the four components of $p^\mu$ can be transformed into,
+Similarly for the four momentum $p^\mu$ is parametrized as 
 \begin{eqnarray}
-p_\perp &=& p_\perp\\
-m_T &=& \sqrt{E^2 - p_z^2}\\
-y &=& \frac{1}{2}\ln\frac{E+p_z}{E-p_z}
+p_x &=& p_T\cos\phi\\
+p_y &=& p_T\sin\phi\\
+m_T &=& \sqrt{m^2 + p_T^2}\\
+y &=& \frac{1}{2}\ln\frac{E+p_z}{E-p_z}.
 \end{eqnarray}
-where $m_T$ is called transverse mass, and $y$ the rapidity of a particle.
-Besides, pseudorapidity is often used experimentally,
+$p_T$ is transverse momentum relative to the beam ($z$) direction, $\phi$ is the azimuth angle of particle emission. 
+$m_T$ is referred as the transverse mass, and $y$ is the rapidity of a particle.
+Besides, pseudorapidity is often used in experiments,
 \begin{equation}
 \eta = \frac{1}{2}\ln\frac{|p|+p_z}{|p|-p_z} = \frac{1}{2}\ln\frac{1+\cos\theta}{1-\cos\theta}
 \end{equation}
-It has the merits that it is directly related to the polar angle of final state particles.
+It has the merits that it is directly related to the polar angle  $\theta$ of particle emission.
 When the transverse mass is small compared to $p_z$, the pseudorapidity is also a good proxy of rapidity.
 
-\paragraph{Centrality as a geometry handle of nuclear collisions}
+\subsection{Nuclear collision geometry}
 Nuclei are extended objects.
-The heavy nuclei radius is approximately scales like $A^{1/3}$ fm, where  $A$ is the atomic number. 
-For example, the the radius of a gold and a lead nuclei is about $6-7$ fm upto some diffuseness in the boundary.
+The radius of heavy nuclei approximately scales like $A^{1/3}$ fm, where  $A$ is the atomic number; therefore, the collision geometry plays far more important role than it is in the proton-proton collision.
 In the center-of-mass frame,  nuclei ``shrink" in the $z$ direction by the factor $\gamma = (1-v^2)^{-1/2} = E/M$ because of the Lorentz contraction.
-$\gamma$ is a large number, it is over $100$ for gold nuclei at top RHIC energy can be $2500$ for lead nuclei at the LHC.
-Therefore, the tow nuclei contracted into thin `pancakes` while approaching each other.
+$\gamma$ is over $100$ for gold nuclei at top RHIC energy and is more than $2500$ for lead nuclei at the LHC.
+As a result, the approaching nuclei takes a short time to penetrating each other $t_L = 2R/\gamma$, while dynamics in the transverse direction can only propagate within a causal circle of $r < t_L$ that is much smaller than the nuclear extend.
 
-Defining the impact parameter $\vec{b}$ as the transverse separation between the center-of-mass of the two approach nuclei,
-the geometry of the collisions can therefore fluctuate from a completely overlapping one ($b=0$) to very peripheral interaction (large $b \gtrsim 2R$).
-We will see later that the geometry of a collision event is a useful handle to study the property of its dynamical evolution, however, it is impossible perform high energy experiments with only certain ranges of the impact parameter. 
-What is used as an approximate collision geometry indicator in nuclear-nuclear collisions is the so-called centrality.
-Centrality can be defined in different ways (multiplicity / transverse energy) and with different kinematic cuts, but the idea is to reflect the nuclear collision geometry by particle production activity.
-It is reasonable to anticipate that the average number of charged particles produced or the total transverse energy deposited within a certainty detector acceptance are higher if the collision is more central (small impact parameter), and are lower for peripheral collision.
-The relation between centrality and geometry is not exact, because fluctuation in particle production smears out one-to-one correspondence between the impact parameter an the ``centrality meter''.
+\paragraph{Impact-parameter and centrality} Defining the impact parameter $\vec{b}$ as the transverse separation between the center-of-mass of the two approach nuclei,
+the initial deposition of the energy largely depends on $\vec{b}$.
+The collision geometry is a useful handle to study QGP dynamics; however,
+it is impossible control $b$ directly in high energy experiments.
+What is used as an approximate geometry indicator is the so-called centrality.
+Centrality are defined in different ways (detector response / multiplicity / transverse energy) and with different kinematic cuts, but the idea that  nuclear collision geometry strongly correlates with the particle production activity.
+It is reasonable to anticipate that the average number of charged particles produced or the total transverse energy deposited within a certain detector's acceptance is higher if the collision is more central (small impact parameter), and is lower for peripheral collision (large impact parameter).
+Of course the relation between centrality and impact-parameter is not exact, as dynamical fluctuations smear out the one-to-one correspondence between the impact parameter and the ``centrality meter''.
+Correctly accounting for these fluctuations is particularly important for small collision system,s such as proton-lead and deutron-gold collisions.
 
-Experimentally, a minimum-biased sample of recorded events are sorted according to the centrality criteria (multiplicity, e.g.) and the events are binned by percentile.
-Then, for example, the top 0--5\% highest multiplicity events are associated to the central collisions with centrality range 0--5\% through a model.
-Usually, the models is one of the many variants of the Monte-Carlo Glauber model (to be explained in section \ref{simulation}), which samples the  number of binary nucleon-nucleon collisions and number of participants (nucleons that suffers at least one binary collisions) at a given impact parameter.
-It is found that the bulk particle production scales roughly like number of participants, while the cross-section of hard processes (processes involves large momentum transfer $Q \gg \Lambda$).
-It is true that the centrality definition can be model dependent, but the uncertainty can be quantified and its prediction can be validated by the production of colorless probes.
+\paragraph{Centrality selection} Experimentally, a minimum-biased (a minimum set of event triggers) sample of recorded events are sorted according to the centrality definition (multiplicity, e.g.) and the events are binned by percentile.
+Then, for example, the top 0--5\% highest multiplicity events are associated to the central collisions with centrality range 0--5\%. 
+And the details of the collision geometry can be studied through a model.
+Usually, the models is one of the many variants of the Glauber model [], we shall explained it in detail in section \ref{simulation}).
+It computes the number of binary nucleon-nucleon ($N_{\textrm{bin}}$) collisions and number of participant nucleons ($N_{\textrm{part}}$, nucleons that suffers at least one binary collisions) at a given impact parameter.
+Experimentally, $N_{\textrm{part}}$ is often used as the centrality estimator of the model as it is roughly proportional to the bulk particle production; while the cross-section of hard processes that involves large momentum transfer $Q \gg \Lambda$ scales like the $N_{\textrm{bin}}$.
+Though this correspondence can be model dependent, but the uncertainty can be quantified and its prediction can be validated by the production of colorless probes.
 
-\subsection{Particle production mechanisms}
-Experimentally, it is found that the particle produced in relativisitc nuclear collisions has a wide pseudo-rapidity distribution, and a steep falling transverse momentum spectra.
-The bulk of the particles in one event are relatively soft with $p_T \lesssim 3$ GeV.
-One of the most striking discovery from RHIC and LHC heavy-ion program is that these soft particles depicts a strong collectivity, and hydrodynamic based models are able to describe the bulk observables to a very high precision.
-This success of the hydrodynamic model reveals the strongly coupled nature of the matter produced with a temperature several times above $T_c$ and it has been entitled the name strongly coupled quark-gluon plasma (sQGP).
-This is in contrary to the previous expectation of a weakly coupled gas of quarks and gluons.
+\subsection{Particle production at low-$p_T$ and collective flow} 
+Immediately after the nuclei penetration through each other $t\sim 2R/\gamma$, huge amount of energy is deposited into the overlapped area and entropy is produced, creating a fireball in the middle while the nuclear remnants recede.
+This highly excited fireball of fields undergoes complex dynamics and cools down rapidly because of the longitudinal and transverse expansion.
+Eventually, the system hardronizes, and the hadrons can have further interactions and may decay into other hadrons, photons and lepton that are seen by the detectors.
 
-\subsection{Anisotropic flow and QGP transport coefficient} 
-One of the manifestation of collectivity is the momentum space anisotropy of the final state. 
-Decomposing the charged particle spectra into Fourier series of the azimuthal angle,
+It is observed that the particle production in relativistic nuclear collisions distributes across a wide (pseudo)rapidity range, and has steep falling transverse momentum spectra [].
+The majority of the particles are soft hadrons with relatively small transverse momentum $p_T \lesssim 3$ GeV and their creation are consequences of final state interactions [].
+One of the most striking discoveries from RHIC and LHC heavy-ion program is that these soft particles displays a strong collectivity and the patterns can be described by hydrodynamic-based models to a very high precision [].
+This success of the hydrodynamic model reveals the strongly coupled nature of the matter produced with a temperature several times above $T_c$ and it has been entitled the name strongly coupled quark-gluon plasma.
+This is in contrary to a weakly coupled gas of quarks and gluons that emits independently.
+
+\begin{figure}
+\centering
+\includegraphics[width=.6\textwidth]{ALICE-chg-vn.png}
+\caption{•}
+\label{fig:intro:vn}
+\end{figure}
+
+One manifestation of collectivity is the momentum space anisotropy or collective flow of the bulk medium.
+Decompose the charged particle spectra into Fourier series of the azimuth angle,
 \begin{eqnarray}
-E\frac{dN}{p_T dp_T d\phi dy} = \frac{1}{2\pi}\frac{dN}{p_T dp_T dy}\left(1 + \sum_{n=1}^{\infty}v_n(p_T)\cos\left[n(\phi-\Psi_n)\right]\right).
+E\frac{dN}{p_T dp_T d\phi dy} = \frac{1}{2\pi}\frac{dN}{p_T dp_T dy}\left(1 + 2\sum_{n=1}^{\infty}v_n(p_T)\cos\left[n(\phi-\Psi_n)\right]\right).
 \end{eqnarray}
-The first term in the expansion is azimuthal angle averaged yield.
-The terms in the sum expands the angular dependence. 
-The $n=1$ term is a movement of the center-of-mass.
-From $n=2$, a non-zero $v_n$ characterize the anisotropy in momentum-space of various order.
-If the particle production in high energy nuclear collisions is simply an independent sum of elementary nucleon binary collisions, then the anisotropy would be zero after averaging over many events. 
-However, experiments observe a surprisingly larger elliptic flow ($v_2$) in Au+Au collisions and later in Pb+Pb collisions.
-Higher order flows harmonics and in particular odd order $v_n$ were observed later.
-The large anisotropic flow suggests a substantial role of final state interaction after the initial production.
-In the hydrodynamic picture, non-central collisions results in an initial almond shape of the deposited energy density and the hydrodynamic pressure builds up and drives the transverse expansion of the fireball.
-Because the pressure gradient is larger in the short axis-direction and the long-axis direction, the matter flows in an isotropic way, creating the observed momentum space anisotropy.
-Higher order of flow harmonics is a result of the initial state fluctuation of the nuclear wave function.
-In short, the hydrodynamics transfer initial geometry eccentricities $\epsilon_n$ into final state momentum anisotropy $v_n$.
+The first term is averaged yield, and subsequent terms in the sum encode the angular dependence. 
+The $n=1$ term is a shift of the center-of-mass momentum
+From $n=2$, $v_n$s are momentum anisotropy coefficients of $\cos({n\phi})$ modulations.
+If the particle production is simply an independent sum of elementary nucleon binary collisions, then the anisotropy would be zero after average. 
+However, experiments observe a surprisingly larger elliptic flow ($v_2$), triangular flow ($v_3$) and higher order $v_n$ at both RHIC and LHC in nuclear collisions.
+Figure \ref{fig:intro:vn} shows the variation of the $v_n$ as function of centrality from ALICE measurements [].
+The $v_2$ coefficients first increases from central to mid-central collisions and slightly decreases at peripheral collisions, while $v_3$, $v_4$ signal are smaller and varies slower with centrality.
 
-A relativistic ideal hydrodynamic model (no viscous effect) assumes an infinitely strong interaction that the medium always stages in local thermal equilibrium.
-A more realistic system with finite interact strength will go off-equilibrium under the driven force, and is treated in relativistic viscous hydrodynamics with shear viscosity $\eta$ and bulk viscosity $\zeta$ as inputs.
-Because the viscous effects damp the spatial anisotopic of the flow, the efficiency of the transition from $\epsilon_n$ to $v_n$ is very sensitive to the values of shear and bulk viscosity and can be used for precision extraction of the these number from experimental measurements.
+In the hydrodynamic picture, a non-central collision deposits initial energy density in an almond shape and the initial fireball has a finite spatial eccentricity $\epsilon_2$.
+The energy density is higher in the middle and lower at the boundary, so a hydrodynamic pressure builds up and drives the transverse expansion of the fireball.
+Because the pressure gradient is larger in the short axis-direction and the long-axis direction, the matter flows in an isotropic way, creating the observed momentum space second-order anisotropy $v_2$.
+The existence of higher order of flow harmonics and non-zero $v_2$ in the most central collisions is because the nuclear configuration fluctuations, such as randomized nucleon positions, create all order of eccentricity $\epsilon_n$.
+In short, a hydrodynamic expansion transfer initial geometry eccentricities $\epsilon_n$ into final state momentum anisotropy $v_n$ of the particle.
 
+\paragraph{Extracting the QGP transport coefficients}
+A relativistic ideal hydrodynamic model assumes an infinitely strong interaction that the medium always stages in local thermal equilibrium.
+A more sophisticated treatment is the relativistic viscous hydrodynamics to account for deviations from the local thermal equilibrium due to large gradients in the expansion.
+The response of hydrodynamic evolution to the gradients are characterized by the shear viscosity $\eta$ and bulk viscosity $\zeta$.
 The QGP shear viscosity and bulk viscosity are of fundamental importance. 
 The shear viscosity to entropy ratio $\eta/s$ is an indicator of the stong / weak coupling nature of the QGP. 
 And the bulk viscosity to entropy ratio $\zeta/s$ is directly related to  the scale-invariance breaking of QCD.
-Dynamical quantities such as viscosity are extremely hard to be computed from first principle, so currently, pinning down these numbers and their temperature / chemical potential dependences from experiments is essential in learning the dynamical properties of QGP.
-Global comparisons of the state-of-the-art medium modeling to a collection of soft observables have corroborate the need of a small $\eta/s$ that are likely to be slowly increasing with temperature and a non-vanishing $\zeta/s$.
 
-\subsection{Constituent quark scaling and the degrees freedom}
-The hydrodynamics is successful on describing the collectivity, but does not assume what is the effective degrees of freedom that is flowing.
+Dynamical quantities such as viscosity are extremely hard to be computed from first principle, so currently, the pinning down of these numbers and their temperature dependence resorts to the phenomenological extraction from experiments.
+The flow harmonics $v_n$ are particular sensitive to the viscous effects, as a finite viscosity damps the development of anisotropic flows, reducine the transition efficiency from $\epsilon_n$ to $v_n$.
+Global comparisons of the state-of-the-art medium modeling to a collection of soft observables have corroborated the need of a small $\eta/s$ that are likely to be slowly increasing with temperature and a non-vanishing $\zeta/s$.
 
-
-\subsection{Probing sQGP with hard probes}
-Very occasionally, particles with large transverse momentum ($p_T\gtrsim 10$ GeV) are produced, and there are referred to as the ``hard" particles.
-By uncertainty principal, these hard particles can only be produced in the initial collisions on a time scale $\delta t \sim 1/p_T$.
-Therefore, a hard process can only be produced at the very beginning of the nuclear collision and interacts with the nuclear medium that surrounds it.
-Due to the large $p_T$ and relatively small coupling constant, the production of these hard particles can be studied in a perturbative framework.
-The interaction with the medium modifies the initial production and leaves finger prints of the nuclear matter properties in the hard observables. 
-So, these hard particles can be used as self-generated probes of the system.
+\subsection{Probing sQGP using hard probes}
+Very occasionally, an initial collision involves large momentum transfer creates high-$p_T$ particles in the system ($p_T\gtrsim 10$ GeV), are referred to as the ``hard" particles.
+By uncertainty principal, they can only be produced at the beginning of the nuclear collision on a time scale $\delta t \sim 1/p_T$, then they pass through and interact with the surrounding bulk medium.
+Hard particles can be used as self-generated probes of the system.
+Due the asymptotic freedom, the initial production of hard processes can be computed in the perturbative framework, granting a good theoretical control of its initial state.
+The final state interaction with the medium then modifies the initial production and leaves finger prints of the medium on the hard probes.
 
 \paragraph{Jet and jet quenching}
-Jet quenching refers to the strong suppression of the yield of high transverse momentum hadrons in nuclear collisions, compared to the scaled yield in proton-proton collisions where medium effects are assumed to be small.
-Calculations have shown that this suppression is a consequence of jets losing energy to the hot, dense and color-deconfined medium. 
+Initial hard partons (gluons, quarks) undergoes complex QCD dynamics, radiating more partons which then hadronizes into a collimated bunch of hadrons and decay products.
+This final collection of particles is observed in detector as jets.
+In the proton-proton collisions, perturbative calculations and Monte-Carlo simulations are able to explains the production cross-section of the jet and leading hadrons (the hardest hadron in the jet) reasonably well.
+In the nuclear collisions, the initial parton and the radiative daugther partons interacts with the medium, causing energy loss and triggering medium-induced radiation.
+As a result, one expects the jet / leading parton yield at high-$p_T$ is reduced compared to the reference in proton-proton.
+To focus on the difference caused by medium effects, the reference has to cancel out a na\"ive difference that simply rises because there are more effective nucleon-nucleon collisions than the proton-proton collisions.
+One defines the so-called ``nuclear modification factor'',
+\begin{eqnarray}
+R_{AA}(y, p_T) = \frac{\frac{dN_{AA}}{dy dp_T}}{\langle N_{\textrm{coll}}\rangle \frac{dN_{pp}}{dy dp_T}} = \frac{\frac{dN_{AA}}{dy dp_T}}{\langle T_{AA} \rangle \frac{d\sigma_{pp}}{dy dp_T}}.
+\end{eqnarray}
+It is the average $N_{\textrm{bin}}$ ``normalized'' ratio between the yield in AA collisions and pp collision.
+The number of binary collision is sometimes replaced by the average nuclear overlapping function $\langle N_{\textrm{coll}}\rangle = \langle T_{AA} \rangle /\sigma_{pp}^{\textrm{inel}}$, and the yield is replaced by the inclusive cross-section for the proton-proton collision $\frac{dN_{pp}}{dy dp_T}\rightarrow \frac{d\sigma_{pp}}{dy dp_T}$.
+These two expressions are equivalent.
+The ratio is expected to be unity if there is no medium effect, though we do remind the readers that $N_{\textrm{coll}}$ is not a directly observed quantity and has to be estimated in a model-dependent way.
+
+At both RHIC and the LHC, colored probes as measured by the $R_{AA}$ of leading hadron and jet are found to be significantly below unity in nuclear collisions, while  $R_{AA}$ of color neutral probe such as $Z$-boson is consistent with unity.
+These discoveries indicate the creation of a color deconfined medium that strongly modifies to hard parton propagation.
+The interaction strength between the hard parton and the medium is theoretically quantified as the jet transport parameter $\hat{q}$, which is defined as the momentum broadening per unit path-length in the transverse direction of the propagation,
+\begin{eqnarray}
+\frac{d\langle p_\perp^2 \rangle}{dL} = \hat{q}
+\end{eqnarray}
+The jet transport coefficients is another quantity of fundamental interest  in heavy-ion collisions, and there has been a great effort in both first principal computation and phenomenological extraction.
+The hard parton / jet probes the medium at different scale at different stage of its evolution, and more sophisticated observables and theoretical tools are being constructed to answer more microscopic questions such as the actually degrees of freedom of the strongly coupled QGP [].
 
 \paragraph{Heavy-flavor probes}
-Heavy quarks (charm and bottom) are often seen as complementary probes of the QGP, but partly also belong to the category of jet observables, depending on their transverse momenta. Their large masses (compared to the prevailing temperatures generated in collisions at current heavy-ion colliders) constrain their production to early reaction times via hard perturbative Quantum-Chromodynamics (pQCD) processes. Flavor conservation ensures that the overwhelming majority of heavy quarks survive the entire reaction, allowing them to probe the full space-time evolution of the reaction.
-These two features are particular attractive to theorists as these flavor-tagged particles are much easier to track in the calculations than the evolution of a full jet.
-The mass also sets an additional energy scale to the problem and brings rich physics to the heavy-flavor sector.
-In the high transverse momentum region, heavy quarks lose energy mainly through radiative processes connecting them to jet energy loss studies {Wicks:2007am, Djordjevic:2004nq, Xu:2014tda, Kang:2016ofv}, whereas
-in the low transverse momentum region their large mass delays their thermalization, providing a window to study the equilibration process {Moore:2004tg,Riek:2010fk,Cao:2013ita}.
-Heavy flavors are therefore ideal and unique probes to determine QGP properties.
+Heavy flavor is a charming probe in studying heavy-ion collisions, and is also the focus of this work.
+Heavy quarks have mass well above the QCD non-perturbative scale.
+The charm quark ($M=1.3$ GeV) and bottom quark (M=$4.2$ GeV) are the most relevant heavy quarks for the present study.
+The reason that top quark ($M = 173$ GeV) is out of our discussion is due to its extremely short life time ($\sim 5\times 10^{-25} \approx 0.15$  fm/$c$ in its rest frame) so it barely interacts with the QGP before it decays into, predominantly, bottom quarks.
+Though there has also been proposal that takes the advantage of this short life-time to probe the temporal structure of the QGP evolution, we only focus on the charm and bottom flavor in this work.
 
-The in-medium propagation of heavy quarks is often studied in a kinetic approach that is linearized with respect to the heavy quark distribution function and the medium particle distribution function is assumed to be thermal, obtained from hydrodynamic models.
-The linearization implies that any effects of the heavy quark interactions on the medium are neglected.
+\begin{figure}
+\centering
+\includegraphics[width=.7\textwidth]{CMS-HF.png}
+\caption{}
+\label{fig:intro:Raa}
+\end{figure}
 
-The linearized Boltzmann transport equation and the Langevin equation are both widely used linearized models but make different assumptions regarding the nature of the interaction and thus often focus on different regimes in the heavy quark phase space {Auvinen:2009qm,Cao:2016gvr, Cao:2017hhk, PhysRevD.37.2484, Moore:2004tg}.
-The linearized Boltzmann transport equation is based on elementary scattering processes that can be directly calculated, e.g. via pQCD.
-However, calculations in the presence of a medium are extremely complicated even at leading order {Arnold:2002zm}.
-Also, the pQCD processes are often plagued by soft divergences that need to be regulated by a medium scale proportional to temperature. Moreover, at current collision energies the relevant temperature is not high enough which creates ambiguities for the pQCD calculation through the scale dependence of the strong coupling constant $\alpha_s$.
+A large mass guarantees a negligible thermal production contribution, at least for the present top LHC beam energies (there are estimations that thermal contribution can play a row in future FCC collider []).
+Therefore, heavy flavors, regardless of its $p_T$, are almost always created in initial hard processes.
+Moreover, the tiny population of heavy flavors in the collision also suppresses the chances that they annihilates / recombine with their anti-particles.
+Certainty heavy mesons have a long life time such that the decay vertices are outside of the fireball and can be resolved by experiments.
+Therefore, the number of heavy-flavor particles is almost conserved from the beginning to the end of the entire medium evolution including both the QGP phase and the hadronic phase.
 
-The Langevin equation takes a different approach: 
-it assumes that heavy quark receives frequent but soft momentum kicks from the medium, making a statistical description of the interaction possible -- in terms of ``drag" and ``diffusion" coefficients.
-These transport coefficients encode the first and second moments of the momentum-exchange rate but are agnostic to further details of the elementary processes and medium properties.
-There are efforts to calculate these transport coefficients in various approaches including lattice QCD {Moore:2004tg,CaronHuot:2008uh, Gossiaux:2008jv,He:2012df,Riek:2010fk,vanHees:2007me,Scardina:2017ipo,Ding:2012sp,Banerjee:2011ra,Francis:2015daa}. Our group has taken a complementary approach, using experiment data to calibrate our Langevin based transport model to measured observables and thus extract the transport coefficients directly from data via a Bayesian analysis {Xu:2017obm}. The drawback of this approach is that it does not in itself provide a fundamental understanding of the interaction mechanism but can only provide guidance to direct calculations of the transport coefficients in terms of compatibility to experimental observation.
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{ALICE-CMS-D-vn.pdf}
+\caption{}
+\label{fig:intro:D-vn}
+\end{figure}
+
+Heavy flavors are of physical interests in many ways.
+The mass effects are negligible at high $p_T$ where heavy flavors merge into the topic of the jet energy loss physics.
+At intermediate $p_T$, the mass effect is expected to suppress the medium-induce radiation, which dominates the energy loss of light quark.
+And there may be a competing between the collisional energy loss and radiation processes.
+Experimentally, these differences lead to a hierarchy in the amount of nuclear suppression.
+For example, figure \ref{fig:intro:Raa} citing from the CMS collaboration shows a collection of $R_{AA}$ measurements, for charged (mostly light) hadron, prompt D meson, prompt B meson and D and J/$\Psi$ from $b$-decays.
+All the $R_{AA}$ tends to collapse onto the same trend at very high-$p_T$, while for $p_T$ range aounrd 5 to 20 GeV, despite the large uncertainty, there is a suggestive hierarchy of $R_{AA}(\textrm{light}) < R_{AA}(\textrm{charm}) < R_{AA}(\textrm{bottom})$.
+It would be interesting to study whether the theoretical framework can explain this difference quantitatively and distinguish different energy loss mechanisms.
+
+At low $p_T$, collisional process is thought to dominates over radiative process, and the description of the heavy quark dynamics under the influence of medium ``kicks'' reduces to a succinct diffusion equation.
+In a diffusion picture, the large inertia $M\gg T$ delays the relaxation time $\tau_{\textrm{th}} \propto M/T^2$ and is the ideal probe to study the thermalization process in a QGP.
+The degree of thermalization of charmness can be seen in its momentum anisotropy.
+Figure \ref{fig:intro:D-vn} quotes the results from the ALICE collaboration and CMS collaboration.
+The $v_2$ of charged pions and prompt $D$ mesons are plotted as a function of transverse momentum.
+At low $p_T$, the large $v_2$ of the charged pions is due to the collective expansion; but the initially perturbatively produced charm flavors also catch up a large amount of momentum anisotropy.
+How does charm flavor catches this huge amount of flow during its non-equilibrium evolution is still puzzling, and it may eventually reveal the strongly coupled nature of the QGP in the soft realm.
+As a remark, the finite $v_2$ of D meson at high $p_T$ is not directly related to the flow phenomena, but as a result of anisotropic energy loss in a spatial eccentric medium.
+Finally, the unique flavors of heavy quarks help to tag certain processes of interest. 
+For example, the study of recombination hadronization mechanism, strange ness enhancement, and implementing a selection bias on the quark / gluon-initiated jet ratio.
+
+To understand all these phenomena related to the heavy flavors requires a comprehensive modeling of the non-equilibrium dynamics of heavy quarks and heavy mesons.
+At high $p_T$, a heavy-quark transport coefficient $\hat{q}_Q$ can be defined similarly to the light parton.
+For the close-to-thermalization diffusion dynamics, the heavy flavor community often uses the spatial diffusion constant $D_s$.
+$D_s$ is related to the momentum diffusion coefficient by $D_s = 4T^2/\hat{q}_Q(p=0)$, and this transport coefficients has been evaluated on the lattice by several group.
+Phenomenological extraction of this parameter from transport modeling is close to the lattice results and is significantly below the perturbative estimation. 
 
 \section{Extract sQGP properties from model-to-data comparison}
-Immediately after the nuclei penetration through each other $t\sim 2R/\gamma$, huge amount of energy is deposited into the overlapped area and entropy is produced, creating a fireball in the middle while the nuclear remnants recede.
-This highly excited fireball of fields undergoes complex dynamics and cools down rapidly because of the longitudinal and transverse expansion.
-Eventually, it reaches to a point where the temperature is low enought that the quarks and gluons are again confined into hadrons. 
-The hadrons can have further interactions and may decay into other hadrons, photons and lepton.
-The dynamical of QGP we are interested in only lasts for $O(10) fm/$c, while we can only observe the remnants at the end of the collisions.
-Therefore, the understanding of the QGP requires both an accurate dynamical modeling of the entire process and the design of sensitive observables.
+The dynamics of QGP only lasts for $O(10) fm/$c, while we can only observe the remnants at the end of the collisions by detectors meters away.
+Therefore, the learning of any intrinsic properties of QGP can be cast into a parameter inference problem:
+given the set of measurement, a model, and parameters of QGP such as $\eta/s, \hat{q}$, etc, then find out what are the range of parameters favored by the data.
+Then, one can make further comparison to theoretical calculations (if possible) of these parameters. 
+Finally, by comparing the theory expectation, and the experimental constraints, one evaluate the assumptions of the theory, which gives out new information of the physics system.
 
+This inversion from observables to parameters is not as simple as it appears, because of the following problems
+\begin{itemize}
+\item The dynamical models are complex and computational intense.
+\item Model takes many parameters or unknown functions that have infinitely many degrees of freedom.
+\item Better constraining power comes from global comparison to many experimental observables.
+\item The quantification of uncertainty: including experimental uncertainty, model uncertainty and theoretical uncertainty.
+\end{itemize}
+Most of these issues can be solved by the Bayes analysis for model parameter calibration, and its key ingredients will be explained in the detailed chapter \ref{bayes}.
+A remaining issue is the theoretical uncertainties, which is hard to quantify.
+The solution is two folded. 
+First, if there are more than one theoretical assumptions without appealing reasons to disfavor either of them, then this difference should be propagated into the extracted model parameters.
+For example, whether the coupling between the heavy quark is strongly coupled or weakly coupled; is the dynamics diffusion-like or scattering-like; etc.
+Including these uncertainty will certainly decrease the constraining power on the transport parameters, but it prevents biasing the estimated number from imposing a too strong assumption.
+Second, existing theoretical calculations are often worked out in certain idealized limits, while a dynamical modeling is much more complicated and may not closely follow what the underlying theory.
+This will certainly obscure the interpretation of the extracted parameters.
+Therefore, as an important practice for dynamical modeling, the model should be able to calibrate to theoretical calculations at least in those idealized limits, and then generalized to the more complex scenario.
+We devoted chapter \ref{transport} to improve the accuracy of hard parton transport model.
 
-\paragraph{Complex dynamical model with high-dimensional inputs}
-Taking the bulk model as an example, it includes an initial condition, a dynamical model for pre-equilibrium stage, the viscous hydrodynamics, particlization of the hydrodynamic energy momentum tensor and the hadronic decays and rescatterings.
-Each of the module takes both physical parameters and modeling parameters.
-Eventually, one can have more than 10 parameters.
-To generate one event with a model itself is already computationally intensive, while to be able to compare to experimental measurements that average over centrality with a good control of statistical uncertainty, $O(10^4)$ minimum-biased events needed to be generated.
-As a result, a na\"ive linear grid sweep over the 10-dimensional parameter space is certainty not feasible.
-To solve this problem of high-dimensional input complex models requires advanced parameter set design method and reliable interpolation schemes.
-
-
-\paragraph{Model uncertainty and correlation among parameters}
-We are mostly interested in those ``physical parameters / quantities'', for example, the transport coefficients $\eta/s(T)$ and $\zeta/s(T)$ of the medium.
-Other parameters, such the switching time between the pre-equilibrium free-streaming dynamics and the hydrodynamics, and the temperature at which one particlize a hydrodynamic field description into a hadronic ensemble are less interested in the physical sense.
-The appearance of these matching parameters are simply due to we do not have a single ``global model'' that works reasonably well under all circumstances.
-However, one should not think less of these model parameters, because the quantify a significant fraction of the modeling uncertainty.
-The model uncertainty can affect the interpretation of the experimental data, and any quantitative statement we draw about those physical quantities from a model-to-data comparison.
-For example, the  bulk particles anisotropic flows, though proved to be very sensitive to the shear viscosity, are also sensitive to the initial eccentricity of the initial conditions.
-Therefore, the exacted $\eta/s$ becomes correlated with the choice of initial condition models and its parameters.
-The model uncertainty is hard problem, and one can either try to reduce it by improving the model or quantify it when compared to data to prevent an over-interpretation.
-
-\paragraph{A high-dimensional model output / observables}
-The inclusion of more observables also helps to break the model degeneracy and parameter correlation.
-But it can be tricky to quantify the quality of agreement between model and data with a collection of observables (a high dimensional output).
-
-
-The Bayesian analysis framework is introduced to the field by the earily works of and the PhD thesis of Jonah Bernhard [] who has successfully applied the tool to the extraction of the initial condition topology and temperature dependent QGP transport coefficient.
-This chapter provides a concise description of the Bayesian analysis and for full details please refer to the thesis of Jonah Bernhard [].
+\section{Outline of this Thesis}
