@@ -1,9 +1,12 @@
-\chapter{Introduction of relativistic heavy-ion collision}
-\section{Quantum chromodynamics and its phase-diagram}
-The Quantum Chromodynamics (QCD) is the fundamental theory of the strong interaction.
-It describes the interaction of objects that carries color charges, with
-quarks and gluons as elementary degrees of freedom. 
-Quarks are fermions and gluons are bosons that mediate the interaction between color charges.
+\chapter{Introduction}
+\section{Nuclear matter under extreme conditions}
+The quest for the matter and its properties under extreme highly density and temperature has fundamental importance.
+Understanding nuclear matter and under these conditions help to understand questions from the early dynamics of the universe to the neutron star merger simulation for the gravitational wave studies.
+It also help to enrich the understanding of the fundamental theory of the strong interaction and basics to the nuclear physics: the Quantum Chromodynamics (QCD).
+
+\paragraph{Quantum Chromodynamics}
+QCD describes the interaction of objects that carries ``color'' charges.
+Quarks (fermions) and gluons (bosons) are its elementary degrees of freedom. 
 The QCD Lagrangian (with one flavor of quark) is,
 \begin{eqnarray}
 \mathcal{L} = \bar{\psi_i} \left(i\gamma_\mu D^\mu_{ij} -m \delta_{ij} \right)\psi_j - \frac{1}{4}G_{\mu\nu}^a G^{\mu\nu,a},
@@ -22,80 +25,66 @@ The field tensor of gluon with color $a$ is,
 \begin{eqnarray}
 G^{\mu\nu,a} = \partial^\mu A^{\nu, a} - \partial^\nu A^{\mu, a} + g f^{abc} A^{\mu,b}A^{\mu,c}
 \end{eqnarray}
-The first term is similar to kinetic term of the photon of quantum electrodynamics.
-The second term of gluon self-interation (also with strength $g$) is a unique feature of the non-Abelian gauge field.
+The first term is the kinetic term, and the second term is the gluon field self-interation (also with strength $g$) is a unique feature of the non-Abelian gauge field.
 
-\begin{figure}
-    \centering
-    \includegraphics{qcd-feynman-rules.png}
-    \caption{The Feynman rule of QCD}
-    \label{fig:qcd-feynman}
-\end{figure}
-
-Due to quantum fluctuations, the coupling constant of the quantum field theory runs with the resolution, i.e., energy scale. 
-The running of the $g$ is characterized by the $\beta$-function, which can be calculated order by order in perturbation theory (please refer to figure \ref{fig:qcd-feynman} for the Feynman rules), 
+\paragraph{Asymptotic freedom and confinement}
+Due to quantum fluctuations, the effective coupling constant $g$ changes with the energy scale of a process. 
+The rate of change of $g$ with respect to the scale parameter is called the $\beta$-function,
 \begin{eqnarray}
-\frac{\partial g}{\partial \ln\mu} = \beta(g).
+\frac{\partial g}{\partial \ln\mu} = \beta(g),
 \end{eqnarray}
-At leading order, the QCD $\beta$ function with number of colors $N_c$ and $n_f$ flavors of fermions is,
+which can be evaluated as a perturbation series of $g$.
+At leading order, the QCD $\beta$ function with number of colors $N_c$ and $n_f$ flavors of fermion is,
 \begin{eqnarray}
 \beta(g) = - \left( \frac{11}{3}N_c - \frac{2}{3}n_f \right) \frac{g^3}{16\pi^2}.
 \end{eqnarray}
-This $\beta$ function is negative for QCD ($N_c=3$) with realistic number of flavors of quarks $n_f = 2\cdots 6$, meaning the effective coupling constant decreases with increasing energy resolution.
-This is known as the asymptotic freedom of QCD that its interaction becomes small at asymptotically high energy.
-It is the asymptotic freedom that made the usage of perturbation theory at high energy possible.
-One usually defines the strong coupling constant in terms of $\alpha_s = g^2/4\pi$.
-Using the leading order $\beta$-function, its scale dependence can be solved as,
+This $\beta$ function is negative for QCD ($N_c=3$) using realistic numbers of quark flavors $n_f = 2\cdots 6$, meaning the effective coupling constant decreases with increasing energy scale.
+The property is known as the asymptotic freedom of QCD because the interaction becomes small at asymptotically high energy, which also makes possible the use of perturbation theory at high energy.
+
+Often a strong coupling constant is defined as $\alpha_s = g^2/4\pi$.
+Using the leading order $\beta$-function, its scale dependence is
 \begin{eqnarray}
-    \alpha_s(Q^2) = \frac{4\pi}{\left(\frac{11}{3}N_c - \frac{2}{3}n_f\right)\ln\left(\frac{Q^2}{\Lambda^2}\right)}
+    \alpha_s(Q^2) = \frac{4\pi}{\left(\frac{11}{3}N_c - \frac{2}{3}n_f\right)\ln\left(\frac{Q^2}{\Lambda^2}\right)}.
 \end{eqnarray}
-With the integration constant absorbed into the QCD energy scale $\Lambda$.
-Therefore $\Lambda$ becomes the only parameter at least in perturbative QCD, and can only be determined by experimental measurements. 
-For example, in figure \ref{fig:alphas}, the scale dependences of $\alpha_s$ are measured by different experiments.
-This data is nicely described by the perturbative running coupling, once its value is fixed at certain energy scale, i.e., at the mass of the $Z$ boson such that $\alpha_s(M_z) = 0.1185$.
-For the leading order running, this is $\Lambda \approx 200$ MeV.
+The integration constant has been absorbed into the QCD scale parameter $\Lambda$.
+Therefore, at least in perturbation theory, $\Lambda$ becomes the only parameter of QCD. 
+Its value is determined by anchoring $\alpha_s(\mu)$ to the experimental measurement at a fixed scale, for example, $\alpha_s(M_z) = 0.1185$ at the scale equal to the $Z$ boson mass.
+The leading order $\Lambda$ is then around $200$ MeV.
 
-\begin{figure}
-    \centering
-    \includegraphics{alphas.png}
-    \caption{Caption}
-    \label{fig:alphas}
-\end{figure}
+The decreasing of $\alpha_s(Q)$ is logarithmic slow at high energy, but it rises quickly approaching with $Q$ approaching $\Lambda$ from above.
+Even before reaching this scale, the coupling constant is already too large for a reliable perturbative calculation.
+Near the $\Lambda$ scale, QCD enters the non-perturbative region,
+and at this long distances only hadrons exists as colorless bound states of quarks and gluons.
+The fact that colors not directly observed at large distances is knowns as ``color confinement'' of QCD. 
+To pull a quark out of the hadron, the color field becomes so strong that eventually more quark-anti-quark pairs populated in-between the pulled quark and the remnant and forms new colorless hadrons.
 
-At high energy, the decreasing of the effective coupling constant is logarithmic slow, but at low energy the perturbative coupling rises quickly approaching $\Lambda$.
-Before reaching this scale, the coupling constant is already too large for reliable perturbative calculations, and $\Lambda$ often serves as an estimation of the QCD non-perturbative scale.
-The non-perturbative physics cannot be obtained from perturbative QCD and the only reliable way nowadays is lattice QCD technique where the QCD Lagrangian is discretized on a finite lattice and studied on a computer.
-Experimentally, we know that at large distance $L\sim 1/\Lambda$, the coupling between color charges is so strong that isolated color never exists alone without the strong color field constantly populating more colored objects.
-These color charge carriers combine to form colorless QCD bound states known as hadrons, such as protons, neutrons and pions.
-Depending on its valance quarks (quarks that carry the net quantum number) content, hadrons are generally categorized as baryons and mesons.
-Baryons are hadrons with three valance quarks or anti-quarks, while mesons consist of a valance quark and an anti-quark.
-Hadrons are also populated with sea-quarks and gluons that are constantly produced in quantum fluctuations.
-The hadron momentum is mostly carried by the valance quaks, while the sea quarks and gluons only share a fraction, but the later is very important for particle production in relativistic hadron collisions.
+Depending on its valance quarks (quarks that carry the net quantum number of the hadron) content, hadrons are generally categorized as baryons and mesons.
+Baryon has three valance quarks or anti-quarks, such as neutrons and protons.
+Meson has a valance quark and an anti-quark, such as pion and kaon.
+Hadrons are also populated with sea-quarks and gluons that are constantly produced and annihilated as quantum fluctuations.
+The momentum of hadron is mostly carried by the valance quarks.
+The sea quarks and gluons together share the rest fraction of the total momentum, but their abundance number at high energy is very important for the particle production in relativistic hadron / heavy-ion collisions.
 
-Because of asymptotic freedom property of QCD at high energy, people have been questing for the phase structure of nuclear matter under extreme conditions and related phase transitions.
-The phase-diagram is often studied with temperature and baryon chemical potential as independent variables. 
-The phase structure on the landscape of independent thermodynamic quantities such as isospin asymmetry, strangeness, etc have also attract great attentions.
-Ordinary nuclear matter (nuclei) are many body bound states at zero temperature and Baryon chemical potential $\mu_B\approx 1$ GeV.
-A first insight at finite temperature is that because the weakening of the coupling at high energy scale, the nuclear matter was thought to transit from hadronic matter to a system of liberated quarks and gluons, termed the quark-gluon plasma (QGP). 
-Lattice QCD calculations have studied this transition at zero baryon chemical potential with physical parameters.
-Figure \ref{fig:qcd_eos} quotes the results obtained from the HotQCD Collaboration.
-It shows the pressure, energy density and entropy density of the 2+1 flavor QCD.
-The thermodynamic quantities scaled by powers of temperature can be understood as the effect number of degrees of freedom.
-The non-interacting limit (ideal gas of quarks and gluons) is denoted as the dashed lines. 
-It is observed that the lattice results converges to the expectation from a hadron resonance gas model (HRG) at low temperature and smoothly transit to higher values in a narrow temperature range around the pseudo critical temperature $T_c \approx 150 $ MeV (1.5 trillion Kelvin), suggesting an increase of degrees of freedom.
+Nowadays, the only reliable ab initio theoretical tool for non-perturbative QCD is lattice field theory technique, where the QCD Lagrangian is discretized on a finite lattice and studied on a computer.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=.8\textwidth]{qcd-eos.png}
-    \caption{Caption}
-    \label{fig:qcd_eos}
-\end{figure}
+\paragraph{The phase-diagram of the QCD matter}
+At zero temperature ($T$), protons and neutrons (together as nucleons) form bound states of atomi nuclei that build the ordinary matter.
+One can also define the baryon chemical potential $\mu_b$, and for ordinary matter $\mu_b$ is around $1$ GeV, close to the proton mass.
+The ordinary nuclei is indicated as the white dot on the (partly conjectured) phase diagram in figure \ref{fig:phase-diagram} [].
+Increasing the temperature of the system, nucleons start escape from nuclear potential and other hadrons can be created from collision and resonance formation and decay.
+This system is know as the hadron gas (cyan region in figure \ref{fig:phase-diagram}).
 
-This transition is a cross-over type phase transition at vanishing baryon chemical potential.
-At finite baryon chemical potential, the lattice QCD is faced with the fermion sign problem. But many phenomenological models and Dyson-Schwinger equations studies have suggested the existence of a first order phase transition at large $\mu_B/T$.
-If such a first order phase transition exist, the coexistence line must end at some point when decreasing $\mu_B/T$, approaching the cross-over phase transition established from lattice study.
-Such a point, called the critical end point (CEP), is of great interest both theoretically and experimentally.
-At high enough chemical potential (density) and low temperature, another phase of nuclear matter known as the "Color Superconductor" is proposed, where the quarks forms Cooper pairs as those found among electrons in common superconductors.
+Because QCD has asymptotic freedom at high energy and confinement at low energy scale, there can be so-called deconfinement phase-transition when temperatures crosses the QCD non-perturbative scale.
+At asymptotically high temperature, the weakening of the coupling should lead to the transit from the color confined hadronic matter to a system of transporting quarks and gluons, termed the quark-gluon plasma (QGP). 
+Frist principle lattice QCD calculations have studied this transition at zero baryon chemical potential with 2+1 flavors (up / down plus strange quark) QCD.
+Figure \ref{fig:qcd_eos} quotes the equation of state computed by  the HotQCD Collaboration [].
+It shows the pressure $P$, energy density ($\epsilon$) and entropy density ($s$) of QCD system.
+These thermodynamic quantities are scaled by powers of temperature, so that the ratio can be loosely related the effective number of degrees of freedom (DoF) of the system
+The Stefan-Boltzmann limit (non-interacting gas of quarks and gluons) is denoted as the dashed lines in the up-right corner.
+It is observed that the effective number of DoF converges to the expectation from a hadron resonance gas model (solid lines) at low temperature and rapidly increases to a value close to the Stefan-Boltzmann limit in a narrow temperature window.
+This suggests a releasing of the quark and gluon degrees of freedom at high temperature.
+More close study indicate that this is not a real phase-transition at ($\mu_b = 0$), and sometimes people also refer to it as a ``cross-over'' phase transition, where the thermaldynamical quantity is smooth across this region of phase-diagram.
+Nevertheless, a pseudo critical temperature is defined to be $T_c \approx 150 $ MeV, corresponding to 1.5 trillion Kelvin.
 
 \begin{figure}
     \centering
@@ -104,21 +93,34 @@ At high enough chemical potential (density) and low temperature, another phase o
     \label{fig:phase-diagram}
 \end{figure}
 
-It is believed that the QCD high temperature phase-transition is a stage of the early evolution of the universe, when the temperature drops down to the transition temperature around a microsecond after the Big Bang.
-Compact starts is another celestial testing ground of QCD matter, the high density and low temperature QCD equation of state is an important physical input for simulating the recently discovered gravitational wave from neutron star mergers.
-Within lab, the current approach of creating hot and dense nuclear matter is the collision of heavy nuclei at ultra-relativistic high energies, and will be introduced in the next section
+Moving to wards finite baryon chemical potential, the lattice approach runs into the fermion sign problem, though recent studies has been pushing the realm of lattice QCD into small $\mu/T$ regions [].
+Effective models [] and Dyson-Schwinger equation studies [] have suggested the existence of a first order phase transition at large $\mu_B/T$.
+If true, the first-order coexistence line must end at a point on the phase-diagram at lower $\mu_b$, beyond which the phase-transition is the cross-over type.
+Such a point, called the critical end point (CEP), has attached a great interest of both theoretical confirmation / exclusion and experimental search.
 
+At higher chemical potential and low temperature, another phase of nuclear matter known as the ``color superconducting phase'' is proposed, where the quarks forms Cooper pairs in analogy to the superconductors [].
 
+\begin{figure}
+    \centering
+    \includegraphics[width=.8\textwidth]{qcd-eos.png}
+    \caption{Caption}
+    \label{fig:qcd_eos}
+\end{figure}
 
-\section{Relativistic heavy-ion collision}
+It is believed that the QCD high-temperature phase-transition is a stage of the universe around a microsecond after ``the Big Bang'', when the temperature drops down to QCD scale.
+Compact starts are ``celestial laboratories'' to test the QCD equation-of-state in the high density and low temperature region, providing an important physical input for simulating the recently discovered gravitational wave from neutron star mergers.
+In laboratories, we create hot and dense nuclear matter by colliding heavy nuclei at ultra-relativistic high energies.
+Though the created matter is so transient and tiny compared to the cosmic nuclear matter, we can learn not only thermodynamic properties but also essential dynamical properties of the QCD in these experiments.
+
+\section{Phenomenology of relativistic heavy-ion collision}
 Relativistic heavy-ion collision is currently the only tool to access high energy density QCD medium in laboratory.
-Since 2005, the Relativistic Heavy-ion Collider (RHIC) at the Brookheaven National Laboratory (BNL) started colliding gold nuclei at 200 GeV. 
-The Large Hadron Collider (LHC) started its heavy ion programs later, colliding lead nuclei at 2.76 TeV and 5.02 TeV.
-Since then, many evidences have been pointing to the discovery of the new state-of-matter: the quark-gluon plasma.
-Three key evidences that lead to this discovery are the observation of strong collective flows of bulk matter, parton recombination as manifest in constituent quark number scaling laws, and the jet quenching phenomenon. 
-In this section, after a short introduction of the basic concepts and terminology used in heavy-ion collisions, I will review these three discovery and how these information can be used to understand the property of the quark-gluon plasma.
+Since 2005, the Relativistic Heavy-ion Collider (RHIC) at the Brookheaven National Laboratory (BNL) started colliding gold nuclei at 200 GeV []. 
+The Large Hadron Collider (LHC) started its heavy ion programs later, colliding lead nuclei at 2.76 TeV and 5.02 TeV [].
+Since then, many evidences have been pointing to the discovery of the new state-of-matter: the strongly coupled quark-gluon plasma (sQGP).
+In this section, I shall introduce useful concepts and terminology in heavy-ion collisions.
+Then I will review a few important experimental evidences and how they can help the understanding of the properties of the sQGP.
 
-\subsection{Basics of nuclear collisions}
+\subsection{Nuclear collisions geometry}
 \paragraph{Kinematics} For the case of ultra relativistic collisions, it is advantages to use a new set of coordinates that is related to the Cartesian coordinates by,
 \begin{eqnarray}
 x_\perp &=& x_\perp\\
@@ -168,7 +170,7 @@ Usually, the models is one of the many variants of the Monte-Carlo Glauber model
 It is found that the bulk particle production scales roughly like number of participants, while the cross-section of hard processes (processes involves large momentum transfer $Q \gg \Lambda$).
 It is true that the centrality definition can be model dependent, but the uncertainty can be quantified and its prediction can be validated by the production of colorless probes.
 
-\section{Learn about QGP from soft observables}
+\subsection{Particle production mechanisms}
 Experimentally, it is found that the particle produced in relativisitc nuclear collisions has a wide pseudo-rapidity distribution, and a steep falling transverse momentum spectra.
 The bulk of the particles in one event are relatively soft with $p_T \lesssim 3$ GeV.
 One of the most striking discovery from RHIC and LHC heavy-ion program is that these soft particles depicts a strong collectivity, and hydrodynamic based models are able to describe the bulk observables to a very high precision.
@@ -207,18 +209,20 @@ Global comparisons of the state-of-the-art medium modeling to a collection of so
 \subsection{Constituent quark scaling and the degrees freedom}
 The hydrodynamics is successful on describing the collectivity, but does not assume what is the effective degrees of freedom that is flowing.
 
-\section{Hard probes}
+
+\subsection{Probing sQGP with hard probes}
 Very occasionally, particles with large transverse momentum ($p_T\gtrsim 10$ GeV) are produced, and there are referred to as the ``hard" particles.
 By uncertainty principal, these hard particles can only be produced in the initial collisions on a time scale $\delta t \sim 1/p_T$.
 Therefore, a hard process can only be produced at the very beginning of the nuclear collision and interacts with the nuclear medium that surrounds it.
 Due to the large $p_T$ and relatively small coupling constant, the production of these hard particles can be studied in a perturbative framework.
 The interaction with the medium modifies the initial production and leaves finger prints of the nuclear matter properties in the hard observables. 
 So, these hard particles can be used as self-generated probes of the system.
-\subsection{Jet quenching}
+
+\paragraph{Jet and jet quenching}
 Jet quenching refers to the strong suppression of the yield of high transverse momentum hadrons in nuclear collisions, compared to the scaled yield in proton-proton collisions where medium effects are assumed to be small.
 Calculations have shown that this suppression is a consequence of jets losing energy to the hot, dense and color-deconfined medium. 
 
-\subsection{Heavy-flavors}
+\paragraph{Heavy-flavor probes}
 Heavy quarks (charm and bottom) are often seen as complementary probes of the QGP, but partly also belong to the category of jet observables, depending on their transverse momenta. Their large masses (compared to the prevailing temperatures generated in collisions at current heavy-ion colliders) constrain their production to early reaction times via hard perturbative Quantum-Chromodynamics (pQCD) processes. Flavor conservation ensures that the overwhelming majority of heavy quarks survive the entire reaction, allowing them to probe the full space-time evolution of the reaction.
 These two features are particular attractive to theorists as these flavor-tagged particles are much easier to track in the calculations than the evolution of a full jet.
 The mass also sets an additional energy scale to the problem and brings rich physics to the heavy-flavor sector.
@@ -239,7 +243,7 @@ it assumes that heavy quark receives frequent but soft momentum kicks from the m
 These transport coefficients encode the first and second moments of the momentum-exchange rate but are agnostic to further details of the elementary processes and medium properties.
 There are efforts to calculate these transport coefficients in various approaches including lattice QCD {Moore:2004tg,CaronHuot:2008uh, Gossiaux:2008jv,He:2012df,Riek:2010fk,vanHees:2007me,Scardina:2017ipo,Ding:2012sp,Banerjee:2011ra,Francis:2015daa}. Our group has taken a complementary approach, using experiment data to calibrate our Langevin based transport model to measured observables and thus extract the transport coefficients directly from data via a Bayesian analysis {Xu:2017obm}. The drawback of this approach is that it does not in itself provide a fundamental understanding of the interaction mechanism but can only provide guidance to direct calculations of the transport coefficients in terms of compatibility to experimental observation.
 
-\section{Understanding QGP through model-to-data comparison}
+\section{Extract sQGP properties from model-to-data comparison}
 Immediately after the nuclei penetration through each other $t\sim 2R/\gamma$, huge amount of energy is deposited into the overlapped area and entropy is produced, creating a fireball in the middle while the nuclear remnants recede.
 This highly excited fireball of fields undergoes complex dynamics and cools down rapidly because of the longitudinal and transverse expansion.
 Eventually, it reaches to a point where the temperature is low enought that the quarks and gluons are again confined into hadrons. 
