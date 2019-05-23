@@ -1,4 +1,5 @@
 \chapter{Introduction}
+\label{chapter:introduction}
 \section{Nuclear matter under extreme conditions}
 The quest for the matter and its properties under extreme highly density and temperature has fundamental importance.
 Understanding nuclear matter and under these conditions help to understand questions from the early dynamics of the universe to the neutron star merger simulation for the gravitational wave studies.
@@ -293,42 +294,66 @@ For example, figure \ref{fig:intro:Raa} citing from the CMS collaboration shows 
 All the $R_{AA}$ tends to collapse onto the same trend at very high-$p_T$, while for $p_T$ range aounrd 5 to 20 GeV, despite the large uncertainty, there is a suggestive hierarchy of $R_{AA}(\textrm{light}) < R_{AA}(\textrm{charm}) < R_{AA}(\textrm{bottom})$.
 It would be interesting to study whether the theoretical framework can explain this difference quantitatively and distinguish different energy loss mechanisms.
 
-At low $p_T$, collisional process is thought to dominates over radiative process, and the description of the heavy quark dynamics under the influence of medium ``kicks'' reduces to a succinct diffusion equation.
-In a diffusion picture, the large inertia $M\gg T$ delays the relaxation time $\tau_{\textrm{th}} \propto M/T^2$ and is the ideal probe to study the thermalization process in a QGP.
-The degree of thermalization of charmness can be seen in its momentum anisotropy.
-Figure \ref{fig:intro:D-vn} quotes the results from the ALICE collaboration and CMS collaboration.
-The $v_2$ of charged pions and prompt $D$ mesons are plotted as a function of transverse momentum.
-At low $p_T$, the large $v_2$ of the charged pions is due to the collective expansion; but the initially perturbatively produced charm flavors also catch up a large amount of momentum anisotropy.
-How does charm flavor catches this huge amount of flow during its non-equilibrium evolution is still puzzling, and it may eventually reveal the strongly coupled nature of the QGP in the soft realm.
-As a remark, the finite $v_2$ of D meson at high $p_T$ is not directly related to the flow phenomena, but as a result of anisotropic energy loss in a spatial eccentric medium.
+Low-$p_T$ heavy quark physics is even more interesting.
+In this region, collisional process dominates over radiative process, and the description of the heavy quark dynamics under the influence of medium ``kicks'' reduces to the succinct diffusion equation [].
+A spatial diffusion constant $D_s$ controls the close-to-equilibrium dynamics, and canbe related to the momentum diffusion by $D_s = 4T^2/\hat{q}(p\rightarrow 0)$ [].
+The large inertia $M\gg T$ delays its relaxation time $\tau_{\textrm{th}} \propto M/T D_s$ and one expects to find a different degree of thermalization for light, charmed, and bottom hadrons.
+For instance, looking at the low $p_T$ momentum anisotropy of charmed meson shown in figure \ref{fig:intro:D-vn} [].
+The large $v_2$ of the charged pions below $3$ GeV is due to the collective expansion.
+The charmed mesons also catch up a significant amount of flow \footnote{As a remark, the finite $v_2$ of D meson at high $p_T$ is not directly related to the flow phenomena, but as a result of anisotropic energy loss in a spatial eccentric medium}, though still less than the pion.
+To explains this amount of D meson $v_2$, phenomenological studies suggests a $D_s$ close to the lattice QCD evaluations [], while leading order weakly coupled results [] is inadequate. 
+This finding suggests the importance of non-perturbative phenomenon in understanding the coupling between low momentum heavy quark and the medium [].
+
 Finally, the unique flavors of heavy quarks help to tag certain processes of interest. 
-For example, the study of recombination hadronization mechanism, strange ness enhancement, and implementing a selection bias on the quark / gluon-initiated jet ratio.
+For example, the study of recombination hadronization mechanism, strange ness enhancement, and implementing a selection bias on the quark / gluon-initiated jet ratio [].
 
-To understand all these phenomena related to the heavy flavors requires a comprehensive modeling of the non-equilibrium dynamics of heavy quarks and heavy mesons.
-At high $p_T$, a heavy-quark transport coefficient $\hat{q}_Q$ can be defined similarly to the light parton.
-For the close-to-thermalization diffusion dynamics, the heavy flavor community often uses the spatial diffusion constant $D_s$.
-$D_s$ is related to the momentum diffusion coefficient by $D_s = 4T^2/\hat{q}_Q(p=0)$, and this transport coefficients has been evaluated on the lattice by several group.
-Phenomenological extraction of this parameter from transport modeling is close to the lattice results and is significantly below the perturbative estimation. 
+\subsection{Transport modeling of hard probes}
+The understanding of jets and heavy-flavor in heavy-ion collisions needs a comprehensive non-equilibrium modeling.
+This includes initial production / DGLAP evolution, the partonic propagation in the QGP, and eventually the hadronic interaction.
+Transport equations are convenient tools to couple the microscopic hard probes propagation to the macroscopic medium evolution, though one have to be very careful with the multiple scales of the problem.
+For example DGLAP evolution brings the parton scale from $p_T$ down to O(GeV).
+The probe-medium interactions happens at typical scales around temperature $T$ and the screening mass $m_D \sim gT$, while the medium-induced radiation suffers momentum broadening scale of order $\hat{q} t$.
+Eventually, hadronization happens at scale $\Lambda$.
+Meanwhile, the medium evolution has a another set of (time) scales, the hydrodynamization time $\sim 1$ fm/$c$, the finite-size and life-time of the QGP fireball $\sim O(10)$  fm/$c$, and the expansion time scale $\tau_{\textrm{ex}}$.
+Usually a well separation of scales allows great simplification to the theory calculations.
+For example, the Boltzmann transport equation requires a separation between the mean-free-path and the coherence time of the scattering.
+However, in realistic event simulations, treating regions of overlapping scales seems inevitable.
+We would like to develop in this thesis a new transport model to account for a few of these overlapping scale issues.
 
-\section{Extract sQGP properties from model-to-data comparison}
-The dynamics of QGP only lasts for $O(10) fm/$c, while we can only observe the remnants at the end of the collisions by detectors meters away.
-Therefore, the learning of any intrinsic properties of QGP can be cast into a parameter inference problem:
-given the set of measurement, a model, and parameters of QGP such as $\eta/s, \hat{q}$, etc, then find out what are the range of parameters favored by the data.
-Then, one can make further comparison to theoretical calculations (if possible) of these parameters. 
-Finally, by comparing the theory expectation, and the experimental constraints, one evaluate the assumptions of the theory, which gives out new information of the physics system.
-
-This inversion from observables to parameters is not as simple as it appears, because of the following problems
+\paragraph{Heavy quark transport models}
+In early days, the heavy quark measurements at RHIC energy does not extend to very high-$p_T$ and the radiative energy loss is not as important as elastic ones.
+And one study the non-equilibrium dynamics using a pure diffusion model []. 
+To include physics at high-$p_T$ physics, a radiation improved diffusion model was then developed [] and has been applied to the first Bayesian extraction of the heavy quark transport coefficients [].
+Apart from the diffusion-based models, Boltzmann and linearized Boltzmann models, including both elastic and inelastic interactions, are also developed [].
+Regarding the physical inputs, the Boltzmann-based model takes a weakly-coupled picture; the diffusion based model is more flexible, since the transport coefficient can be computed in both weakly coupled or strongly coupled approach [].
+Using different models, the extracted transport parameters $D_s$, $\hat{q}$ have notable differences [].
+The major sources that leads to these differences are:
 \begin{itemize}
-\item The dynamical models are complex and computational intense.
-\item Model takes many parameters or unknown functions that have infinitely many degrees of freedom.
-\item Better constraining power comes from global comparison to many experimental observables.
+\item Whether the radiative energy loss is included.
+\item Assumptions on the medium: close-to-equilibrium hydrodynamic medium, or non-equilibirum form full partonic Boltzmann equation.
+\item Weakly coupled approach versus strongly coupled approach.
+\item More subtle differences such as Langevin versus Boltzmann dynamics, and the detailed treatment of the radiative process.
+\end{itemize}
+To make convergent progress, on the one hand improved theoretical calculations and more accurate modeling is important; on the other hand, more subtle differences should can be treated as intrinsic modeling uncertainty so that the extracted transport parameters are not over-interpreted (a finite theoretical uncertainty bands on $D_s$ and $\hat{q}$). 
+I will also try to make progress in this direction.
+
+\subsection{Understanding QGP as a parameter inference problem}
+All the interesting dynamics of heavy-ion collision only last for $O(10) $ fm/$c$, while we can only observe the collision remnants by detectors meters away.
+Therefore, the learning of any intrinsic properties of QGP is essentially  a parameter inference problem:
+given measurements, models, and parameters of QGP such as $\eta/s, \hat{q}$, what is the favored range of parameters to explain the data.
+Finally, by comparing the theoretical expectations (if exists) and the phenomenological constraints of these parameters, one evaluate the theoretical assumptions, which gives out new information of the QGP.
+
+This inversion from observables to parameters is not as simple as it appears, because of the following difficulties,
+\begin{itemize}
+\item The dynamical models are complex and computationally intense.
+\item Model takes multiple parameters or unknown functions that have infinitely many degrees of freedom.
+\item Global comparison to many experimental observables.
 \item The quantification of uncertainty: including experimental uncertainty, model uncertainty and theoretical uncertainty.
 \end{itemize}
-Most of these issues can be solved by the Bayes analysis for model parameter calibration, and its key ingredients will be explained in the detailed chapter \ref{bayes}.
+Most of these issues can be solved by the Bayes analysis for model parameter calibration, and its key ingredients will be explained in chapter \ref{chapter:bayes}.
 A remaining issue is the theoretical uncertainties, which is hard to quantify.
-The solution is two folded. 
+Our solution to the theoretical uncertainty is two-folded.
 First, if there are more than one theoretical assumptions without appealing reasons to disfavor either of them, then this difference should be propagated into the extracted model parameters.
-For example, whether the coupling between the heavy quark is strongly coupled or weakly coupled; is the dynamics diffusion-like or scattering-like; etc.
 Including these uncertainty will certainly decrease the constraining power on the transport parameters, but it prevents biasing the estimated number from imposing a too strong assumption.
 Second, existing theoretical calculations are often worked out in certain idealized limits, while a dynamical modeling is much more complicated and may not closely follow what the underlying theory.
 This will certainly obscure the interpretation of the extracted parameters.
@@ -337,15 +362,15 @@ We devoted chapter \ref{transport} to improve the accuracy of hard parton transp
 
 \section{Outline of this Thesis}
 In this thesis, I focuses on the extraction of the heavy quark transport coefficients from experiments using a newly developed transport model for hard parton in a quark-gluon plasma.
-In chapter \ref{simulation}, I introduce a hydrodynamic-based medium for the medium evolution. 
+In chapter \ref{chapter:simulation}, I introduce a hydrodynamic-based medium for the medium evolution. 
 As an application of this simulation framework, I review my project on reverse engineering a three-dimensional initial entropy deposition of the heavy-ion collision from experimental data. 
-In chapter \ref{transport}, we develop the transport model for hard parton (including heavy quark)  propagation inside a quark-gluon plasma.
+In chapter \ref{chapter:transport}, we develop the transport model for hard partons (including heavy flavors) propagation inside a quark-gluon plasma.
 This model interpolates a small-angle diffusion picture and a large-angel scattering picture of the probe-medium interaction.
-I show the limitation of the semi-classical transport approach in implementing parton branching (radiation) processes at high energy, and demonstrate how to modified the semi-classical approach to treat it properly.
-Chapter \ref{coupling} builds a comprehensive simulation workflow that couples the initial production and in-meidum transport of heavy flavors to the bulk medium evolution.
-Benchmark calculations with simple guessed parameters are compared to the experimental measurements.
-Chapter \ref{bayes} is a brief description of the Bayes methodology of model parameter calibration.
-Applying the Bayes method, in chapter \ref{results}, a systematic model-to-data comparison is performed, extracting the heavy flavor transport properties.
-Finally, chapter \ref{conclusion} summarizes the work and discuss possible future improvements.
+I show the limitation of the semi-classical transport approach in implementing parton branching processes (radiation) at high energy, and demonstrate how to modified the semi-classical approach to treat it properly.
+Chapter \ref{chapter:coupling} builds a comprehensive simulation workflow that couples the initial production and in-meidum transport of heavy flavors to the bulk medium evolution.
+Benchmark calculations with simple guesses of parameters are compared to the experimental measurements.
+Chapter \ref{chapter:bayes} is a brief description of the Bayes methodology of model parameter calibration.
+Applying the Bayes method, in chapter \ref{chapter:results}, a systematic model-to-data comparison is performed, extracting the heavy flavor transport properties.
+Finally, chapter \ref{chapter:conclusion} summarizes the work and discuss possible future improvements.
 
 
