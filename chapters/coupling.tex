@@ -1,24 +1,21 @@
 \chapter{Comprehensive heavy-flavor simulation framework}
 \label{chapter:coupling}
-In this chapter, we shall start to focus on applying the LIDO transport model to the heavy-flavor section, and discuss in detail how a transport model fits into the complex dynamics of heavy flavors in the heavy-ion collision environment.
-We summarize a comprehensive simulation framework for heavy quarks in relativistic heavy-ion collisions in the following follow chart figure \ref{fig:flowchart}.
-The soft initial condition model provide both the initial energy density of the medium and the transverse location of the hard vertices, while pQCD based calculations initialize the momentum space of the hard partons.
-We have introduced the left branch of this flow chart, which is the hydrodynamic-based model for the bulk medium evolution.
-The right branch is a model for the hard parton (heavy flavor) evolution.
 
-Immediately after the hard production, the parton undergoes DGLAP evolution and builds a parton shower.
-In fact many heavy flavor particles are created in parton shower stage.
-The complication is that certain vacuum parton shower would have occupied the same phase-space as the medium-induced radiation.
-One of the many obstacles in interfacing these two processes is that the multiple emissions / branchings are treated very differently between vacuum evolution and in-medium evolution.
+The simulation framework for heavy flavor particles is summarized in the follow chart in figure \ref{fig:flowchart}.
+The soft initial condition model provide both the initial energy density of the medium and the transverse location of the hard vertices, while pQCD based calculations initialize the momentum space of the hard partons.
+The left branch of this flow chart -- the hydrodynamic-based medium evolution model -- in chapter \ref{chapter:simulation}.
+We briefly review of the right branch -- the mutli-stage model for heavy-falvor.
+The hard production model is introduced in section \ref{section:hard}.
+The initially produced partons are highly virtual and undergo the DGLAP evolution (vacuum shower) that bring down the virtuality; eventually at some point this evolution will be matched to the in-medium transport calculations.
+There is a complication for vacuum-like parton shower in a medium, since  certain vacuum parton branchings would have occupied the same space-time as the medium and also receives medium corrections.
+Another obstacle is that multiple emissions are treated very differently between vacuum-like shower and medium-induce shower.
 For the vacuum evolution, the ``time'' variable is the virtuality scale with the space-time information integrated out, while the transport model evolves the systems in real time, with virtuality integrated out below a certain scale.
-There are many recent progress in both theory developments and newly design event-generators to solve this problem.
-In this chapter, we shall focus on one possible solution to interface the two in section 1.
-The in medium propagation of parton requires the medium properties as input. 
-To zeros order of approximation, we specify the medium with its flow velocity and the equilibrium temperature, although the viscous hydro provides far more off-equilibrium information. 
-This is discussed in section 2.
-The heavy flavor hadronization model is introduced in section 3, which is a previously developed model that interpolates high-$p_T$ fragmentation processes and low-$p_T$ in medium recombination production of heavy hadrons.
-In section 4, we briefly introduced how this simulation framework of open heavy flavor can be coupled to the quarkonium evolution, but for more details, please refers to the thesis work [].
-Finally, in section 5, we benchmark the model using a few choices of fixed coupling constant and running coupling constants before systematically tuned the model to data in the next chapter.
+There are many recent progress in both theory developments and newly design event-generators to solve this problem [].
+In section \ref{section:match}, we discuss a possible prescription to interface the two types of showers in our simulation.
+Section \ref{section:couple-to-hydro} contains the details of coupling the transport model to a dynamically evolving medium with large longitudinal expansion.
+The heavy flavor hadronization model and hadronic rescatterings are introduced in section \ref{section:hadronization}.
+The hadronization routine applies a previously developed model that interpolates high-$p_T$ fragmentation processes and low-$p_T$ recombination production of heavy hadrons [].
+Finally, in section \ref{section:benchmark}, the model is benchmarked using a few choices of fixed coupling constant and running coupling constants, before being systematically tuned to data in the next chapter.
 \begin{figure}
 \centering
 \includegraphics[width=.8\textwidth]{flowchart.pdf}
@@ -27,6 +24,7 @@ Finally, in section 5, we benchmark the model using a few choices of fixed coupl
 \end{figure}
 
 \section{Initial production of heavy flavor}
+\label{section:hard}
 \subsection{Factorization framework in proton-proton collisions}
 In the proton-proton collision, the hard processes can be computed using the pQCD-based techniques.
 The foundation of this calculation is the factorization framework as schematically demonstrated in \ref{fig:factorization}.
@@ -34,70 +32,73 @@ First, the incoming proton is a composite object and there is a certain ``probab
 This ``probability'' is known as the parton distribution function (PDF) $f_i(x, Q^2)$.
 It not only is a function of $x$, but also depends on the scale $Q^2$ at which the proton is probed.
 The probing scale is required to be much greater than the non-perturbative scale.
-Because $\alpha_s(Q^2)$ is samll due to asymptotic freedom, perturbative calculation can compute the process of partons $i$ and $j$ scatterings into partons $k$ and $l$.
-Finally, the partons produces a bunch of hadrons. 
-And one can define a parton fragmentation function as the probability to find a hadron $H$ carrying a fraction $x_H$ of the parton's momentum.
-Finally the cross-section for the inclusive production of hadron can be written as [],
+Because $\alpha_s(Q^2)$ is samll due to asymptotic freedom, the process of partons $i$ and $j$ scatterings into partons $k$ and $l$ is computable in perturbative QCD.
+The sinal states partons eventually produce a bunch of hadrons, which is non-perturbative process.
+The parton fragmentation function is then defined as the probability to find a certain hadron $H$ carrying a fraction $x_H$ of the parton's momentum.
+Combing these pieces together, the cross-section for the inclusive production of hadron can be written as [],
 \begin{eqnarray}
 \frac{d\sigma_{p+p\rightarrow H+X}}{dy d\mathbf{p}_T^2} = \frac{1}{\pi}\int dx_i dx_j f_i(x_i, Q^2) f_j(x_j, Q^2) \frac{d\sigma_{ij\rightarrow kl}}{d\hat{t}} \frac{1}{z_k}D^H(z_k, Q^2).
 \end{eqnarray}
-Although the parton distribution function $f$ and the parton fragmentation function $D$ are essentially non-perturbative objects and has to be extracted from experiments at certain scales $Q_0^2$, their evolution from $Q_0^2$ to another scale $Q^2$ can be described by the DGLAP evolution equation from perturbative QCD.
-This evolution takes into account that the initial high-virtuality parton $i$ (or $j$) could have come from a splitting process of a parton with lower virtuality parton $i'$ (or $j'$).
-Similarly, the final state high virtuality parton $k$ (or $l$) could also split into a low virtuality parton $k'$ (or $l'$) before it turns into a hadron.
-Though each splitting causes an additional power of $\alpha_s$, it is also magnified by a potentially large factor $\ln Q^2/\mu^2$ when the $Q^2$ is much greater than the scale where the $f$, $D$ are defined.
-The same argument also applies to partons $i', j', k', l'$. 
-To increase the predictive power of the perturbative calculation, 
-the DGLAP equations systematically resum contributions including an arbitrary number of parton splittings and evolve the scale from $\mu^2$ to the hard scale $Q^2$.
-Moreover, a very useful parton-shower picture can be built from this process and with a probabilistic interpretation of the DGLAP evolution. Monte Carlo technique, one can mimic the exclusive final states from these sequences of parton branching processes.
+Although the parton distribution function $f$ and the parton fragmentation function $D$ are essentially non-perturbative objects, they parametrizes universal long-distance physics and can be extracted from independent experiments at certain scales $Q_0^2$.
+Moreover, the evolution from their ``definition'' scale $Q_0^2$ to the process scale $Q^2$ can be described by the DGLAP evolution equation [] based on perturbative QCD to increase the predictive power of the factorization formula.
 
 \begin{figure}
 \centering
 \includegraphics[width=.8\textwidth]{factorization.pdf}
-\caption{
-}
+\caption{A schematic demonstration of the factorization theorem.}
 \label{fig:factorization}
 \end{figure}
+
+The DGLAP evolution takes into account that the initial high-virtuality parton $i$ (or $j$) could have come from a splitting process of a parton with lower virtuality parton $i'$ (or $j'$).
+Similarly, the final state high virtuality parton $k$ (or $l$) could also split into a low virtuality parton $k'$ (or $l'$) before it turns into a hadron.
+Though each splitting causes an additional power of $\alpha_s$, it is also magnified by a potentially large factor $\ln Q^2/\mu^2$ when the $Q^2$ is much greater than the scale where the $f$, $D$ are defined.
+The same argument also applies to partons $i', j', k', l'$. 
+The DGLAP equations systematically resum contributions including an arbitrary number of parton splittings and evolve the scale from $\mu^2$ to the hard scale $Q^2$.
+Moreover, a very useful parton-shower picture can be built from this process and with a probabilistic interpretation of the DGLAP evolution. Using Monte Carlo technique, one can even mimic the exclusive final states from the sequence of parton branching processes.
 
 \subsection{Production in the nuclear environment}
 The above framework explains very well explains the hard process production in the proton-proton collisions.
 In the nuclear environment, there are several differences.
 First, the parton distribution function inside a nuclei is different from the superposition of the nucleons.
 The ratio between nuclear PDF and proton PDF generally deviates from unity.
-In particular, this ratio for small $x$ gluon is significantly below unity, known as the nuclear shadowing effect. 
-For relatively larger $x$, this ratio increase and become larger than one,  termed as the anti-shadowing effect.
-The difference between the nuclear PDF and proton PDF belongs is one kind of ``cold nuclear matter'' (CNM) effect, in contrary to the ``hot nuclear matter'' effect from the QGP.
-And both needs to be included for a correct interpretation of the experimental data.
-The hardest partonic process is not expected to be modified as it happens on a time scale much shorter than that of the medium formation.
-However, some of the vacuum parton splittings may have a formation time that overlaps with the medium, and medium effects may modify this phase-space region and this is discussed in the next section.
+In particular, this ratio for small $x$ gluon is significantly below one, known as the nuclear shadowing effect. 
+This ratio increase and become larger than one at larger $x$, termed as the anti-shadowing region.
+The difference between the nuclear PDF and proton PDF belongs to the category of ``cold nuclear matter'' (CNM) effect, in contrary to the ``hot nuclear matter'' effect from the QGP medium.
+The CNM effect has to be included to correctly interpret the experimental data, though the current level on uncertainty on the nuclear PDF is still large.
 
-In the course of my study, I have tried using both the inclusive cross-section program as well as a Monte-Carlo event generator to initialize the heavy quark production in nuclear environment.
+\subsection{Inclusive program versus Monte-Carlo event generator}
+In the course of my study, I have tried using both the inclusive cross-section program as well as a Monte-Carlo event generator to initialize the heavy quark production.
+The inclusive program directly applies the factorization theorem and computes the inclusive spectra of heavy quark / hadron production spectrum; while the event generator used the probabilistic picture of the DGLAP evolution to build an exclusive final state.
+
 \paragraph{Initialize from inclusive cross-section program}
-We use FONLL (Fixed-Order-Next-to-Leading-Log) to generate the inclusive production cross-section of heavy flavor at partonic level.
+We use FONLL (Fixed-Order-Next-to-Leading-Log) to generate the inclusive production cross-section of heavy flavor at the partonic level.
 The FONLL program is a combination of the fixed order (NLO) massive matrix-elements and a massless resummation program.
 It computes the single inclusive differential cross-section of heavy quark / hadron production $d^2\sigma/dydp_T$.
-Then, heavy quark's initial momentum is sampled from $d^2\sigma/dydp_T$.
-It has the advantage that it is a first principal calculation when applied to proton-proton collisions, but the main disadvantage is the lack of an exclusive partonic final state.
+Using $d^2\sigma/dydp_T$, heavy quark's initial momentum is sample.
+
+It has the advantage of being a first principal calculation when applied to proton-proton collisions, but the main disadvantage is the lack of an exclusive partonic final state.
 This causes several problems,
 \begin{itemize}
 \item[1.] Limit the study to open-heavy flavor.
-But for full jet study, one needs the exclusive partonic final state. And for quarkonium study, the momentum correlation among the $Q$-$\bar{Q}$ pairs are important.
-\item[2.] We cannot build a space-time picture of the parton shower and cannot implement medium modifications to parton evolution. 
-Therefore, it is always assumed that heavy quarks are produced at time $t=0^{+}$ in this initialization choice.
+For full jet study, one needs the exclusive partonic final state. For quarkonium study, the momentum correlations among the $Q$-$\bar{Q}$ pairs are important.
+\item[2.] We cannot build a space-time picture of the parton shower to implement medium modifications to parton evolution. 
+Therefore, in this initialization routine, we have always assumed the vacuum-like evolution has already finished at time $\tau=0^{+}$.
 \end{itemize}
+
 \paragraph{Initialize from Monte-Carlo event generator}
-Another approach to generate initial hard process is to use high energy Monte-Carlo event generator, such as Pythia [].
+We used Pythia8 as the hard parton generator [].
 Pythia implements the leading order (LO) matrix-elements for hard QCD processes, including LO production of heavy flavor particles,
 $g+g\rightarrow Q+\bar{Q}$ and $q+\bar{q}\rightarrow Q+\bar{Q}$.
-The parton shower will be generated based on the probabilistic interpretation of the DGLAP equation.
-At high energy, the LO production of heavy flavor is only a fraction of the total heavy flavor cross-section, the rest of them are created in the parton showers from the so-called gluon splitting and flavor creation processes.
+The parton shower is generated using the VETO algorithm [].
+At high energy, the LO production of heavy flavor is only a fraction of the total heavy flavor cross-section, the rest of them are created actually in the parton showers via the so-called ``gluon splitting'' and ``flavor creation'' processes.
 The former corresponds to a situation where the heavy flavor pair comes from a final state gluon splitting; and the latter produces the pair in initial state gluon splitting and is put-on shell by the hard scattering.
 These contributions also mimic certain pair correlations with non back-to-back angular correlations.
 
-This initialization method is not a first principal approach and generate parton shower in high energy collisions can be rather slow, but the benefits are,
+This initialization method is not a first principal approach. Also generation of full parton shower at the LHC energy can be slow, but the benefits are enormous,
 \begin{itemize}
-\item Though the parton shower in Pythia is evolved as a function of virtuality $Q^2$. 
-An approximate space-time picture can be reconstructed by defining the formation time for each branching $2x(1-x)E/k_\perp^2$. Then, it is easy to determine which splitting happened inside the medium and receives medium modification.s
-\item Full jet initialization and the study of quarkonium production.
+\item Though the parton shower in Pythia is evolved as a function of virtuality $Q^2$,
+an approximate space-time picture can be reconstructed by defining the formation time for each branching $2x(1-x)E/Q^2$. Then, it is easy to determine which splitting happened inside the medium and receives medium modifications.
+\item Allow an initialization of full jet evolution and the study of quarkonium transport.
 \end{itemize}
 
 \paragraph{A comparison of proton-proton baseline and CNM effect}
@@ -115,57 +116,59 @@ At higher $p_T$, the ratio increase and slightly shoots over unity, because part
 \begin{figure}
 \centering
 \includegraphics[width=.8\textwidth]{pythia-vs-fonll.png}
-\caption{}
+\caption{A comparison of baseline calculation between FONLL and Pythia8}
 \label{fig:pythia-fonll}
 \end{figure}
 
-\section{Interfacing vacuum shower with in-medium transport}
-\begin{figure}
-\includegraphics[width=.35\textwidth]{largeQ.pdf}\includegraphics[width=.35\textwidth]{mediumQ.pdf}\includegraphics[width=.35\textwidth]{smallQ.pdf}
-\caption{}
-\label{fig:vac-med-interface}
-\end{figure}
-Interfacing the vacuum shower that evolves with virtuality and the transport equation that evolves with time is a difficult task. 
-We shall provide a reasoning for the prescription we use following a recent development [].
+\section{Matching vacuum and medium-induced showers}
 
 \subsection{A separate treatment of different phase-space}
+\label{section:match}
+\begin{figure}
+\includegraphics[width=.35\textwidth]{largeQ.pdf}\includegraphics[width=.35\textwidth]{mediumQ.pdf}\includegraphics[width=.35\textwidth]{smallQ.pdf}
+\caption{Demonstration of the medium corrections to vacuum-like radiation with different formation time.}
+\label{fig:vac-med-interface}
+\end{figure}
+The fate of vacuum-like showers in the hot-medium is complicated and there has not been a lot of phenomenological studies [].
+The prescription that we build in this section is by no means exact, but follow a qualitative reasoning from a recent work [].
+The general idea is to identify different regions of phase-space of radiation, and apply different computation (DGLAP / transport) to different regions based on how much medium-modifications it would have received.
+
 Considering a vacuum splitting of a hard parton that enters the medium at $z=0$.
 The vacuum splitting has formation time $\tau_f \sim 2x(1-x)E/k_\perp^2$.
 It is very likely that the radiated gluon (or the quark) interacts with one or more scattering centers (labeled by ``i'') in the medium at time $t_i$.
 Whether these interactions contribute coherently to the ``vacuum-like'' splitting follows the same argument as before.
 Scatterings that are well separated from the formation processes $\tau_f \ll t_i$ are treated as independently, and it only broadens the transverse momentum without changing the probability of the process.
 For $t_i \lesssim \tau_f$, the branching probability of the vacuum-like radiation also gets modified, in addition to broadening.
-Now, lets classify a few difference cases using an average ``number'' of scatterings  $N = \tau_f/\lambda$ for the case of a static medium.
+Now classifying the radiations using the average ``number'' of scatterings  $N = \tau_f/\lambda$ (for the case of a static medium),
 \begin{itemize}
-\item For a branching with large virtuality (left of figure \ref{fig:vac-med-interface}) so that $N \ll 1$, which translates into $k_\perp^2 \gg  g^2 x(1-x)E T$. 
+\item For a branching with large virtuality (left of figure \ref{fig:vac-med-interface}) so that $N \ll 1$ or equivalently $Q^2 \gg  g^2 x(1-x)E T$. 
 The chance for the medium modification the vacuum branching probability is negligible. 
-\item Hold the energy of the radiaion, while decrease its virtuality (middle of figure \ref{fig:vac-med-interface}) so that $N = \tau_f/\lambda \sim 1$ ($k_\perp^2 \sim g^2 x(1-x)E T$). 
+\item Hold the energy of the radiation and decrease its virtuality (middle of figure \ref{fig:vac-med-interface}) so that $N = \tau_f/\lambda \sim 1$ ($Q^2 \sim g^2 x(1-x)E T$). 
 Now, there is an order one probability of scatterings within $\tau_f$, but the transverse momentum of the gluon is still dominated by the initial virtuality.
-The probability for the branching should also be modified accordingly, for example, using the higher-twist formula that expanded in terms of $1/k_\perp^2$.
-\item Further decreasing the initial virtuality of the branching (right of figure \ref{fig:vac-med-interface}) until $N = \gg 1$,
+The probability for the branching should also be modified accordingly, for example, using the higher-twist formula that expanded in terms of $1/Q^2$.
+\item Further decrease the initial virtuality of the branching (right of figure \ref{fig:vac-med-interface}) until $N = \gg 1$,
 the medium broadening to the branching eventually dominates over the the virtuality.
-And $k_\perp^2 \sim g^2\sqrt{x(1-x)E T^3}$. 
+And $Q^2 \sim g^2\sqrt{x(1-x)E T^3}$. 
 When this happens, the branching probability is heavily modified by the medium and should be replaced by a medium-induced splitting calculation.
 \end{itemize}
 Summarizing the two extreme regions:
-High-virtuality part of the shower $k_\perp^2 \gg \alpha_s \omega T$ is not modified, while low-virtuality part $k_\perp^2 \sim \sqrt{\hat{q}\omega}$ (in a static medium) are replaced by medium-induced radiations.
-It is therefore natural to use $k_\perp^2$ and the fraction that is contributed by the medium broadening $\Delta k_\perp^2$ to separate the medium-induced radiation and the vacuum-like radiation.
-Since medium induced radiations treated by the transport equation always have $k_\perp^2 = \Delta k_\perp^2$,  our interfacing prescription is then to simply cut-out the vacuum branchings generated by Pythia in the region $k_\perp^2 <  \Delta k_\perp^2$ (this is also known as the vetoed region in the literature []).
-For a general medium, $\Delta k_\perp^2$ has to be determined case-by-case for each branchings.
-If the medium is finite, then there are also vacuum branchings that formed outside of the medium.
-These branchings do not resolve the details of the medium and its probability is not modified.
-This separated treatment of different region of phase-space depends on the detailed choice of the separation scale, so in the future, it would be ideal to develop a unified treatment of both vacuum and medium-induced shower in the time evolution picture.
+The DGLAP evolution is applied to the high-virtuality part of the shower $Q^2 \gg \alpha_s \omega T$ is not modified, while medium-induced calculations should be applied to the low-virtuality shower $Q^2 \sim \sqrt{\hat{q}\omega}$ (relation obtained in a static medium) via transport equations.
+It is therefore natural to use the comparison relation between the partons's original virtuality $Q^2$ and the transverse momentum change contributed by medium broadening $\Delta k_\perp^2 = (\mathbf{k}_\perp(\tau=\tau_f) - \mathbf{k}_\perp(\tau=0))^2$ to separate the medium-induced radiation and the vacuum-like radiation.
+The matching prescription is then to simply cut-out the vacuum branchings generated by Pythia in the region $\Delta k_\perp^2 \gtrsim Q^2$, the cut region is referred as the ``vetoed'' region in the literature []).
+For a dynamical and fluctuating medium, there is no simple relation as $\Delta k_\perp^2\sim \sqrt{\hat{q}\omega}$ in the static medium, but the ``preformed parton'' technique can be used determined $\Delta k_\perp^2$ self-consistently for each vacuum branching (to be explained in the next paragraph).
+Also in a finite medium, certain vacuum-like branchings may have a long formation time that it forms outside of the medium, from the uncertainty principle, these branchings do not resolve the details of the medium and its branching probability will not be modified in our model.
+This separated treatment of different region of phase-space still depends on the detailed choice of the separation scale, so in the future, it would be ideal to develop a unified theoretical treatment for both vacuum and medium-induced shower in the time evolution picture.
 
-Here, we only concern the modification of the vacuum-like radiation from a heavy quark.
-First, in the generated Pythia event, one trace back a heavy quark line to find all the gluons from its final state radiation (FSR) and the original four momentum of the heavy quark at initial production.
+Focusing only on the vacuum-like radiation generated by heavy quarks, one traces back a heavy quark line in the Pythia event recorder to find all the gluons from its final state radiation (FSR) and the original four momentum of the heavy quark at initial production vertex.
 These FSR gluons are first treated as ``unformed'' by the transport models, and they are allowed to undergo elastic broadening with the medium.
-In this way, by the time these gluons reaches its formation time ($t-t_0>\tau_f$), one knows what is the initial virtuality and of the splitting $k_\perp^2$, as well as how much medium broadening is acquired $\Delta k_\perp^2$.
+In this way, by the time these gluons reaches its formation time ($t-t_0>\tau_f$), one knows both the initial virtuality and of the splitting $Q^2$, as well as how much medium broadening is acquired $\Delta k_\perp^2$.
 Then, applying for our previous approximation, vacuum-like branching with 
-$k_\perp^2 > \Delta k_\perp^2$ is unmodified, but $k_\perp^2 < \Delta k_\perp^2$ ones are rejected because this contribution is already taken care by the medium-induced rate in the transport model.
+$\Delta k_\perp^2 < R_v Q^2$ is unmodified, but $\Delta k_\perp^2 > R_v Q^2$ ones are rejected because this contribution is already taken care by the medium-induced rate in the transport model.
+The order one $R_v$ parameter is introduced to parametrize the uncertainty in this matching scale.
 
-\subsection{Visualization on the Lund diagram}
-The Lund diagram is useful tool to visualize the separation of phase-space for high energy parton splitting.
-There are many different choice of kinematic variables, but here we choose the vertical axis to be $Y = ln(1/x) = \ln(E/\omega)$, and the horizontal 
+\subsection{Visualizing the matching on the Lund diagram}
+The Lund diagram is a useful tool to visualize the phase-space for high energy parton splitting.
+There are many different choice of kinematic variables, but here we choose the vertical axis to be $Y = \ln(1/x) = \ln(E/\omega)$, and the horizontal 
 axis to be $X = ln(1/\theta^2) = \ln(\omega^2/k_\perp^2)$.
 Here $x$ is the energy fraction carried by the daughter paron in a particular splitting, and $\theta$ is the daughter's emission angle relative to the mother parton.
 This arrangement is inspired by the soft and collinear limit of the QCD splitting function (for example $q\rightarrow q+g$),
@@ -188,7 +191,7 @@ Again, due to fluctuations, the triangle region is not an entirely vetoed as the
 
 \begin{figure}
 \includegraphics[width=.5\textwidth]{lund-vac.png}\includegraphics[width=.5\textwidth]{lund-med.png}
-\caption{}
+\caption{Vacuum-like and medium induced radiation on the Lund-diagram}
 \label{fig:lund}
 \end{figure}
 
@@ -267,11 +270,13 @@ where ``IS'' stands for the initial state.
 
 \section{Heavy-flavor hadronization and hadronic stage}
 At a temperature around $T_c$, light hadrons can be sampled from the hydrodynamics energy momentum tensor statistically.
-For hard partons that stays off equilibrium, one needs a more microscopic implementation of the hadronization.
-Below $T_c$, the hadronic system is also dense enough for the heavy hadron to interact and contribute to the low-$p_T$ $v_2$ of D-meson, though the hadronic interactions are not analyzed so extensively as the QGP interaction.
+For hard partons that stay more off equilibrium, a more microscopic hadronization model is in need.
+The final hadronic system is also dense enough for the heavy hadron to interact.
+Though the hadronic interactions are not analyzed so extensively as the QGP interaction, studies have shown hadronic rescatterings contributes finte low-$p_T$ $v_2$ of D-meson [].
+Therefore we also includes the afterburner stage for the heavy flavors.
 
 \subsection{The ``sudden" approximation of hadronization} 
-The hadronization model for the heavy flavor is the simulation is implemented by [].
+The hadronization model for the heavy flavor is implemented by [].
 It combines the fragmentation of heavy quark at high momentum and the recombination with medium partons into hadrons at low momentum.
 
 The hadronization is treated to be instantaneous on an isothermal hypersurface.
@@ -280,22 +285,21 @@ First, hadronization is a long distance process.
 In the rest frame of the heavy flavor, it takes time scale $1/\Lambda_{QCD}$. 
 With a large boost factor $E/M_{\textrm{hadron}}\sim E/M_{\textrm{heavy quark}}$, the formation time of the heavy hadron can be comparable to macroscopic length scales.
 For example, for a moderate $E=10$ GeV charm quark $M=1.3$ GeV, this time is estimated to be $8$ fm/c, which is certainly not a sudden process considering the hydrodynamic stage only last for $O(10)$ fm/$c$.
-Second, an instantaneous recombination process breaks energy conservation and detailed balance, as will be shown below.
-To solve these problems, one really needs a dynamical modeling of the hadronization physics in the future,
-which is already a hard problem in the vacuum.
+Second, an instantaneous recombination process breaks energy conservation and detailed balance.
+To solve these problems, one really needs a dynamical modeling of the hadronization physics [].
 
 \paragraph{Fragmentation} 
 In high energy electron-positron collision and proton-proton collision, high momentum heavy quark hadronizes through the fragmentation mechanism.
 The energetic heavy quark produces a bunch of hadrons with a heavy hadron that carries a certainty fraction of the origin quark energy $z = p_H/p_Q$.
 The probability distribution of $z$ is known as the fragmentation function $D(z)$, and can be measured in, e.g., electron-positron collier.
-There are different parametrizations for $D(z)$ and here the Peterson parametrization that is designed for heavy quark is used,
+There are different parametrizations for $D(z)$ and the Peterson fragmentation function [] used in the present study,
 \begin{eqnarray}
 D(z) \propto \frac{1}{z(1-\frac{1}{z} - \frac{\epsilon}{1-z})^2}
 \end{eqnarray}
 where $\epsilon$ is a parameter that scales as $m_Q^{-2}$ ($\epsilon_c \approx 0.05, \epsilon_b \approx 0.006$).
 
 \paragraph{Recombination}
-It was known already in proton-proton collision that heavy quark can hadronize into mesons by the recombination with a light anti-quark in the proton remnant [].
+It was known already in proton-proton collision that heavy quark can hadronize into mesons by the recombination with a light quark in the proton remnant [].
 In a heavy-ion collision, recombination mechanism can play an important row for low transverse momentum heavy flavors, given the abundance of the medium thermal partons.
 Early study in the nuclear collisions [] assumes that the recombination probability can be computed from the wave function overlap between initial state partons and final state mesons or baryons, with the momentum of the medium parton integrated over the thermal distribution.
 The model we used is an implementation of this idea for the charm and bottom sector [],
@@ -364,19 +368,22 @@ This is done by resetting the light scattering partner's four momentum back to i
 This is to the same level of approximation of the linearized transport equation in the QGP phase, and allows for an easy oversampling of the number of heavy flavor particles to obtain better statistics.
 
 \section{Benchmark calculation of observables}
-In the last section of this chapter, we provide a benchmark calculation of this open-heavy flavor simulation framework to experimental data, systematic calibration of model parameters and uncertainties will be discussed in the next to chapters.
+In the last section of this chapter, we provide a benchmark calculation of this open-heavy flavor simulation framework to experimental data, systematic calibration of model parameters and uncertainties will be discussed in the next two chapters.
 
 \subsection{Open heavy flavor observables}
-The ground states $D^0, \bar{D}^0, D^{\pm}, B^{\pm}, D_s^{\pm}, B_s^{\pm}$ mesons and the excited states $D^{*\pm}$ can be measured in the experiments.
-The $D_s^{\pm}$ is interested as it contains the information of the strangeness enhancement in the thermal medium.
-Currently, we only focus on the non-strange D and B mesons.
+Experimentally, the ground states mesons $D^0, \bar{D}^0, D^{\pm}, B^{\pm}, D_s^{\pm}, B_s^{\pm}$ and the excited states $D^{*\pm}$ can be measured in the experiments. 
+Their nuclear modification factor, momentum anisotropy has been measured at both LHC and RHIC.
+Currently, we focus on comparing to non-strange D and B mesons data.
+Though strange heavy meson $D_s, B_s$ are also very interested as they contain the strangeness enhancement information, but the strangeness physics is not the main focus of this work.
+
+The nuclear modification factor has already been introduced in the chapter \ref{chapter:introduction}. 
+Here we summarize how the momentum anisotropy observables of are computed.
 
 \paragraph{Momentum anisotropy}
-The momentum anisotropy $v_n$ measures the azimuthal anisotropy relative to the flow vector of the bulk medium.
 Heavy flavors momentum anisotropy at high-$p_T$ is thought to be the result of aisntorpic energy loss, because hard partons emitted in the short axis direction losses less energy than those emitted from the long axis direction on average.
 At low momentum, the momentum anisotropy has a flow origin that heavy quark interacts so frequently with the medium and tends to catch up with the flow velocity of the medium.
-
-We used the so called $Q$-vector method to compute $v_n$ from two-particle correlation,
+Both mechanisms produce $v_2$ relatively the common reference of bulk geometry / bulk flow.
+The $p_T$ differential $v_2$ is usually measured in two-particle correlation approach,
 \begin{eqnarray}
 v_n\{2\}(p_T) = \frac{\mathfrak{Re}\langle d_n\{2\} \rangle}{\langle c_n\{2\}\rangle}.
 \end{eqnarray}
@@ -386,34 +393,41 @@ c_n &=& \frac{|Q_n|^2 - N}{N(N-1)},  \\
 Q_n &=& \sum_{i=1}^N e^{i n \phi},
 \end{eqnarray}
 and the event average ($\langle\cdots\rangle$) is weighted by $N(N-1)$.
-$d_n$ is the correlation of $Q$-vectors between the $M$ particles of interest (POI, in this case the heavy flavors) and the reference particles,
+$d_n$ is the correlation between the $M$ particles of interest (POI, in this case the heavy flavors) and the $N$ reference particles,
 \begin{eqnarray}
 d_n &=& \frac{q_n Q_n^* - m}{MN-m},  \\
-q_n &=& \sum_{j=1}^M e^{i n \phi},
+q_n &=& \sum_{j=1}^M e^{i n \phi}
 \end{eqnarray}
-and $m$ is the number of POI that is also REF to subtract auto correlations. 
-And its event average is weighted by $MN-m$.
+$m$ is the number of POI that is also counted as REF to subtract auto-correlations. 
+The event average is weighted by the number of pairs $MN-m$.
 
-\paragraph{Event-shape engineering on heavy-flavor observables}
-Event-shape engineering is a more recent idea to look at the detailed response of the hard sector, varying the properties of the medium evolution.
+\paragraph{Event-shape engineering on heavy-flavor $v_2$}
+Event-shape engineering is a more recent idea to look at the detailed response of the hard sector to the medium geometry.
 Experimentally, an ensemble of events belongs to a certain centrality class is further classified according to its ``event shape'', measured by $q_2$,
 \begin{eqnarray}
 q_2 = \frac{|Q_2|}{\sqrt{N}}.
 \end{eqnarray}
-Due to event-by-event geometry fluctuation, the event shape in the a given centrality class can be vary a lot.
+Due to event-by-event geometry fluctuation, the event shape in the a given centrality class can be vary dramatically.
 The ALICE experiment then measures the D meson $v_2$ with events having the $20\%$ largest $q_2$ and events with the $60\%$ smallest $q_2$.
-And found a large separation between the the resulting $v_2$ with biased selected events compared to the $v_2$ calculated from unbiased events.
-This measurement quantifies the response of hard probe to the event geometry fluctuation, that may provide sensitivity to the way a transport code handles a fluctuating medium.
+They found a large separation between the the resulting $v_2$ with biased selected events compared to the $v_2$ calculated from unbiased events.
+This measurement quantifies the response of hard probe to the event geometry fluctuation while controlling multiplicity. 
 
 \subsection{A first comparison to data}
 We do not intend optimize all the parameters in the model in this first comparison to data, but uses reasonable guess of the parameters to understand the model.
 The TRENTo parameters and the hydrodynamic transport coefficients are obtained from [].
-The heavy quark flavor starts to lose energy from $0.6$ fm/$c$, and the matching condition between the vacuum-like radiation and the medium-induced radiation is $k_\perp^2 = \Delta k_\perp^2$.
+The heavy quark flavor starts to lose energy from $0.6$ fm/$c$, and the matching condition between the vacuum-like radiation and the medium-induced radiation is $\Delta k_\perp^2 = R_v Q^2$ with $R_v = 1$.
 We used only leading order contribution from the weakly coupled theory, and tried both fixed coupling and running coupling.
-The default switching scale between a large-$Q$ scattering small-$Q$ is $Q_{\textrm{cut}}^2 = 4 m_D^2$ and we the observables at relatively high-$p_T$ is not sensitive to this scale.
+The default switching scale between a large-$Q$ scattering small-$Q$ is $Q_{\textrm{cut}}^2 = 4 m_D^2$.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{fix_alphas.png}
+\caption{Fixed-coupling}
+\label{fig:new:fix-a}
+\end{figure}
 
 \paragraph{Fixed coupling} First, we compute with fixed coupling constant.
-A fixed coupling should be understood as an effective in-medium coupling for both elastic and radiative processes.
+It should be understood as an effective in-medium coupling for both elastic and radiative processes.
 In figure \ref{fig:new:fix-a}, we present the results (lines and bands) with data points measured at $\sqrts{s} = 5.02$ TeV for D mesons (symbol with errorbars and boxes).
 Different line shapes corresponds to different coupling $\alpha=0.2$ (dashed), $0.3$ (solid), and $0.4$ (dash-dotted). 
 The types of observables are shown within each subplots, indicating the experiment collaboration, the collision system and the centrality.
@@ -422,36 +436,36 @@ Looking at the experimental measurements, $R_{AA}$ increases with the centrality
 In the high-$p_T$ end, the $R_{AA}$ increases towards the baseline around one. 
 This increase is slow, noticing the $p_T$ is plotted on a log scale.
 In the low-$p_T$ end, the $R_{AA}$ quickly rises.
-There are many reasons for this, first the feeding from higher-$p_T$ particles due to energy loss increases the yield at lower-$p_T$ while very low-$p_T$ particles are pushed outward by the strong medium radial flow.
-In addition, the recombination hadronization mechanism also plays a part, as such D meson's momentum is the sum of the light parton and the charm quark.
+There are many reasons for this, for example, the feeding from higher-$p_T$ particles due to energy loss;  the feeding from low-$p_T$ particles that are pushed outward by the strong medium radial flow.
+In addition, the recombination hadronization mechanism also plays a part, as the D meson is gaining momentum (on average) in the recombination process.
 Based on the comparison to $R_{AA}$, a phenomenological value for a fixed $\alpha_s$ is around $0.3$--$0.4$.
 However, such values cannot explain the large momentum anisotropy in mid-central collisions, e.g. centrality 30-50\%.
 This is known as the $D$ meson $R_{AA}$--$v_2$ puzzle, which also appears for leading light hadrons.
-There has been different solutions to this problem, such as the proposed sudden increase of the interaction strength near $T_c$, fine tuning the general temperature-momentum dependences of the transport coefficients, etc.
+There has been different solutions to this problem, such as the proposed sudden increase of the interaction strength near $T_c$, fine tuning the general temperature-momentum dependence of the transport coefficients, etc [].
 In the next two chapters, we will see if this discrepancy can be compensated by a fine tuning of parameters in the current model.
-A non-zero $v_3$ of $D$ meson is an evidence of heavy-flavor coupling to the details of event-by-event fluctuation.
-Despite the large statistical and systematic uncertainty, one can see that the calculation is systematically below the data.
-
-In figure \ref{fig:new:charm-bottom}, we compared the charmed meson $R_{AA}^D$ and bottom meson $R_{AA}^B$ with minimum-biased events, and D meson and B meson flow in mid-central collisions.
-The mass effect of bottom quark is much stronger than charm quark, therefore, $R_{AA}^B$ at intermediate $p_T$ is higher than $R_{AA}^D$. 
-At very high $p_T$, the ``Dead-Cone'' of bottom quark also becomes insignificant. and the B and D meson $R_{AA}$ converges.
-Unlike the sudden increase of $v_2^D$ at low $p_T$, $v_2^B$ is always small, meaning that the bottom quark does not catch up the medium flow and remains far from equilibrium compared to charm.
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{fix_alphas.png}
-\caption{}
-\label{fig:new:fix-a}
-\end{figure}
+A non-zero $v_3$ of $D$ meson is an evidence of heavy-flavor coupling to the detailed event-by-event nuclear geometry fluctuation.
+The calculation of $v_3$ is systematically below the data, despite the large statistical and systematic uncertainty,
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{run_alphas_DB.png}
-\caption{}
+\caption{Mass dependence}
 \label{fig:new:fix-DB}
 \end{figure}
 
-\paragraph{Running coupling} Moving to using a running coupling constant, the uncertainty of the in-medium coupling strength is transferred to the uncertainty of the medium scale in the running $\alpha_s$,
+In figure \ref{fig:new:charm-bottom}, we compared the calculation with $\alpha_s = 0.4$ for charmed meson $R_{AA}^D$ and bottom meson $R_{AA}^B$ at $0-100\%$ centrality and D meson and B meson flow at $10-30\%$ centrality.
+The mass effect of bottom quark is much stronger than charm quark, therefore, $R_{AA}^B$ at intermediate $p_T$ is higher than $R_{AA}^D$. 
+At very high $p_T$, the ``Dead-Cone'' of bottom quark also becomes insignificant, and the B and D meson $R_{AA}$ converge.
+Unlike the sudden increase of $v_2^D$ at low $p_T$, $v_2^B$ is always small, meaning that the bottom quark does not catch up the medium flow as the charm does and remains far from equilibrium.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{run_alphas.png}
+\caption{Running coupling}
+\label{fig:new:run-a}
+\end{figure}
+
+\paragraph{Running coupling} Moving to a running coupling constant, the uncertainty of the in-medium coupling strength is transferred to the uncertainty of the medium scale in the running $\alpha_s$,
 \begin{eqnarray}
 \alpha_s(Q) = \frac{2\pi}{9}\frac{1}{\ln \left( \max\{Q, \mu\pi T\} / \Lambda\right)}.
 \end{eqnarray}
@@ -459,59 +473,58 @@ Due to the running, heavy quark radiation at high energy will be reduced compare
 
 In the comparison in figure \ref{fig:new:run-a}, we choose $\mu = 1, 2, 4$, terminating the low-$Q$ running of $\alpha_s$ at $Q = \pi T$ (dashed), $2\pi T$ (solid), $4\pi T$ (dash-dotted).
 We use $\pi T$ as a natural unit because the it is the typical thermal scale in the finite-temperature field theory calculations.
-Given that this entire heavy-flavor coupled-to hydrodynamic model is only an approximation, one should not think of the appearance of $\pi T$ so seriously.
-The $\mu=2\pi T$ choice explains the nuclear modification factor for all centralities very well, but still underestimates $v_2$ by 50\%.
-The $\mu=\pi T$ case achieves a better agreement with $v_n$, but $R_{AA}$ is off by 50\%.
+Given that this entire heavy-flavor coupled-to hydrodynamic model is only an approximation, one should not think of the appearance of $\pi$ so seriously.
+The $\mu=2\pi T$ choice explains the nuclear modification factor for all centralities very well, but underestimates $v_2$ by 50\%.
+The $\mu=\pi T$ case achieves a better agreement with $v_n$, but $R_{AA}$ is systematically off.
 Therefore, going from fixed coupling to running coupling, the $v_2$ puzzle still exists.
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{run_alphas.png}
-\caption{}
-\label{fig:new:run-a}
-\end{figure}
-
-\paragraph{Switching scale dependence} By construction, the energy loss should be insensitive to the switching scale between the small-$Q$ diffusion and the large-$Q$ scattering in the high energy, weakly coupled limit.
-Here we check if this arguments holds for phenomenology application.
-In figure \ref{fig:new:run-cut}, in additional to the default $Q_\textrm{cut}^2 = 4 m_D^2$ (dashed lines), we also uses $Q_\textrm{cut}^2 = 16 m_D^2$ (solid lines) to model more probe-medium interaction by diffusion than scattering.
-We found that the effect on high-$p_T$ observable is small.
-Because the high-$p_T$ dynamics is dominated by the radiation energy loss, whose $Q_\textrm{cut}$ is indeed small as checked in chapter \ref{transport}.
-Larger differences of $R_{AA}$ and $v_2$ is observed at low-$p_T$.
-One reason for this is that the $Q_\textrm{cut}$ independence argument obtained for high energy partons does not work very well for low velocity partons.
-There are also more physical reasons, elastic processes dominates (or at least comparable to) the radiaitve processes at low-$p_T$.
-Though the scattering dynamics and the diffusion dynamics has matched  diffusion constant (leading order, second momentum), they are differed not only in higher moment, but also the average momentum drag (first momentum).
-Remember that the drag coefficient in the diffusion dynamics is not a direct input from the weakly coupled theory, but is determined by the Einstein relation.
-The Einstein relation only guarantees that the diffusion dynamics eolves the system to the same equilibrium as the scattering dynamics, but the non-equilibrium path it takes can be very different.
-\begin{figure}
-\centering
 \includegraphics[width=\textwidth]{run_alphas_cut.png}
-\caption{}
+\caption{Diffusion / scattering switching scale dependence}
 \label{fig:new:run-cut}
 \end{figure}
+\paragraph{Switching scale dependence} By construction, the energy loss should be insensitive to the switching scale between the small-$Q$ diffusion and the large-$Q$ scattering in the high energy, weakly coupled limit.
+We check if this arguments holds for phenomenology application.
+In figure \ref{fig:new:run-cut}, in additional to the default $Q_\textrm{cut}^2 = 4 m_D^2$ (red solid lines), we also uses $Q_\textrm{cut}^2 = 16 m_D^2$ (blue dashed lines) to model more probe-medium interaction by diffusion than scattering.
+We found that the effect on high-$p_T$ observable is small.
+Because the high-$p_T$ dynamics is dominated by the radiation energy loss, whose $Q_\textrm{cut}$ is indeed small as checked in chapter \ref{chapter:transport}.
+Larger differences of $R_{AA}$ and $v_2$ is observed at low-$p_T$.
+One reason for this is that the $Q_\textrm{cut}$ independence argument obtained for high energy partons does not work very well for low velocity partons.
+Another reason is that despite the scattering dynamics and the diffusion dynamics has a matched diffusion constant (second moment of the momentum transfer), they are differed in all other momentum higher moment, in particular the drag (first moment).
+Remember that the drag coefficient in the diffusion dynamics is not a direct input from the weakly coupled theory, but is determined by the Einstein relation.
+The Einstein relation only guarantees that the diffusion dynamics eolves the system to the same equilibrium as the scattering dynamics, but the non-equilibrium path it takes can be very different from the scattering dynamics.
 
 This $Q_\textrm{cut}$ dependence may be bad at first sight, but one knows that the weakly coupled scattering picture does not necessarily work for the phenomenological coupling regime ($g\sim 2$), while the diffusion dynamics can be extended to strongly coupled regime.
 The $Q_\textrm{cut}$ actually parameters an important source of theoretical uncertainty in our modeling.
 
-\paragraph{Vacuum-radiation matching scale dependence}
-As explained, vacuum-radiation that occupied the same phase-space on the Lund-diagram should be really treated by medium-induced calculation.
-Accordingly, we need to subtract the corresponding vacuum radiation from a heavy quark in Pythia event generator.
-In earlier transport study of heavy flavor, this subtraction is not included, therefore, we will demonstrate the impact of this mistreatment here.
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{run_alphas_match.png}
+\caption{Matching scale dependence}
+\label{fig:new:run-match}
+\end{figure}
+
+\paragraph{Vacuum / medium-induced radiation matching scale dependence}
+As explained, there is a separation treatment of radiation that lives in different regions of phase-space on the lund-diagram.
+Accordingly, we need to subtract the vacuum radiation that overlapped with the medium-induced region in the Pythia event generator.
+In our earlier transport study of heavy flavor [], this subtraction is not included, therefore, we would like to demonstrate the impact of this mistreatment here.
 
 In figure \ref{fig:new:run-match}, two calculations are shown. 
-The dashed lines stands for the default case, with $\mu=2\pi T, Q_{\textrm{cut}}^2=4m_D^2$ and removing vacuum-like radiations that receives similar broadening from medium ($k_\perp^2 < \Delta k_\perp^2$).
-The solid lines are calculations without the vacuum radiation subtraction.
+The red dashed lines stands the case where we removed vacuum-like radiations that satisfy $\Delta k_\perp^2 > Q^2$.
+The blue solid lines are calculations without this subtraction.
 The two calculations for $R_{AA}$ only differs for $p_T\gtrsim 20$ GeV, because only high-$p_T$ heavy quarks can undergo splittings that take long enough time to receive large medium corrections.
 Also the difference is large for central collisions than for peripheral collisions, because medium effect for the latter is weaker.
 No significant difference is observed for $v_n$.
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{run_alphas_match.png}
-\caption{}
-\label{fig:new:run-match}
+\includegraphics[width=\textwidth]{run_alphas_local.png}
+\caption{Local approximation}
+\label{fig:new:run-local}
 \end{figure}
 
-\paragraph{Examine the ``local'' approximation}
+\paragraph{Performance of the ``local'' approximation}
 Finally, it is interesting to examine the effect of an ``local rate'' approximation of the radiative processes on the observables.
 It approximates the radiation probability in a medium with slowly varying temperature by the integration of radiation rates defined in an infinite static box with the local temperature at each point.
 One can also refers to it as the ``adiabatic'' approximation, because it really assumes the temperature variation is slow compared to the formation  time.
@@ -519,12 +532,5 @@ One can also refers to it as the ``adiabatic'' approximation, because it really 
 We know this approximation can be broken by the fast expansion of the QGP fireball, and would like to quantify the impact.
 It is convenient to mimic the ``local'' approximation in our model, one can simply let the preformed-gluon rescattering procedure be done in an imaginary medium with the same temperature and flow velocity as those at the point of its production, instead of those in the evolving medium.
 The results comparison are shown in figure \ref{fig:new:run-local}.
-The local approximation is good except for very high-$p_T$ ($p_T > 30$ GeV), this is expected as the formation time of radiation of intermediate to low $p_T$ heavy quark is short.
+The local approximation is good except at very high-$p_T$ ($p_T > 30$ GeV).
 
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{run_alphas_local.png}
-\caption{}
-\label{fig:new:run-local}
-\end{figure}
