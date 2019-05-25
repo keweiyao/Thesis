@@ -6,37 +6,6 @@ I would like to present this in a two step processes to show the improvements of
 
 
 \paragraph{A list of experimental data}
-\begin{center}
-\begin{table}[h]
-\caption{ALICE dataset}\label{table:ALICE-obs} 
-\begin{tabularx}{\columnwidth}{XXX}
-\hline 
- Observables & Centrality & Reference\\ 
-\hline 
-$D$-meson $v_2$ & 30-50\% & {Acharya:2017qps}\\ 
-\hline 
-Event-engineered $D$-meson $v_2$ & 30-50\% & {Grosa:2017zcz}\\ 
-\hline 
-$D$-meson $R_{AA}$ & 0-10, 30-50, 50-80\% & {Acharya:2018hre}\\
-\hline 
-\end{tabularx}
-\end{table}
-\begin{table}[h]
-\caption{CMS dataset}\label{table:CMS-obs} 
-\begin{tabularx}{\columnwidth}{XXX}
-\hline 
-Observables & Centrality & Reference\\ 
-\hline 
-D${}^0$-meson $v_2$ & 0-10, 10-30, 30-50\% & {Sirunyan:2017plt}\\ 
-\hline 
-D${}^0$-meson $R_{AA}$ & 0-10\%, 0-100\% & {Sirunyan:2017xss}\\ 
-\hline 
-B${}^{\pm}$-meson $R_{AA}$ & 0-100\% & {Sirunyan:2017oug}\\ 
-\hline 
-\end{tabularx}
-\end{table}
-\end{center}
-
 \section{Lessons from earlier extractions of $\hat{q}_Q$}
 In an earlier publication [], we used a linearized Boltzmann model with the coherence factor approach to implement the LPM effect.
 The heavy quark initial momentum dsitribution is obtained from the FONLL calculation.
@@ -121,29 +90,27 @@ Their difference is comparable to the uncertainty band of either model, while bo
 This suggests the theoretical uncertainty that comes from the assumption between the probe and the medium is a significant one.
 The ability to tune a switching scale parameter in the new model intends to include this type of theoretical uncertainty.
 
-\section{Calibration with the improved transport model}
+\section{Calibration using the improved transport model}
 Finally, we apply the improved model to the extraction of the heavy quark transport coefficients.
 As a summary of the improvements:
 \begin{itemize}
 \item A more sophisticated implementation of the LPM effect to reduce modeling uncertainty of the radiative process;
 \item An interpolation of the diffusion picture and the scattering picture to take into account modeling uncertainty.
-\item Restrict the use of few-body matrix-elements to only large-$Q$ interactions.
 \item Separating the high-virtuality evolution and the low-virtuality transport equation at a medium scale.
 \end{itemize}
 
 \paragraph{Model parameters}
-In the new analysis, we try to include as many theoretical uncertainty as possible, therefore we have much more parameters than the two previous efforts.
+In the new analysis, we try to include as many theoretical uncertainty as possible, so we have much more parameters than the two previous studies.
 They are listed in table \ref{table:new:prior}.
 \begin{itemize}
 \item The first parameter is again the energy loss starting time $\tau_i$.
 In this analysis, we are comparing to data at two collision energies and the hydrodynamic starting time $\tau_0$ varies from $1.2$ fm/$c$ to $0.6$ fm/$c$.
 To account for this differences, we use the ratio $\xi = \tau_i/\tau_0$ as the single parameter for both energies.
-\item The second parameter is switching scale parameter $c$ in $Q_{\textrm{cut}}^2 = c m_D^2$, it is allowed to be vary between $0.1 and 10$.
-\item The third parameter $R_v$ controls the matching condition between the vacuum-like radiation and the medium-induce radiation $\Delta k_\perp^2 = R_v k_\perp^2$.
-In chapter \ref{chapter:coupling}, we have been simply using $\Delta k_\perp^2 = k_\perp$, i.e., $R_v = 1$.
-But since this is only a qualitative argument, we allow $R_v$ to vary between 0 and 7. 
+It means that after $\xi$ fraction of the hydrodynamization time, the color density is assumed to be large enough to apply the linearized transport  model.
+\item The second parameter is switching scale parameter $1.0 < c < 10.0$ in $Q_{\textrm{cut}}^2 = c m_D^2$. For a typical coupling $g\sim 2$, $Q_{\textrm{cut}}$ is then varied from about $2T$ to $7T$.
+\item The third parameter $0<R_v<7$ controls the matching condition between the vacuum-like radiation and the medium-induce radiation $\Delta k_\perp^2 = R_v Q^2$.
 At $R_v = 0$, the vacuum-like radiation is completely forbidden once it interacts with the medium; for $R_v \gg 1$, the vacuum-like radiation is effectively unmodified.
-\item The $\mu$ parameter controls the in-medium strong coupling $\alpha_s(\max\{Q, \mu\pi T\})$.
+\item The $0.6 < \mu < 10$ parameter controls the in-medium strong coupling $\alpha_s(\max\{Q, \mu\pi T\})$.
 \item The rest of the six numbers $K,a,b,p,q, \gamma$ parametrizes a correction to the weakly coupled transport coefficient $\hat{q} + \Delta\hat{q}$, $\hat{q}_L + \Delta\hat{q}_L$,
 \begin{eqnarray}
 \Delta\hat{q} &=& \frac{K T^3}{\left[1+\left(a\frac{T}{T_c}\right)^p\right]\left[1+\left(b\frac{E}{T}\right)^q\right]}, \\
@@ -163,9 +130,9 @@ Symbol & Description & Range \\
 \hline
 $\xi = \frac{\tau_0}{\tau_{\textrm{hydro}}}$ & Energy loss starting time & (.1, .9) \\
 $c = \frac{Q_{\textrm{cut}}^2}{m_D^2}$ & Soft / hard switching scale & $(.1, 10.)$ \\
-$R_v = \frac{k_\perp^2}{\Delta k_\perp^2}$ & Vacuum / Medium mathcing scale & $(0.14, \infty)$\\
+$R_v$ & Vacuum / Medium mathcing scale & $(0,7)$\\
 $\mu$ & Running $\alpha_s$ stops at $Q = \mu\pi T$ & $(.6, 10)$ \\
-$K$ & Magnitude of $\Delta \hat{q}/T^3$ & $(0, 20)$\\ 
+$K$ & Magnitude of $\Delta \hat{q}/T^3$ & $(0, 15)$\\ 
 $p$ & \multirow{2}{*}{$E$-dependence of $\Delta \hat{q}/T^3$} & $(-2, 2)$\\ 
 $a$ &  & $(-1, 1)$\\ 
 $q$ & \multirow{2}{*}{$T$-dependence of $\Delta \hat{q}/T^3$}  & $(-.5, 3)$\\ 
@@ -175,17 +142,18 @@ $\gamma$ & $\Delta \hat{q}_L = (E/M)^\gamma\Delta \hat{q}_L$  & (-1, 1)\\
 \end{tabular}
 \end{table}
 
-\paragraph{Design and prior} We sampled 250 design points and 50 validation points. 
-As a remark, we chosoe to give $\ln c, \ln R_v, \ln \mu, \ln a$ and $\ln b$ an uniform design and a uniform prior.
+\paragraph{Design and prior} 
+We chosoe to give $\ln c, \ln R_v, \ln \mu, \ln a$ and $\ln b$ an uniform design and a uniform prior.
 Therefore, the original parameter will have a non-uniform design and prior distribution.
 The reason is that these parameters either causes a logarithmic slow change in the model and its prior uncertainty is large that it is allowed vary by orders of magnitude.
 For example, the $\mu$ parameter enters the logarithmic running of $\alpha_s$ and we can rewrite the maximum possible $\alpha_s$ as,
 \begin{eqnarray}
 \alpha_{s,\max}(T) = \frac{2\pi}{9}\frac{1}{\ln(\mu) + \ln(\pi T/\Lambda_{\textrm{QCD}})}
 \end{eqnarray}
-Therefore, we choose assign a uniform prior to $\ln(\mu)$ so that $\alpha_s$ also varies notable within the prior range.
-As for the $c$ parameter, it controls the boundary of the scattering and diffusion approximation, within a reasonable range of $c$, the diffusion dynamics and the scattering dynamics results in a similar amount of energy loss as has been shown in section [], and difference is seen in more subtle observables, therefore it is also assumed to be flat in the $\log$ space.
-For $R_v, a$ and $b$, we did this to allow an order of magnitude change in the parameters as we want to test both the large and small number limits.
+Therefore, we assign a uniform prior to $\ln(\mu)$ so that $\alpha_s$ also varies notable within the prior range.
+For the $c$ and $R_v$ parameter, we have seen in the previous benchmark calculation that the $R_{AA}$ and $v_2$ predictions depends fairly weak on the choice of these parameter, therefore they are also given a logarithm prior.
+For the $a$ and $b$ parameters, one notice that asymptotically largeness or smallness of these numbers do not change the value of $\Delta \hat{q}$ notably.
+By applying the logarithmic prior and design, we can explore both the large and small limits of these numbers while still have enough design points to control the interpolation uncertainty in the physical interesting regions ($a$ and $b$ are of order one). 
 
 \begin{figure}
 \centering
@@ -194,26 +162,25 @@ For $R_v, a$ and $b$, we did this to allow an order of magnitude change in the p
 \label{fig:new:design-qhat}
 \end{figure}
 
+We sampled 250 design points and 50 validation points. 
 Combining $\mu, K, p, q, a, b$ and $\gamma$, the prior region of the heavy quark transport parameters are plotted function of temperature and energy in figure \ref{fig:new:design-qhat}. 
 On the left, 250 design's $\hat{q}$ as function of temperatures are shown  (using charm mass for demonstration).
-Each subplot varys energy from $1.4$ GeV, $11.4$ GeV to $101.3$ GeV.
-The prior range of $\hat{q}$ varies over a order of magnitude.
-On the right of the figure, we show the ratio $2\hat{q}_L/\hat{q}$. 
-This ratio is one if the transport parameters are isotropic.
-
+Each subplot shows quark energy at $1.4$ GeV, $11.4$ GeV and $101.3$ GeV.
+The prior range of $\hat{q}$ varies over an order of magnitude.
+On the right of the figure, we show the ratio $2\hat{q}_L/\hat{q}$ to indicated the degree of anisotropy of the transport parameters.
 
 The computations of the model on both the design points and the validation points are performed on the NERSC super-computing system using over two million CPU hours.
 The prior observables are shown in figure \ref{fig:new:obs_prior_LHC} at LHC energy $\sqrt{s}$ = 5.02 TeV and in figure \ref{fig:new:obs_prior_RHIC} at RHIC energy $\sqrt{s} = 200$ GeV.
-The dataset at the LHC energy is the same as the previous analysis.
-THe dataset the RHIC energy are the central-peripheral ratio $R_{CP}$, and D meson $v_2$. 
-$R_{CP}$ is defined as the $N_{\textrm{bin}}$ normalized ratio between the yield in a smaller centrality class $C$ to a larger centrality class $P$,
+In additional to LHC dataset used in the last calibration, we also include a dataset at RHIC energy measured by the STAR Collaboration [].
+We choose two observables at RHIC, namely D meson $R_{CP}$ and $v_2$. 
+The new one, $R_{CP}$, is defined as the $N_{\textrm{bin}}$ normalized ratio between the D meson yield in a smaller centrality class $C$ to a larger centrality class $P$,
 \begin{eqnarray}
-R_{\textrm{CP}} = \frac{dN_\textrm{C}/dp_T N_{\textrm{bin,P}}}{dN_\textrm{P}/dp_T N_{\textrm{bin,C}}}
+R_{\textrm{CP}} = \frac{dN_\textrm{C}/dp_T N_{\textrm{bin,P}}}{dN_\textrm{P}/dp_T N_{\textrm{bin,C}}}.
 \end{eqnarray}
-Using the nuclear data as a reference has the advantage of canceling certain theoretical uncertainties, such as the nuclear PDF (neglecting its impact-parameter dependence) and possible modifications to the initial production mechanism by the nuclear environment.
-We found that even varying wildly the parameters, the very low-$p_T$ $R_{CP}$ at RHIC energy is not covered by the calculation. 
-This indicates the model will have to be improved in this $p_T$ region, possible a more up-to-date hadronization model.
-For now, we only include the STAR $R_{CP}$ above $5$ GeV in the calibration.
+Using the nuclear data as a reference has the advantage of canceling certain theoretical uncertainties, such as the nuclear PDF (if its impact-parameter dependence is neglected) and possible modifications to the initial production mechanism in the nuclear environment.
+A problem we found at RHIC energy is that even varying wildly the parameters, the very low-$p_T$ $R_{CP}$ is not well covered by the calculation. 
+This indicates the model will have to be improved in this region of $p_T$, possible a more up-to-date dynamical hadronization model.
+Our temporary solution is to only include the STAR $R_{CP}$ data above $5$ GeV in the calibration.
 
 \begin{figure}
 \centering
@@ -247,8 +214,33 @@ Therefore, for most cases the emulator correctly estimates its uncertainty  and 
 \label{fig:new:validation}
 \end{figure}
 
-\paragraph{Co-variance matrix} Now we specify the covariance matrix to define the likelihood function, and marginalize the posterior distribution function using the MCMC technique.
-The general structure of the covariance matrix has been introduced in the previous section, here we use a centrality decorrelation factor $C=0.5$, and chose two different $\ln p_T$ correlation length $0.3$ and $1$ to investigate the sensitivity of the calibration to the form of co-variance matrix
+\paragraph{Co-variance matrix} 
+From chapter \ref{chapter:bayes}, the co-variance matrix has the structure
+\begin{eqnarray}
+\Sigma = \Sigma_{\textrm{emulator}} + \Sigma_{\textrm{truncation}} + \Sigma_{\textrm{stat}} + \Sigma_{\textrm{sys}} + \Sigma_{\textrm{model, sys}} 
+\end{eqnarray}
+The construction of these terms are straight forward, except for the systematic covariance $\Sigma_{\textrm{sys}}$ of the experimental data.
+Usually, experiments publish the marginalized uncertainty on each observable point $\delta y_{sys}$ (for example, $R_{AA}$ of a certain centrality at a single $p_T$ bin), and may specify the nature of the uncertainty as ``correlated'' or ``uncorrelated''.
+The correlation among uncertainties is important as it directly affects the interpretation of the quality of fit.
+For instance: a fit with $+5\%$ deviations on each of the $N$ data points will be penalized by a factor $e^{-N(0.05 y)^2/\delta y^2}$, assuming uncorrelated uncertainty; while it will only be penalized by $e^{-(0.05 y)^2/\delta y^2}$ if one assumes fully correlated uncertainty.
+This is because fully correlated uncertainty allows data to be systematically deviation from a trend.
+
+However, we the lack the information to construct the full covariance matrix from $\delta y_{sys}$.
+In this study, we simply parametrize the correlation as function of observables (labeled by $\alpha, \beta \in \{R_{AA}, v_2, R_{CP}\}$), centrality labeled by $m,n$ and transverse momentum (labeled by $i,j$),
+\begin{eqnarray}
+\mathbf{\Sigma}_{\textrm{sys}} = \delta_{\alpha\beta} C_{mn}  \exp\left\{-\frac{1}{2 L_{\textrm{corr}}^2} \left(\ln\frac{p_{T, i}}{p_{T, j}}\right)^2 \right\} \times \sigma^{\alpha m}_{\textrm{sys}, i}\sigma^{\beta n}_{\textrm{sys}, j}.
+\end{eqnarray}
+So, the covariance is zero if there are different observables or measurements from different experiments or different particle species.
+The centrality correlation $C_{mn}$ is only applied to $R_{AA}$ and $R_{CP}$ as these quantities across different centrality shares the same baseline reference, so a fraction of their uncertainty must be correlated across-centrality. 
+By default, $C_{m=n}=1$ and $C_{m\neq n}=0.3$.
+The correlation in the $p_T$ dimension is assumed to be a Gaussian in the $\ln p_T$ space with correlation length $L_{\textrm{corr}}$.
+We use $\ln p_T$ based on the consideration that the original of these uncertainty should not be sensitive to the linear change of $p_T$ as the there is no other scale present.
+The default correlation length is $1$, meaning the uncertainty is effectively uncorrelated with measurements at a $p_T$ $2.7$ times larger or smaller.
+Finally, this correlation modulation is applied to the completely correlation case of the systematic uncertainty $\sigma^{\alpha m}_{\textrm{sys}, i}\sigma^{\beta n}_{\textrm{sys}, j}$.
+
+This construction is entirely parametric, except for the direct experimental inputs $\sigma^{\alpha m}_{\textrm{sys}, i}$.
+We hope that future measurements will provide more information on the co-variance structure of the published systematic uncertainties.
+In the actually calibration, we will also change a few default parameters to see if the extracted physical parameters are sensitive to the detailed construction of $\Sigma_{\textrm{sys}}$.
 
 \begin{figure}
 \centering

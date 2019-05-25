@@ -184,28 +184,23 @@ The co-variance matrix contains various sources of uncertainties from both theor
 The ultimate solution is of course the improvement of model's physical accuracy.
 Or using a flexible model or models with different (but reasonable) assumptions to extract the same quantity and estimate the level of theoretical uncertainty.
 
-\paragraph{The co-variance matrix} co-variance matrix is decomposed into different contributions,
+\paragraph{The covariance matrix} co-variance matrix is decomposed into different contributions,
 \begin{eqnarray}
-\mathbf{\Sigma} = \mathbf{\Sigma}_{\textrm{stat}} + \mathbf{\Sigma}_{\textrm{sys}} + \mathbf{\Sigma}_{\textrm{emu}} + \mathbf{\Sigma}_{\textrm{trun}}
+\mathbf{\Sigma} = \mathbf{\Sigma}_{\textrm{stat}} + \mathbf{\Sigma}_{\textrm{sys}} + \mathbf{\Sigma}_{\textrm{emulator}} + \mathbf{\Sigma}_{\textrm{truncation}} + \mathbf{\Sigma}_{\textrm{model, sys}}
 \end{eqnarray}
 \begin{itemize}
 \item The statistical co-variance takes the diagonal form, $\mathbf{\Sigma}_{\textrm{stat}} = \delta_{ij}\delta\mathbf{y}_{\textrm{stat}, i}^2$. 
 $\delta\mathbf{y}_{\textrm{stat}, i}$ is the experimental statistical uncertainty.
-\item The experimental systematic uncertainties can correlation across different $p_T$ bins and over centrality. 
-However, due to the lack of information on what the correlations are, we simply parametrize the correlation to a Gaussian type in the $\ln(p_T)$ space, and a constant factor for different centrality,
-\begin{eqnarray}
-\mathbf{\Sigma}_{\textrm{stat}} = \sigma_{\textrm{sys}, i}\sigma_{\textrm{sys}, j} C_{ij} \exp\left\{-\frac{1}{2 L_{\textrm{corr}}^2} \left(\ln\frac{p_{T, i}}{p_{T, j}}\right)^2 \right\}.
-\end{eqnarray}
-$L_{\textrm{corr}}$ is a the $\ln p_T$ correlation length. 
-$C_{ij}$ is unity if the quantities $i$ and $j$ are from the same centrality of the same observables; it is zero if they are different observable. 
-For $R_{AA}$, $C_{ij}$ is a constant between $0$ and $1$ for different centrality. This mimics the fact that $R_{AA}$ from different centrality always uses the same $p$-$p$ baseline measurements and therefore has a fraction of its uncertainty correlated.
-$C_{ij}$ for momentum anisotropy is zero.
-
-We can only guess the $\ln p_T$-correlation length and centrality correlation right now which introduces an ambiguity in the model-to-data comparison.
-We hope that future measurements will provide more information on the co-variance structure of the published systematic uncertainties.
-\item The emulator covaraince $\mathbf{\Sigma}_{\textrm{emu}}$ is the prediction covariance of the GPs in the PC space and then transformed into the physical space.
-\item Finally, the truncation covaraince $\mathbf{\Sigma}_{\textrm{trun}}$ take those less important principal components that are not being emulated by GPs into account. 
+\item The experimental systematic uncertainties can be correlated for different observations, so generally its off-diagonal elements are non-zero,
+\item The emulator covaraince $\mathbf{\Sigma}_{\textrm{emulator}}$ is the prediction covariance of the GPs in the PC space and then transformed into the physical space.
+\item The truncation covaraince $\mathbf{\Sigma}_{\textrm{truncation}}$ take those less important principal components that are not being emulated by GPs into account. 
 Its variance is first computed in the PC space and then transformed back to the physical space.
+\item Finally, $\mathbf{\Sigma}_{\textrm{model, sys}}$ stands for the model uncertainty. 
+It is always present but is hard to quantify using the model itself.
+Therefore, the previous study [] assign a variable model systematic parameters $\sigma$ and this parameter will be treated as uncertainties in the calibration as well.
+The $\sigma$ stands for a uniform model uncertainty fraction on each principal component, and is added to the emulator prediction covariance.
+The $\sigma$ parameter is given an information prior distribution $P(\sigma) \propto \sigma^2 e^{-\sigma/0.05}$. Meaning an expectation of $15\%$ model uncertainty.
+The exact origin of this model uncertainty is unknown, but it plays a row as a ``regulator'' in the fitting process to prevent model trying to explaining feature that can never be described better than the $\sigma$ level precision.
 \end{itemize}
 
 \paragraph{Marginalize the posterior distribution} The resultant posterior distribution is a function of $n$ parameters.
