@@ -249,9 +249,15 @@ In the actually calibration, we will also change a few default parameters to see
 \label{fig:new:obs_posterior_LHC}
 \end{figure}
 
-\paragraph{Posterior observables} The global level of agreement between the calibrated model and the data are shown in figure \ref{fig:new:obs_posterior_LHC} for LHC energy, and figure \ref{fig:new:obs_posterior_RHIC} for RHIC energy.
-The both the $D$-meson and the $B$-meson $R_{AA}$ at the LHC energy is well described by the calibrated model, while $v_2$ is systematically below the data.
-At the RHIC energy, the $v_2$ has a better agreement; the magnitude of $R_{CP}$ (note that we only calibrated on the three data points above $p_T=5$ GeV) is correct, though the shape is too flat compared to the data.
+\paragraph{Posterior observables} The global level of agreement between the calibrated model and the data is shown in figure \ref{fig:new:obs_posterior_LHC} at the LHC energy, and figure \ref{fig:new:obs_posterior_RHIC} at the RHIC energy.
+The black dashed lines show the median prediction, while the blue bands stands for $90\%$ credible region.
+We remind the reader that because of the model predicts anti-correlation between $R_{AA}$ and $v_2$, the lower and upper bounds of the uncertainty bands are also anti-correlated.
+For example, a line that is close to the higher bounds in $R_{AA}$ is likely to be lose to the lower bounds in $v_2$.
+
+Both the $D$-meson and the $B$-meson $R_{AA}$ at the LHC energy are well described by the calibrated model, while $v_2$ is systematically below the data.
+Large separation between the event-engineered $v_2$ is observed, 
+At the RHIC energy, $v_2$ has a better agreement. 
+The magnitude of $R_{CP}$ at $p_T> 5$ GeV \footnote{Remember that the model is calibrated on the three data points above $p_T=5$ GeV} and its centrality dependences is correctly reflected, though the shape is too flat compared to the data.
 
 \begin{figure}
 \centering
@@ -267,15 +273,15 @@ At the RHIC energy, the $v_2$ has a better agreement; the magnitude of $R_{CP}$ 
 \label{fig:new:posterior}
 \end{figure*}
 
-\paragraph{Posterior distribution of parameters} Figure \ref{fig:new:posterior} shows the posterior distribution of the parameters.
-The $\ln\mu$ parameter has a evident peak around $.99$, which correspond to $\mu \approx 2.7$.
-Note that the means the preferred in-medium coupling is smaller than the extracted one from the previous analysis.
-This is because the improved implementation of the radiave process produces more energy loss than the old one when the coupling is large, so a smaller value of $\alpha_s$ is needed to explain the data.
-The resulting posterior of $\alpha_s$ (figure \ref{fig:new:posterior-alphas}) suggests an effective in-medium coupling from 0.20 to 0.33 at $T=300$ MeV.
-Though the preferred $\alpha_s \sim 0.3$ is smaller than the previous one, $g\sim 2$ is still large, but this extracted coupling constant is much closer to phenomenological values used by other studies [].
-The energy loss starting is preferred to be about half of the hydrodynamic starting time.
-The switching scale parameter do not have a strong preference as long as it is not too large, which is consistent with our model construction that physical processes should be weakly depends on this switching scale between diffusion and scattering modeling.
-The matching parameter $R_v$ is not very well constrained, as we have shown it only affects very high-$p_T$ observables.
+\paragraph{Posterior distribution of parameters} Figure \ref{fig:new:posterior} shows the single parameter posterior (diagonal plots) and two-parameter-joint posterior distributions (off-diagonal plots) of the 10 model parameters, plus the model systematic uncertainty parameter ($\sigma_m$).
+
+The $\ln\mu$ parameter has an evident peak around $1.3$, which correspond to $\mu \approx 3.5$.
+The resulting posterior of $\alpha_s$ is plotted in figure \ref{fig:new:posterior-alphas}, the median value of $\alpha_s$ at $Q=\mu\pi T$ varies from 0.3 to 0.22 for the relevant temperature trange $0.15 < T < 0.5$ GeV, corresponding to $g\sim 2$.
+Note that this $\alpha_s$ does not stands for the strength of all the probe-medium interaction, recalling that there is a significant parametric diffusion contribution to the elastic energy loss.
+For radiative process, though the $1\rightarrow 2$ splitting vertex explicitly uses this $\alpha_s$, the strength of the LPM effect is again controlled by the elastic broadening.
+
+Compared to the previous extraction, the preferred in-medium coupling strength is smaller and is closer to the phenomenological values used by other studies [].
+However, the coupling is still large compared to the weakly coupled assumption $g\ll 1$.
 
 \begin{figure}
 \centering
@@ -284,16 +290,9 @@ The matching parameter $R_v$ is not very well constrained, as we have shown it o
 \label{fig:new:posterior-alphas}
 \end{figure}
 
-We plotted the 90\% credible range of the posterior transport parameters $\hat{q}, \hat{q}_L$ as the red bands in figure \ref{fig:new:posterior-qhat}.
-The figure is arranged similarly to its prior plot.
-The transport parameters is nicely constrained compare to its prior range (gray bands), and is comparable to the earlier extraction by the JET Collaboration \footnote{Note that the JET Collaboration extracts the light quark $\hat{q}$. However, at $p_T = 10$ GeV, the mass effect of the charm is small and these two numbers should be comparable.}.
-We also present a first extraction of the longitudinal transport parameter. 
-And it is quite anisotropic, similar to the pure weakly coupled expectation.
-
-For the heavy quark spatial diffusion constant, since it is related to $\hat{q}$ in the zero momentum limit. 
-Such an extraction is essentially an extrapolation of our parametrization, and can be sensitive to the detailed choice of the ansatz. 
-Nevertheless, the extraction is compared to varies lattice calculations [] in  figure \ref{fig:new:posterior-Ds}.
-Our extraction (red band for 90\% credible region) agrees with the lattice calculation in the static limit of the heavy quark; while calculation using dynamical charm quark gives a much lower value.
+The energy loss starting is preferred to be after about half of the hydrodynamic starting time.
+The switching scale parameter do not have a strong preference as long as it is not too large, which is consistent with our model construction that physical processes should be weakly depends on this switching scale between diffusion and scattering modeling.
+The matching parameter $R_v$ is not very well constrained with a weak preference at $2$.
 
 
 \begin{figure}
@@ -303,6 +302,23 @@ Our extraction (red band for 90\% credible region) agrees with the lattice calcu
 \label{fig:new:posterior-qhat}
 \end{figure}
 
+We plotted the 90\% credible range (red bands) of the posterior transport parameters $\hat{q}, \hat{q}_L$ on top of their prior range (gray band) in figure \ref{fig:new:posterior-qhat}.
+The transport parameters is nicely constrained and is comparable to the earlier extraction by the JET Collaboration \footnote{Note that the JET Collaboration extracts the light quark $\hat{q}$. However, at $p_T = 10$ GeV, the mass effect of the charm is small and these two numbers should be comparable.}.
+We also present a first extraction of the longitudinal transport parameter $\hat{q}_L$. 
+The longitudinal transport is quite anisotropic when compared to $\hat{q}$.
+First, its perturbative contribution already introduces
+
+For the heavy quark spatial diffusion constant, since it is related to $\hat{q}$ in the zero momentum limit. 
+Such an extraction is essentially an extrapolation of our parametrization, and can be sensitive to the detailed choice of the ansatz.
+Nevertheless, the extraction is (red band for 90\% credible region) is compared to varies lattice calculations [] in  figure \ref{fig:new:posterior-Ds}.
+Our extraction for both charm and bottom quark spatial diffusion constants is similar, and is consistent with lattice calculations in the static / infinitely heavy limit of the heavy quark.
+While the lattice calculation of dynamical charm quark gives a much lower value of $D_s$.
+One may expect that our phenomenological extraction should give a similar separation between bottom and charm flavor, as the bottom is more than three times heavier.
+However, we found that the mass dependence in the elastic part of our model is relatively weak. 
+First, the mass only affects the phase-space integration of $t$-channel exchange perturbative scattering.
+Second, the diffusion parameter of the weakly coupled theory, we are using explicitly heavy-quark limit that it does not depend on mass.
+Finally, mass only enters the parametric diffusion part through a combination $E/T$, which is approximately $M/T$ at low momentum, since both charm and bottom mass are already much higher than the typical temperature, the parametric part also introduces a weak flavor dependence.
+In the future, one may seek for more physically motivated flavor dependence parametrization of the transport parameters.
 
 \begin{figure}
 \centering
