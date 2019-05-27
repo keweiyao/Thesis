@@ -17,12 +17,10 @@ The exact location of the separation scale is then treated as an uncertainty of 
 
 Finally, we apply the Bayesian analysis to infer the model parameter distribution by comparing to heavy flavor measurements at both RHIC and the LHC.
 The model parameters includes uncertainties such as in-medium coupling strength, energy loss starting time, match scale between vacuum and medium-induced shower, diffusion versus scattering model, as well as parametrized deviations from weakly coupled calculations.
-The calibrated parameters is able to describe the experimental obserables within 30\% uncertainty.
-This level of agreement is still not enough to make the best use of future high-precision measurements, and we shall listed a few possible improvements for future studies in the end.
 
 \begin{figure}
 \centering
-\includegraphics[width=.7\textwidth]{qhat_posterior_3D.png}
+\includegraphics[width=.8\textwidth]{qhat_posterior_3D.png}
 \caption{}
 \label{fig:conlusion}
 \end{figure}
@@ -37,13 +35,21 @@ Future study with improved flavor dependence may be needed to understand the imp
 In the current present calibration, the effective in-medium strong coupling constant is about $0.3$, and only contribute a small fraction of the extracted $\hat{q}$ parameter.
 The rest comes from the parametric contribution whose origin can be either perturbative or non-perturbative; either way, it suggests the necessity to model beyond leading order physics.
 
-Considering the advent of future high-precision hard probe measurements in heavy-ion collisions,
-we summarize a few points of improvements that may help to reduce or estimate the theoretical and modeling uncertainty of hard probes application.
+In conclusion, a transport modeling with perturbative based parton evolution with a parametric probe-medium interaction term is able to describe a wide range of open heavy flavor data to about 30\% level of accuracy.
+The heavy quark transport properties as function of energy and temperature is consistent with early phenomenological studies and lattice calculation.
+The present level model accuracy is still not enough to make the best use of future high-precision hard probe measurements in heavy-ion collisions []. 
+We therefore summarize a few points of improvements in the end which may help to reduce or estimate the theoretical and modeling uncertainties.
 \begin{itemize}
-\item An interpolation formula between vacuum and medium-induced radiation
-\item Correlation among multiple emissions in the presence of medium.
-\item Off equilibrium correction to the linearized transport equation.
-\item A calibration with simultaneous tuning bulk and hard sector.
-\item The use of less Glauber-model-dependent observables.
+\item An interpolation formula between vacuum and medium-induced radiation. A calculation that connects virtuality evolution with in-medium time evolution will help to eliminated the matching scale uncertainty. Though for the present observable and $p_T$ range its effect is not strong, its treatment may impact more delicate jet observables.
+\item Correlation among multiple emissions in the presence of medium. We have been neglecting the correlation among subsequent emissions in the ``modified transport model''. In the infinite medium limit, this is because the probability of overlapping emissions scales as $\tau_{1,f} R(\omega_2) \sim \tau_{1,f} \alpha_s/\tau_{2,f}$ which is suppressed by $\alpha_s$. But this higher order effect can be important since the phenomenological $\alpha_s$ is not small. There has been ongoing studies on this subject.
+\item Off equilibrium correction to the linearized transport equation. One essential assumption in linearized transport model is that medium partons follow the local thermal distributions, even though the hydrodynamics is propagated with viscous corrections. In fact, the viscous correction and the momentum space anisotropy can be very large at early times of the hydrodynamic evolution. One need to understand how these off-equilibrium effects changes the interpretation of the transport parameter one extracted assuming full thermal equilibrium of partons.
 \item Dynamical hadronization model and improved treatment of energy loss in the hadronic stage.
+Our current hadronization model has the problem of pinching long distance physics into a sudden process. 
+At low-$p_T$, the sudden recombination model breaks the detailed balance of the transport model and treating recombination model in a dynamical way would be more suitable.
+At high-$p_T$, the problem is more severe, as the hadronization time scale is dilatation by the large boost. 
+Moreover, the hadronic system near $T_c$ is still very dense, and it is inconsistent to apply the vacuum fragmentation function at the moment $T\sim T_c$.
+One possible solution for those high-$p_T$ heavy quarks (the recombination process is negligible) is to continue their partonic transport into the hadronic phase, and finally apply the vacuum fragmentation function when the system is dilute enough.
+Meanwhile, one can also study the energy loss in the dense hadronic system to extend the extracted transport parameter to the region below $T_c$.
+\item A calibration with simultaneous tuning bulk and hard sector. The bulk medium calibration is performed by a separate analysis. With future high precision hard probe measurements, a simultaneous calibration of of both soft and hard sector would be interesting.
+For example, we found that the number of binary collision as function of centrality is quite sensitive to the proton shape modeling in the Monte-Carlo Glauber model. The sensitivity of hard production to the number of binary collision may help the soft sector to improve the proton shape modeling. In turn, a better calibrated medium help to reduce the uncertainty in the hard parton energy loss.
 \end{itemize}

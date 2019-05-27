@@ -288,7 +288,7 @@ Absolute & $\frac{1}{2} \mu_0 \ln\left(\frac{T_A e^{y_b}+T_B e^{-y_b}}{T_A e^{-y
 \begin{figure}
 \centering
 \includegraphics{trento3d/trento3d_example}
-\caption{Initial entropy density in sample Pb+Pb (upper) and p+Pb (lower) events for cross sections of the $\eta=0$ and $x=0$ planes (left and right columns). Event is constructed using the relative skewness model in Table~\ref{tab:parametrization} with $\mu_0=1$, $\sigma_0=3$ and $\gamma_0=6$ along with midrapidity parameters from {Bernhard:2016tnd}.}
+\caption{Two sample events for Pb+Pb collision (top row) and p+Pb collision (bottom row). The left column and the right column slice the initial entropy density at middle rapidity and the $x=0$ plane respectively. The relative skewness parametrization is used with $\mu_0=1$, $\sigma_0=3$ and $\gamma_r=6$.}
 \label{fig:3d-example}
 \end{figure}
 
@@ -396,7 +396,8 @@ In the end, as a validation to this procedure, we will be using a set of high-li
 
 \begin{figure}
 \includegraphics[width=\textwidth]{trento3d/post_obs.pdf}
-\caption{}
+\caption{The posterior distribution of the observables after the fitting process. Blue and red stands for the results calibrated using the ``relative skewness'' and the ``absolute skewness'' ansatz respectively.
+From left to the right are charged particle pseudorapidity density in Pb+Pb collision, in p+Pb collision, and the rms of the $a_1$ coefficient in the two-particle pseudorapidity correlation decomposition. The lines in the right most figure shows that the rms $a_1$ is not very sensitive to the viscous effect in the hydrodynamic evolution.}
 \label{fig:trento:post_obs}
 \end{figure}
 
@@ -412,7 +413,7 @@ The hydrodynamic model and mini-jet production model provide a complementary pic
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{trento3d/posterior.pdf}
-\caption{Posterior distributions of the model parameters, listed in Table~\ref{tab:parameters}, for the relative-skewness (blue lower diagonal) and absolute-skewness (red upper diagonal) models. The diagonal panels are the marginal likelihood distributions of individual model parameters, while off-diagonal panels are joint distributions for pairs of model parameters.}
+\caption{The posterior probability distribution of the model parameters, the colors distinguish the use of ``absolute skewness'' (red) and ``relative skewness'' ansatz. The diagonals are single parameter distribution, the off-diagonals are two-parameter joint distributions.}
 \label{fig:trento:posterior}
 \end{figure}
 
@@ -423,8 +424,7 @@ We will see later that this is because the two parametrizations, though take dif
 \begin{figure}
 \centering
 \includegraphics[width=.8\textwidth]{trento3d/post_dsdy}
-\caption{Applying parameters sampled from the posterior probability distribution to Eq.~\eqref{cgf} along with Eq.~\eqref{regulateEq}, this plot shows the resulting local entropy profile $ds/d\eta$ varying $T_A$ and $T_B$ from $0.2~\text{fm}^{-2}$ to $2.6~\text{fm}^{-2}$. The lines are the mean predictions and the bands denote $1\sigma$ model uncertainties.
-}
+\caption{The constrained functional form of the three-dimensional initial entropy deposition $s(T_A(\mathbf{x}_\perp), T_B(\mathbf{x}_\perp), \eta_s)$. $T_A$ and $T_B$ is varied from $0.2$ to $2.4$ fm${}^{-2}$. Colors distinguish the results from using ``absolute skewness'' (red) and ``relative skewness'' ansatz.}
 \label{fig:trento:post_dsdy}
 \end{figure}
 
@@ -478,12 +478,12 @@ We are able to describe flow measured by ALICE [] at mid-rapidity with a shear v
 \begin{figure}
 \centering
 \includegraphics[width=.7\textwidth]{trento3d/vn_cen}
-\caption{Elliptic and triangular flow cumulants $v_2\{2\}$ and $v_3\{2\}$ as a function of centrality calculated from 3+1D hybrid model simulations using constant specific shear viscosity $\eta/s=0.17$ and $0.19$ for relative- and absolute-skewness models respectively, zero bulk viscosity $\zeta/s=0$ and hydro-to-micro switching temperature $T_\text{sw}=154$~MeV.
-The initial condition parameters are selected from the Bayesian posterior.}
+\caption{Flow coefficients $v_2\{2\}$ (blue) and $v_3\{2\}$ (orange) are plotted as a function of centrality. The calculation uses a 3+1D viscous hydrodynamic-based model with constant $\eta/s=0.17$ and $0.19$ for ``relative skewness'' (solid) and ``absolute skewness'' (dashed) ansatz. $\zeta/s=0$ and the switching temperature is $T_\text{sw}=154$~MeV.
+The initial condition parameters are selected from the high-likelihood region of the posterior.}
 \label{fig:trento:vn_cen}
 \end{figure}
 
-\paragraph{Rapidity-dependent $v_n$} For the rapidity dependent flow figure \ref{fig:trento:vn_eta}, we used a larger $\eta/s=0.25--0.28$. 
+\paragraph{Rapidity-dependent $v_n$} For the rapidity dependent flow figure \ref{fig:trento:vn_eta}, we used a larger $\eta/s=0.25$--$0.28$. 
 This inconsistency is because the ALICE measurement extrapolate $p_T$ range for the rapidity-dependent flow down to 0, while the mid-rapidity  $p_T$ cut is $0.2 < p_T < 5.0$ GeV.
 It would not be a problem for the model to describe both with the same transport parameters, if the $p_T$ differential flow and $p_T$ differential particle spectra are both reproduced.
 However, due to the lack of a systematic tuning of the model parameters including both shear and bulk viscosity, the current mean $p_T$ is too high.
@@ -501,8 +501,8 @@ To systematically investigate all these effects, a future global parameter calib
 
 \begin{figure}
 \includegraphics[width=\textwidth]{trento3d/vn_eta}
-\caption{Pseudorapidity dependence of anisotropic flow coefficients $v_2\{2\}$, $v_3\{2\}$ and $v_2\{4\}$ (blue circle, green triangle and orange diamond shaped symbols) calculated from the hybrid model with constant specific shear viscosity $\eta/s=0.25$ and $0.28$ for relative- and absolute-skewness models respectively (solid and open symbols), compared to data from ALICE (smaller black symbols) with $p_T > 0$~GeV (extrapolated) in different centrality bins. 
-The bands for each theory calculation point indicate $1\sigma$ statistical error, while experimental bands/bars denote $1\sigma$ systematic and statistical errors respectively.}
+\caption{Pseudorapidity dependent flow coefficients $v_2\{2\}$ (blue circle), $v_3\{2\}$ (green triangle) and $v_2\{4\}$ (orange diamond).
+Constant $\eta/s=0.25$ and $0.28$ are used for ``relative skewness'' (closed symbol) and ``absolute skewness'' (open symbol) ansatz. Data is taken from the ALICE Collaboration [].}
 \label{fig:trento:vn_eta}
 \end{figure}
 
@@ -540,9 +540,7 @@ Given the present comparison, we conclude that the valid range of the model shou
 \includegraphics[width=.495\textwidth]{trento3d/evt_pln_decorr_near}
 \hfill
 \includegraphics[width=.495\textwidth]{trento3d/evt_pln_decorr_far}
-\caption{Left: The event-plane decorrelation for $n=2,3$ in different centrality bins with the reference particles from $3.0<|\eta^b|<4.0$.
-  Right: The same quantities as the left panel but with the reference particles from $4.4<|\eta^b|<5.0$. 
-  Theory bands indicate $1\sigma$ statistical error, while experimental bands/bars denote $1\sigma$ systematic and statistical errors respectively.}
+\caption{The $n=2$ (blue) and $n=3$ (orange) event-plane decorrelations obtained for ``relative skewness'' (lines with bands) and ``absolute skewness'' (lines with hatches) ansatz. The left and right plots uses different reference particle bins $3.0<|\eta_b|<4.0$ and $4.4<|\eta_b|<5.0$ respectively.}
 \label{fig:trento:epd}
 \end{figure}
 
@@ -576,10 +574,9 @@ This is a prediction that can be checked in future measurements to put further c
 
 \begin{figure}
 \includegraphics[width=\textwidth]{trento3d/smn}
-\caption{Top row: calculated $SC(4,2)$ and $SC(3,2)$ as functions of centrality compared to ALICE measurements, with the same 3D hybrid model set-up as used for Fig. \ref{fig:vn_cen}.
-  We conduct calculations in two kinematic ranges: $|\eta|<0.8$ is the pseudorapidity cut used by current the ALICE measurement and $2.5<|\eta|<3.5$ is our prediction for the symmetric cumulants away from mid-rapidity in the Pb+Pb system.
-  Bottom row: $SC(m,n)$ normalized by $\langle v_m^2\rangle\langle v_n^2\rangle$ for two two kinematic ranges.
-  The left column and right column show results using relative- and absolute-skewness respectively.
+\caption{The symmetric cumulants (top row) and normalization symmetric cumultants (bottom row) obtained from the ``relative skewness'' (left column) and the ``absolute skewness'' (right column) ansatz.
+$SC(4,2)$ (blue) and $SC(3,2)$ (green) are shown as functions of centrality. The experimental measurements at middle rapidity (black symbols) is taken from [].
+The calculations are performed at both middle rapidity $|\eta|<0.8$ (solid lines) and forward/backward rapidity $2.5<|\eta|<3.5$ (dashed lines).
 }
 \label{fig:trento:smn} 
 \end{figure}
