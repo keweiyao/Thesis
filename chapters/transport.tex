@@ -820,6 +820,7 @@ For the splitting vertex, on the theoretical side \cite{Arnold:2008zu} it is inc
 And then evaluate the splitting $\alpha_s$ around an averaged scale (note that $k_\perp^2$ in the simulation fluctuates a lot),
 \begin{eqnarray}
 \langle k_\perp^2\rangle \sim m_D^2 \sqrt{E/T\ln(E/T)}
+\label{eq:runscale}
 \end{eqnarray}  
 For transport simulation, the running of splitting vertex requires a two-step implementation. 
 First, the $\alpha_s$ for the splitting vertex in the few body matrix-element is evaluated at $k_\perp^2$.
@@ -839,9 +840,9 @@ In the end, the mass effect implementation is also validated.
 \subsection{In a large and static medium}
 \begin{figure}
 \centering{
-\includegraphics[width=.7\columnwidth]{spectrum.png}
+\includegraphics[width=.8\columnwidth]{spectrum.png}
 }
-\caption{The $q\rightarrow q+g$ splitting rate in an infinite medium from a quark with $E=1$ TeV,and a coupling constant $\alpha_s = 0.1$. The top plot shows the simulated spectrum $dR/d\omega$ (red-dashed line) and power law fit (green-dotted and blue-dash-dotted lines) in different gluon energy regions, separated by energy scales $\omega_{BH}\approx 2\pi T$. The middle plot compares to the simulation to NLL solution to the AMY equation, and the ratio is shown in the bottom plot}
+\caption{The $q\rightarrow q+g$ splitting rate simulated in an infinite box with $T=0.5$ GeV. The quark energy is $E=1$ TeV. $\alpha_s = 0.1$. In the top plot, the spectrum $dR/d\omega$ (red line) is fitted to a power function $\omega^\lambda$ in different gluon energy regions. The green dashed line is fitted in the Bethe-Heitler region $\omega < \omega_{BH}\approx 2\pi T$; the blue dash-dotted line is fitted in the LPM region $\omega > \omega_{BH}$. The middle plot compares to the simulation to NLL solution to the AMY equation, and their ratio is shown in the bottom plot}
 \label{fig:spectrum}
 \end{figure}
 
@@ -868,9 +869,9 @@ The bottom plot show the ratio between the simulation and the theory, an level o
 
 \begin{figure}
 \centering{
-\includegraphics[width=.7\columnwidth]{channel_rate.png}
+\includegraphics[width=.8\columnwidth]{channel_rate.png}
 }
-\caption{The splitting rate of $q\rightarrow q+g^*$, $g\rightarrow g+g^*$, and $g\rightarrow q^* + \bar{q}$ as a function of the parton energy labeled by the star. The mother parton with $E=1$ TeV evolves inside an infinite medium with $T=0.5$ GeV. The simulations (thick dashed lines) are compared to the NLL solutions (thin solid lines).}
+\caption{The rate of different channels $q\rightarrow q+g^*$, $g\rightarrow g+g^*$, and $g\rightarrow q^* + \bar{q}$ are plotted as functions of the daughter (labeled by "${}^*$") parton energy. The mother parton has a energy $E=1$ TeV. The medium temperature is $T=0.5$ GeV. $\alpha_s = 0.1$. The simulations (thick dashed lines) are compared to the NLL solutions (thin solid lines).}
 \label{fig:channel_rate}
 \end{figure}
 
@@ -888,18 +889,15 @@ We see that the simulation achieves a good agreement with the NLL solution in th
 
 Next, we would like validate the simulation with different coupling constant and parton energies.
 We choose both a relative small coupling $\alpha_s = 0.1 (g \approx 1.1)$ and a value closer to the phenomenology coupling $\alpha_s = 0.3 (g \approx 1.9)$, and vary the energy from $10$, $10^2$, to $10^3$ GeV.
-The ratios between the simulation and the NLL solutions are shown in figure \ref{fig:sys-q2qg} and \ref{fig:sys-g2gg-g2qqbar}.
+The ratios between the simulation and the NLL solutions are shown in figure \ref{fig:sys-q2qg}, \ref{sys-g2gg} and \ref{fig:sys-g2qqbar}.
 From these systematic comparison.
 One see that the simulation reproduces the correct scaling in the LPM region, although due to the decreasing of the parton energy, this region also shrinks.
 The overall performance of the modified Boltzmann transport in describing the inelastic processes in a large medium is good and under control.
 One remaining problem is that the systematic deviation for the $g\rightarrow q+\bar{q}$ channel is bigger than the other two channels, as we did not include the backward region in its $2\rightarrow 3$ matrix-elements.
 
-
-
 \begin{figure}
-\centering{
-\includegraphics[width=.5\columnwidth]{spectrum_E_q2qg.png}
-}
+\centering
+\includegraphics[width=.8\columnwidth]{spectrum_E_q2qg.png}
 \caption{Ratios of splitting rate $dR/\omega$ between the modified Boltzmann simulation and the NLL solution for $q\rightarrow q+g$ splitting. The quark energies are $E$ is 10, 100, and 100 GeV from top to the bottom plot. 
 And two coupling constants are used: $\alpha_s = 0.1$ (red solid lines) and $\alpha_s = 0.3$ (blue dashed lines).
 $\omega$ stands for the gluon energy.
@@ -908,13 +906,18 @@ The horizontal dashed lines denote $\pm 10\%$ deviation from unity. }
 \end{figure}
 
 \begin{figure}
-\centering{
-\includegraphics[width=.5\columnwidth]{spectrum_E_g2gg.png}\includegraphics[width=.5\columnwidth]{spectrum_E_g2qqbar.png}
-}
-\caption{Same as figure \ref{fig:sys-q2qg}, but for $g \rightarrow g + \bar{g}$ (left) and $g \rightarrow q + \bar{q}$ (right)}
-\label{fig:sys-g2gg-g2qqbar}
+\centering
+\includegraphics[width=.8\columnwidth]{spectrum_E_g2gg.png}
+\caption{The same as figure \ref{fig:sys-q2qg}, but $g \rightarrow g + g$.}
+\label{fig:sys-g2gg}
 \end{figure}
 
+\begin{figure}
+\centering
+\includegraphics[width=.8\columnwidth]{spectrum_E_g2qqbar.png}
+\caption{The same as figure \ref{fig:sys-q2qg}, but $g \rightarrow q + \bar{q}$.}
+\label{fig:sys-g2qqbar}
+\end{figure}
 
 Finally, we validate the running coupling calculation in Fig. \ref{fig:running} using the $g\rightarrow g+g$ channel.
 The theory curves (black lines) are obtained combining Eq. \ref{eq:AMY-LL} and Eq. \ref{eq:q3running}.
@@ -924,16 +927,15 @@ The simulation was performed using the running coupling prescription described i
 The overall shape of the spectrum in the deep LPM region is again well described by the modified Boltzmann simulation. 
 
 \begin{figure}
-\centering{
-\includegraphics[width=.7\columnwidth]{running.png}
-}
-\caption{Top plot: comparison of modified Boltzmann simulation with the NLL solution  with running coupling.
-The ratio between simulation and theory is shown in the bottom plot.}
+\centering
+\includegraphics[width=.8\columnwidth]{running.png}
+\caption{Comparing the simulation with running coupling constant the NLL solution with running $\alpha_s$ prescription.
+The scale $Q$ in the emission vertex and in the theoretical formula for the effective transport parameter $\hat{q}_3$ (equation \ref{eq:q3running}) is chosen to be $1/2$, $1$ and $2$ times of the scale $\sqrt{\langle k_\perp^2\rangle}$ in equation \ref{eq:runscale}.
+The ratio is shown in the bottom plot.}
 \label{fig:running}
 \end{figure}
 
-
-\subsection{In a finite / expanding medium}
+\subsection{Branching in a finite / expanding medium}
 We have made clear before that this approach is designed for interpolating the Bethe-Heitler region and the deep-LPM region in a large medium, and from the validation in the previous section, it indeed works very well.
 However, the medium created in heavy-ion collisions were never in the large and static limit, its finite time and spatial extend, local hot spots fluctuations and the fast radial expansion can all make significant impact on the hard parton propagation. 
 Therefore, we need to investigate how our approach would behave in a few more complex scenarios: a finite medium and and expanding medium, before applying such a model to phenomenological usage.
@@ -966,7 +968,7 @@ We would like to check if this simulation boundary effect qualitatively mimic th
 \begin{figure}
 \centering
 \includegraphics[width=.8\columnwidth]{spectrum_L.png}
-\caption{Comparison of the path-length dependent rate $dR/d\omega$ from the simulation using $\alpha_s = 0.3$ to the theoretical calculation for splitting $q\rightarrow q+g$ \cite{CaronHuot:2010bp}. The quark energy is $16$ GeV.}
+\caption{The path-length dependence of the simulated $q\rightarrow q+g$ emission rate $dR/d\omega$ comapred to the direction calculation of formula \ref{eq:full-theory} from \cite{CaronHuot:2010bp}. $\alpha_s = 0.3$. The quark energy is $16$ GeV. The left and right columns have medium temperature $T=0.2$ and $0.4$ GeV respectively. The top and bottom rows show the differential rate at $\omega = 3$ and $8$ GeV.}
 \label{fig:spectra-L-alphas=0.3}
 \end{figure}
 
@@ -980,11 +982,10 @@ The original paper only publish this calculation for a $16$ GeV quark.
 To validate if this qualitative agreement also holds at higher parton energies, we implement the numerical approach described in [] and compute the theoretical curves for $E=100$ GeV partons.
 The comparison of simulation and numerical solutions are shown in figure \ref{fig:spectra-L-alphas=0.3-E100} and again, we found a qualitative agreement with the theoretical finite size effect.
 
-
 \begin{figure}
 \centering
 \includegraphics[width=.8\columnwidth]{spectrum_L_100.png}
-\caption{The same as figure \ref{fig:spectra-L-alphas=0.3-E100}, but the initial quark energy is $100$ GeV.}
+\caption{The same as figure \ref{fig:spectra-L-alphas=0.3-E100}, but the initial quark energy is $100$ GeV, and is plotted for gluon at 5 (top), 10 (middle) and 50 (bottom) GeV.}
 \label{fig:spectra-L-alphas=0.3-E100}
 \end{figure}
 
@@ -1026,7 +1027,7 @@ Neglecting the initial transverse momentum at $t=t_1$, we have the characteristi
 \begin{figure}
 \centering
 \includegraphics[width=.8\columnwidth]{spectrum_Bjorken.png}
-\caption{The ratios of induced splitting rate in expanding medium to that of a stat medium, with expansion parameter $\nu = 3/4, 1$, and $3/2$. The analytic results are shown in solid lines and simulations denoted as symbols. The conpling constant $\alpha_s=0.3$, the expansion starts at $\tau_0 = 0.2$ fm/$c$ with an initial temperature $T_0 = 1$ GeV.}
+\caption{Top plot: the simulated spectrum (diffusion plues diffusion-induced radiation only) using the parametric medium with expansion parameters $\nu = 0$ (static, black), $3/4$ (green), $1$ (Bjorken, blue), and $3/2$ (orange). The analytic results are shown in symbols and simulations in lines. $\alpha_s=0.3$. The expansion starts at $\tau_0 = 0.2$ fm/$c$ with an initial temperature $T_0 = 1$ GeV. Bottom plot: the ratios between calculation (simulation) in an expanding medium to that in the static medium.}
 \label{fig:Bjorken-BDMPS}
 \end{figure}
 
@@ -1052,7 +1053,7 @@ We found that when $\omega \gg T_0$, the degree of change in the radiation spect
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{mass.png}
-\caption{Comparison of the path-length dependent rate $dR/d\omega$ from the simulation using $\alpha_s = 0.3$ to the theoretical calculation for splitting $q\rightarrow q+g$ \cite{CaronHuot:2010bp}. The quark energy is $16$ GeV.}
+\caption{The mass dependence of the radiation spectrum $q\rightarrow q+g$, presented as the ratio of bottom $dR/d\omega$ over the light quark $dR/d\omega$, as functions of path length. The left and right columns use temperatures 0.2 and 0.4 GeV. Different rows (from top to bottom) plot cases for gluon energy $\omega = 5, 10, 20, 50$ (GeV).}
 \label{fig:spectra-L-alphas=0.3}
 \end{figure}
 
@@ -1078,7 +1079,7 @@ This means that the treatment of the mass effect is not as simple as the dead-co
 \begin{figure}
 \centering
 \includegraphics[width=.8\textwidth]{thermalization.png}
-\caption{•}
+\caption{Approaching to thermal equilibrium of heavy flavor is quantified as the change of $\Delta S$ (defined in equation \ref{eq:DeltaS}) as function of time.. The red dotted lines includes elastic processes only. The green dashed line further includes $2\rightarrow 3$ and $1\rightarrow 2$ processes. The blue solid lines turn on the detailed balance processes $3\rightarrow 2$ and $2\rightarrow 1$.}
 \label{fig:thermalization}
 \end{figure}
 Heavy quark's large mass made it takes longer time to thermalize and the low-$p_T$ end of the heavy quark production in the heavy-ion collision can carry the information non-equilibrium dynamics.
@@ -1092,6 +1093,7 @@ We define a quantity $\Delta S$ to measure the approaching of thermal distributi
 \begin{eqnarray}
 \Delta S = - \langle \ln f_0 \rangle - S_0 \\
  &=& - \frac{1}{N}\sum_i\ln f_0(E_i) - \frac{\int dp^3 f_0 ln(f_0)}{\int dp^3 f_0}
+ \label{eq:DeltaS}
 \end{eqnarray}
 Where the first term the the ensemble average of the the function $-\ln f_0$, and the subtracted term is proportional to the entropy of distribution $f_0$.
 Note that the quantity is zero if the ensemble thermalize.
@@ -1199,15 +1201,15 @@ And the suppression factor $\lambda_{inel}/\tau_f$ is different from the expecte
 
 \begin{figure}
 \centering
-\includegraphics[width=1.\textwidth]{Eloss_infinite.pdf}
-\caption{Energy loss per unit path lengh $dE/dx$ as a function of energy $E$, temperature $T$ and coupling constant $\alpha_s$. Each column corresponds to a value of the coupling constant $\alpha_s = 0.075, 0.15, 0.3$, and $0.6$ (from left to right). Each row corresponds to a temperature of $T = 0.2, 0.4$, and $0.6$ GeV (from top to bottom). $dE/dx$ is divided by the expected scaling $\alpha_s^2 \sqrt{ET^3}$. The MC implementations of the LPM effect referred to as ``modified rescattering", ``coherence factor", and ``block radiation" approaches are shown with red-dashed lines, blue-dash-dotted lines, and green-dotted lines respectively. The AMY NLL results are denoted as black boxes.}
+\includegraphics[width=1.\textwidth]{Eloss_infinite.png}
+\caption{Energy loss per unit path lengh $dE/dx$ as a function of energy $E$, temperature $T$ and coupling constant $\alpha_s$. Each column corresponds to a value of the coupling constant $\alpha_s = 0.075, 0.15, 0.3$, and $0.6$ (from left to right). Each row corresponds to a temperature of $T = 0.2, 0.4$, and $0.6$ GeV (from top to bottom). $dE/dx$ is divided by the expected scaling $\alpha_s^2 \sqrt{ET^3}$. The MC implementations in this work (red dashed lines) is compared to the ``coherence factor" approach (green dash-dotted lines) and the ``block radiation" approach (blue dotted lines). The analytic results are denoted as black solid lines.}
 \label{fig:eloss-inf}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=1.\textwidth]{Eloss_Ldep.pdf}
-\caption{Energy loss $\Delta E$ as a function of path length $L$, temperature $T$ and coupling constant $\alpha_s$. Each column corresponds to a coupling constant of value $\alpha_s = 0.075, 0.15, 0.3$, and $0.6$ (from left to right). Each row corresponds to a temperature of value $T = 0.2, 0.4$, and $0.6$ GeV (from top to bottom). $\Delta E$ is scaled by $\alpha_s E$ and $L$ is scaled by an estimated critical path length $L_c^0 = \sqrt{E/\hat{q}_0}$, $\hat{q}_0 = C_A \alpha_s T m_D^2$. The MC implementations of the LPM effect referred to as ``modified rescattering", ``coherence factor", and ``block radiation" approaches are the red-dashed lines, blue-dash-dotted lines, and green-dotted lines respectively. The analytic results for a thin medium are denoted as black solid lines.}
+\includegraphics[width=1.\textwidth]{Eloss_Ldep.png}
+\caption{Energy loss $\Delta E$ as a function of path length $L$, temperature $T$ and coupling constant $\alpha_s$. Each column corresponds to a coupling constant of value $\alpha_s = 0.075, 0.15, 0.3$, and $0.6$ (from left to right). Each row corresponds to a temperature of value $T = 0.2, 0.4$, and $0.6$ GeV (from top to bottom). $\Delta E$ is scaled by $\alpha_s E$ and $L$ is scaled by an estimated critical path length $L_c^0 = \sqrt{E/\hat{q}_0}$, $\hat{q}_0 = C_A \alpha_s T m_D^2$. The MC implementations in this work (red dashed lines) is compared to the ``coherence factor" approach (green dash-dotted lines) and the ``block radiation" approach (blue dotted lines). The analytic results for a thin medium are denoted as black solid lines.}
 \label{fig:eloss-ldep}
 \end{figure}
 
@@ -1306,7 +1308,7 @@ The connect of these results to the Bethe-Heitler limit of the AMY integral equa
 \vspace{1em}
 \includegraphics[width=.49\textwidth]{Large-Q-g2qqbar-B.pdf}\hfill
 \includegraphics[width=.49\textwidth]{Large-Q-g2qqbar-C.pdf}
-\caption{Three diagrams $A$ (Top), $B$ (Bottom left), $C$ (Bottom right) that contribute to the large angle scattering induced gluon splitting into quark-anti-quark pair.}
+\caption{Three diagrams $A$ (Top), $B$ (Bottom left), $C$ (Bottom right) that contribute to the large angle scattering induced gluon splitting into quark-anti-quark pair in the forward region of the center-of-mass frame.}
 \label{fig:feyn-g2qqbar}
 \end{figure}
 
@@ -1503,7 +1505,7 @@ The final squared matrix-element has been factorized into the two body scatterin
 \vspace{1em}
 \includegraphics[width=.49\textwidth]{Large-Q-q2qg-B.pdf}\hfill
 \includegraphics[width=.49\textwidth]{Large-Q-q2qg-C.pdf}
-\caption{Three diagrams $A$ (Top), $B$ (Bottom left), $C$ (Bottom right) that contribute to the large angle scattering induced a quark splitting into a quark and a gluon.}
+\caption{Three diagrams $A$ (Top), $B$ (Bottom left), $C$ (Bottom right) that contribute to the large angle scattering induced a quark splitting into a quark and a gluon in the forward region of the center-of-mass frame.}
 \label{fig:feyn-q2qg}
 \end{figure}
 
@@ -1526,7 +1528,7 @@ The calculation uses exactly the same technique we used for the gluon splitting 
 \vspace{1em}
 \includegraphics[width=.49\textwidth]{Large-Q-g2gg-B.pdf}\hfill
 \includegraphics[width=.49\textwidth]{Large-Q-g2gg-C.pdf}
-\caption{Three diagrams $A$ (Top), $B$ (Bottom left), $C$ (Bottom right) that contribute to the large angle scattering induced gluon splitting into two gluons.}
+\caption{Three diagrams $A$ (Top), $B$ (Bottom left), $C$ (Bottom right) that contribute to the large angle scattering induced gluon splitting into two gluons in the forward region of the center-of-mass frame.}
 \label{fig:feyn-g2gg}
 \end{figure}
 

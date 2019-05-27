@@ -31,12 +31,18 @@ Including, $p_T$ dependent $D$-meson nuclear modification factor $R_{AA}$ and $p
 CMS measurements of the $B^{\pm}$-meson $R_{AA}$ is also included to constrain the mass dependence of the transport coefficients.
 
 \begin{figure*}
-\includegraphics[width=.49\textwidth]{observables_design.pdf}
-\includegraphics[width=.49\textwidth]{observables_posterior.pdf}
-\caption{Left: the prior, i.e. the full range of calculations in parameter space. Right: the posterior, i.e. observables sampled from model emulators after calibration. In both figures, blue (green) lines are calculations with {\tt EPPS} ({\tt nCTEQ15np}) nuclear PDF.}\label{plots:deisgn_posterior_obs}
+\includegraphics[width=\textwidth]{observables_design.pdf}
+\caption{The prior distribution of observables compared to data. The colors labeled the use of EPPS (blue) and nCTEQ15np (green) nuclear PDF.}
+\label{fig:LBT:obs_prior}
 \end{figure*}
 
-The prior and the posterior of the observables before and after the calibration is shwon in figure \ref{plots:deisgn_posterior_obs}.
+\begin{figure*}
+\includegraphics[width=\textwidth]{observables_posterior.pdf}
+\caption{The 90\% credible region of the posterior distribution of observables compared to data. The colors labeled the use of EPPS (blue) and nCTEQ15np (green) nuclear PDF.}
+\label{fig:LBT:obs_posterior}
+\end{figure*}
+
+The prior and the posterior of the observables before and after the calibration is shwon in figures \ref{fig:LBT:obs_prior} and \ref{fig:LBT:obs_posterior}.
 blue stands for using {\tt EPPS} nuclear PDF and green stands for using the {\tt nCTEQnp}  nuclear PDF.
 We found that the model after the calibration provide a good description of $R_{AA}$ and $v_2$ at the intermediate $p_T$ of the ALICE experiments.
 But it does not reproduce the fast uprising shape of $R_{AA}$ at high-$p_T$ of the CMS experiment.
@@ -47,11 +53,12 @@ Another thing worth noting that is that the $D$ and $B$ meson $R_{AA}$ are descr
 
 \begin{figure}
 \centering
-\includegraphics[width=.7\textwidth]{posterior.pdf}
-\caption{Marginalized postrior probability distribution of model parameters. Diagonal plots show the marginalization on a single parameter. Off diagonal plots show the pair correlation between parameters. Blue (Geen) lines and lower (upper) off diagonal plots correspond to the extraction using EPPS (nCTEQ15np) nuclear PDF.}\label{plots:posterior}
+\includegraphics[width=.8\textwidth]{posterior.pdf}
+\caption{Posteriors of single-parameter distributions (diagonal plots) and two-parameter joint distributions (off-diagonal plots). The colors labeled the use of EPPS (blue) and nCTEQ15np (green) nuclear PDF.}
+\label{fig:LBT:posterior}
 \end{figure}
 
-The inferred posterior probability distribution of the parameters is shown in the figure \ref{plots:posterior}.
+The inferred posterior probability distribution of the parameters is shown in the figure \ref{fig:LBT:posterior}.
 The diagonal plots show single parameterized distributions, and the off-diagonal ones displays the two-parameter correlations.
 We split the results that use different nuclear PDFs into the upper (EPPS, green heat map and lines) and lower (nCTEQ15np, blue heat maps and lines) triangles.
 One notices that results from different nuclear PDF are consistent within the uncertainty; therefore, from now on I shall not stress on any differences between these two set of results, but combine them into a single distribution to fold in the PDF uncertainty.
@@ -63,7 +70,11 @@ In the discussion of the next section, we will see that this problem can be slig
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{qhat_p_T.pdf}
-\caption{Posterior range of the heavy quark transverse momentum broadening parameter $\hat{q}$ from Equation \ref{eq:qhat}. The results include the uncertainty from using different nuclear PDFs. Blue boxed region is for bottom quarks and red slashed region for charm quarks.}\label{fig:posterior_qhat}
+\caption{The 90\% credible region of the heavy quark transverse momentum broadening parameter $\hat{q}$ extracted using the model described in [].
+The charm quark results are shown in red, and bottom results in blue.
+The difference coming from using different nuclear PDF has been marginalized into the uncertainty bands.
+Left plot: the temperature dependence at $p=10$ GeV. Right plot: the momentum dependence at $T=0.35$ GeV.
+}\label{fig:LBT:posterior_qhat}
 \end{figure}
 
 \paragraph{Transport coefficients} In this analysis, the heavy quark transport coefficient $\hat{q}$ is computed from adding up the momentum broadening from both the scattering and the parametric diffusion,
@@ -71,20 +82,20 @@ In the discussion of the next section, we will see that this problem can be slig
 \hat{q} &=& 2T^3\kappa_D\left(x_D + (1-x_D)\frac{\textrm{GeV}^2}{ET}\right) + \hat{q}_{\textrm{el}}.
 \end{eqnarray}
 In a perturbative definition of the transport coefficients, the inelastic process does not contribute to heavy quark transport coefficient at leading order. 
-In figure \ref{plots:posterior_qhat}, the 90\% credible region of $\hat{q}$ is shown as a function of temperature at a fixed energy (left), and as function of energy at a fixed temperature (right).
+In figure \ref{fig:LBT:posterior_qhat}, the 90\% credible region of $\hat{q}$ is shown as a function of temperature at a fixed energy (left), and as function of energy at a fixed temperature (right).
 Results for charm (red) and bottom (blue) quarks are labeled by different colors.
 The mass difference only causes a small difference in $\hat{q}$.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{qhat_compare.pdf}
-\caption{Posterior range of the heavy quark transverse momentum broadening parameter $\hat{q}$. The shaded region indicates a previous extraction using the improved-Langevin model [].}\label{fig:compare_qhat}
+\caption{Comparing the 90\% credible region of the charm $\hat{q}$ using different models. The red regions use the model described in [], while the  shaded regions are obtained using  the improved-Langevin model [].}\label{fig:LBT:compare_qhat}
 \end{figure}
 
 \paragraph{Comparison to results from an improved-Langevin model}
 The same transport coefficient is also extracted using the improved-Langevin model [].
 It includes a diffusion modeling of the elastic interacton, a high-twist single gluon emission rate, and a similar routine to implement multiple radiations.
 This model is then coupled to the same medium as the one used here and compared to the same set of observables as this work does.
-The resultant posterior (for charm quark only) is shown as the shaded region in figure \ref{fig:compare_qhat}.
+The resultant posterior (for charm quark only) is shown as the shaded region in figure \ref{fig:LBT:compare_qhat}.
 We see that the $\hat{q}$ extracted using the two models only overlap at the boundary of the credible region.
 Their difference is comparable to the uncertainty band of either model, while both models provide a reasonable description of the data.
 This suggests the theoretical uncertainty that comes from the assumption between the probe and the medium is a significant one.
@@ -157,8 +168,8 @@ By applying the logarithmic prior and design, we can explore both the large and 
 
 \begin{figure}
 \centering
-\includegraphics[width=.4\textwidth]{qhat_prior.png}\includegraphics[width=.4\textwidth]{ER_prior.png}
-\caption{•}
+\includegraphics[width=.5\textwidth]{qhat_prior.png}\includegraphics[width=.5\textwidth]{ER_prior.png}
+\caption{Left: the prior range of the transport parameter $\hat{q}$ as funtion of temperature at different momentum. Right: the prior range of the longitudinal diffusion parameter $\hat{q}_L$, plotted as ratio $2\hat{q}_L/\hat{q}$.}
 \label{fig:new:design-qhat}
 \end{figure}
 
@@ -185,14 +196,14 @@ Our temporary solution is to only include the STAR $R_{CP}$ data above $5$ GeV i
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{obs_prior_LHC.png}
-\caption{•}
+\caption{The prior distribution of the observables at the LHC energy.}
 \label{fig:new:obs_prior_LHC}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{obs_prior_RHIC.png}
-\caption{•}
+\caption{The prior distribution of the observables at the RHIC energy.}
 \label{fig:new:obs_prior_RHIC}
 \end{figure}
 
@@ -209,8 +220,8 @@ Therefore, for most cases the emulator correctly estimates its uncertainty  and 
 
 \begin{figure}
 \centering
-\includegraphics[width=.8\textwidth]{validation.png}
-\caption{•}
+\includegraphics[width=.6\textwidth]{validation.png}
+\caption{Validation of the emulators performance. The top two plots shows the correlation between the calculated quantities ($x$ variable) versus the emulated quantities ($y$ variable). The bottom two plots compares the GP's estimated standard deviation $\sigma$ of the prediction to the true deviation from the actually calculation. The dashed regions indicates where the true deviations has a larger than $3\sigma$ difference from the emulator's prediction.}
 \label{fig:new:validation}
 \end{figure}
 
@@ -245,7 +256,7 @@ In the actually calibration, we will also change a few default parameters to see
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{obs_posterior_LHC.png}
-\caption{•}
+\caption{The 90\% credible region (blue bands) of the posterior distribution of the observables at the LHC energy. Black dashed lines are the median prediction.}
 \label{fig:new:obs_posterior_LHC}
 \end{figure}
 
@@ -262,43 +273,40 @@ The magnitude of $R_{CP}$ at $p_T> 5$ GeV \footnote{Remember that the model is c
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{obs_posterior_RHIC.png}
-\caption{•}
+\caption{The 90\% credible region (blue bands) of the posterior distribution of the observables at the RHIC energy. Black dashed lines are the median prediction.}
 \label{fig:new:obs_posterior_RHIC}
 \end{figure}
 
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{posterior.png}
-\caption{•}
+\caption{The single-parameter posterior distributions (diagonal plots) and two-parameter joint posterior distributions (off-diagonal plots).}
 \label{fig:new:posterior}
 \end{figure*}
 
 \paragraph{Posterior distribution of parameters} Figure \ref{fig:new:posterior} shows the single parameter posterior (diagonal plots) and two-parameter-joint posterior distributions (off-diagonal plots) of the 10 model parameters, plus the model systematic uncertainty parameter ($\sigma_m$).
-
 The $\ln\mu$ parameter has an evident peak around $1.3$, which correspond to $\mu \approx 3.5$.
 The resulting posterior of $\alpha_s$ is plotted in figure \ref{fig:new:posterior-alphas}, the median value of $\alpha_s$ at $Q=\mu\pi T$ varies from 0.3 to 0.22 for the relevant temperature trange $0.15 < T < 0.5$ GeV, corresponding to $g\sim 2$.
 Note that this $\alpha_s$ does not stands for the strength of all the probe-medium interaction, recalling that there is a significant parametric diffusion contribution to the elastic energy loss.
 For radiative process, though the $1\rightarrow 2$ splitting vertex explicitly uses this $\alpha_s$, the strength of the LPM effect is again controlled by the elastic broadening.
-
 Compared to the previous extraction, the preferred in-medium coupling strength is smaller and is closer to the phenomenological values used by other studies [].
 However, the coupling is still large compared to the weakly coupled assumption $g\ll 1$.
 
 \begin{figure}
 \centering
-\includegraphics[width=.7\textwidth]{alpha_s_posterior.png}
-\caption{•}
+\includegraphics[width=.8\textwidth]{alpha_s_posterior.png}
+\caption{Left plot: the scale dependence of the running coupling constant at $T=0.3$ GeV. Right plot: the temperature dependence of running coupling evaluated at the cut-off scale $Q=\mu\pi T$. The red bands are generated using 90\% credible region of the $\mu$ parameter; the gray bands are the prior distributions; and the black dashed lines are median predictions.}
 \label{fig:new:posterior-alphas}
 \end{figure}
 
 The energy loss starting is preferred to be after about half of the hydrodynamic starting time.
 The switching scale parameter do not have a strong preference as long as it is not too large, which is consistent with our model construction that physical processes should be weakly depends on this switching scale between diffusion and scattering modeling.
-The matching parameter $R_v$ is not very well constrained with a weak preference at $2$.
-
+The matching parameter $R_v$ is not very well constrained, but tends to prefer a smaller value.
 
 \begin{figure}
 \centering
 \includegraphics[width=.5\textwidth]{qhat_posterior.png}\includegraphics[width=.5\textwidth]{ER_posterior.png}
-\caption{•}
+\caption{The 90\% credible region of the charm quark transport coefficients (left plot) and of the longitudinal transport parameter (right plot) are shown in red. The prior range are shown in gray. The results are also compared to the previous JET Collaboration extraction of the light quark transport parameters at $p=10$ GeV (black symbols). }
 \label{fig:new:posterior-qhat}
 \end{figure}
 
@@ -323,9 +331,6 @@ In the future, one may seek for more physically motivated flavor dependence para
 \begin{figure}
 \centering
 \includegraphics[width=.7\textwidth]{Ds_posterior.png}
-\caption{•}
+\caption{The 90\% credible region of the spatial diffusion constant defined in the zero momentum limit. Prior range is indicated by the gray band. The posterior of charm and bottom flavor are shown as red band and blue boundary receptively. It is compared to lattice QCD evaluation in references [] (black boxes), [] (the black dot) and [] (red triangles).}
 \label{fig:new:posterior-Ds}
 \end{figure}
-
-\paragraph{Prediction with high-likelihood parameter set}
-
