@@ -1,4 +1,5 @@
 build
+figures/
 Thesis
 *data/
 *.hdf5

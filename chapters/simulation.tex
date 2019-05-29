@@ -1,7 +1,7 @@
 \chapter{Bulk medium evolution and initial condition}
 \label{chapter:simulation}
 This chapter introduces a hydrodynamic-based model for the medium evolution in the heavy-ion collision.
-I will also review my project on applying this framework to reverse engineering the initial three-dimensional entropy deposition from experimental observables.
+I will also review my project on applying this framework to reverse engineering the initial three-dimensional entropy deposition from experimental observables \cite{PhysRevC.96.044912}.
 
 \section{A Hydrodynamics-based dynamical modeling}
 \subsection{Relativistic hydrodynamic}
@@ -25,7 +25,7 @@ There are five unknowns $e, P, u_x, u_y, u_z$ ($u_t$ is determined by $u^2 = 1$)
 A fifth equation is the equation of state (EoS) $P = P(e)$, relating pressure and energy density in the thermal equilibrium, then the ideal-hydrodynamic equations are complete.
 Lattice QCD calculations has determined the 2+1 flavor QCD equation of state to a high precision.
 Though it is not a prior that the lattice QCD EoS computed in an infinite matter in an infinite time is the right choice for describing a transient system with a large gradients, using the lattice input does result in reasonable agreement with the data.
-Moreover, there has been a study that try to constrain the from of EoS from experimental data and the ``calibrated'' EoS is very close the Lattice calculation.
+Moreover, there has been a study that try to constrain the from of EoS from experimental data and the ``calibrated'' EoS is very close the Lattice calculation \cite{Pratt:2015zsa}.
 
 \paragraph{Viscosity hydrodynamics and QCD transport coefficients}
 A physical relaxation rate is always finite, and the system can be driven out of local thermal equilibrium by the large gradients of the fast expanding fireball.
@@ -44,7 +44,7 @@ and the hydrodynamic equation is the relativistic version of the Naiver-Stokes e
 Here, $\sigma^{\mu\nu} = \partial^{\langle \mu} u^{\nu\rangle}, \theta = \partial\cdot u$ are the fluid shear stress and expansion rate.
 The proportional constant are known as the QCD shear ($\eta$) and bulk ($\zeta$) viscosity, encoding dynamical information of the QCD medium. 
 Their dimensionless ratio to the entropy density $\eta/s$ and $\zeta/s$ are important indicator of the interaction strength and the scale-violation of the QCD matter and are of great physical importance.
-There have been many effort to either computing these quantities from first principles and effective models or extracting these numbers from experiments [].
+There have been many effort to either computing these quantities from first principles and effective models or extracting these numbers from experiments \cite{Bernhard:2015hxa,Bernhard:2016tnd,Auvinen:2017fjw,Bernhard:2018hnz,Novak:2013bqa}.
 
 Coming back to the hydrodynamic equation, it is shown that one has to go to second order in the gradient expansion to the render the viscous correction compatible with special relativity.
 Meanwhile, $\pi$, $\Pi$ becomes dynamical quantities that relax to the Naiver-Stokes limit.
@@ -57,13 +57,13 @@ Meanwhile, $\pi$, $\Pi$ becomes dynamical quantities that relax to the Naiver-St
 \end{eqnarray}
 The $\tau_\pi, \tau_\Pi, \delta, \phi, \lambda$ are known as second order transport coefficients.
 This complicated set of equations together with the conservation law and the EoS forms the viscosity hydrodynamic equations.
-Nowadays, well tested numerical packages have been developed solving these equations in the context of heavy-ion collisions [].
+Nowadays, well tested numerical packages have been developed solving these equations in the context of heavy-ion collisions \cite{Song:2007ux,Shen:2014vra,Schenke:2010nt,Karpenko:2013wva}.
 
 \paragraph{Boost-invariance approximation and beyond}
 In general, the hydrodynamic equations have to be solved as in 3+1 dimensions.
-But a reduction to a 2+1 dimension is possible, if one assume the longitudinal expansion has an approximated symmetry near mid-rapidity.
-This symmetry is first proposed by Bjorken in [] that the system at different space-time rapidity behaves the same upto a longitudinal boost, and is termed ``boost-invariance''.
- Then, the 2+1 dimension solution obtained at one space-time rapidity ($\eta_s = 0$) can be boosted to get the solution at other $\eta_s$.
+But a reduction to a 2+1 dimension is possible, if a boost-invariant symmetry is assumed near mid-rapidity \cite{Miller:2007ri, Drescher:2006ca, Schenke:2012wb, Niemi:2015qia, Moreland:2014oya, Chatterjee:2015aja}.
+This symmetry is first proposed by Bjorken in \cite{PhysRevD.27.140} that the system at different space-time rapidity behaves the same upto a longitudinal boost, and is termed ``boost-invariance''.
+Then, the 2+1 dimension solution obtained at one space-time rapidity ($\eta_s = 0$) can be boosted to get the solution at other $\eta_s$.
 As a result, particle emissions from such a fireball does not strongly depends on the $\eta_s$.
 
 The $\eta_s$-dependence cannot be detected, but is related to the the emitted particle rapidity / pseudo-rapidity for the reason below.
@@ -80,7 +80,8 @@ Since the following hydrodynamics is boost-invariant, then emitted particle pseu
 Experimentally, the event-averaged rapidity-distribution of charged particles $dN_{\textrm{ch}}/dy$ in both proton-proton and symmetric nuclei-nuclei collisions at the RHIC and energy falls at large rapidity but has a central plateau at least within $|y|<2$.
 
 However, since $dN_{\textrm{ch}}/dy$ are event-averaged quantities, its being flat within $|y|<2$ does not rule out the event-by-event particle production fluctuation which breaks the boost-invariance, and these fluctuations can be different at different transverse locations.
-Moreover, asymmetric nuclear collision such as $p+Pb, p+Au, d+Au, He+Au$, etc clearly breaks the boost-invariance even on an event averaged level []. 
+Moreover, asymmetric nuclear collision such as $p+Pb, p+Au, d+Au, He+Au$, etc clearly breaks the boost-invariance even on an event averaged level 
+\cite{Abelev:2014mda, Aad:2014lta, Aad:2013fja, CMS:2012qk, Chatrchyan:2013nka, Khachatryan:2015waa, Khachatryan:2015oea, Khachatryan:2016ibd, Adare:2014keg, Adare:2015cpn, Adare:2018toe}
 Therefore, the study of longitudinal fluctuation related observables or the search for hydrodynamic behavior in small collision system clearly requires one to go beyond the boost-invariance set-up.
 
 \subsection{Particularization and microscopic transport}
@@ -100,20 +101,19 @@ The number of specie ``a'' particles emitted with momentum $p$ from a hypersurfa
 $f^a(p)$ is the phase space density, $\Delta \sigma_{i,\mu}$ is the four components of the surface element, which has a unit of a 3D volume, and $g^a$ is degeneracy of the specie.
 This distribution function should include both a thermal part and a viscous correction, $f = f_0 + \delta f$.
 There are more than one way to construct the viscous correction $\delta f$  from $e, P, n, \Pi$ and $\pi^{\mu\nu}$ based on different assumptions of the non-equilibrium corrections.
-In this work, we use a non-additive $\delta f$ correction that has been developed in [] and implemented by [].
-Please refer to the references for the original formulation and numerical implementation details.
+In this work, we use a non-additive $\delta f$ correction that has been developed in \cite{Pratt:2010jt,Pratt:2014vja} and implemented by \cite{Bernhard:2018hnz}.
+Please refer to these references for the original formulation and numerical implementation details.
 
-The particlized hadronic system is then solved by the Ultra-relativistic Quantum Molecular Dynamics (UrQMD) model [] until the system is dilute enough and interaction ceases (kinetic freezeout). 
+The particlized hadronic system is then solved by the Ultra-relativistic Quantum Molecular Dynamics (UrQMD) model \cite{Bass:1998ca,Bleicher:1999xi} until the system is dilute enough and interaction ceases (kinetic freezeout). 
 The UrQMD model includes processes such resonance decays, elastic and inelastic scatterings, and string formations and fragmentations.
 
 \subsection{Pre-equilibrium stage}
 At very early times of the collision, the system is off equilibrium. 
-However, viscous hydrodynamic assumes a closeness to the local thermal equilibrium  (there are also recent efforts in studying the effectiveness of hydrodynamics outside of its traditional range of application []).
+However, viscous hydrodynamic assumes a closeness to the local thermal equilibrium . (There are also recent efforts in understanding the effectiveness of hydrodynamics outside of its traditional range of application \cite{PhysRevLett.115.072501,Romatschke:2017vte,Strickland:2019jut}).
 A successful prediction using an early onset of hydrodynamic evolution at $\tau_0\lesssim 1$fm/$c$ suggests a fast hydrodynamization, though the mechanism is still a debatable. 
-There are different modelings of the pre-equilibrium stage\footnote{Such a pre-equilibrium stage was not included in my study of the 3D initial condition, and the hydrodynamics starts at $\tau_0 = 0.6$ fm/$c$ assuming local thermal equilibrium.
-For my later study of the heavy flavor transport, a 2+1D collision-less Boltzmann equation implemented by [] is used.}, including solving the classical Yang-Mills equation [], partonic transport models [], a collision-less Boltzmann equation (free-streaming) plus Landau matching [], and the linear response method of the effective kinetic approach [].
+There are different modelings of the pre-equilibrium stage\footnote{Such a pre-equilibrium stage was not included in my study of the 3D initial condition, and the hydrodynamics starts at $\tau_0 = 0.6$ fm/$c$ assuming local thermal equilibrium. For my later study of the heavy flavor transport, a 2+1D collision-less Boltzmann equation implemented by \cite{Bernhard:2018hnz} is used.}, including solving the classical Yang-Mills equation \cite{Schenke:2012wb,Schenke:2016ksl}, applying partonic transport models \cite{PhysRevC.97.034915}, a collision-less Boltzmann equation (free-streaming) plus Landau matching \cite{Liu:2015nwa}, and the linear response method of the effective kinetic approach \cite{Kurkela:2018wud}.
 
-Here we briefly introduce the free-streaming model.
+Here we briefly introduce the free-streaming model \cite{Liu:2015nwa}.
 The initial energy density ($\tau = 0^+$) at mid-rapidity is thought to be carried by mass-less partons that propagates at the speed of light in the transverse direction. 
 The initial distribution function is put into factorized form $f(x_\perp, p_\perp, \tau=0) = n(x, \tau=0) \times dN/dp_\perp^2$.
 The momentum distribution $dN/dp_\perp^2$ does not evolve with time as the collisions are neglected, while the spatial density propagates as
@@ -124,7 +124,7 @@ Then, the model assumes a sudden hydrodynamization at time $\tau_{\textrm{hydro}
 \begin{eqnarray}
 T^{\mu\nu}(x_\perp, \tau_{\textrm{hydro}}) = \int f(x_\perp, p_\perp, \tau=0) \frac{p^\mu p^\nu}{E} dp^3
 \end{eqnarray}
-is used for initializing the hydrodynamic equations by the Landau matching procedure [].
+is used for initializing the hydrodynamic equations by the Landau matching procedure \cite{Liu:2015nwa}.
 
 \section{Initial condition model}
 Unlike the dynamical models that are governed by a few equations / laws with a few parameters, the initial condition model parameterizes many more unknowns.
@@ -145,7 +145,7 @@ Then, the nucleons positions inside each nuclei are sampled according to the Woo
 \frac{df_N}{r^2 dr d\phi d\cos\theta} = \frac{1}{\exp\{\frac{r-R(1+\beta_2 Y_{20}(\theta)+\beta_4 Y_{40}(\theta))}{a}\}+1}
 \end{eqnarray}
 including the quadrupole and hexadecapole deformation of certain nuclei.
-The randomized nucleon position is critical to explain the odd order of flow harmonics observed in experiments [].
+The randomized nucleon position is critical to explain the odd order of flow harmonics observed in experiments \cite{Alver:2010gr}.
 
 The collision between the two nuclei is determined at the nucleon level. 
 Every nucleon pair $\{i, j\}$ with $i$ from nuclei $A$ and $j$ from nuclei $B$ has a certainty probability to collide inelastically.
@@ -213,11 +213,11 @@ $+\infty$ & $\max\{x, y\}$ &  dominated by the thicker target \\
 \end{table}
 This way the model is able to parametrize a class of entropy / energy production scheme and includes certain type of initial condition uncertainty.
 Through a global model-to-data comparison, this $p$ parameter has been calibrated to be very close to 0, suggesting the data favors a mid-rapidity entropy / energy deposition that scales as $(T_A T_B)^{0.5}$.
-A similar scaling is also found in the EKRT initial condition model based on pQCD particle production and saturation physics [].
+A similar scaling is also found in the EKRT initial condition model based on pQCD particle production and saturation physics \cite{Eskola:1999fc}.
 
 \subsection{Parametrize the longitudinal dependence in \trento}
-The \trento\ model has been doing successful phenomenology for obserables at mid-rapidity [].
-My work focuses on extending the parametrization to a rapidity-dependent initial condition, and seek for a reverse-engineered 3D entropy production from the rapidity-dependent observables.
+The \trento\ model has been doing successful phenomenology for obserables at mid-rapidity \cite{Moreland:2014oya,Bernhard:2016tnd,Moreland:2018gsh}.
+My work focuses on extending the parametrization to a rapidity-dependent initial condition, and seek for a reverse-engineered 3D entropy production from the rapidity-dependent observables \cite{PhysRevC.96.044912}.
 
 A strong source that breaks the boost-invariance is the initial asymmetric participant density $T_A \neq T_B$; in addition, dynamical fluctuations can generate asymmetry as well.
 We listed what contributions are included and what are not in the model
@@ -320,7 +320,7 @@ The long range part of $C(\eta_1, \eta_2)$ is sensitive to initial state.
 This is because correlation between particles separated by a large rapidity gap at proper time $\tau$ can only come from proper time before $\tau e^{-|\eta_1-\eta_2|/2}$ due to causality.
 For example, if two particles separated by four units of rapidity are emitted at a constant $\tau = 8$ fm/$c$ hydrodynamic freeze-out hyper-surface and neglecting the long range correlation from the hadronic cascade, then any correlation must have come from before the proper time $ 8 e^{-2}\approx 1$ fm/c.
 
-To see how $C(\eta_1, \eta_2)$ is related to the longitudinal fluctuation of the entropy deposition / particle production, we follow [] to decompose $\dnchdy$ for each event in a finite pseudo-rapidity window $[-Y, Y]$ using the normalized Legendre polynomials basis,
+To see how $C(\eta_1, \eta_2)$ is related to the longitudinal fluctuation of the entropy deposition / particle production, decompose $\dnchdy$ for each event in a finite pseudo-rapidity window $[-Y, Y]$ using the normalized Legendre polynomials basis \cite{Bzdak:2012tp, Jia:2015jga, ATLAS:2015kla},
 \begin{eqnarray}
 \frac{dN}{d\eta} &=& \biggl\langle\frac{dN}{d\eta}\biggr\rangle \biggl[1 + \sum_{n=0}^\infty a_n T_n\left(\frac{\eta}{Y}\right) \biggr],\\
 T_n(x) &=& \sqrt{n + \frac{1}{2}} P_n(x)
@@ -348,7 +348,7 @@ C_N(\eta_1, \eta_2) \sim 1 + \frac{3}{2}\langle a_1 ^2 \rangle \frac{\eta_1\eta_
 \end{eqnarray}
 We make use of the $\langle a_1 ^2 \rangle$ measurements to constrain the amount of  linearly-tilting fluctuation in the initial condition model.
 
-In additional to the initial condition fluctuation, short range correlation also contributes to the $a_1$ fluctuation [].
+In additional to the initial condition fluctuation, short range correlation also contributes to the $a_1$ fluctuation \cite{Denicol:2015bnf}.
 The UrQMD hadronic afterburner is able to model certain type short range correlation coming from resonance decay and collisions, but jet-like correlations is hard to accounted for.
 
 \subsection{Calibration of the 3D initial condition parameters}
@@ -384,10 +384,10 @@ One may notice that we did not use different width parameters for the rapidity d
 \end{tabular}  
 \end{table}
 
-The dynamical model consists of a 3+1D relativistic hydrodynamics [] and a hadronic afterburner [].
-The equation-of-state (EoS) is obtained by interpolating the state-of-the-art lattice-QCD EoS [] at high temperature (zero baryon density) to a hadron resonance gas EoS at low temperature.
+The dynamical model consists of a 3+1D relativistic hydrodynamics and a hadronic afterburner.
+The equation-of-state (EoS) is obtained by interpolating the state-of-the-art lattice-QCD EoS \cite{Bazavov:2014pvz} at high temperature (zero baryon density) to a hadron resonance gas EoS at low temperature \cite{Moreland:2015dvc}.
 The energy density at which hydrodynamic energy momentum tensor is particulized into hadrons is $\epsilon_{sw} = 0.322$~GeV/fm$^3$ corresponding to a switching temperature close to the pseudo-critical temperature $T_{sw} \sim T_c = 0.154$~GeV).
-As a remark, the relativistic hydrodynamics code \mbox{vHLLE} [] includes the viscous correction, but we used its ideal mode in the parameter extraction.
+As a remark, the relativistic hydrodynamics code vHLLE \cite{Karpenko:2013wva} includes the viscous correction, but we used its ideal mode in the parameter extraction.
 This is because the parameter optimization process requires running the model on order hundreds different parameter sets.
 For each parameter set, thousands of minimum-biased events needed to be generated to control the statistical uncertainty, especially for the correlation observable. 
 The full 3+1D viscous hydrodynamics is extremely time consuming, therefore we choose to ran the hydrodynamic model in its ideal mode and on a rather coarse grid.
@@ -406,7 +406,7 @@ After the calibration, the $\dnchdy$ and $a_1$ fluctuation as function of centra
 The single particle distribution can be well reproduced by the calibrated initial condition plus dynamical evolution, while the correlation observables can be described upto 50\% centrality. 
 For more peripheral Pb+Pb collisions, the hydrodynamical based model significantly underestimate the $a_1$ fluctuation.
 We understand this as the consequence of inadequate modeling of the short range correlation for peripheral collisions, as they are more important in low multiplicity events ($\dnchdy\sim 250$ and $N_{\textrm{part}} \sim 75$ at 50\% centrality).
-In fact, the authors of [] compared the measurements to the \mbox{HIJING} event generator that is based on mini-jet production.
+In fact, the authors of \cite{ATLAS:2015kla} compared the measurements to the HIJING event generator that is based on mini-jet production.
 It is found that these jet-like correlations agrees well with the $a_1$ fluctuation for peripheral collisions with $N_{\textrm{part}} \lesssim 80$, while it overshoots the data for more central collision.
 The hydrodynamic model and mini-jet production model provide a complementary picture to fully understand the rms $a_1$: at larger centrality, mini-jet production dominates the fluctuation of the $\dnchdy$, while as multiplicity increases and the final state interactions are so frequent and the event-by-event asymmetry in the single-particle distribution dominates rms $a_1$.
 
@@ -473,7 +473,7 @@ $J$	     & 0.75 & 0.75	\\
 \end{table}
 
 \paragraph{Mid-rapidity $v_n$} The elliptic and triangular flow from two-particle correlation $v_2\{2\}$ and $v_3\{2\}$ are calculated at as function of centrality at mid-rapidity (figure \ref{fig:trento:vn_cen}) and as function of pesudo-rapidity at different centrality (figure \ref{fig:trento:vn_eta}).
-We are able to describe flow measured by ALICE [] at mid-rapidity with a shear viscosity $\eta/s = 0.17$--$0.19$ close to other phenomenological studies, though the bulk viscosity is not include in this study.
+We are able to describe flow measured by ALICE \cite{Adam:2016izf} at mid-rapidity with a shear viscosity $\eta/s = 0.17$--$0.19$ close to other phenomenological studies, though the bulk viscosity is not include in this study.
 
 \begin{figure}
 \centering
@@ -493,7 +493,7 @@ The calculated $v_2\{2\}$, $v_3\{2\}$, and $v_2\{4\}$ gradually decreases from m
 The shape of $v_3\{2\}$ is well described; but for $v_2\{2\}$ and $v_2\{4\}$ in the region $|\eta| > 2.0$, the data decreases faster than our predictions.
 There could be several reasons for this differences.
 It is possible that the current initial condition model produce enough amount of fluctuation, but inadequate variance of the the overlapping geometry as function of space-time rapidity.
-It is also showed in a study of at RHIC energies [] that the decreasing slope of $v_n(\eta)$ can be sensitive to the shear viscosity in the hadronic phase. 
+It is also showed in a study of at RHIC energies that the decreasing slope of $v_n(\eta)$ can be sensitive to the shear viscosity in the hadronic phase cite{Denicol:2015bnf, Bozek:2010bi}.
 But in our model, the transport properties of the system below $T_c$ is all encoded in UrQMD and is not tunable. 
 Moreover, we have assumed that hydrodynamization happens at a constant proper time hypersurface;
 while it is possible that a constant entropy density hypersurface is a better criteria, and as a result the matter at larger rapidity experiences a shorter period of pressure driven expansion.
@@ -502,7 +502,7 @@ To systematically investigate all these effects, a future global parameter calib
 \begin{figure}
 \includegraphics[width=\textwidth]{trento3d/vn_eta}
 \caption{Pseudorapidity dependent flow coefficients $v_2\{2\}$ (blue circle), $v_3\{2\}$ (green triangle) and $v_2\{4\}$ (orange diamond).
-Constant $\eta/s=0.25$ and $0.28$ are used for ``relative skewness'' (closed symbol) and ``absolute skewness'' (open symbol) ansatz. Data is taken from the ALICE Collaboration [].}
+Constant $\eta/s=0.25$ and $0.28$ are used for ``relative skewness'' (closed symbol) and ``absolute skewness'' (open symbol) ansatz. Data is taken from the ALICE Collaboration \cite{Adam:2016ows}.}
 \label{fig:trento:vn_eta}
 \end{figure}
 
@@ -513,11 +513,11 @@ Constant $\eta/s=0.25$ and $0.28$ are used for ``relative skewness'' (closed sym
 Due to longitudinal fluctuations, the event-planes separate by a rapidity gap decorrelates from each other.
 This decorrelation effect is important for observables that involves a large rapidity gap.
 
-This event-plane decorrelation been studied using initial conditions from 3D extended Glauber model and A Multi-Phase Transport (AMPT) model [].
-Recently developments such as solving the gluonic Yang-Mills dynamics in three-dimensions also studied the decorrelation of the initial eccentricity [].
+This event-plane decorrelation been studied using initial conditions from 3D extended Glauber model \cite{Bozek:2015bna} and A Multi-Phase Transport (AMPT) model \cite{Jia:2014ysa, Xiao:2012uw,Pang:2015zrq}.
+Recently developments such as solving the gluonic Yang-Mills dynamics in three-dimensions also studied the decorrelation of the initial eccentricity \cite{Schenke:2016ksl}.
 In our model, the geometry at forward and backward rapidity are dominated by the participants density of two different nuclei.
 And in between, the entropy production smoothly transit from one to anther and so are the orientation of the energy density eccentricities that drives the flow of particles.
-The CMS collaborations quantifies the decorrelation by a three-bins factorization ratio [],
+The CMS collaborations quantifies the decorrelation by a three-bins factorization ratio \cite{Khachatryan:2015oea},
 \begin{eqnarray}
 r_n(\eta^a, \eta^b) &= \frac{V_{n\Delta}(-\eta^a, \eta^b)}{V_{n\Delta}(\eta^a, \eta^b)}, \\
 V_{n\Delta}(\eta^a, \eta^b) &= \langle\langle \cos(n\Delta\phi) \rangle\rangle,
@@ -544,7 +544,7 @@ Given the present comparison, we conclude that the valid range of the model shou
 \label{fig:trento:epd}
 \end{figure}
 
-\paragraph{Symmetric cumulants} Finally, we predict the symmetric cumulants (SC), which is a four particle correlation between different orders of anisotropic flows $v_m$ and $v_n$ [].
+\paragraph{Symmetric cumulants} Finally, we predict the symmetric cumulants (SC), which is a four particle correlation between different orders of anisotropic flows $v_m$ and $v_n$ \cite{Niemi:2012aj,Bilandzic:2013kga}.
 \begin{eqnarray}
 SC(m, n) &=& \langle\langle \cos(m\phi_1+n\phi_2-m\phi_3-n\phi_4)\rangle\rangle \nonumber \\
 \nonumber &-& \langle\langle\cos[m(\phi_1-\phi_2)]\rangle\rangle\langle\langle\cos[n(\phi_1-\phi_2)]\rangle\rangle \label{eq:scmn}\\
@@ -555,12 +555,14 @@ One can also define the normalized symmetric cumulants (NSC),
 \begin{equation}
 NSC(m,n) = \frac{SC(m,n)}{\langle v_m^2\rangle\langle v_n^2\rangle}.
 \end{equation}
-These observables are interesting because they are robust against now-flow effects, and have been shown to be sensitive to the temperature dependece of the transport coefficients [].
-Other analysis show that $SC(4,2)$ probes the non-linear response of the hydrodynamic evolution, while $SC(3,2)$ is more sensitive to initial conditions [].
+These observables are interesting because they are robust against now-flow effects, and have been shown to be sensitive to the temperature dependece of the transport coefficients \cite{ALICE:2016kpq}.
+Other analysis show that $SC(4,2)$ probes the non-linear response of the hydrodynamic evolution, while $SC(3,2)$ is more sensitive to initial conditions \cite{Zhu:2016puf}.
+
+
 
 The relative- and absolute-skewness calculations are arranged on the left and right of \ref{fig:trento:smn}. 
 Symmetric cumulants $SC(4,2)$ (blue) and $SC(3,2)$ (green) are displayed in the top plots, and $NSC(4,2)$ (blue) and $NSC(3,2)$ (green) in the bottom plots.
-Within each plot, black dots are ALICE measurements at midrapidity $|\eta|<0.8$ [], which should be compared to the calculation shown in solid lines.
+Within each plot, black dots are ALICE measurements at midrapidity $|\eta|<0.8$ \cite{ALICE:2016kpq}, which should be compared to the calculation shown in solid lines.
 The calculation shown in dashed lines are our predictions at forward/backward rapidity $2.5 < |\eta| < 3.5$,
 \begin{eqnarray}
 SC^\prime(m, n) &=& \langle\langle \cos(m\phi_1+n\phi_2-m\phi_3^\prime-n\phi_4^\prime)\rangle\rangle \\
@@ -575,7 +577,7 @@ This is a prediction that can be checked in future measurements to put further c
 \begin{figure}
 \includegraphics[width=\textwidth]{trento3d/smn}
 \caption{The symmetric cumulants (top row) and normalization symmetric cumultants (bottom row) obtained from the ``relative skewness'' (left column) and the ``absolute skewness'' (right column) ansatz.
-$SC(4,2)$ (blue) and $SC(3,2)$ (green) are shown as functions of centrality. The experimental measurements at middle rapidity (black symbols) is taken from [].
+$SC(4,2)$ (blue) and $SC(3,2)$ (green) are shown as functions of centrality. The experimental measurements at middle rapidity (black symbols) is taken from \cite{ALICE:2016kpq}.
 The calculations are performed at both middle rapidity $|\eta|<0.8$ (solid lines) and forward/backward rapidity $2.5<|\eta|<3.5$ (dashed lines).
 }
 \label{fig:trento:smn} 

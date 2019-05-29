@@ -3,6 +3,7 @@
 We have discussed the modeling details of the heavy flavor transport in the relativistic heavy-ion collisions, and have shown a first comparison to data with rather ``na\"ive'' guess of multiple parameters.
 Till now we have only vary a small subset of them to understand the model qualitatively.
 In this section, we introduce the advanced statistical tool known as the Bayesian analysis that can calibrate all parameters simultaneously to the experimental data.
+For the full details of such an analysis, we recommend the readers to this excellent dissertation of this subject \cite{Bernhard:2018hnz} in the context of heavy-ion collisions.
 
 To facilitate the discussion, I provide a statement of the problem for this chapter and a few notations and terminologies.
 We abstract the general task of a model-to-data comparison into the following form,
@@ -93,7 +94,7 @@ Certainly, one can always go back from the PC space to the original space by the
 \section{Model emulator}
 With limited information on a finite number of design points contained in the matrices $D$ and $M$, the original mapping is approximated by a model emulator (a surrogate model) using the Gaussian Process (GP).
 The Gaussian Process provides a non-parametric interpolation for scalar function with one or high dimensional input.
-We shall let the readers refer to [] for the technical details and only summarize the basic of the Gaussian Process.
+We shall let the readers refer to \cite{Rasmussen:2006gp} for the technical details and only summarize the basic of the Gaussian Process.
 
 \paragraph{Gaussian Process} Taking a uni-variate case as an example, given an array of input and an array of output, the common way to interpolate the data is, e.g., polynomial interpolation.
 However, polynomials only uses local information of the grid, and its performance can be sensitive to the error of the output (e.g. statistical fluctuation in the simulation).
@@ -197,7 +198,7 @@ $\delta\mathbf{y}_{\textrm{stat}, i}$ is the experimental statistical uncertaint
 Its variance is first computed in the PC space and then transformed back to the physical space.
 \item Finally, $\mathbf{\Sigma}_{\textrm{model, sys}}$ stands for the model uncertainty. 
 It is always present but is hard to quantify using the model itself.
-Therefore, the previous study [] assign a variable model systematic parameters $\sigma$ and this parameter will be treated as uncertainties in the calibration as well.
+Therefore, the previous study \cite{Bernhard:2018hnz} assign a variable model systematic parameters $\sigma$ and this parameter will be treated as uncertainties in the calibration as well.
 The $\sigma$ stands for a uniform model uncertainty fraction on each principal component, and is added to the emulator prediction covariance.
 The $\sigma$ parameter is given an information prior distribution $P(\sigma) \propto \sigma^2 e^{-\sigma/0.05}$. Meaning an expectation of $15\%$ model uncertainty.
 The exact origin of this model uncertainty is unknown, but it plays a row as a ``regulator'' in the fitting process to prevent model trying to explaining feature that can never be described better than the $\sigma$ level precision.

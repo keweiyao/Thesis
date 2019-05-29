@@ -71,14 +71,14 @@ Nowadays, the only reliable ab initio theoretical tool for non-perturbative QCD 
 \paragraph{The phase-diagram of the QCD matter}
 At zero temperature ($T$), protons and neutrons (together as nucleons) form bound states of atomi nuclei that build the ordinary matter.
 One can also define the baryon chemical potential $\mu_b$, and for ordinary matter $\mu_b$ is around $1$ GeV, close to the proton mass.
-The ordinary nuclei is indicated as the white dot on the (partly conjectured) phase diagram in figure \ref{fig:phase-diagram} [].
+The ordinary nuclei is indicated as the white dot on the (partly conjectured) phase diagram in figure \ref{fig:phase-diagram}.
 Increasing the temperature of the system, nucleons start escape from nuclear potential and other hadrons can be created from collision and resonance formation and decay.
 This system is know as the hadron gas (cyan region in figure \ref{fig:phase-diagram}).
 
 Because QCD has asymptotic freedom at high energy and confinement at low energy scale, there can be so-called deconfinement phase-transition when temperatures crosses the QCD non-perturbative scale.
 At asymptotically high temperature, the weakening of the coupling should lead to the transit from the color confined hadronic matter to a system of transporting quarks and gluons, termed the quark-gluon plasma (QGP). 
 Frist principle lattice QCD calculations have studied this transition at zero baryon chemical potential with 2+1 flavors (up / down plus strange quark) QCD.
-Figure \ref{fig:qcd_eos} quotes the equation of state computed by  the HotQCD Collaboration [].
+Figure \ref{fig:qcd_eos} quotes the equation of state computed by the HotQCD Collaboration \cite{Bazavov:2014pvz}.
 It shows the pressure $P$, energy density ($\epsilon$) and entropy density ($s$) of QCD system.
 These thermodynamic quantities are scaled by powers of temperature, so that the ratio can be loosely related the effective number of degrees of freedom (DoF) of the system
 The Stefan-Boltzmann limit (non-interacting gas of quarks and gluons) is denoted as the dashed lines in the up-right corner.
@@ -94,7 +94,7 @@ Nevertheless, a pseudo critical temperature is defined to be $T_c \approx 150 $ 
     \label{fig:phase-diagram}
 \end{figure}
 
-Moving to wards finite baryon chemical potential, the lattice approach runs into the fermion sign problem, though recent studies has been pushing the realm of lattice QCD into small $\mu/T$ regions [].
+Moving to wards finite baryon chemical potential, the lattice approach runs into the fermion sign problem, though recent studies has been pushing the realm of lattice QCD into small $\mu/T$ regions \cite{Gunther:2016vcp,Bazavov:2017dus}.
 Effective models [] and Dyson-Schwinger equation studies [] have suggested the existence of a first order phase transition at large $\mu_B/T$.
 If true, the first-order coexistence line must end at a point on the phase-diagram at lower $\mu_b$, beyond which the phase-transition is the cross-over type.
 Such a point, called the critical end point (CEP), has attached a great interest of both theoretical confirmation / exclusion and experimental search.
@@ -104,7 +104,7 @@ At higher chemical potential and low temperature, another phase of nuclear matte
 \begin{figure}
     \centering
     \includegraphics[width=.8\textwidth]{qcd-eos.png}
-    \caption{The lattice equation of state for 2+1 flavor QCD taken from reference []. The rescaled pressure, energy density and entropy density as function of temperature at zero chemical potential are shown as red, blue and green bands. The dashed lines indicates non-interaction (Stephan-Boltzmann) limit and the solid lines show the expected values from a hadron resonance gas. The yellow band is the region of pseudo-critical temperature.}
+    \caption{The lattice equation of state for 2+1 flavor QCD taken from reference \cite{Bazavov:2014pvz}. The rescaled pressure, energy density and entropy density as function of temperature at zero chemical potential are shown as red, blue and green bands. The dashed lines indicates non-interaction (Stephan-Boltzmann) limit and the solid lines show the expected values from a hadron resonance gas. The yellow band is the region of pseudo-critical temperature.}
     \label{fig:qcd_eos}
 \end{figure}
 
@@ -172,7 +172,7 @@ Correctly accounting for these fluctuations is particularly important for small 
 \paragraph{Centrality selection} Experimentally, a minimum-biased (a minimum set of event triggers) sample of recorded events are sorted according to the centrality definition (multiplicity, e.g.) and the events are binned by percentile.
 Then, for example, the top 0--5\% highest multiplicity events are associated to the central collisions with centrality range 0--5\%. 
 And the details of the collision geometry can be studied through a model.
-Usually, the models is one of the many variants of the Glauber model [], we shall explained it in detail in section \ref{simulation}).
+Usually, the models is one of the many variants of the Glauber model \cite{Miller:2007ri}, we shall explained it in detail in section \ref{simulation}).
 It computes the number of binary nucleon-nucleon ($N_{\textrm{bin}}$) collisions and number of participant nucleons ($N_{\textrm{part}}$, nucleons that suffers at least one binary collisions) at a given impact parameter.
 Experimentally, $N_{\textrm{part}}$ is often used as the centrality estimator of the model as it is roughly proportional to the bulk particle production; while the cross-section of hard processes that involves large momentum transfer $Q \gg \Lambda$ scales like the $N_{\textrm{bin}}$.
 Though this correspondence can be model dependent, but the uncertainty can be quantified and its prediction can be validated by the production of colorless probes.
@@ -184,7 +184,7 @@ Eventually, the system hardronizes, and the hadrons can have further interaction
 
 It is observed that the particle production in relativistic nuclear collisions distributes across a wide (pseudo)rapidity range, and has steep falling transverse momentum spectra [].
 The majority of the particles are soft hadrons with relatively small transverse momentum $p_T \lesssim 3$ GeV and their creation are consequences of final state interactions [].
-One of the most striking discoveries from RHIC and LHC heavy-ion program is that these soft particles displays a strong collectivity and the patterns can be described by hydrodynamic-based models to a very high precision [].
+One of the most striking discoveries from RHIC and LHC heavy-ion program is that these soft particles displays a strong collectivity and the patterns can be described by viscous hydrodynamic-based models to a very high precision \cite{Dusling:2007gi,Song:2008si,Schenke:2010nt,Petersen:2008dd,Niemi:2015qia,Bernhard:2016tnd,Bernhard:2018hnz}.
 This success of the hydrodynamic model reveals the strongly coupled nature of the matter produced with a temperature several times above $T_c$ and it has been entitled the name strongly coupled quark-gluon plasma.
 This is in contrary to a weakly coupled gas of quarks and gluons that emits independently.
 
@@ -223,7 +223,7 @@ The QGP shear viscosity and bulk viscosity are of fundamental importance.
 The shear viscosity to entropy ratio $\eta/s$ is an indicator of the stong / weak coupling nature of the QGP. 
 And the bulk viscosity to entropy ratio $\zeta/s$ is directly related to  the scale-invariance breaking of QCD.
 
-Dynamical quantities such as viscosity are extremely hard to be computed from first principle, so currently, the pinning down of these numbers and their temperature dependence resorts to the phenomenological extraction from experiments.
+Dynamical quantities such as viscosity are extremely hard to be computed from first principle, so currently, the pinning down of these numbers and their temperature dependence resorts to the phenomenological extraction from experiments \cite{Muronga:2004sf, Chaudhuri:2006jd, Romatschke:2007mq, Dusling:2007gi, Song:2007ux, Luzum:2008cw}.
 The flow harmonics $v_n$ are particular sensitive to the viscous effects, as a finite viscosity damps the development of anisotropic flows, reducine the transition efficiency from $\epsilon_n$ to $v_n$.
 Global comparisons of the state-of-the-art medium modeling to a collection of soft observables have corroborated the need of a small $\eta/s$ that are likely to be slowly increasing with temperature and a non-vanishing $\zeta/s$.
 
@@ -256,8 +256,9 @@ The interaction strength between the hard parton and the medium is theoretically
 \begin{eqnarray}
 \frac{d\langle p_\perp^2 \rangle}{dL} = \hat{q}
 \end{eqnarray}
-The jet transport coefficients is another quantity of fundamental interest  in heavy-ion collisions, and there has been a great effort in both first principal computation and phenomenological extraction.
-The hard parton / jet probes the medium at different scale at different stage of its evolution, and more sophisticated observables and theoretical tools are being constructed to answer more microscopic questions such as the actually degrees of freedom of the strongly coupled QGP [].
+The jet transport coefficients is another quantity of fundamental interest  in heavy-ion collisions, and there has been a great effort in both first principal computation and phenomenological extraction \cite{Wang:1994fx,Zakharov:1996fv,Baier:1996sk,Zakharov:1997uu,Arnold:2002zm,Gyulassy:2003mc,Kovner:2003zj,Jeon:2003gi,CasalderreySolana:2007pr,Djordjevic:2008iz,Bass:2008rv,Schenke:2009gb,Majumder:2009zu,Majumder:2010qh,Armesto:2011ht,Zapp:2011ya,Ovanesyan:2011xy,Kang:2014xsa,Cao:2016gvr,Kauder:2018cdt,Cao:2017zih}.
+The hard parton / jet probes the medium at different scale at different stage of its evolution, and more sophisticated observables and theoretical tools are being constructed to answer more microscopic questions such as the actually degrees of freedom of the strongly coupled QGP.
+Future experimental upgrades might provide the precisions to look into this problems \cite{ATLAS-Collaboration:2012iwa,Abelevetal:2014dna,STAR:upgrade-hf,Adare:2015kwa,CMS:2017dec}.
 
 \paragraph{Heavy-flavor probes}
 Heavy flavor is a charming probe in studying heavy-ion collisions, and is also the focus of this work.
@@ -296,17 +297,17 @@ All the $R_{AA}$ tends to collapse onto the same trend at very high-$p_T$, while
 It would be interesting to study whether the theoretical framework can explain this difference quantitatively and distinguish different energy loss mechanisms.
 
 Low-$p_T$ heavy quark physics is even more interesting.
-In this region, collisional process dominates over radiative process, and the description of the heavy quark dynamics under the influence of medium ``kicks'' reduces to the succinct diffusion equation [].
+In this region, collisional process dominates over radiative process, and the description of the heavy quark dynamics under the influence of medium ``kicks'' reduces to the succinct diffusion equation \cite{Moore:2004tg}.
 A spatial diffusion constant $D_s$ controls the close-to-equilibrium dynamics, and canbe related to the momentum diffusion by $D_s = 4T^2/\hat{q}(p\rightarrow 0)$ [].
-The large inertia $M\gg T$ delays its relaxation time $\tau_{\textrm{th}} \propto M/T D_s$ and one expects to find a different degree of thermalization for light, charmed, and bottom hadrons.
-For instance, looking at the low $p_T$ momentum anisotropy of charmed meson shown in figure \ref{fig:intro:D-vn} [].
+The large inertia $M\gg T$ delays its relaxation time $\tau_{\textrm{th}} \propto M/T D_s$ and one expects to find a different degree of thermalization for light, charmed, and bottom hadrons \cite{PhysRevD.37.2484,Moore:2004tg,Riek:2010fk,Cao:2013ita}.
+For instance, looking at the low $p_T$ momentum anisotropy of charmed meson shown in figure \ref{fig:intro:D-vn} \cite{Acharya:2017qps,Sirunyan:2017plt}.
 The large $v_2$ of the charged pions below $3$ GeV is due to the collective expansion.
 The charmed mesons also catch up a significant amount of flow \footnote{As a remark, the finite $v_2$ of D meson at high $p_T$ is not directly related to the flow phenomena, but as a result of anisotropic energy loss in a spatial eccentric medium}, though still less than the pion.
-To explains this amount of D meson $v_2$, phenomenological studies suggests a $D_s$ close to the lattice QCD evaluations [], while leading order weakly coupled results [] is inadequate. 
-This finding suggests the importance of non-perturbative phenomenon in understanding the coupling between low momentum heavy quark and the medium [].
+To explains this amount of D meson $v_2$, phenomenological studies suggests a $D_s$ close to the lattice QCD evaluations \cite{He:2012df,Cao:2013ita,Xu:2017obm,Banerjee:2011ra,Ding:2012sp,Francis:2015daa}, while leading order weakly coupled result \cite{Moore:2004tg} is inadequate . 
+This finding suggests the importance of non-perturbative phenomenon in understanding the coupling between low momentum heavy quark and the medium.
 
 Finally, the unique flavors of heavy quarks help to tag certain processes of interest. 
-For example, the study of recombination hadronization mechanism, strange ness enhancement, and implementing a selection bias on the quark / gluon-initiated jet ratio [].
+For example, the study of recombination hadronization mechanism, strange ness enhancement, and implementing a selection bias on the quark / gluon-initiated jet ratio.
 
 \subsection{Transport modeling of hard probes}
 The understanding of jets and heavy-flavor in heavy-ion collisions needs a comprehensive non-equilibrium modeling.
@@ -323,11 +324,11 @@ We would like to develop in this thesis a new transport model to account for a f
 
 \paragraph{Heavy quark transport models}
 In early days, the heavy quark measurements at RHIC energy does not extend to very high-$p_T$ and the radiative energy loss is not as important as elastic ones.
-And one study the non-equilibrium dynamics using a pure diffusion model []. 
-To include physics at high-$p_T$ physics, a radiation improved diffusion model was then developed [] and has been applied to the first Bayesian extraction of the heavy quark transport coefficients [].
-Apart from the diffusion-based models, Boltzmann and linearized Boltzmann models, including both elastic and inelastic interactions, are also developed [].
-Regarding the physical inputs, the Boltzmann-based model takes a weakly-coupled picture; the diffusion based model is more flexible, since the transport coefficient can be computed in both weakly coupled or strongly coupled approach [].
-Using different models, the extracted transport parameters $D_s$, $\hat{q}$ have notable differences [].
+And one study the non-equilibrium dynamics using a pure diffusion model \cite{Moore:2004tg,vanHees:2007me}. 
+To include physics at high-$p_T$ physics, a radiation improved diffusion model was then developed \cite{Cao:2013ita} and has been applied to the first Bayesian extraction of the heavy quark transport coefficients \cite{Xu:2017obm}.
+Apart from the diffusion-based models, Boltzmann and linearized Boltzmann models, including both elastic and inelastic interactions, are also developed \cite{Scardina:2017ipo,Cao:2017hhk,Ke:2018tsh}.
+Regarding the physical inputs, the Boltzmann-based model takes a weakly-coupled picture; the diffusion based model is more flexible, since the transport coefficient can be computed in both weakly coupled or strongly coupled approaches.
+Using different models, the extracted transport parameters $D_s$, $\hat{q}$ have notable differences \cite{Rapp:2018qla,PhysRevC.99.014902,Cao:2018ews}.
 The major sources that leads to these differences are:
 \begin{itemize}
 \item Whether the radiative energy loss is included.

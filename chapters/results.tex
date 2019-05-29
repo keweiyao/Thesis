@@ -3,11 +3,9 @@
 In this chapter, we apply the advanced statistical tools to the heavy-flavor transport model and extract the heavy quark transport coefficients.
 I would like to present this in a two step processes to show the improvements of the lastest extraction.
 
-
-
 \paragraph{A list of experimental data}
 \section{Lessons from earlier extractions of $\hat{q}_Q$}
-In an earlier publication [], we used a linearized Boltzmann model with the coherence factor approach to implement the LPM effect.
+In an earlier publication \cite{Ke:2018tsh}, we used a linearized Boltzmann model with the coherence factor approach to implement the LPM effect.
 The heavy quark initial momentum dsitribution is obtained from the FONLL calculation.
 We have already commented on the advantages and disadvantages of these choices.
 Two different set of nuclear PDF $EPPS$ and $nCTEQ15$ are used to represent the uncertainty from the cold nuclear matter effect in the $\hat{q}$ extraction.
@@ -25,7 +23,7 @@ This starting time is a simple approximation that interactions is only turned on
 
 
 The design of the four dimensional parameter space  $(\tau_0, \mu, \kappa_D, x_D)$ has 80 design points.
-The computation is carried on the distributed computing system Open Science Grid [] using about a million CPU hours.
+The computation is carried on the distributed computing system Open Science Grid \cite{Pordes:2007zzb,Sfiligoi:2010zz} using about a million CPU hours.
 The observabes on which we calibrated are listed in tables \ref{table:ALICE-obs} and \ref{table:CMS-obs}. 
 Including, $p_T$ dependent $D$-meson nuclear modification factor $R_{AA}$ and $p_T$ dependent (event-shape-engineered) azimuthal anisotropy $v_2$.
 CMS measurements of the $B^{\pm}$-meson $R_{AA}$ is also included to constrain the mass dependence of the transport coefficients.
@@ -70,7 +68,7 @@ In the discussion of the next section, we will see that this problem can be slig
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{qhat_p_T.pdf}
-\caption{The 90\% credible region of the heavy quark transverse momentum broadening parameter $\hat{q}$ extracted using the model described in [].
+\caption{The 90\% credible region of the heavy quark transverse momentum broadening parameter $\hat{q}$ extracted using the model described in \cite{Ke:2018tsh}.
 The charm quark results are shown in red, and bottom results in blue.
 The difference coming from using different nuclear PDF has been marginalized into the uncertainty bands.
 Left plot: the temperature dependence at $p=10$ GeV. Right plot: the momentum dependence at $T=0.35$ GeV.
@@ -88,11 +86,11 @@ The mass difference only causes a small difference in $\hat{q}$.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{qhat_compare.pdf}
-\caption{Comparing the 90\% credible region of the charm $\hat{q}$ using different models. The red regions use the model described in [], while the  shaded regions are obtained using  the improved-Langevin model [].}\label{fig:LBT:compare_qhat}
+\caption{Comparing the 90\% credible region of the charm $\hat{q}$ using different models. The red regions use the model described in \cite{Ke:2018tsh}, while the  shaded regions are obtained using  the improved-Langevin model \cite{Cao:2013ita}.}\label{fig:LBT:compare_qhat}
 \end{figure}
 
 \paragraph{Comparison to results from an improved-Langevin model}
-The same transport coefficient is also extracted using the improved-Langevin model [].
+The same transport coefficient is also extracted using the improved-Langevin model \cite{Cao:2013ita}.
 It includes a diffusion modeling of the elastic interacton, a high-twist single gluon emission rate, and a similar routine to implement multiple radiations.
 This model is then coupled to the same medium as the one used here and compared to the same set of observables as this work does.
 The resultant posterior (for charm quark only) is shown as the shaded region in figure \ref{fig:LBT:compare_qhat}.
@@ -182,7 +180,7 @@ On the right of the figure, we show the ratio $2\hat{q}_L/\hat{q}$ to indicated 
 
 The computations of the model on both the design points and the validation points are performed on the NERSC super-computing system using over two million CPU hours.
 The prior observables are shown in figure \ref{fig:new:obs_prior_LHC} at LHC energy $\sqrt{s}$ = 5.02 TeV and in figure \ref{fig:new:obs_prior_RHIC} at RHIC energy $\sqrt{s} = 200$ GeV.
-In additional to LHC dataset used in the last calibration, we also include a dataset at RHIC energy measured by the STAR Collaboration [].
+In additional to LHC dataset used in the last calibration, we also include a dataset at RHIC energy measured by the STAR Collaboration \cite{Adamczyk:2017xur,Adam:2018inb}.
 We choose two observables at RHIC, namely D meson $R_{CP}$ and $v_2$. 
 The new one, $R_{CP}$, is defined as the $N_{\textrm{bin}}$ normalized ratio between the D meson yield in a smaller centrality class $C$ to a larger centrality class $P$,
 \begin{eqnarray}
@@ -289,7 +287,7 @@ The $\ln\mu$ parameter has an evident peak around $1.3$, which correspond to $\m
 The resulting posterior of $\alpha_s$ is plotted in figure \ref{fig:new:posterior-alphas}, the median value of $\alpha_s$ at $Q=\mu\pi T$ varies from 0.3 to 0.22 for the relevant temperature trange $0.15 < T < 0.5$ GeV, corresponding to $g\sim 2$.
 Note that this $\alpha_s$ does not stands for the strength of all the probe-medium interaction, recalling that there is a significant parametric diffusion contribution to the elastic energy loss.
 For radiative process, though the $1\rightarrow 2$ splitting vertex explicitly uses this $\alpha_s$, the strength of the LPM effect is again controlled by the elastic broadening.
-Compared to the previous extraction, the preferred in-medium coupling strength is smaller and is closer to the phenomenological values used by other studies [].
+Compared to the previous extraction, the preferred in-medium coupling strength is smaller and is closer to the phenomenological values used by other studies \cite{Burke:2013yra}.
 However, the coupling is still large compared to the weakly coupled assumption $g\ll 1$.
 
 \begin{figure}
@@ -318,7 +316,7 @@ First, its perturbative contribution already introduces
 
 For the heavy quark spatial diffusion constant, since it is related to $\hat{q}$ in the zero momentum limit. 
 Such an extraction is essentially an extrapolation of our parametrization, and can be sensitive to the detailed choice of the ansatz.
-Nevertheless, the extraction is (red band for 90\% credible region) is compared to varies lattice calculations [] in  figure \ref{fig:new:posterior-Ds}.
+Nevertheless, the extraction is (red band for 90\% credible region) is compared to varies lattice calculations \cite{Banerjee:2011ra,Ding:2012sp,Francis:2015daa} in  figure \ref{fig:new:posterior-Ds}.
 Our extraction for both charm and bottom quark spatial diffusion constants is similar, and is consistent with lattice calculations in the static / infinitely heavy limit of the heavy quark.
 While the lattice calculation of dynamical charm quark gives a much lower value of $D_s$.
 One may expect that our phenomenological extraction should give a similar separation between bottom and charm flavor, as the bottom is more than three times heavier.
@@ -331,6 +329,6 @@ In the future, one may seek for more physically motivated flavor dependence para
 \begin{figure}
 \centering
 \includegraphics[width=.7\textwidth]{Ds_posterior.png}
-\caption{The 90\% credible region of the spatial diffusion constant defined in the zero momentum limit. Prior range is indicated by the gray band. The posterior of charm and bottom flavor are shown as red band and blue boundary receptively. It is compared to lattice QCD evaluation in references [] (black boxes), [] (the black dot) and [] (red triangles).}
+\caption{The 90\% credible region of the spatial diffusion constant defined in the zero momentum limit. Prior range is indicated by the gray band. The posterior of charm and bottom flavor are shown as red band and blue boundary receptively. It is compared to lattice QCD evaluation in references \cite{Banerjee:2011ra} (black boxes), \cite{Francis:2015daa} (the black dot) and \cite{Ding:2012sp} (red triangles).}
 \label{fig:new:posterior-Ds}
 \end{figure}
