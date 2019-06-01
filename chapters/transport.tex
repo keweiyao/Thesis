@@ -1,53 +1,53 @@
 \chapter{A transport model for hard partons in QGP}
 \label{chapter:transport}
-Hard partons are predominately created in perturbative scatterings at the earliest stage of relativistic heavy-ion collision.
-The distribution of the hard partons gets modified by the medium and the final final distribution carries information about the medium, as well as the hard-soft interaction properties.
+Hard partons are predominately created in perturbative scatterings at the earliest stage of relativistic heavy-ion collisions.
+The distribution of the hard partons gets modified by the medium and the final distribution carries information about the medium, as well as the hard-soft interaction properties.
 
 Among the many ways of describing the in-medium evolution of hard partons, 
-transport approach has its unique advantage. 
-Here, we refer the transport approach to a class of models that evolve the semi-classical particle distribution function of hard partons in real time.
-Transport models can be often formulated as simulation on particle level, which provides easy coupling to local properties of a dynamically evolving and fluctuating medium, and an exclusive final state.
-There are also challenges when applying transport model in high energy collision.
-First, there are different assumptions of the interactions between the hard partons and the medium.
+the transport approach has a unique advantage. 
+Here, we refer to transport approach as a class of models that evolve the semi-classical particle distribution function of hard partons in real time.
+Transport models can be often formulated as simulations on the particle level, which provide easy coupling to local properties of a dynamically evolving and fluctuating medium, and an exclusive final state.
+Of course challenges exist when applying transport models to high energy collisions.
+First, there are different assumptions of the interactions between the hard partons and the medium to be made.
 Two commonly assumed extremes are:
 \begin{itemize}
-\item[1] A weakly coupled picture: medium consists of perturbative quasi-particles (scattering centers) whose distribution is close to local thermal equilibrium.
-Hard partons scatters pertrubtively with these well separated scattering centers. The dynamics is described by a Boltzmann equation.
-\item[2] Diffusion picture: interactions between the medium and the hard parton are frequent and soft, many body effects and non-perturbative effects can be important. The statistical effect of these interactions are modeled by a drag and a diffusion coefficient. The dynamics is solved using a Langevin equation.
+\item[1] A weakly coupled picture: the medium consists of perturbative quasi-particles (scattering centers) whose distribution is close to local thermal equilibrium.
+Hard partons scatter perturbatively with these well separated scattering centers. The dynamics is described by a Boltzmann equation.
+\item[2] Diffusion picture: interactions between the medium and the hard parton are frequent and soft, many-body effects and non-perturbative effects can be important. The effect of these interactions are modeled by a drag and a diffusion coefficient. The dynamics is solved using a Langevin equation.
 \end{itemize}
-These two commonly used approaches are not necessarily mutually exclusive, and can have overlapped range of validity. 
+These two commonly used approaches are not necessarily mutually exclusive, and can have overlapping range of validity. 
 For example, the effect of soft momentum exchange processes in the perturbative calculation can be very well modeled by a diffusion equation \cite{Ghiglieri:2015ala,Dai:2019hbi}.
-These different assumptions on the interaction between the medium and the hard probe is largely due to our inadequate theoretical tools in describing the QGP medium in the strongly coupled regime.
-On the one hand, this becomes the an uncertainty intrinsic to the transport approach, until one founds convincing way of interpreting the strongly coupled QGP medium from first principal.
-On the other hand, experiments may be able to tell which assumption (or a combination of both) is better and answers the very question of how the sQGP participates in the jet-medium interaction.
+These different assumptions on the interaction between the medium and the hard probe are largely due to our inadequate theoretical tools in describing the QGP medium in the strongly coupled regime.
+On the one hand, this becomes the an uncertainty intrinsic to the transport approach, until one finds convincing way of calculating the dynamics of the strongly coupled QGP medium from first principles.
+On the other hand, experiments may be able to tell which assumption (or a combination of both) is preferred and answer the very question of how the sQGP participates in the jet-medium interactions.
 
-A second difficulty is that semi-classical transport equation can be cumbersome in treating quantum coherence.
-Indeed, a quantum transition will always be bounded by the uncertainty principal: a process with momentum scale $Q$ can not be localized within a space-time extend of $1/Q$.
-While in the semi-classical transport model, one always specify a local point in space-time where the interaction takes place.
-This is valid if the momentum scale $Q$ is high enough that $1/Q$ is much smaller than the resolution that the transport model concerns, e.g., characterized by the mean-free-path in the Boltzmann equation.
-However, soft and collinear divergence of QCD bremsstrahlung (or more generally, parton branching and jointing) processes generate an abundance of small-$Q$ events whose spatial extents can be much greater than the mean-free-path. 
-This happens for certain phase space of the vacuum parton shower as well as the medium-induced parton shower.
+A second difficulty is that semi-classical transport equations can be cumbersome in treating quantum coherence.
+Indeed, a quantum transition will always be bounded by the uncertainty principle: a process with momentum scale $Q$ can not be localized within a space-time extent of $1/Q$.
+While in the semi-classical transport model, one always specifies a local point in space-time where the interaction takes place.
+This is valid if the momentum scale $Q$ is high enough that $1/Q$ is much smaller than the resolution of the transport model, e.g., characterized by the mean-free-path in the Boltzmann equation.
+However, the soft and collinear divergences of QCD bremsstrahlung (or more generally, parton branching and jointing) processes generate an abundance of small-$Q$ events whose spatial extent can be much greater than the mean-free-path. 
+This happens for certain phase space regions of both the vacuum parton shower and the medium-induced parton shower.
 For medium-induced branching, this is the QCD analog of the Landau-Pomeranchuk-Migdal (LPM) effect \cite{PhysRev.103.1811,Wang:1994fx,Zakharov:1996fv}, and the radiation pattern is changed qualitatively.
 When this happens, strictly speaking, the semi-classical transport equation is not the appropriate tool.
 However, considering the advantages of the transport formulation, we will develop a minimum set of modification to the semi-classical transport that can mimic some quantum effects of medium-induced branchings.
 
 We start with an introduction of widely used transport equations: the (linearized) Boltzmann equation and the Langevin equation.
-Then, we combine these two approach into a hybrid one by introducing a cut-off distinguishing hard and soft momentum transfer process and build the transport model in the incoherent limit.
-After that, we provide a brief review the theory of QCD in-medium parton branching processes at leading order, discussing its various approximations and also the numerical solutions in simplified medium.
-With these theoretical insights, the main progress of this chapter is developing a ``modified Boltzmann'' transport approach, treating the medium-induced parton branching with an approximate LPM effect.
-Finally, the simulations of the transport model are compared to the theoretical expectations to validate the implementation in different regime.
-We will show that the modified transport approach can reasonable describes the energy spectrum of the medium-induced splitting vertex for different channels $q\rightarrow q+g$, $g\rightarrow g+g$ and $g\rightarrow q+\bar{q}$.
+Then, we combine these two approach into a hybrid one by introducing a cut-off distinguishing hard and soft momentum transfer processes and build the transport model in the incoherent limit.
+After that, we provide a brief review the theory of QCD in-medium parton branching processes at leading order, discussing its various approximations and also the numerical solutions in a simplified medium.
+With these theoretical insights, the main outcome of this chapter is developing a ``modified Boltzmann'' transport approach, treating the medium-induced parton branching with an approximate LPM effect.
+Finally, the simulations of the transport model are compared to theoretical expectations to validate the implementation in different regimes.
+We will show that the modified transport approach can reasonably describe the energy spectrum of the medium-induced splitting vertex for different channels $q\rightarrow q+g$, $g\rightarrow g+g$ and $g\rightarrow q+\bar{q}$.
 Treatment of the heavy quark masses effect, and running coupling are also  investigated.
-For future references, in the very end, we make comparison between two other Monte-Carlo approach for medium-induced radiation with the present one and comment on the potential problems.
+For future references, in the very end, we make comparisons between two other Monte-Carlo approaches for medium-induced radiation with the present one and comment on potential problems.
 
 \section{The Boltzmann equation}
-The Boltzmann equation evolves the transport of particles' distribution function under the effect of localized collision. 
+The Boltzmann equation evolves the particles' distribution function under the effect of localized collisions. 
 By localization, it means that the time scale of the collision has to be much smaller than the mean free-path $\tau \ll \lambda$. 
-Therefore, the collision probability can be evaluated using local particle distribution function.
-It also allows one to include only few body collision processes, because the probability to interact with one more particle during this collision is small $P \approx \tau/\lambda \ll 1$.
-At weak coupling, we will see in the next section that this is indeed the case for elastic collision or soft and large angle radiation. 
-But for radiation with a large formation time, its formation process becomes ``non-local".
-Accordingly, the Boltzmann formulation needed to be modified quite fundamentally for such processes.
+Therefore, the collision probability can be evaluated using a local particle distribution function.
+It also allows one to include only few body collision processes, because the probability of interacting with an additional particle during this collision is small $P \approx \tau/\lambda \ll 1$.
+At weak coupling, we will see in the next section that this is indeed the case for elastic collisions or soft and large angle radiation. 
+But for radiation with a large formation time, the process becomes ``non-local''.
+Accordingly, the Boltzmann formulation needs to be modified quite fundamentally for such processes.
 In this section, we only focus on local interactions.
 
 With two-body to two-body (elastic) and two-body to three-body (inelastic, including the reverse process) processes, the Boltzmann equation for particle specie $a$ takes the following form,
@@ -60,23 +60,23 @@ The summation of $b,c,d,e$ iterates over all other particle species including $a
 Using the elastic process as an example and neglecting degeneracy of the internal quantum number for simplicity, the collision term can be separated into gain and loss terms,
 \begin{eqnarray}
 \mathcal{C} &=& \mathcal{C}_\textrm{loss} + \mathcal{C}_\textrm{gain}\\
-&=& \int f^a(p_1)f^b(p_2)[1+\epsilon^c f^c(p_3)][1+\epsilon^d f^d(p_4)] \overline{|M|^2}(p_1^a, p_2^b; p_3^c, p_4^d) d[PS]_{bcd} \\\nonumber
-&-& \int f^c(p_3)f^d(p_4)[1+\epsilon^a f^a(p_1)][1+\epsilon^b f^b(p_2)] \overline{|M|^2}(p_3^c, p_4^d; p_1^a, p_2^b) d[PS]_{bcd} \\
-&=& \int \left\{
+&=& \int_{bcd} f^a(p_1)f^b(p_2)[1+\epsilon^c f^c(p_3)][1+\epsilon^d f^d(p_4)] \overline{|M|^2}(p_1, p_2; p_3, p_4) \\\nonumber
+&-& \int_{bcd} f^c(p_3)f^d(p_4)[1+\epsilon^a f^a(p_1)][1+\epsilon^b f^b(p_2)] \overline{|M|^2}(p_3, p_4; p_1, p_2) \\
+&=& \int_{bcd} \left\{
 f^a(p_1)f^b(p_2)[1+\epsilon^c f^c(p_3)][1+\epsilon^d f^d(p_4)] \right. \label{eq:collision-term:symmetry} \\\nonumber
 && \left.- f^c(p_3)f^d(p_4)[1+\epsilon^a f^a(p_1)][1+\epsilon^b f^b(p_2)]\right\}
-\overline{|M|^2} d[PS]_{bcd} 
+\overline{|M|^2}
 \end{eqnarray}
 Where the crossing symmetry of the matrix-elements has been used in the last line of the equation ($\overline{|M|^2}(p_1^a, p_2^b; p_3^c, p_4^d) = \overline{|M|^2}(p_3^c, p_4^d; p_1^a, p_2^b) = \overline{|M|^2}$), and the phase-space integral is 
 \begin{eqnarray}
-d[\textrm{PS}]_{bcd} = \prod_{i\in {b,c,d}}\frac{dp_i^3}{2E_i (2\pi)^3} (2\pi)^4 \delta^{4}(p^a_1+p^b_2 - p^c_3-p^d_4).
+\int_{bcd} = \prod_{i\in {b,c,d}}\int\frac{dp_i^3}{2E_i (2\pi)^3} (2\pi)^4 \delta^{4}(p_a+p_b - p_c-p_d).
 \end{eqnarray}
 The $\epsilon = 0, -1, 1$ corresponds to classical, Fermi-Dirac, and Bose-Einstein statistics depending on the nature of the particle.
-The first term in the integration represents the loss of type-$a$ particle in the phase-space around point $(x, p_1)$ due to elastic collision, and the second term represents the gaining of type-$a$ due to the reverse process.
+The first term in the integration represents the loss of a particle of type ``$a$'' in the phase-space around point $(x, p_1)$ due to elastic collision, and the second term represents the gain of a particle of type ``$a$'' due to the reverse process.
 The symmetry in the microscopic matrix-element is very important for the kinetic equation to satisfy detailed balance: the probability to transition from one microscopic state to anther equals  that of the reverse process.
-The detailed balance ensures an thermal equilibrium limit of the system. 
-Assume the system evolves long enough in a finite volume box and there is no spatial variance of the distribution function.
-Then the left of equation \ref{eq:collision-term:symmetry} is zero, and the static solution has to satisfy the relation,
+The detailed balance ensures the thermal equilibrium limit of the system. 
+Assume the system evolves long enough in a box of finite volume and there is no spatial variance of the distribution function.
+Then the left side of equation \ref{eq:collision-term:symmetry} is zero, and the static solution has to satisfy the relation,
 \begin{eqnarray}
 f^a f^b (1+\epsilon f^c) (1+\epsilon f^d) = f^c f^d (1+\epsilon f^a) (1+\epsilon f^b),
 \end{eqnarray}
@@ -97,54 +97,55 @@ f^a(p) = \frac{1}{ e^{\beta \mu_a+\beta p\cdot u} - \epsilon^a} \label{eq:therma
 \mu_a +\mu_b = \mu_c + \mu_d \label{eq:chem}
 \end{eqnarray}
 The fist line is the thermal distribution (kinetic equilibrium), and the second line is the requirement for reaching chemical equilibrium. 
-And one can identify the $\beta$ and $\mu$ parameter as the inverse temperature and chemical potential. The $u$ vector is the flow velocity of the cell as can be seen from the average velocity,
+One can identify the $\beta$ and $\mu$ parameter as the inverse temperature and chemical potential. The $u$ vector is the flow velocity of the cell as can be seen from the average velocity,
 \begin{eqnarray}
 \left\langle \frac{p^\mu}{M} \right\rangle = \frac{\int f(p) \frac{p^\mu}{M} dp^3}{\int f(p) dp^3} = \frac{\int f(p) \frac{p^\mu}{M} dp^3}{\int f(p) dp^3} = u^\mu
 \end{eqnarray}
 
 \subsection{The linearized Boltzmann equation and the diffusion limit}
-Analytic solutions of Boltzmann equation are almost impossible, even numerical solution and simulation are also highly non-trivial tasks.
-However, under certain circumstances, a linearization of the Boltzmann equation is possible and greatly simplifies both analytic analysis as well as the numerical implementation.
+Analytic solutions of the Boltzmann equations are almost impossible, even numerical solutions and simulations are highly non-trivial tasks.
+However, under certain circumstances, a linearization of the Boltzmann equation is possible and greatly simplifies both the analytic analysis as well as the numerical implementation.
 
-The hard particles (jet partons, heavy flavors) either has a large momentum $p\gg T$ or a large mass $M \gg T$. 
+Hard particles (jet partons, heavy flavors) either have a large momentum $p\gg T$ or a large mass $M \gg T$. 
 In heavy-ion collisions, the hard cross-section drops fast with the increase of $p_T$ and $m_T$, so hard partons are very rare in an actually event. 
-Therefore the occupation number of hard parton is small $f_H \ll 1$.
+Therefore the occupation number of hard partons is small $f_H \ll 1$.
 One can neglect the quantum statistics terms in the Boltzmann equation for them $1+\epsilon f_H \approx 1$.
-Also, the collision terms with more than one uncorrelated hard particles in the initial state can also be neglected since these contributions is proportional to $f_H^2 \ll f_H$. 
-Finally, we also assume that the response of the bulk of the particles to the hard particles is small, and shall neglect any collision terms that involve a hard parton in the Boltzmann equation for the bulk distribution function (recently studies show that such back reactions is important to full jet observables, but we only consider leading particles in this thesis).
-Under these approximations, one arrived at a set of equations that is linearized with respect to the hard partons:
+Also, the collision terms with more than one uncorrelated hard particle in the initial state can also be neglected since these contributions are proportional to $f_H^2 \ll f_H$. 
+Finally, we also assume that the response of the bulk of the particles to the hard particles is small, and shall neglect any collision terms that involve a hard parton in the Boltzmann equation for the bulk distribution function (recently studies show that such back reactions are important for the study of full jet observables [], but we only consider leading particles in this thesis).
+Under these approximations, one arrived at a set of equations that are linearized with respect to the hard parton:
 \begin{eqnarray}
-\frac{df_H}{dt} &=& -\mathcal{C}_H[f_H, f_{\textrm{bulk}}] \label{eq:hard-bulk-eq}\\
-\frac{df_{\textrm{bulk}}}{dt} &=& -\mathcal{C}[f_{\textrm{bulk}}]
+\frac{df_H}{dt} &=& -\mathcal{C}_H[f_H, f_{\textrm{bulk}}], \label{eq:hard-bulk-eq}\\
+\frac{df_{\textrm{bulk}}}{dt} &=& -\mathcal{C}[f_{\textrm{bulk}}].
 \end{eqnarray}
 Here the collision term $\mathcal{C}_H$ is linear with respect to $f_H$.
 
 For the medium particles, the equations are still complex.
-But by observing that the time it takes for the low momentum bulk particles to reach local thermalization is much shorter than the hard particles relaxation time, so a zeroth order approximation would be using the local thermal distribution \ref{eq:thermal}.
+But by observing that the time it takes for the low momentum bulk particles to reach local thermalization is much shorter than the relaxation time of the hard particles, a zeroth order approximation would be to use the local thermal distribution \ref{eq:thermal}.
 The space-time evolution of the temperature $T$, chemical potential $\mu$ and flow velocity $u$ can be obtained from a hydrodynamic simulation.
-Replacing the medium distribution function by the thermal ones in \ref{eq:hard-bulk-eq}, one arrives at a closed and linearized equation for the hard particles.
-Here we write down the equation assuming both the classical statistics and the conservation of the hard parton's species, and only elastic collision term is shown for simplicity,
+Replacing the medium distribution function by the thermal one in \ref{eq:hard-bulk-eq}, one arrives at a closed and linearized equation for the hard particles.
+Here we write down the equation assuming both classical statistics and the conservation of the hard parton's species, and only the elastic collision term is shown for simplicity,
 \begin{eqnarray}
-\frac{df^H}{dt} &=& -\sum_{b} \int \left\{
+\frac{df^H}{dt} &=& -\sum_{b} \int_{234} \left\{
 f^H(p_1)f^b_{eq}(p_2) - f^H(p_3)f^b_{eq}(p_4)\right\}
-\overline{|M|^2} d[\textrm{PS}]_{234} \\
+\overline{|M|^2} \\
 &=& - \int \left\{
-f^H(p_1) w(p_1; p_3) - f^H(p_3) w(p_3, p_1)\right\}\frac{dp_3^3}{2E_3 (2\pi)^3}
+f^H(p_1) w(p_1; p_3) - f^H(p_3) w(p_3, p_1)\right\}\frac{dp_3^3}{2E_3 (2\pi)^3}.
 \end{eqnarray}
-Where the $w(p; p')$ are the transition probability density for a particle with momentum $p$ into momentum state $p'$,
+The $w(p; p')$ is the transition probability density for a particle with momentum $p$ into momentum state $p'$,
 \begin{eqnarray}
-w(p; p') = \sum_b\int f_{eq}^b(p_2) \overline{|M|^2}(p, p_2; p', p_4) d[\textrm{PS}]_{24}
+w(p; p') = \sum_b\int_{24} f_{eq}^b(p_2) \overline{|M|^2}(p, p_2; p', p_4)
 \end{eqnarray}
 
 Using local thermal solutions for the bulk particles is a strong assumption. 
-The degree of local thermalization in realistic events is still an open question, especially at early stage of the heavy-ion collision. 
-Morevoer, whether the system can be understood in terms of the quasi-particle degrees of freedom is a different question.
-In an extreme weakly coupled system $g\ll 1$, one expected the local pressure and energy density can be explained in terms of the fundamental degrees of freedom: quarks and gluons, with perturbative corrections \cite{Blaizot:2000fc,Strickland:2010tm,Su:2015esa,}.
-But with a large $g$ estimated from phenomenology studies, such a perturbative description may not be most efficient way of understanding the bulk medium, and non-perturbative physics can play an essential role. 
-Interpreting the medium in terms of microscopic degree-of-freedom seem to be a an unavoidable step of the Boltzmann equations, however, it is possible to ``integrate out'' the microscopic details in the soft limit of interaction into a set of transport coefficients.
+The degree of local thermalization in realistic events is still an open question, especially at the early stage of the heavy-ion collision. 
+Morevoer, whether the system can be understood in terms of quasi-particle degrees of freedom is a different question.
+In an extreme weakly coupled system $g\ll 1$, one expects that the local pressure and energy density can be explained using fundamental degrees of freedom: quarks and gluons, with perturbative corrections \cite{Blaizot:2000fc,Strickland:2010tm,Su:2015esa,}.
+But with a large $g$ estimated from phenomenological studies, such a perturbative description may not be the most efficient way of understanding the bulk medium, and non-perturbative physics can play an essential role. 
+
+Interpreting the medium in terms of microscopic degrees-of-freedom seem to be a an unavoidable step of the Boltzmann equations, however, it is possible to ``integrate out'' the microscopic details in the soft limit of interaction into a set of transport coefficients.
 
 \paragraph{The Fokker Planck equation}
-In the soft momentum transfer $q = p'-p$ limit  $|q| \ll |p|$, the change in distribution function can be expanded to the second terms in the $q$, and the linearized Boltzmann equation reduces to the Fokker-Planck type of equation,
+In the soft momentum transfer $q = p'-p$ limit  $|q| \ll |p|$, the change in distribution function can be expanded to the second terms in $q$, and the linearized Boltzmann equation reduces to the Fokker-Planck type of equation,
 \begin{eqnarray}
 \frac{df}{dt} &=& - \int \left\{
 f(p) - \left[f(p) +  \vec{q}\frac{\partial f}{\partial\vec{p}} + \frac{1}{2}\vec{q}\vec{q}\frac{\partial^2 f}{\partial\vec{p} \partial\vec{p}} \right]
@@ -158,21 +159,22 @@ Where the vector function $A$ and tensor function $B$ are the first and second m
 A_i(p) &=& \int w(p,p+q) q_i \frac{dp_3^3}{2E_3 (2\pi)^3},\\
 B_{ij}(p) &=& \int w(p,p+q) q_i q_j \frac{dp_3^3}{2E_3 (2\pi)^3}.
 \end{eqnarray}
-One remark is that although the form of the Fokker-Planck equation can be derived as the soft limit of the linearized Boltzmann equation, its range of applicability is different from the later.
+One remark is that although the form of the Fokker-Planck equation can be derived as the soft limit of the linearized Boltzmann equation, its range of applicability is different from the latter.
 This is because the transport coefficient is well defined in general regardless of whether one assumes quasi-particle type microscopic dynamics.
 Therefore in our model, we replace the soft sector of the Boltzmann equation with the Fokker-Planck equation so that the use of ``medium quasi-particles" are restricted to hard momentum transfer processes.
 
-Moments beyond second order is dropped in deriving the Fokker-Planck equation, this is justified if the interaction is frequent enough so that within the smallest time scale that is concerned, there is already many interactions such that a statistical description of the effect of interaction is adequate in terms of the first (mean) and the second moments (variance).
-However, if the physical processes is rare, fluctuations contained in higher moments are very important and a diffusion equation is not a good approximation.
+Moments beyond second order are dropped in deriving the Fokker-Planck equation. 
+This is justified if the interaction is frequent enough so that within the smallest time scale that is concerned, a statistical description of the effect of many interactions in terms of the first (mean) and the second moments (variance) is adequate.
+However, if the physical processes are rare, fluctuations contained in higher moments are very important and a diffusion equation is not a good approximation.
 
-\paragraph{Transport coefficients and Einstein relation} 
-The $A$ and $B$ functions have to satisfy certain symmetry, as the only special direction after averaging over medium effects is the direction of motion.
+\paragraph{Transport coefficients and the Einstein relation} 
+The $A$ and $B$ functions have to satisfy a certain symmetry, as the only special direction after averaging over medium effects is the direction of motion.
 Therefore,  $\vec{A} = \eta_D \vec{p}$ defines the drag coefficient  $\eta_D$; the tensor $B$ can be decomposed into a transverse part and a longitudinal part, with the respective momentum diffusion coefficients $\kappa$ and $\kappa_L$ 
 \begin{eqnarray}
 B_{ij} = \kappa_L \frac{p_i p_j}{p^2} + \kappa \left(\delta_{ij} - \frac{p_i p_j}{p^2}\right)
 \end{eqnarray}
 
-One notice that medium temperature does not show up explicitly in the equation
+One notices that the medium temperature does not show up explicitly in the equation,
 \begin{eqnarray}
 \frac{df}{dt} = \frac{\partial}{\partial p_i}\left(\eta_D p_i + \frac{1}{2}\frac{\partial}{\partial p_j} B_{ij}\right)f
 \end{eqnarray}
@@ -182,20 +184,20 @@ Given a static and homogeneous medium at equilibrium with temperature $T$, $f = 
 0 &=& \ppi(\phi p_i f)\\
 \phi &=& \eta_D - \frac{\Kpara}{2TE} + \frac{\partial \Kpara}{\partial p^2} + \frac{\Kpara-\Kperp}{p^2}.
 \end{eqnarray}
-The Einstein relation $\phi = 0$ guarantees the exist of a equilibrium solution,
+The Einstein relation $\phi = 0$ guarantees the existence of an equilibrium solution,
 \begin{eqnarray}
 \eta_D = \frac{\Kpara}{2TE} - \frac{\partial \Kpara}{\partial p^2} - \frac{\Kpara-\Kperp}{p^2}
 \label{eq:ein-rel}
 \end{eqnarray}
-This is where temperature shows up explicitly in the diffusion equation.
+This is where the temperature shows up explicitly in the Fokker-Planck equation.
 
 \section{Hard parton transport in the incoherent limit}
-In this section, we shall first proceed using local and incoherent calculation of such processes and will discuss in great detail in the next section on including the LPM effect in a Boltzmann-like transport approach.
+In this section, we proceed using a local and incoherent calculation of hard parton scatterings and will defer a detailed discussion on the inclusion of the LPM effect to the next section.
 The partonic processes are categorized into elastic (particle number conserving) and inelastic processes (particle number non-conserving). 
-The inelastic processes are further divided into parton-splitting and parton-jointing contribution. 
+The inelastic processes are further divided into parton-splitting and parton-fusing contributions. 
 
 \subsection{Hard/soft separation: elastic collisions}
-In a quasi-particle picture of the QGP, the hard parton collides with medium partons and transfer a certain amount of energy.
+In a quasi-particle picture of the QGP, the hard parton collides with medium partons and transfers a certain amount of four momentum.
 These processes can be computed at leading order in the weakly coupled theory, where the collision cross-section is calculated using the dressed gluon propagator inside the medium \cite{PhysRevD.44.1298},
 \begin{eqnarray}
 D^{\mu\nu}(\omega, k) = \frac{\delta^{\mu 0}\delta^{\nu 0}}{k^2 - \Pi_L(\omega, k)} + \frac{\hat{P}_T^{\mu\nu}}{\omega^2 - k^2 - \Pi_T(\omega, k)}
