@@ -192,7 +192,7 @@ The Einstein relation $\phi = 0$ guarantees the existence of an equilibrium solu
 This is where the temperature shows up explicitly in the Fokker-Planck equation.
 
 \section{Hard parton transport in the incoherent limit}
-In this section, we proceed using a local and incoherent calculation of hard parton scatterings and will defer a detailed discussion on the inclusion of the LPM effect to the next section.
+In this section, we proceed to use a local and incoherent calculation of hard parton scatterings and will defer a detailed discussion on the inclusion of the LPM effect to the next section.
 The partonic processes are categorized into elastic (particle number conserving) and inelastic processes (particle number non-conserving). 
 The inelastic processes are further divided into parton-splitting and parton-fusing contributions. 
 
@@ -202,45 +202,45 @@ These processes can be computed at leading order in the weakly coupled theory, w
 \begin{eqnarray}
 D^{\mu\nu}(\omega, k) = \frac{\delta^{\mu 0}\delta^{\nu 0}}{k^2 - \Pi_L(\omega, k)} + \frac{\hat{P}_T^{\mu\nu}}{\omega^2 - k^2 - \Pi_T(\omega, k)}
 \end{eqnarray}
-where $\Pi_T$ and $\Pi_L$ are the self energies for transverse and longitudinal modes.
-Due to the presence of the medium, the dressed propagator lost its Lorentz invariance and depends on the complicated functions $\Pi_T$ and $\Pi_L$.
+where $\Pi_T$ and $\Pi_L$ are the self energies for the transverse and longitudinal modes.
+Due to the presence of the medium, the dressed propagator loses its Lorentz invariance and depends on the complicated functions $\Pi_T$ and $\Pi_L$.
 The resulting cross-section formula will be equally complicated.
 Fortunately, it has been shown recently in \cite{Ghiglieri:2015ala} that a simplification is possible at leading order in rewriting the elastic processes as large-angle scattering and small-angle diffusion.
 In such an approach, one chooses a scale $Q_\textrm{cut}$ with a formal range of $gT \ll Q_\textrm{cut} \ll T$.
-For processes with momentum transfer to the medium larger than the cut-off  (hard-mode) the medium screening effect is neglected and vacuum matrix-elements are used.
-While for processes smaller than the cut-off (soft-mode), the propagator receives significant contribution from the screen effect.
-The soft processes happen frequent and only involve small momentum transfer, satisfying the requirements of diffusion approximation.
-This separation allows the following modeling of the elastic interaction between hard parton and the medium,
+For processes with momentum transfer to the medium larger than the cut-off  (hard modes) the medium screening effect is neglected and vacuum matrix-elements are used.
+While for processes smaller than the cut-off (soft-mode), the propagator receives significant contributions from the screen effect.
+The soft processes happen frequently and only involve small momentum transfers, satisfying the requirements of diffusion approximation.
+This separation allows the following modeling of the elastic interaction between hard partons and the medium,
 \begin{eqnarray}
 \frac{df}{dt} = \mathcal{D}(Q_{\textrm{cut}})[f] + \mathcal{C}^{2\leftrightarrow 2}(Q_{\textrm{cut}})[f].
 \end{eqnarray}
-So particle is continuously evolved by the diffusion process with its momentum occasionally changed by large-angle scatterings.
+Here, particles are continuously evolved by the diffusion process with their momentum occasionally changing by large-$Q$ scatterings.
 Later we will verify that the cut-off dependence in the diffusion and scattering component indeed cancels for ``physical observations'' at sufficiently small coupling.
 The phenomenological value of $g$ is actually very large, so the residue cut-off dependence may be significant. 
-The merits of the current formulation is that certain  non-perturbative effects can also be modeled by a diffusion processes with an additional contribution to the transport coefficient.
+The advantage of the current formulation is that certain non-perturbative effects can also be modeled by a diffusion processes with an additional contribution to the transport coefficient.
 
-\paragraph{Transport coefficients for soft modes} The transverse and longitudinal transport parameters below the cut-off has been calculated in \cite{Ghiglieri:2015ala},
+\paragraph{Transport coefficients for soft modes} The transverse and longitudinal transport parameters below the cut-off have been calculated in \cite{Ghiglieri:2015ala},
 \begin{eqnarray}
 \hat{q}_S &=& \int dq^2 \frac{\alpha_s m_D^2 T}{q^2 (q^2+m_D^2)} = g^2 C_R T m_D^2  \ln\left(1+\frac{Q_{\textrm{cut}}^2}{m_D^2}\right).
 \label{eq:qS} \\
 \hat{q}_{S,L} &=& \int dq^2 \frac{\alpha_s m_\infty^2 T}{q^2 (q^2+m_\infty^2)} = g^2 C_R T m_\infty^2  \ln\left(1+\frac{Q_{\textrm{cut}}^2}{m_\infty^2}\right)
 \label{eq:qSL} 
 \end{eqnarray}
-$m_\infty^2 = m_D^2/2$ is the asymptotic gluon thermal mass. 
-And the drag force is determined by the Einstein relation in equation \ref{eq:ein-rel},
+$m_\infty^2 = m_D^2/2$ is the thermal mass of the gluon. 
+The drag force is determined by the Einstein relation in equation \ref{eq:ein-rel},
 \begin{eqnarray}
 \eta_D = \frac{\hat{q}_{S,L}}{2ET} - \frac{d\hat{q}_{S,L}}{dp^2} - \frac{2\hat{q}_{S,L} - 2\hat{q}_S}{2p^2}
 \end{eqnarray}
 
-\paragraph{Scattering rate for hard mode} For the large-$Q$ $2\rightarrow 2$ scattering processes, the collision rates is computed by integrating the vacuum matrix-element, 
+\paragraph{Scattering rate for hard modes} For the large-$Q$ $2\rightarrow 2$ scattering processes, the collision rates are computed by integrating the vacuum matrix-element, 
 \begin{eqnarray}
 R = \frac{d}{2E_1}\int  \frac{d^3p_2}{2E_2(2\pi)^3} f_0(p_2)2\hat{s} \int_{-\hat{s}}^{Q_{\textrm{cut}^2}}\frac{d\sigma}{d\hat{t}}d\hat{t}
 \end{eqnarray}
-The integration is restricted to large momentum transfer above $Q_{\textrm{cut}}$ and therefore we do not impose additional screening effect to regulate the matrix-element.
+The integration is restricted to large momentum transfers above $Q_{\textrm{cut}}$ and therefore we do not impose additional screening effects to regulate the matrix-element.
 In this work, the $2\rightarrow 2$ matrix-element only includes the $\hat{t}$-channel contribution.
 
 \subsection{Hard/soft separation: inelastic collisions}
-Similarly, the incoherent inelastic processes are divided into small-$Q$ diffusion induced radiation / absorption ($1\leftrightarrow 2$), and large-$Q$ $2\leftrightarrow 3$ few body processes.
+Similarly, incoherent inelastic processes are divided into small-$Q$ diffusion induced radiation / absorption ($1\leftrightarrow 2$), and large-$Q$ $2\leftrightarrow 3$ processes.
 
 \paragraph{Diffusion induced branching} For the incoherent diffusion-induced splitting rate, we borrow the expression from \cite{Cao:2017hhk} while stripping the time-dependent phase factor,
 \begin{eqnarray}
@@ -248,67 +248,69 @@ R_{1\rightarrow 2} = \int d k_\perp^2 dx \frac{\alpha_s P(x) \hat{q}_S(Q_{\textr
 \end{eqnarray}
 where a gluon thermal mass is added to screen the divergence.
 Because these processes are induced by processes with medium momentum transfer below the cut-off, $Q_{\textrm{cut}}$ appears in the formula.
-For the reverse processes $2\rightarrow 1$ processes, similar reaction rate can be written down,
+For the reverse $2\rightarrow 1$ processes, a similar reaction rate can be written down,
 \begin{eqnarray}
-R_{2\rightarrow 1} = \int e^{-\beta \omega} d k_\perp^2 dx \frac{\alpha_s P(x) \hat{q}_S(Q_{\textrm{cut}})}{2\pi (k_\perp^2 + m_\infty^2)^2} 
+R_{2\rightarrow 1} = \int e^{-\beta \omega} d k_\perp^2 dx \frac{\alpha_s P(x) \hat{q}_S(Q_{\textrm{cut}})}{2\pi (k_\perp^2 + m_\infty^2)^2}.
 \end{eqnarray}
-where the rate is calculated in the rest frame of the medium. $\omega$ is the thermal parton's energy, and $x$ is defined as the fraction of the thermal parton's energy to that of the final state hard parton.
+$\omega$ is the thermal parton's energy, and $x$ is defined as the fraction of the thermal parton's energy to that of the final state hard parton.
+These expressions have to be used in the rest frame of the medium.
 
 \paragraph{Large-$Q$ $2\leftrightarrow 3$ process} 
-Regarding the $2\rightarrow 3$ matrix-element, in previous study \cite{Ke:2018tsh}, we used to employ an improved version of the original Gunion-Bertsch cross-section that works under the limits $k_\perp, q_\perp \ll \sqrt{s}$ and $x q_\perp \ll k_\perp$ \cite{PhysRevD.25.746,Fochler:2013epa,Uphoff:2014hza}.
+Regarding the $2\rightarrow 3$ matrix-element, in a previous study \cite{Ke:2018tsh}, we used to employ an improved version of the original Gunion-Bertsch cross-section that works under the limits $k_\perp, q_\perp \ll \sqrt{s}$ and $x q_\perp \ll k_\perp$ \cite{PhysRevD.25.746,Fochler:2013epa,Uphoff:2014hza}.
 In the present study, we keep improving the matrix-elements by following the derivation in \cite{Fochler:2013epa} while relaxing the condition $x q_\perp \ll k_\perp$.
 Therefore the updated matrix-elements contain the correct vacuum splitting function in the collinear limit.
-We summarize the matrix-elements here and have attached a derivation in the last section,
+We summarize the matrix-elements here and have attached a derivation in appendix \ref{app:ME},
 \begin{eqnarray}
-\overline{|M^2|}_{g+i\rightarrow g+g+i} &=& \overline{|M^2|}_{g+i\rightarrow g+i} P_{gg}^{g(0)}  D_{gg}^{g}\\
-\overline{|M^2|}_{g+i\rightarrow q+\bar{q}+i} &=& \frac{C_F d_F}{C_A d_A}\overline{|M^2|}_{g+i\rightarrow g+i} P_{q\bar{q}}^{g(0)} D_{q\bar{q}}^{g}\\
-\overline{|M^2|}_{q+i\rightarrow q+g+i} &=& \overline{|M^2|}_{q+i\rightarrow q+i} P_{qg}^{q(0)} D_{qg}^{q},
+\overline{|M^2|}_{g+i\rightarrow g+g+i} &=& \overline{|M^2|}_{g+i\rightarrow g+i} P_{gg}^{g(0)}  D_{gg}^{g},\\
+\overline{|M^2|}_{g+i\rightarrow q+\bar{q}+i} &=& \frac{C_F d_F}{C_A d_A}\overline{|M^2|}_{g+i\rightarrow g+i} P_{q\bar{q}}^{g(0)} D_{q\bar{q}}^{g,}\\
+\overline{|M^2|}_{q+i\rightarrow q+g+i} &=& \overline{|M^2|}_{q+i\rightarrow q+i} P_{qg}^{q(0)} D_{qg}^{q}.
 \end{eqnarray}
-The two body matrix-elements that enters the $2\rightarrow 3$ matrix-element is always required to be the $t$-channel contribution.
-$P_{bc}^{a(0)}(x)$ are vacuum splitting functions from parton $a$ to partons $b$ and $c$. Index $i$ represent a quark / anti-quark or a gluon.
+Index $i$ represents a quark / anti-quark or a gluon.
+The two body matrix-elements that enter the $2\rightarrow 3$ matrix-element are always required to be the $t$-channel contribution.
+$P_{bc}^{a(0)}(x)$ are vacuum splitting functions from parton $a$ to partons $b$ and $c$,
 \begin{eqnarray}
-P_{gg}^{g(0)}  &=& g^2  C_A\frac{1+x^4+(1-x)^4}{x(1-x)}\\
-P_{qg}^{q(0)} &=& g^2  C_F\frac{1+(1-x)^4}{x}\\
-P_{q\bar{q}}^{g(0)} &=& g^2  \frac{N_f}{2}\left(x^2+(1-x)^4\right)
+P_{gg}^{g(0)}  &=& g^2  C_A\frac{1+x^4+(1-x)^4}{x(1-x)},\\
+P_{qg}^{q(0)} &=& g^2  C_F\frac{1+(1-x)^4}{x},\\
+P_{q\bar{q}}^{g(0)} &=& g^2  \frac{N_f}{2}\left(x^2+(1-x)^4\right).
 \end{eqnarray}
 The $D_{bc}^{a}$ contains the interference structure,
 \begin{eqnarray}
 D_{qq}^{g} &=& 
 C_A(\vec{a}-\vec{b})^2 + C_A(\vec{a}-\vec{b})^2 \\\nonumber
-&-& C_A (\vec{a}-\vec{b})\cdot (\vec{a}-\vec{c})
+&-& C_A (\vec{a}-\vec{b})\cdot (\vec{a}-\vec{c}),
 \\
 D_{q\bar{q}}^{g} &=& 
 C_F(\vec{a}-\vec{b})^2 + C_F(\vec{a}-\vec{b})^2 \\\nonumber
-&-& (2C_F-C_A) (\vec{a}-\vec{b})\cdot (\vec{a}-\vec{b})
+&-& (2C_F-C_A) (\vec{a}-\vec{b})\cdot (\vec{a}-\vec{b}),
 \\
 D_{qg}^{q} &=& 
 C_F(\vec{c}-\vec{a})^2 + C_F(\vec{c}-\vec{b})^2 \\\nonumber
-&-& (2C_F-C_A) (\vec{c}-\vec{a})\cdot (\vec{c}-\vec{b})
+&-& (2C_F-C_A) (\vec{c}-\vec{a})\cdot (\vec{c}-\vec{b}).
 \end{eqnarray}
 with the vectors given by
 \begin{eqnarray}
-\vec{a} = \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2};
-\vec{b} = \frac{\vec{k}_\perp - \vec{q}_\perp}{(\vec{k}_\perp - \vec{q}_\perp)^2};
+\vec{a} = \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2},
+\vec{b} = \frac{\vec{k}_\perp - \vec{q}_\perp}{(\vec{k}_\perp - \vec{q}_\perp)^2},
 \vec{c} =  \frac{\vec{k}_\perp}{\vec{k}_\perp^2}.
 \end{eqnarray}
 
 \subsection{The final incoherent transport equation and Monte-Carlo technique}
-Combining all these processes, we summarize the incoherent linearized-Boltzmann plus Langevin equation into,
+Combining all these processes, we summarize the incoherent linearized-Boltzmann plus Langevin equation:
 \begin{eqnarray}
 \frac{df}{dt} = \mathcal{D}[f] + \mathcal{C}_{1\leftrightarrow 2}[f] + \mathcal{C}_{2\leftrightarrow 2}[f] + \mathcal{C}_{2\leftrightarrow 3}[f].
 \end{eqnarray}
 The distribution function undergoes soft diffusion and diffusion induced-radiation. 
-Hard collision with the medium are included as $2\leftrightarrow 2$ and $2\leftrightarrow 3$ collision terms.
-The next section devotes to the inclusion of LPM effect to such an incoherent transport equation.
-At the end of this section, we present the numerical techniques for simulation the above equation.
+Hard collisions with the medium are included as $2\leftrightarrow 2$ and $2\leftrightarrow 3$ collision terms.
+The next section is devoted to the inclusion of the LPM effect to such an incoherent transport equation.
+We now discuss the numerical techniques for simulating the above equation.
 
 The Monte Carlo method starts from representing the distribution function by an ensemble of particle states,
 \begin{eqnarray}
 f(t,x,p) \approx \sum_{i} \delta^3(x-x_i(t)) \delta^3(p-p_i(t))
 \end{eqnarray}
 For linearized transport equations, it is sufficient to consider the dynamics of one such particle.
-Within a small time step $\Delta t$, particles undergoes scatterings with certainty probability.
-And then in between subsequent collisions, the particle is propagated by diffusion transport.
+Within a small time step $\Delta t$, a particle undergoes scattering with a certain probability.
+In between subsequent collisions, the particle is propagated by diffusion transport.
 
 \paragraph{Order of operation} In the presence of two types of operation: collision $\mathcal{C}[f_Q]$ and diffusion $\mathcal{D}[f_Q]$:
 \begin{eqnarray}
@@ -317,7 +319,7 @@ And then in between subsequent collisions, the particle is propagated by diffusi
 \left( \mathcal{\hat{C}} + \mathcal{\hat{D}} \right) f_Q.
 \end{eqnarray}
 In principle, the order of operations on the particle should matter.
-But the difference choice of ordering only results in an $O(\Delta t^2)$ change in the updated distribution function.
+But a different choice of ordering only results in an $O(\Delta t^2)$ change in the updated distribution function.
 This can be seen with the formal solution of the equation,
 \begin{eqnarray}
 \nonumber
@@ -326,7 +328,7 @@ f_Q(x,p) &=& \exp\left\{ \int_{x'}^x \gamma u \cdot dx \left( \mathcal{\hat{C}} 
 \end{eqnarray}
 
 \paragraph{The diffusion solver}
-The Fokker Planck equation can be solved as an ensemble of particles governed by the Langevin dynamics.
+The Fokker Planck equation can be solved as an ensemble of particles governed by Langevin dynamics.
 The Langevin equation in the post-point discretization scheme is \cite{He:2013zua},
 \begin{eqnarray}
 \Delta \vec{x}_i &=& \frac{p}{E}\Delta t\\
@@ -334,7 +336,7 @@ The Langevin equation in the post-point discretization scheme is \cite{He:2013zu
 \end{eqnarray}
 $\Gamma$ is the Langevin drag term, and $\vec{\xi}$ is a unit-variance Gaussian random force.
 $\tensor{B} = \Ppara \Kpara + \Pperp \Kperp$ are the diffusion coefficients in the tensor form.
-$\Ppara$ and $\Pperp$ projects any vector into the direction parallel and perpendicular to the direction of motion.
+$\Ppara$ and $\Pperp$ project any vector into the direction parallel and perpendicular to the direction of motion.
 
 The diffusion coefficients are directly related to the one in the Fokker Planck equation $\Kpara = \hat{q}_L$, and $\Kperp = \hat{q}/2$.
 While, the relation between the drag coefficient in the Fokker Planck equation $\eta_D$ and the drag force $\Gamma$ in the Langevin equation is discretization scheme dependent.
@@ -350,15 +352,15 @@ and reduces to,
 The Einstein relation between $\eta_D$ and diffusion coefficient is used in the last step.
 
 \paragraph{The scattering solver}
-For a two-body scattering, neglecting the quantum statistics, the collision rate in the rest frame of the medium is,
+For two-body scattering, neglecting quantum statistics, the collision rate in the rest frame of the medium is,
 \begin{eqnarray}
 R_a(p) = \sum_{b,c,d}\frac{1}{2E_a}\int \frac{dp_b^3}{(2\pi)^3 2E_b} f_0(p_b) \int d\Phi_m |M^2|_{ab\rightarrow cd}
 \end{eqnarray}
-Similar expression can also be obtained for $2\leftrightarrow 3$ processes.
-In a short amount of time $\Delta t$, the probability to have no collision is $P_{0} = \exp(-\Delta t R)$.
-The number of independent multiple collisions satisfy a Poisson distribution with mean $N = \Delta t R$. 
-For a particle based simulation, one always need to control $\delta t$ small enough $(\Delta t \ll 1/R)$ so that effectively there is at most one collision happens within the time step.
-Once a collision is sampled to happen, the full final states can be obtained by further sampling each scattering channel and the momentum phase-space differential rates.
+A similar expression can also be obtained for $2\leftrightarrow 3$ processes.
+For a short amount of time $\Delta t$, the probability to have no collision is $P_{0} = \exp(-\Delta t R)$.
+The number of independent multiple collisions satisfies a Poisson distribution with mean $N = \Delta t R$. 
+For a particle based simulation, one always needs to ensure that $\Delta t$ is small enough $(\Delta t \ll 1/R)$ so that effectively there is at most one collision happening within the time step.
+Once a collision is sampled to happen, the full final state can be obtained by further sampling each scattering channel and the momentum phase-space differential rates.
 
 The multi-dimensional phase-space sampling is performed sequentially for the initial state and final state phase-space.
 For $2\rightarrow 2$ and $2\rightarrow 3$ body processes, we rewrite the integrated rate in the fluid cell rest frame as,
@@ -366,7 +368,7 @@ For $2\rightarrow 2$ and $2\rightarrow 3$ body processes, we rewrite the integra
 R_{2m}(E_1, T) &=& \frac{d}{\nu} \frac{1}{2E_1}\int \frac{e^{-\beta E_2}dp_2^3}{(2\pi)^32E_2} 
 \int d\Phi_m\overline{|M|^2}.
 \end{eqnarray}
-If vacuum matrix-element is used, the nested integration is a Lorentz invariant quantity, and we can choose to calculate it in the center-of-mass frame of the two-body collision, 
+If vacuum matrix-elements are used, the nested integration is a Lorentz invariant quantity, and we can choose to calculate it in the center-of-mass frame of the two-body collision, 
 \begin{eqnarray}
 \int d\Phi_m\overline{|M_{22}|^2} &=& 2E_12E_2v_{\textrm{rel}}\sigma \nonumber \\
  &=& 2(s-M^2)\sigma_{\textrm{CoM}}^{22}(\sqrt{s}, T)\nonumber \\
@@ -376,27 +378,27 @@ where $\sigma$ is the cross-section of the process.
 In practice, the values of the integrated rates and cross-sections are tabulated. 
 The sampling of initial state $p_2$ determines the center-of-mass energy of the process $s = (p_1+p_2)^2 = 2(E_1 E_2 - p_1p_2 \cos\theta_{12})$.
 Subsequently we sample the momentum-transfer $q$-differential cross-section with $\sqrt{s}, T$ as inputs, and final states are reconstructed given the initial state and $q$.
-The sampling of $3\rightarrow 2$ body process is more difficult due to the larger dimensional of parameters to specify the initial state kinematics,
+The sampling of the $3\rightarrow 2$ body process is more difficult due to the larger number of parameters to specify the initial state kinematics,
 \begin{eqnarray}
 R_{32}(E_1, T) = \frac{d}{\nu} \int \frac{e^{-\beta E_2}dp_2^3}{(2\pi)^32E_2} \frac{e^{-\beta k}dk^3}{(2\pi)^32k}
 \int d\Phi_2\overline{|M|^2}.
 \end{eqnarray}
-The Lorentz invariant nested integral is a function of the initial 3-body state kinematics and temperature,
+The Lorentz invariant nested integral is a function of the initial state 3-body kinematics and temperature,
 \begin{eqnarray}
 \int d\Phi_2\overline{|M|^2} = F_{32}(\sqrt{s}, \sqrt{s_{12}}, \sqrt{s_{1k}}, T).
 \end{eqnarray}
 Where $s = (p_1+p_2+k)^2$ is the center of mass energy, $s_{12} = (p_1+p_2)^2$ and $s_{1k} = (p_1+k)^2$.
-This requires four-dimensional table for the value of $F_{32}$ and a five-dimensional initial state sampling.
+This requires a four-dimensional table for the value of $F_{32}$ and a five-dimensional initial state sampling.
 The tabulation of a high-dimensional rate and cross-section tables can be made manageable if a proper approximating function $A(x, y, \cdots)$ is proposed that captures the limiting behavior of the target function $T(x, y, \cdots)$.
-Tabulating the ratio of $T/A$ would be extremely efficient and accurate with a moderate size of the table.
+Tabulating the ratio of $T/A$ would be extremely efficient and accurate with a moderate size table.
 
-The sequential sampling breaks the original $m+n$ body phase-space sampling into two lower dimension sampling.
+The sequential sampling breaks the original $m+n$ body phase-space sampling into two lower dimensional samplings.
 But as one should notice, the prerequisite is that the integration over the final state momentum of the matrix-element can be written into a Lorentiz invariant form and therefore only depends on the Mandelstam variables.
-This appealing feature is certainly broken by the inclusion of either
-quantum statistics or in-medium propagator in the matrix-elements. 
+This appealing feature is broken by the inclusion of either
+quantum statistics or in-medium propagators in the matrix-elements. 
 Because quantum statistics introduces factors like $1\pm f(p\cdot u)$ to the final momentum integral and the in-medium propagator is not Lorentz invariant, resulting in a $F_{nm}$ that depends on the relative velocity between the collision system and the medium rest frame.
 This significantly increases the dimension and complexity of the problem. 
-Fortunately, the separation of hard and soft mode showed in the last subsection allows one use vacuum matrix-element at large momentum transfer. 
+Fortunately, the separation of hard and soft modes allows one to use vacuum matrix-elements at large momentum transfer. 
 
 \section{The Landau-Pomeranchuk-Migdal effect: theory}
 In the last section, all the processes are treated as instantaneous, however, a process actually takes a finite amount of time for its final states to loose coherence. 
