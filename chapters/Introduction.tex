@@ -1,19 +1,19 @@
 \chapter{Introduction}
 \label{chapter:introduction}
-The fundamental theory of strong interaction -- Quantum chromodynamics (QCD) -- leads to rich phenomena, from low energy vibrations of atomic nuclei to the production of energetic jets of particles with over trillion electron volts of energy on the Large Hadron Collider (LHC).
+The fundamental theory of strong interaction -- Quantum chromodynamics (QCD) -- describes rich set of phenomena, from low energy vibrations of atomic nuclei to the production of energetic jets of particles with over trillion electron volts of energy on the Large Hadron Collider (LHC).
 Its force binds over 99\% of the mass in the visible universe, yet its complexity has made it a subject very hard to approach both experimentally and theoretically.
-To understand its dynamics, people look for simplify scenario to do experiments and examine our understandings.
+To understand its dynamics, people look for simplified scenarios to do experiments and examine our understandings.
 One such limit is the high energy limit, where the coupling constant of the strong interaction $\alpha_s$ becomes relatively small, known as asymptotic freedom \cite{Gross:1973id,Politzer:1973fx}. 
 Theoretical tools such as perturbative QCD (pQCD) can be applied.
-Observations from high energy collisions has confirmed the success use of perturbative tools at high energy \cite{RevModPhys.59.465}.
-Another interesting aspect is to understand physical systems in the ``many'' (thermodynamic) limit.
-Instead of excite a few fundamental particles and observe their evolution, one deposits a huge amount of energy into a tiny region, for example, by colliding heavy nuclei targets that excites a medium with thousands of particles. 
+Observations from high energy collisions have confirmed the successful use of perturbative tools at high energy \cite{RevModPhys.59.465}.
+Another interesting aspect is to understand physical systems in the ``many particle'' (thermodynamic) limit.
+Instead of exciting a few fundamental particles and observing their evolution, one deposits a huge amount of energy into a tiny region, for example, by colliding heavy nuclei that excite a medium with thousands of particles. 
 In this limit, one is more interested in the collective features of the strong force.
-Questions such the equation-of-state (EoS), the medium transport coefficients, and the medium stopping power (opacity), etc, are also fundamental properties of the strong interaction.
-Applying tools from many body physics such as the finite temperature theory, kinetic transport theory, and hydrodynamics, another facet of QCD has been revealed on the particle colliders.
+Features such as the structure of the equation-of-state (EoS), the medium transport coefficients, and the medium stopping power (opacity), etc, are also fundamental properties of the strong interaction.
+Applying tools from many body physics such as the finite temperature field theory, kinetic transport theory, and hydrodynamics, many facets of QCD have been revealed from data taken at particle colliders.
 
-I shall briefly review the basic concepts of QCD and the current picture of the nuclear matter, in particular, the quark-gluon plasma (QGP). 
-Then key experimental discoveries on relativistic heavy-ion collisions are reviewed and I will show how different probes can be used to characterize the different transport properties of the QGP through a model-to-data comparison.
+I shall briefly review the basic concepts of QCD and our current understanding of nuclear matter, in particular, the quark-gluon plasma (QGP). 
+Then key experimental discoveries made by studying relativistic heavy-ion collisions are reviewed and I will show how different probes can be used to characterize the different transport properties of the QGP through a model-to-data comparison.
 This dissertation is an example of such practice: I developed a heavy-flavor transport model and combined it with and advanced statistical method to reverse engineer one of QGP transport properties (stopping power) from experimental data.
 
 \section{Nuclear matter and Quantum chromodynamics}
@@ -374,13 +374,13 @@ Therefore, as an important practice for dynamical modeling, the model should be 
 We devoted chapter \ref{chapter:transport} to improve the accuracy of hard parton transport model.
 
 \section{Outline of this Thesis}
-In this thesis, I focuses on the extraction of the heavy quark transport coefficients from experiments using a newly developed transport model for hard parton in a quark-gluon plasma.
+In this thesis, I focuses on the extraction of the heavy quark transport coefficients from experiments using a newly developed transport model for hard parton propagation in a QGP.
 In chapter \ref{chapter:simulation}, I introduce a hydrodynamic-based medium for the medium evolution. 
 As an application of this simulation framework, I review my project on reverse engineering a three-dimensional initial entropy deposition of the heavy-ion collision from experimental data. 
-In chapter \ref{chapter:transport}, we develop the transport model for hard partons (including heavy flavors) propagation inside a quark-gluon plasma.
+In chapter \ref{chapter:transport}, we develop the transport model for hard parton (including heavy flavor) propagation inside the QGP.
 This model interpolates a small-angle diffusion picture and a large-angel scattering picture of the probe-medium interaction.
-I show the limitation of the semi-classical transport approach in implementing parton branching processes (radiation) at high energy, and demonstrate how to modified the semi-classical approach to treat it properly.
-Chapter \ref{chapter:coupling} builds a comprehensive simulation workflow that couples the initial production and in-meidum transport of heavy flavors to the bulk medium evolution.
+I show the limitation of the semi-classical transport approach in implementing parton branching processes (radiation) at high energy, and demonstrate how to modify the semi-classical approach to treat it properly.
+Chapter \ref{chapter:coupling} builds a comprehensive simulation workflow that couples the initial production and in-medium transport of heavy flavors to the bulk medium evolution.
 Benchmark calculations with simple guesses of parameters are compared to the experimental measurements.
 Chapter \ref{chapter:bayes} is a brief description of the Bayes methodology of model parameter calibration.
 Applying the Bayes method, in chapter \ref{chapter:results}, a systematic model-to-data comparison is performed, extracting the heavy flavor transport properties.
