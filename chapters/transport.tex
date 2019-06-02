@@ -401,62 +401,69 @@ This significantly increases the dimension and complexity of the problem.
 Fortunately, the separation of hard and soft modes allows one to use vacuum matrix-elements at large momentum transfer. 
 
 \section{The Landau-Pomeranchuk-Migdal effect: theory}
-In the last section, all the processes are treated as instantaneous, however, a process actually takes a finite amount of time for its final states to loose coherence. 
-For elastic collision, this time is $1/m_D \sim 1/gT$ which is still short compared to the mean-free-path $\lambda \sim 1/g^2 T$, provided a sufficiently small $g$.
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{splitting.pdf}
+\caption{A schematic demonstration of the physics of in-medium parton bremsstrahlung. The hard parton ``$a$'' splits into two hard partons ``$b$'' and ``$c$''. The hard partons (quarks or gluon) are denoted as straight lines. The hard system constantly interacts with the medium through gluon exchanges, denoted as the loop lines. One sums the squared amplitude ($|\cdots|^2$) from interacting with the medium arbitrary times ($m$). Each amplitude has to sum over all the interference contribution.
+Finally, one does an ensemble average over the medium configurations.}
+\label{fig:split}
+\end{figure}
+In the last section, all the processes were treated as instantaneous, however, a process actually takes a finite amount of time for its final states to loose coherence. 
+For elastic collisions, this time is $1/m_D \sim 1/gT$ which is still short compared to the mean-free-path $\lambda \sim 1/g^2 T$, provided a sufficiently small $g$.
 For inelastic process, the light-cone energy difference between the initial and final states is,
 \begin{eqnarray}
 \delta E = \frac{k_\perp^2}{2k} + \frac{p_\perp^2}{2p} - \frac{{p'}_\perp^2}{2{p'}} = \frac{ [(1-x)\vec{k}_\perp - x\vec{p}_\perp]^2}{2x(1-x)E}
 \end{eqnarray}
-By the uncertainty principal, the coherence time for such transition is on the order of $\tau_f = 1/\delta E$, termed the ``formation time'' of the radiation. 
-In this region of phase space $k_\perp^2, p_\perp^2 < g^2x(1-x)ET$, the average number of collision during the radiation becomes a relatively large number $N = \tau_f/\lambda >1$, so picture of radiation induced from independent scattering centers breaks down.
-It has been shown that these multiple scatterings should be resumed \cite{Zakharov:1996fv,Zakharov:1997uu,Baier:1996kr}, and the leading order resumed radiation probability is,
+By the uncertainty principal, the coherence time for such a transition is on the order of $\tau_f = 1/\delta E$, termed the ``formation time'' of the radiation. 
+In this region of phase space $k_\perp^2, p_\perp^2 < g^2x(1-x)ET$, the average number of collisions during the radiation becomes a relatively large number $N = \tau_f/\lambda >1$, so the picture of radiation being induced from independent scattering centers breaks down.
+It has been shown that these multiple scatterings should be resummed \cite{Zakharov:1996fv,Zakharov:1997uu,Baier:1996kr}, and the leading order resummed radiation probability is,
 \begin{eqnarray}
-\nonumber
-\frac{dP^{a}_{bc}}{d\omega} &=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2\\ &&\nabla_{\mathbf{b}_1} \cdot\nabla_{\mathbf{b}_2} \left\{G(t_2, \mathbf{b}_2; t_1, \mathbf{b}_1) - G_0(t_2, \mathbf{b}_2; t_1, \mathbf{b}_1) \right\}|_{\mathbf{b}_1, \mathbf{b}_2 \rightarrow 0}
+\frac{dP^{a}_{bc}}{d\omega} &=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2\\\nonumber &&\nabla_{\mathbf{b}_1} \cdot\nabla_{\mathbf{b}_2} \left\{G(t_2, \mathbf{b}_2; t_1, \mathbf{b}_1) - G_0(t_2, \mathbf{b}_2; t_1, \mathbf{b}_1) \right\}|_{\mathbf{b}_1, \mathbf{b}_2 \rightarrow 0}
 \label{eq:theory-dR}
 \end{eqnarray}
 $P^{0,a}_{bc}(x)$ is the vacuum splitting function, and $x$ is the energy fraction carried by the daughter $b$.
 Inside the double time intergal, $G$ is the propagator of the following Hamiltonian for the transverse dynamics of the splitting system,
 \begin{eqnarray}
 \hat{H} &=& \frac{-\nabla^2_{\mathbf{b}} + m^2_\textrm{eff}}{2x(1-x)E} - i \Gamma_3(\mathbf{b})\\
-\Gamma_3(\mathbf{b}) &=& \frac{C_a-C_b+C_c}{2}\Gamma_2(\mathbf{b}) + \frac{C_a-C_c+C_b}{2}\Gamma_2(x\mathbf{b}) \\
+\Gamma_3(\mathbf{b}) &=& \frac{C_a-C_b+C_c}{2}\Gamma_2(\mathbf{b}) + \frac{C_a-C_c+C_b}{2}\Gamma_2(x\mathbf{b}) \\\nonumber
 &&+ \frac{C_b+C_c-C_a}{2}\Gamma_2((1-x)\mathbf{b})
 \end{eqnarray}
-and $G_0$ is the free propagator. The variable $\mathbf{b}$ is the Fourier transformation dual of the transverse momentum, and is usually referred as the impact-parameter (not to be confused with the other use).
+and $G_0$ is the free propagator. The variable $\mathbf{b}$ is the Fourier transformation dual of the transverse momentum, and is usually referred to as the impact-parameter (not to be confused with the other use).
 $m^2_\textrm{eff}$ is a combination of both parton bare masses and thermal masses.
 Finally, the interaction $\Gamma_3(\mathbf{b})$ encodes the transverse broadening of the three body system $a\rightarrow b+c$ \cite{Zakharov:1997uu}.
-It has three pieces of two-body contributions $\Gamma_2(\mathbf{b})$.
+It has three two-body contributions $\Gamma_2(\mathbf{b})$.
 The vacuum piece $G_0$ is subtracted from $G$ so that this formula only computes the medium-induced radiation.
 The two gradient operators at time $t_1$ and $t_2$ come from the action of the radiation vertices, meaning this transition receives coherence contribution from $t_1$ to $t_2$.
-If one neglects the mass term, $G$ can be rewrite as $G_0 -i G_0\Gamma_3 G$ so that,
+If one neglects the mass term, $G$ can be rewritten as $G_0 -i G_0\Gamma_3 G$ so that,
 \begin{eqnarray}
 \nonumber
-\frac{dP^{a}_{bc}}{d\omega} &=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2\\ &&\nabla_{\mathbf{b}_1} \cdot\nabla_{\mathbf{b}_2} [G_0(-i\Gamma_3) G](t_2, \mathbf{b}_2;t_1, \mathbf{b}_1)|_{\mathbf{b}_1, \mathbf{b}_2 \rightarrow 0}\\
-&=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2 F(t_2; t_1)
+\frac{dP^{a}_{bc}}{d\omega} &=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2\\ &&\nabla_{\mathbf{b}_1} \cdot\nabla_{\mathbf{b}_2} [G_0(-i\Gamma_3) G](t_2, \mathbf{b}_2;t_1, \mathbf{b}_1)|_{\mathbf{b}_1, \mathbf{b}_2 \rightarrow 0},\\
+&=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2 F(t_2; t_1).
 \end{eqnarray}
-And $F(t_2, t_1)$ is a short notation for term under the integration.
+$F(t_2, t_1)$ is a short notation for term under the integration.
 
-The interaction potential $\Gamma_2(\mathbf{b})$ really depends on the assumption of the probe-medium interaction.
-For example, in a weakly coupled theory, a quite compact results is obtained at leading order \cite{Aurenche:2002pd},
+The interaction potential $\Gamma_2(\mathbf{b})$ depends on the assumption of the probe-medium interaction.
+For example, in a weakly coupled theory, a compact results is obtained at leading order \cite{Aurenche:2002pd},
 \begin{eqnarray}
 \Gamma_2(\mathbf{b}) = \frac{1}{\pi}\int \frac{d\mathbf{q}_\perp^2}{(2\pi)^2} \frac{g^2 T m_D^2 (1-e^{i\mathbf{b}\cdot\mathbf{q_\perp}})}{q_\perp^2(q_\perp^2+m_D^2)}
 \end{eqnarray}
 
 There are two systematic ways to investigate the properties of the medium-induced radiation computation in equation \ref{eq:theory-dR}.
 In a method called the opacity expansion \cite{Wiedemann:2000za,Gyulassy:1999zd}, the propagator is solved in a perturbation series of the number of interaction $\Gamma_3$. 
-Another approach which studies the solution assuming soft interaction (small-$q$) and approximate the collision kernel by a harmonic oscillator one $\Gamma_2(b) \approx \frac{1}{4}\hat{q}b^2$ \cite{Baier:1996kr,Baier:1998yf,Baier:1996sk}.
-The is also known as the leading-log $1/\ln(N)$ approximation, where $N$ can be understand as the ``number'' of coherent collision within the formation time.
+Another approach which studies the solution assuming soft interactions (small-$q$) and approximates the collision kernel by a harmonic oscillator  $\Gamma_2(b) \approx \frac{1}{4}\hat{q}b^2$ \cite{Baier:1996kr,Baier:1998yf,Baier:1996sk}.
+The is also known as the leading-log $1/\ln(N)$ approximation, where $N$ can be interpreted as the ``number'' of coherent collision within the formation time.
 Taking the residue potential $\Gamma(b) - \frac{1}{4}\hat{q}b^2$ as a perturbation, improvements at the next-to-leading-log level has also been investigated in \cite{Arnold:2008zu,Mehtar-Tani:2019tvy}.
 
 Though this leading order calculation has been written in this compact form, it is not trivial to include its effect (even approximately) in the semi-classical Boltzmann simulation.
-One can also see this problem more evidently by observing that it requires a finite time interval $t_1 \rightarrow t_2$ to compute the splitting rate at time $t_1$, while Boltzmann equation has only one time variable in the . 
-We will devote the next section to an approximation solution to this problem.
-For the rest of this section, we shall elaborate the details of the current understanding in the opacity expansion and harmonic oscillator (deep-LPM) regime, which greatly facilitate the discussion of the next section.
+One can clearly see this problem by observing that it requires a finite time interval $t_1 \rightarrow t_2$ to compute the splitting rate at time $t_1$, while the Boltzmann equation has only one time variable. 
+We will devote the next section to an approximated solution to this problem.
+For the rest of this section, we shall elaborate the details of the current understanding in the opacity expansion and harmonic oscillator (deep-LPM) regime, which greatly facilitates the discussion of the next section.
 
 \subsection{Large medium}
-For a large and static medium that approaches the infinite medium limit. 
-Further simplification is possible that the calculation of the transition probability becomes a ``static" problem, and a branching rate $\Gamma$ can be defined as the branching probability per unit time.
-This limit is known as the AMY formalisim \cite{Arnold:2002ja,Arnold:2002zm,Arnold:2003zc},
+For a large and static medium that approaches the infinite medium limit, 
+further simplification is possible. 
+The problem becomes a ``static" one, and a branching rate $\Gamma$ can be defined as the branching probability per unit time.
+This limit is known as the AMY equation \cite{Arnold:2002ja,Arnold:2002zm,Arnold:2003zc},
 \begin{eqnarray}\label{eq:AMY-1}
 \nonumber
 \frac{d\Gamma_{a\rightarrow bc}}{dx} &=& \frac{1}{2E\nu_a} \frac{\alpha_s d_a P_{a\rightarrow bc}(x)}{x^2(1-x)^2}\int\frac{d^2\vec{k}}{(2\pi)^2}\vec{k}\cdot \mathfrak{Re} \vec{F}
@@ -475,19 +482,19 @@ $\vec{k}$, and $\tau_f(k)$ is the transverse scale and the formation time of the
 \mathcal{A}(q_\perp^2) &=& \frac{g^2 m_D^2 T}{q^2\left(m_D^2+q^2\right)}
 \end{eqnarray}
 The exact solution can be solved numerically.
-Here, we build the understanding of this formula in two extreme regimes: the incoherent limit (Bethe-Heitler regime) and the deep-LPM regime.
+Here, we investigate this formula in two extreme regimes: the incoherent limit (Bethe-Heitler regime) and the deep-LPM regime.
 
 {\bf The Bethe-Heitler regime}: The quantum interference can be neglected if the formation time is sufficiently short.
-In such cases the amplitude under the double time integral has a delta-function like time structure, and the transition probability has a nice interpretation of integrating localized branching rate over a single time variable.
-But the kinematic range for short enough formation time is very limited. 
+In such cases the amplitude under the double time integral has a delta-function like time structure, and the transition probability has a nice interpretation of integrating the localized branching rate over a single time variable.
+But the kinematic range for short formation times is very limited. 
 The condition $\tau_f \ll \lambda$ translates to $\omega \ll T$.
 For such case, one may solve for $F$ by treating $F/\tau_f$ as a large quantity \cite{Ghiglieri:2015ala}.
 The leading equations are then,
 \begin{eqnarray}
 2\vec{k}\tau_f(k) &=& - \mathfrak{Im} \vec{F} \\
-\mathfrak{Re} \vec{F} &=& -g^2 \tau_f(k)\mathcal{C}[\mathfrak{Im} \vec{F}] 
+\mathfrak{Re} \vec{F} &=& -g^2 \tau_f(k)\mathcal{C}_3[\mathfrak{Im} \vec{F}] 
 \end{eqnarray}
-Take quark splitting into a quark and a gluon as an example and neglecting the thermal masses, the resulting rate is then proportional to 
+Take a quark splitting into a quark and a gluon as an example and neglecting the thermal masses, the resulting rate is then proportional to 
 \begin{eqnarray}
 R &\propto& 2g^2 \int d k^2 \int d q^2 \mathcal{A}(q_\perp^2) \left\{
 \frac{C_A}{2} \frac{\vec{k}}{\vec{k}^2}\cdot\left[\frac{\vec{k}}{\vec{k}^2}-\frac{\vec{k}-\vec{q}}{(\vec{k}-\vec{q})^2}\right] \right.\\\nonumber
@@ -495,7 +502,8 @@ R &\propto& 2g^2 \int d k^2 \int d q^2 \mathcal{A}(q_\perp^2) \left\{
 +\frac{C_A}{2} \frac{\vec{k}}{\vec{k}^2}\cdot\left[\frac{\vec{k}}{\vec{k}^2}-\frac{\vec{k}+(1-x)\vec{q}}{(\vec{k}+(1-x)\vec{q})^2}\right]
 \right\}
 \end{eqnarray}
-though, this expression looks very different from the cross-section formula that we used in the incoherent rate in the Boltzmann equation, they are actually equivalent upon the integration of $dk^2$, we provide detailed explanation of this connection between the Bethe-Heitler approximation of the AMY rate equation and the incoherent rate computed with $2\rightarrow 3$ cross-section in section \ref{transport:ME}.
+though, this expression looks very different from the cross-section formula that we used in the incoherent rate of the Boltzmann equation, they are actually equivalent upon the integration of $dk^2$. 
+We provide a detailed explanation of this connection between the Bethe-Heitler approximation of the AMY rate equation and the incoherent rate computed with $2\rightarrow 3$ cross-section in appendix \ref{app:ME}.
 
 In the high energy limit $E\gg T \gg \omega$ so that $x\ll 1$, this rate can be approximated by its $x\rightarrow 0$ limit, 
 \begin{eqnarray}
@@ -504,33 +512,33 @@ In the high energy limit $E\gg T \gg \omega$ so that $x\ll 1$, this rate can be 
 &=& \frac{2 C_A E\alpha_s d_a P(x)}{\nu_a} \int \frac{dk^2}{(2\pi)^2} \int \frac{dq^2 \mathcal{A}(q_\perp^2)}{(2\pi)^2} 
 \left[\frac{\vec{k}}{\vec{k}^2}-\frac{(\vec{k}-\vec{q})}{(\vec{k}-\vec{q})^2}\right]^2
 \end{eqnarray}
-where in the second step, the $k$ integration of the term with the ``$+$" sign has been shifted to an integration over $k-q$ to render the expression into the completing square form.
-This form is known as the Gunion-Bertsch approximation \cite{PhysRevD.25.746} of inelastic $2\rightarrow 3$ scattering, whose improved form \cite{Fochler:2013epa,Uphoff:2014hza} has been employed in existing full Boltzmann simulation of partonic transport equation \cite{Xu:2004mz,Uphoff:2010sh}.
-To understand the physical meaning of the above expression, we can proceed to integrate and regulate soft divergence with a screening masses whenever needed.
+where in the second step, the $k$ integration of the term with the ``$+$" sign has been shifted to an integration over $k-q$ to render the expression into the complete square form.
+This form is known as the Gunion-Bertsch approximation \cite{PhysRevD.25.746} of inelastic $2\rightarrow 3$ scattering, whose improved form \cite{Fochler:2013epa,Uphoff:2014hza} has been employed in existing full Boltzmann simulations of the partonic transport equation \cite{Xu:2004mz,Uphoff:2010sh}.
+To understand the physical meaning of the above expression, we can proceed to integrate and regulate the soft divergence with a screening mass whenever needed.
 Eventually we have,
 \begin{eqnarray}
 \frac{dR}{dx} \propto \alpha_s P(x) \times \alpha_s C_A T \propto \frac{\alpha_s P(x)}{\lambda_g}
 \label{eq:incoh-dR}
 \end{eqnarray}
-Where the second factor $\alpha_s C_A T$ can be interpreted as the inverse of gluon-mean-free path. 
-Now the physical meaning becomes clear: in the incoherent limit, certain amount of radiation $\alpha_s P(x)$ is triggered every mean-free-path from interaction with the collision centers.
+Where the second factor $\alpha_s C_A T$ can be interpreted as the inverse of the gluon-mean-free path. 
+Now the physical meaning becomes clear: in the incoherent limit, a certain amount of radiation $\alpha_s P(x)$ is triggered every mean-free-path from interactions with the collision centers.
 
-To summarize in the Bethe-Heitler regime, the total number of branching can be viewed as contributed by a incoherent sum $2\rightarrow 3$ processes localized at time $t$.
-And such contribution can be easily incorporated into the Boltzmann equation given the incoherent branching rate.
-However, the valid range for this approximation is at best $x E \sim$ a few times of the temperature.
+To summarize the Bethe-Heitler regime, the total number of branchings can be viewed as contributed by an incoherent sum of $2\rightarrow 3$ processes localized at time $t$.
+And such contributions can be easily incorporated into the Boltzmann equation given the incoherent branching rate.
+However, the validity range for this approximation is at best $x E \sim$ a few times of the temperature.
 
-{\bf The deep-LPM region (leading-log behavior)}: another useful approximation considers the limit $\tau_f$ is so large that many collisions contribute coherently to the branching. 
-This corresponds to those energetic split $\omega \gg T$.
-As a result, the transverse momentum $k$ of the branching should be large compared to the average momentum transfer to each scattering centers $q$.
-In this limit, a diffusion approximation to the $\mathcal{C}$ operators is possible.
+{\bf The deep-LPM region (leading-log behavior)}: another useful approximation considers the limit $\tau_f$ being so large that many collisions contribute coherently to the branching. 
+$\tau_f \gg \lambda$ corresponds to the region when the daughter parton's energy is large $\omega, E-\omega \gg T$.
+As a result, the transverse momentum $k$ of the branching should be large compared to the average momentum transfer to each scattering center $q$.
+In this limit, a diffusion approximation to the $\mathcal{C}_3$ operators is possible.
 The finite difference between $F(k)$ and $F(k+O(q))$ is expanded in $\vec{q}$. 
 The zeroth order cancels and the first order $\vec{q}$ contribution  vanishes due to the symmetric $q$ integration.
-Keeping only second order terms in $\vec{q}$, the AMY equation is simplified to a diffusion type equation but with complex diffusion constant and a source term \cite{Arnold:2008zu}
+Keeping only second order terms in $\vec{q}$, the AMY equation is simplified to a diffusion type equation but with a complex diffusion constant and a source term \cite{Arnold:2008zu}
 \begin{eqnarray}
 - \frac{1}{4} \nabla^2_{\vec{k}}\vec{F} + i\frac{k^2 + m^2_{\textrm{eff}}}{2x(1-x)E\hat{q}_3}\vec{F} = \frac{2\vec{k}}{\hat{q}_3}.
 \end{eqnarray}
 This approximation of the original collision operator is also known as the harmonic oscillator approximation.
-$\hat{q}_3$ is the effective transport parameter for conveniences 
+$\hat{q}_3$ is the effective transport parameter,
 \begin{eqnarray}
 \hat{q}_3(x, Q_0^2) &=& \alpha_s T m_D^2 \ln\left(1+\frac{Q_0^2}{m_D^2}\right) C_{abc}(x).\label{eq:qhat3}
 \end{eqnarray}
@@ -540,7 +548,7 @@ The effective transport parameter also depends on the color structure of the spl
 C_{abc}(x) &=&  \frac{C_b+C_c-C_a}{2} + x^2 \frac{C_a+C_c-C_b}{2} \\
 &&+(1-x)^2\frac{C_a+C_b-C_c}{2}
 \end{eqnarray}
-Taking the momentum fraction of the ``$b$'' particle to zero $x\rightarrow 0$, this color factor goes to $C_b$; similarly, $x\rightarrow 1$ which corresponds to ``$c$'' particle taking vanishing fraction of the total energy, the color factor approaches $C_c$.
+Taking the momentum fraction of the ``$b$'' particle to zero $x\rightarrow 0$, this color factor goes to $C_b$; similarly, $x\rightarrow 1$ which corresponds to ``$c$'' particle taking a vanishing fraction of the total energy, the color factor approaches $C_c$.
 Therefore, in these extreme limits $x\rightarrow 0$ or $1$, the effect transport parameters looks like the daughter with softer momentum.
 With finite $x, 1-x$, the color factor becomes a combination of the colors of the whole splitting system.
 
@@ -554,30 +562,30 @@ And the radiation rate can be obtained accordingly,
 \sqrt{\frac{\hat{q}_3(x, Q_0^2)}{2x(1-x)E}} \propto \frac{\alpha_s P(x)}{\langle \tau_f \rangle}
 \end{eqnarray}
 Such a result is often referred to as the leading-log (leading in $1/\ln(N)$) solution.
-An interesting scale $\sqrt{2x(1-x)E\hat{q}_3}$ shows up in such calculation which governs the typical transverse momentum of the splitting, or equivalently $\sqrt{\hat{q}_3/2x(1-x)E}$ which governs the rate at which the splitting happens.
+An interesting scale $\sqrt{2x(1-x)E\hat{q}_3}$ shows up in this calculation which governs the typical transverse momentum of the splitting, or equivalently $\sqrt{\hat{q}_3/2x(1-x)E}$ which governs the rate at which the splitting happens.
 A simple interpretation for these scales is:
 during $\tau_f \sim 2x(1-x)E/k_\perp^2$, many soft interactions contribute to the broadening of $k_\perp^2$.
 In a diffusion approximation, the variance $\langle k_\perp^2 \rangle$ is linearly proportional to the diffusion constant and time, $\langle k^2\rangle \sim \hat{q}_3\tau_f$.
-Combining with the expression of formation time, one arrives at the above typical transverse momentum and typical formation time.
+Combined with the expression of formation time, one arrives at the above typical transverse momentum and typical formation time.
 
 Compared to the na\"ive ``incoherent expectation'' in equation \ref{eq:incoh-dR}, the actual radiation rate is reduced by a factor of $\lambda_{\textrm{el}}/\langle \tau_f \rangle$ on average. 
-Therefore, in the deep-LPM regime, instead of triggering radiation every mean-free-path, a large collision centers contribute coherently and trigger radiation every $\tau_f$ which scales as $\lambda \sqrt{\omega/T}$.
+Therefore, in the deep-LPM regime, instead of triggering radiation every mean-free-path, many collision centers contribute coherently and trigger radiation every $\tau_f$ which scales as $\lambda \sqrt{\omega/T}$.
 Considering that this approximation only works for $\omega \gg T$, we combine this result with the Bethe-Heitler regime and summarize the radiation pattern in a large medium as,
 \begin{eqnarray}
 \frac{dR^a_{bc}}{dx} \sim \frac{\alpha_s P^{a(0)}_{bc}(x)}{\max\{\lambda, \tau_f\}}
 \end{eqnarray}
-This simple idea will be the foundation for developing the transport modeling of the parton branching processes in the section section.
+This simple idea will be the foundation for modeling of the parton branching processes in section \ref{section:modified-transport}.
 
 {\bf The deep-LPM region (next-to-leading-log level)}:
-The previously introduced leading-log result has both a charming simplicity and a clear physical interpretation in explaining what happens in the deep-LPM region $\ln(N) \sim \ln(xE/T) \gg 1$.
-Together with the Bethe-Heitler (incoherent) limit at $xE \lesssim T$, one can already build a pretty good understanding in an infinite medium.
+The previously introduced leading-log result has both a simplicity and a clear physical interpretation in explaining what happens in the deep-LPM region $\ln(N) \sim \ln(xE/T) \gg 1$.
+Together with the Bethe-Heitler (incoherent) limit at $xE \lesssim T$, one can already develop a pretty good understanding in an infinite medium.
 
-One thing that still deserves a detailed discussion is the upper bound $Q_0$ introduced to the $q$-integration in the leading-log approximation.
+One thing that still deserves a detailed discussion is the upper bound $Q_0$ introduced in the $q$-integration in the leading-log approximation.
 This cut-off scale, as a result of the small-$q$ simplification of the full model, is generally unknown and brings an uncertainty to the approximation at this level.
-And we need better understanding to build a good transport model proxy of the underlying theory.
-This issue has been studied at the next-to-leading-log (NLL) level by treating the large-$q$ part of the collision kernel as a perturbation to this approximation, authors of \cite{Arnold:2008zu} and more recently by authors of \cite{Mehtar-Tani:2019tvy} had found that reasonable choice of $Q_0$ is the order of $k_\perp^2$ itself.
+This issue has been studied at the next-to-leading-log (NLL) level by treating the large-$q$ part of the collision kernel as a perturbation to this approximation.
+The authors of \cite{Arnold:2008zu} and more recently authors of \cite{Mehtar-Tani:2019tvy} have found that a reasonable choice of $Q_0$ is the order of $k_\perp^2$ itself.
 A self-consistent determination of $Q_0$ is also possible by requiring a minimal contribution from the NLL correction.
-The NLL results, takes a similar structure of the leading-log solution, but with the unknown $Q_0$ replaced by its NLL improvements $Q_{1}$,
+The NLL result, takes a similar structure as the leading-log solution, but with the unknown $Q_0$ replaced by its NLL improved value $Q_{1}$,
 \begin{eqnarray}
 Q_1^2  \approx \sqrt{\omega \hat{q}} \approx \sqrt{\omega \alpha_s C_R m_D^2 T \ln\frac{Q_0^2}{m_D^2}}
 \label{eq:Q1}
@@ -591,26 +599,25 @@ Q_1^2 &=& \sqrt{2 x (1-x) E \alpha_s T m_D^2}\\\nonumber
 \label{eq:Q1-sf}
 \end{eqnarray}
 with $\xi \approx 9.1$ a constant. 
-This suggests that the optimal choice of the scale is on the the branching transverse momentum itself $\langle k^2 \rangle = \sqrt{2x(1-x)E\hat{q}_3}$, but with an improved logarithmic factor.
-It has been shown that using this self-consistent $Q_1$ brings the approximation very close to the numerical solution of the full model when $\omega \gg T$.
+This suggests that the optimal choice of the scale is on the order of the branching transverse momentum itself $\langle k^2 \rangle = \sqrt{2x(1-x)E\hat{q}_3}$, but with an improved logarithmic factor.
+It has been shown that using this self-consistent $Q_1$, the approximation is very close to the numerical solution of the full model when $\omega \gg T$ \cite{Arnold:2008zu}.
 
 \subsection{Thin medium: opacity expansion}
-The realistic medium created in a heavy-ion collision are always finite and expanding.
-For thin and dilute medium, there is only a few effective collision that contributes.
-In such cases, systematic expansion over $L/\lambda$ has been developed can is known as the opacity expansion.
+For a thin and dilute medium, there is only a few effective collisions that contributes.
+In such cases, a systematic expansion over $L/\lambda$ has been developed and is known as the opacity expansion \cite{Wiedemann:2000za,Gyulassy:1999zd,Djordjevic:2008iz}.
 This can be obtained by solving the propagator with an perturbation series of the interaction potential $\Gamma_3$.
-At leading order in the opacity expansion and apply soft approximation $x\ll 1$, the radiation rate is \cite{Djordjevic:2008iz},
+At leading order in the opacity expansion and applying soft approximation $x\ll 1$, the radiation rate is \cite{Djordjevic:2008iz},
 \begin{eqnarray}
 \frac{dR}{dx} \propto g^2 P(x) C_A \int \frac{d\vec{q}^2 d\vec{k}}{(2\pi)^4} \frac{g^2 T m_D^2}{q^2(q^2 + m_D^2)} \frac{\vec{k}\cdot\vec{q}}{(\vec{k}-\vec{q})^2 k^2} \left[1-\cos\left(\frac{(\vec{k}-\vec{q})^2 t}{2x E}\right)\right]
 \end{eqnarray}
 It has a notable time-dependent $1-\cos(\omega t)$ modulation due to interference from the production point at $t=0$ to the first interaction with medium at time $t$.
-Therefore, there is an important finite-size effect for radiation spectrum in a thin medium, and so is the associated energy loss of the leading parton.
-The finite size effect is important for phenomenological study, because the QGP fireball from nuclear collisions is far from an ``infinite'' medium.
+Therefore, this is an important finite-size effect for the radiation spectrum in a thin medium and the associated energy loss of the leading parton.
+The finite size effect is important for phenomenological studies, because the QGP fireball from nuclear collisions is far from an ``infinite'' medium.
 
 \subsection{Numerical solution for a general case}
-To go beyond the above approximation and investigate how different limiting regimes are connected, one has to use a numerical approach.
-We follow the approach described in \cite{CaronHuot:2010bp} to solve the propagator $G$ in the momentum space.
-Neglecting the thermal mass term, the momentum space represtation of the splitting rate is,
+To go beyond the above approximation and investigate how the different limiting regimes are connected, one has to use a numerical approach.
+We follow the approach described in \cite{CaronHuot:2010bp} to solve the propagator $G$ in momentum space.
+Neglecting the thermal mass term, the momentum space representation of the splitting rate is,
 \begin{eqnarray}
 \frac{dR^{a}_{bc}(t)}{dx} = \frac{P^{a(0)}_{bc}(x)}{2\pi x(1-x)E} \mathfrak{Re} \int \frac{d\mathbf{p}^2}{(2\pi)^2} \int_0^t d\tau e^{\frac{-i\tau}{\tau_f(p)}} \vec{p}\cdot \vec{\Psi}(\vec{p}, \tau)
 \end{eqnarray}
@@ -619,20 +626,20 @@ with the time evolution of the vector-valued wave function solved in the interac
 \frac{\partial \vec{\Psi}}{\partial \tau} &=& - e^{\frac{-i\tau}{\tau_f(p)}} \mathcal{C}_3\left[e^{\frac{i\tau}{\tau_f(p)}}\vec{\psi}(\vec{p}, \tau)\right]\\
 \vec{\Psi}(\vec{p}, \tau=0) &=& \mathcal{C}_3\left[\frac{i\vec{p}}{p^2+m^2_{\textrm{eff}}}\right]
 \end{eqnarray}
-The $\mathcal{C}_3$ operation involves finite difference and two-dimensional integration over the transverse momentum $p$. 
+The $\mathcal{C}_3$ operation involves a finite difference and two-dimensional integration over the transverse momentum $p$. 
 Fortunately the integration over the azimuths angle of $p$ can be performed analytically at least for the leading order collision kernel with fixed coupling constant.
-Reparametrize the vector function into a vector part times a rotational invariant function $\vec{\Psi} = \vec{p}/(p^2+m^2_{\textrm{eff}})^2 \Phi(p^2)$, then the evolution equation for the scalar function $\Phi$ is,
+Reparametrizing the vector function into a vector part times a rotational invariant function $\vec{\Psi} = \vec{p}/(p^2+m^2_{\textrm{eff}})^2 \Phi(p^2)$, the evolution equation for the scalar function $\Phi$ is,
 \begin{eqnarray}
 &&\frac{\partial \Phi(p^2)}{\partial \tau} = - \alpha_s T \sum_n c_n \int dq^2 \left\{\frac{\Phi(p^2)}{|p^2-q^2|} - \frac{\Phi(p^2)}{\sqrt{(p^2+q^2+m_n^2)^2 - 4p^2q^2}}\right. \\\nonumber
 &&\left.- e^{i\tau\frac{p^2-q^2}{2x(1-x)E}}\frac{\Phi(q^2)}{2p^2}\frac{(p^2+m^2_{\textrm{eff}})^2}{(q^2+m^2_{\textrm{eff}})^2} \left[\frac{p^2+q^2}{|p^2-q^2|} - \frac{p^2+q^2+m_n^2}{\sqrt{(p^2+q^2+m_n^2)^2 - 4p^2q^2}}\right]\right\}\\
 &&\Phi(\tau=0)= i\sum_n c_n \int dq^2 \left\{\frac{p^2+m^2_{\textrm{eff}}}{|p^2-q^2|} - \frac{p^2+m^2_{\textrm{eff}}}{\sqrt{(p^2+q^2+m_n^2)^2 - 4p^2q^2}}\right. \\\nonumber
-&&\left.-\frac{(p^2+m^2_{\textrm{eff}})^2}{2p^2(q^2+m^2_{\textrm{eff}})} \left[\frac{p^2+q^2}{|p^2-q^2|} - \frac{p^2+q^2+m_n^2}{\sqrt{(p^2+q^2+m_n^2)^2 - 4p^2q^2}}\right]\right\}
+&&\left.-\frac{(p^2+m^2_{\textrm{eff}})^2}{2p^2(q^2+m^2_{\textrm{eff}})} \left[\frac{p^2+q^2}{|p^2-q^2|} - \frac{p^2+q^2+m_n^2}{\sqrt{(p^2+q^2+m_n^2)^2 - 4p^2q^2}}\right]\right\}.
 \end{eqnarray}
-Here, the summation goes over the different pieces of three-body collision kernel, where the original integration variable $\vec{q}$ has been shifted to $\vec{p}-\vec{q}$, $\vec{p}+x\vec{q}$, and $\vec{p}+(1-x) \vec{q}$ accordingly.
+Here, the summation goes over the different pieces of the three-body collision kernel, where the original integration variable $\vec{q}$ has been shifted to $\vec{p}-\vec{q}$, $\vec{p}+x\vec{q}$, and $\vec{p}+(1-x) \vec{q}$ accordingly.
 The color factors $c_n$ are $c_1 = (C_b+C_c-C_a)/2$, $c_2 = x^2(C_a+C_c-C_b)/2$, $c_3 = (1-x)^2(C_a+C_b-C_c)/2$, and $m_n^2$ terms are $m_1^2 = m_D^2$, $m_2^2 = x^2 m_D^2$, $m_3^2 = (1-x)^2 m_D^2$.
 The azimuthal integration over $\phi_q$ has been performed and $q^2$  integrates from zero to infinity.
-One may notice that one of the denominator $|q^2-p^2|$ can vanish.
-But as $q^2$ tends to $p^2$, the subtracted term in the second line also approaches the expression in the first line, and therefore leaves the function to be integrated finite.
+One may notice that one of the denominators $|q^2-p^2|$ can vanish.
+But as $q^2$ tends to $p^2$, the subtracted term in the second line approaches the expression in the first line, and therefore leaves the function to be integrated finite.
 Now, the problem has been reduced to an initial value problem of a 1+1 D first order differential-integral equation, and can be solved quite efficiently using finite difference and numerical quadrature methods.
 
 \subsection{Mass effect in medium-induced branching}
@@ -648,27 +655,35 @@ The mass not only changes the propagator, but also shorten the formation time
 \begin{eqnarray}
 \tau_f = \frac{2x(1-x)E}{k_\perp^2 + m_{\textrm{eff}}^{'2}}, m_{\textrm{eff}}^{'2} = (1-x)m_\infty^2 + x^2 M^2
 \end{eqnarray}
-These two competing feature together contribution to the mass correction.
-In principle, the above formula allows for the inclusion of heavy flavor, as long as $M\ll p$ still holds.
-In the region where $p/M < 1/g$, the radiation process for heavy quark becomes sub-dominant compared to the elastic collisions \cite{Moore:2004tg}.
+These two competing features together contribute to the mass correction.
+
+In principle, the formula discussed in this section also applies to heavy quarks once the effective mass $m_{\textrm{eff}}^2$ is replaced by $m_{\textrm{eff}}^{'2}$, though corrections like $M/p$ are dropped.
+When $M/p \gtrsim g$, further corrections may be important, but this is also the region when elastic energy loss starts to dominate the radiative energy loss for heavy quark \cite{Moore:2004tg}.
 
 \subsection{Treating multiple emissions}
-The formula discussed that has been discussed in this section only computes the radiation probability of a single radiation.
-In reality, the averaged number emissions obtained with this formula can be greater than one, so one has to find a strategy to include multiple emission.
-There has been two majorly used approaches to resum multiple emissions.
-The first one is the modified DGLAP evolution approach for the high virtuality partons \cite{Wang:2002pk,Cao:2017qpx}.
-The single medium-induced emission probability is added to the vacuum splitting function, and then one applied the DGLAP evolution as in proton-proton collision, but using the so-called modified splitting function.
+The formula that has been discussed in this section only computes the probability of a single bremsstrahlung.
+In reality, the averaged number of emissions obtained with this formula can be greater than one, so one has to find a strategy to include multiple emissions.
+There has been two major approaches used to resum multiple emissions.
+The first one is the modified DGLAP evolution approach for high virtuality partons \cite{Wang:2002pk,Cao:2017qpx}.
+The single medium-induced emission probability is added to the vacuum splitting function, and then one applies the DGLAP evolution as in proton-proton collisions, but using the so-called modified splitting function.
 At low virtuality, the parton's in-medium dynamics is more conveniently described as a time evolution. 
 And the rate equation is used to generate multiple emissions in the course of time \cite{Arnold:2002zm,Jeon:2003gi,Schenke:2009gb}.
-The problem that naturally arises is how to interface these two techniques in a realistic events, where an initial highly virtual parton transits to an in-medium transport parton.
+The problem that naturally arises is how to interface these two techniques in a realistic event, where an initial highly virtual parton transits to an in-medium transport parton.
 We shall discuss our tentative solution in the next chapter.
 
 
 \section{A modified transport model for the LPM effect}
-In this section, we shall investigate the approximation to include LPM effect approximately in a particle based Boltzmann transport simulation, termed ``a modified Boltzmann transport".
+\label{section:modified-transport}
+In this section, we shall investigate the approximated inclusion of the LPM effect in a particle based Boltzmann transport simulation, termed ``a modified Boltzmann transport".
 The approach is designed to work in a large medium and interpolates the deep-LPM region and the Bethe-Heitler region, with certain finite size behavior.
-The inclusion of running coupling effect and mass effect for the study of heavy-flavor is discussed.
+The inclusion of the running coupling effect and mass effect for the study of heavy-flavor is discussed.
 
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{splitting-approx.pdf}
+\caption{A demonstration of the modified transport approach. We seek for an approximation to the coherent process by an incoherent transport simulation with a multiplicative correction to the reaction probability.}
+\label{fig:split-approx}
+\end{figure}
 \subsection{Modifying single particle evolution}
 To see how to approximate the branching using a modification to the Boltzmann equation, we first go back to the branching probability formula introduced previously \cite{CaronHuot:2010bp},
 \begin{eqnarray}
@@ -678,28 +693,28 @@ To see how to approximate the branching using a modification to the Boltzmann eq
 F(t', t) &=& \mathfrak{Re} \int \frac{dp^2}{(2\pi)^2} e^{-it'/\tau_f} \vec{p}\cdot \Psi(\vec{p}, t').
 \end{eqnarray}
 We have abbreviate the transition amplitude by the notation $F(t', t)$ for convenience, but always keep in mind this is a quantity that depends on $E, \omega, g$ and complete medium properties along the path of the parton, including temperature and fluid velocity profiles $T(t), u^\mu(t)$.
-The obstacle towards the Boltzmann formulation is the double time integral that signature the quantum transition, which also suggests a fundamental change to the semi-classical approach.
+The obstacle towards the Boltzmann formulation is the double time integral that is the signature of the quantum transition, which also suggests a fundamental change to the semi-classical approach.
 
-If the time-dependent wave-function is expanded in a series of the collision operator, then this transition amplitude includes the superposition of arbitrary number of multiple-interaction with the medium.
-Though multiple scatterings of the branching partons also presents in the Boltzmann simulation, the difference is that the Boltzmann multiple-scatterings are independent from the branching processes; therefore, they only broaden the relative transverse momentum {\it without} changing the branching probability.
-While from the leading-log approximation, we see that the branching probability should be reduced by a factor $\sim \lambda/\tau_f$.
-Our modified approach follows this simple observation, and as an overview:
+If the time-dependent wave-function is expanded in a series of the collision operator, then this transition amplitude includes the superposition of an arbitrary number of multiple-interaction with the medium.
+Though multiple scatterings of the branching partons are also present in the Boltzmann simulation, the difference is that the Boltzmann multiple-scatterings are independent from the branching processes; therefore, they only broaden the relative transverse momentum {\it without} changing the branching probability.
+From the leading-log approximation, we see that the branching probability should be reduced by a factor $\sim \lambda/\tau_f$.
+Our modified approach follows this simple observation, and can be summarized as follows,
 \begin{itemize}
-\item[1.] Assume an incoherent branching processes is generated at $t=t_0$. Do not treat the daughter partons as independent immediately.
+\item[1.] Assume an incoherent branching processes is generated at $t=t_0$. Do not treat the daughter partons as immediately independent.
 \item[2.] Both mother and daughter partons receives elastic brodening from interacting with the medium, which also changes the formation time of the branching.
-\item[3.] Evolve the branching system until $t-t_0 > \tau_f$. Then, reject this branching process with acceptance probability that is proportional to $\lambda/\tau_f$, which corrects for the fact that these multiple scatterings should contribute coherently.
-\item[4.] Branching partons for those accepted processes are treated as independent objects from this point, rejected partons are
+\item[3.] Evolve the branching system until $t-t_0 > \tau_f$. Then, reject this branching process with an acceptance probability that is proportional to $\lambda/\tau_f$, which corrects for the fact that these multiple scatterings should contribute coherently.
+\item[4.] Branching partons for those accepted processes are treated as independent objects from this point, rejected partons are discarded without causing any physical effect.
 \end{itemize}
 
-Now we shall explain it in detail.
-Formally, this method can be understood as replacing the transition amplitude $F(t',t)$ by an ensemble ($N$) of branching systems using the following ansatz,
+Now we shall explain this scheme in detail.
+Formally, this method can be understood as replacing the transition amplitude $F(t',t)$ by an average over an ensemble ($N$) of branching systems using the following ansatz,
 \begin{eqnarray}
 F(t', t) \rightarrow \frac{1}{N}\sum_{i=1}^N \frac{b}{\tau_i(t)} \delta(t-t'- a \tau_i(t)).
 \end{eqnarray}
-Each copy ``$i$" that evolves under the incoherent Boltzman dyanmics will have a certainty probability to have a certain $\tau_i(t)$ at time $t$.
-The $\delta$-function expresses that the branching that start at time $t'$  is thought to be formed at time $t+a\tau_f$.
-The additional factor $b/\tau_f$ corrects for that the probability for a branching to happen is different from the incoherent expectation.
-This ansatz of representing a two-point function using information at $t$ and $t'$ of an ensemble of particles follows the same spirit in the Monte-Carlo solver of the traditional Boltzmann equation to discretize a function by an ensemble of particles.
+Each copy ``$i$'' that evolves under the incoherent Boltzman dyanmics will have a certainty probability to have a certain $\tau_i(t)$ at time $t$.
+The $\delta$-function expresses that the branching that starts at time $t'$  is thought to be formed at time $t+a\tau_f$.
+The additional factor $b/\tau_f$ corrects the probability, accounting for the difference between coherent and incoherent calculation.
+This ansatz of representing a two-point function using information at $t$ and $t'$ of an ensemble of particles follows the same spirit as the Monte-Carlo solver of the traditional Boltzmann equation to discretize a function by an ensemble of particles.
 This is indeed a crude proxy of the actually two-point function, and its validity has to be examined by comparing its prediction with the theoretical calculations.
 Finally, $a$ and $b$ are dimensionless factors whose forms shall be determined later and will be tuned to achieve an optimal level of agreement to theoretical calculations.
 
@@ -709,20 +724,20 @@ Plug this simplified ansatz for $F(t, t')$ into the branching probability,
  &=& \frac{1}{N}\sum_i \int_0^\infty dt \frac{g^2 P(x)}{2\pi x (1-x) \tilde{\lambda}} \frac{b \tilde{\lambda}}{\tau_i(t=t'+\tau_i)}.\\
   &=& \frac{1}{N}\sum_i \int_0^\infty dt \frac{dR_{\textrm{incoh}}}{dx} \frac{b \tilde{\lambda}}{\tau_i(t=t'+\tau_i)}.
 \end{eqnarray}
-In the second line, we divide and multiplied back an effective mean-free-path $\tilde{\lambda} = m_D^2/\hat{q}_g$.
+In the second line, we divided and multiplied back an effective mean-free-path $\tilde{\lambda} = m_D^2/\hat{q}_g$.
 In doing so, the first factor is interpreted as the incoherent branching rate $R_{\textrm{incoh}}$, while the second factor is simple the acceptance factor for incoherent branching samples we introduced before.
 The formation time can be determined self-consistently for each branching copy as it is evolved under the influence of elastic broadening.
-It is determined at the momentum when
+It is determined at the time when
 \begin{eqnarray}
 t - t' < \tau_f(t). 
 \end{eqnarray}
 This iterative approach for determine $\tau_f$ was first developed and implemented by \cite{Zapp:2011ya}.
-In the deep-LPM region where the number of rescattering is large, such a procedure reproduce the expected scaling of the average formation time $\left\langle\tau_f\right\rangle \propto \sqrt{\omega/\hat{q}}$.
-This approach also generalizes to medium with a varying temperature profile as the re-scatterings are performed locally as the probe propagate through the medium.
-In cases where the formation time is short that the acceptance probability is bigger than unity, the acceptance is set to one and the incoherent rate is recovered as the branching with $\tau_f < \tilde{\lambda}$ has entered the Bethe-Heitler regime.
-Therefore, this approach naturally provides an interpolation of the deep-LPM for energetic branching and the Bethe-Heitler regime for soft branching in a large medium.
+In the deep-LPM region where the number of rescattering is large, such a procedure reproduces the expected scaling of the average formation time $\left\langle\tau_f\right\rangle \propto \sqrt{\omega/\hat{q}}$.
+This approach also generalizes to a medium with a varying temperature profile as the re-scatterings are performed locally as they probe the medium.
+In cases where the formation time is short so that the acceptance probability is bigger than unity, the acceptance is set to one and the incoherent rate is recovered in the Bethe-Heitler regime.
+Therefore, this approach naturally provides an interpolation of the deep-LPM regime for energetic branchings and the Bethe-Heitler regime for soft branching in a large medium.
 
-Now we will determine the form of $a$ and $b$ parameters with guidance from the theory in the deep-LPM region.
+Now we will determine the form of parameters $a$ and $b$ with guidance from the theory in the deep-LPM region.
 In the leading-log formula, the average inverse formation time is $\langle\tau_f^{-1}\rangle \sim \sqrt{\hat{q}_3 / 2x(1-x)E}$. 
 One notice that the effective $\hat{q}_3$ is different from the $\hat{q}$ of a daughter parton, where we perform momentum broadening.
 $\hat{q}_3$ is related to the gluon $\hat{q}$ by the process- and $x$-dependent factor $C_{abc}$ that has been defined before.
