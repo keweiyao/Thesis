@@ -1,36 +1,35 @@
 \chapter{Results}
 \label{chapter:results}
 In this chapter, we apply the advanced statistical tools to the heavy-flavor transport model and extract the heavy quark transport coefficients.
-I would like to present this in a two step processes to show the improvements of the lastest extraction.
+I would like to present this in a two step processes to show the improvements of the latest extraction.
 
 \paragraph{A list of experimental data}
 \section{Lessons from earlier extractions of $\hat{q}_Q$}
 In an earlier publication \cite{Ke:2018tsh}, we used a linearized Boltzmann model with the coherence factor approach to implement the LPM effect.
-The heavy quark initial momentum dsitribution is obtained from the FONLL calculation.
+The heavy quark initial momentum distribution was obtained from the FONLL calculation.
 We have already commented on the advantages and disadvantages of these choices.
-Two different set of nuclear PDF $EPPS$ and $nCTEQ15$ are used to represent the uncertainty from the cold nuclear matter effect in the $\hat{q}$ extraction.
+Two different sets of nuclear PDF--EPPS and nCTEQ15--were used to represent the uncertainty from the cold nuclear matter effect in the $\hat{q}$ extraction.
 
-Regarding model parameters, the one parameter for the perturbative elastic and inelastic scatterings is controlled by $1/3 < \mu < 4$ in the running coupling. 
-There is an additional pure diffusion process with a diffusion constant $\kappa_{NP}$ parametized to peak at low temperature and low energy, in order to mimic certain non-perturbative coupling between a low energy probe and the medium near $T_c$,
+Regarding model parameters, the one parameter for the perturbative elastic and inelastic scatterings was controlled by $1/3 < \mu < 4$ in the running coupling. 
+There was an additional pure diffusion process with a diffusion constant $\kappa_{NP}$ parametized to peak at low temperature and low energy, in order to mimic the non-perturbative coupling between a low energy probe and the medium near $T_c$,
 \begin{eqnarray}
 \kappa_{NP} = T^3 \kappa_D \left(x_D + (1-x_D)\frac{1\textrm{ GeV}{}^2}{ET}\right).
 \end{eqnarray}
-The $0<\kappa_D<8$ parameter is the overall strength of the diffusion, and the $0<x_D<1$ controls the degree of energy-temperature dependence.
+The $0<\kappa_D<8$ parameter was the overall strength of the diffusion, and the $0<x_D<1$ controlled the degree of energy-temperature dependence.
 One can see that in the heavy quark limit $M\rightarrow \infty$, this parametrization becomes independent of mass.
-An additional parameter is the in-medium energy loss starting time $\tau_0$ that is allowed to be tuned between $0.1$ fm/$c$ to $1.0$ fm/$c$ (before the onset of hydrodynamics).
-The reason is we lack a quantitative description of the production of color charge in the initial stages.
-This starting time is a simple approximation that interactions is only turned on after $\tau_0$ when the color carries is assumed to approach a Boltzmann distribution.
+An additional parameter was the in-medium energy loss starting time $\tau_0$ that was allowed to be tuned between $0.1$ fm/$c$ to $1.0$ fm/$c$ (before the onset of hydrodynamics).
+The reason is our lack of a quantitative description of the production of color charge in the initial stages.
+This starting time is a simple approximation that interactions was only turned on after $\tau_0$ when the color carries was assumed to approach a Boltzmann distribution.
 
-
-The design of the four dimensional parameter space  $(\tau_0, \mu, \kappa_D, x_D)$ has 80 design points.
-The computation is carried on the distributed computing system Open Science Grid \cite{Pordes:2007zzb,Sfiligoi:2010zz} using about a million CPU hours.
-The observabes on which we calibrated are listed in tables \ref{table:ALICE-obs} and \ref{table:CMS-obs}. 
+The design of the four dimensional parameter space  $(\tau_0, \mu, \kappa_D, x_D)$ had 80 design points.
+The computation was carried on the distributed computing system Open Science Grid \cite{Pordes:2007zzb,Sfiligoi:2010zz} using about a million CPU hours.
+The observables on which we calibrated are listed in tables \ref{table:ALICE-obs} and \ref{table:CMS-obs}. 
 Including, $p_T$ dependent $D$-meson nuclear modification factor $R_{AA}$ and $p_T$ dependent (event-shape-engineered) azimuthal anisotropy $v_2$.
-CMS measurements of the $B^{\pm}$-meson $R_{AA}$ is also included to constrain the mass dependence of the transport coefficients.
+CMS measurements of the $B^{\pm}$-meson $R_{AA}$ were also included to constrain the mass dependence of the transport coefficients.
 
 \begin{figure*}
 \includegraphics[width=\textwidth]{observables_design.pdf}
-\caption{The prior distribution of observables compared to data. The colors labeled the use of EPPS (blue) and nCTEQ15np (green) nuclear PDF.}
+\caption{The prior distribution of calculated observables compared to data. The colors labeled the use of EPPS (blue) and nCTEQ15np (green) nuclear PDF.}
 \label{fig:LBT:obs_prior}
 \end{figure*}
 
@@ -40,14 +39,14 @@ CMS measurements of the $B^{\pm}$-meson $R_{AA}$ is also included to constrain t
 \label{fig:LBT:obs_posterior}
 \end{figure*}
 
-The prior and the posterior of the observables before and after the calibration is shwon in figures \ref{fig:LBT:obs_prior} and \ref{fig:LBT:obs_posterior}.
-blue stands for using {\tt EPPS} nuclear PDF and green stands for using the {\tt nCTEQnp}  nuclear PDF.
-We found that the model after the calibration provide a good description of $R_{AA}$ and $v_2$ at the intermediate $p_T$ of the ALICE experiments.
-But it does not reproduce the fast uprising shape of $R_{AA}$ at high-$p_T$ of the CMS experiment.
-In addition, the model seem to under estimate the high-$p_T$ $v_2$ of the $30-50\%$ centrality bin measured by CMS.
+The prior and the posterior of the observables before and after the calibration is shown in figures \ref{fig:LBT:obs_prior} and \ref{fig:LBT:obs_posterior}.
+blue stands for using EPPS nuclear PDF and green stands for using the nCTEQnp nuclear PDF.
+We found that the model after the calibration provided a good description of $R_{AA}$ and $v_2$ at the intermediate $p_T$ of the ALICE experiments.
+But it did not reproduce the fast uprising shape of $R_{AA}$ at high-$p_T$ of the CMS experiment.
+In addition, the model seemed to underestimate the high-$p_T$ $v_2$ of the $30-50\%$ centrality bin measured by CMS.
 The model is able to explain the correlation between the D-meson $v_2$ and the event-shape, though there are still large fluctuation in the data.
-The use of different nuclear PDFs has a negligible effect on $v_2$, but does affect the $R_{AA}$ at small and large $p_T$.
-Another thing worth noting that is that the $D$ and $B$ meson $R_{AA}$ are described at the same time.
+The use of different nuclear PDFs had a negligible effect on $v_2$, but did affect the $R_{AA}$ at small and large $p_T$.
+Another thing worth noting is that the $D$ and $B$ meson $R_{AA}$ were described at the same time.
 
 \begin{figure}
 \centering
@@ -59,12 +58,12 @@ Another thing worth noting that is that the $D$ and $B$ meson $R_{AA}$ are descr
 The inferred posterior probability distribution of the parameters is shown in the figure \ref{fig:LBT:posterior}.
 The diagonal plots show single parameterized distributions, and the off-diagonal ones displays the two-parameter correlations.
 We split the results that use different nuclear PDFs into the upper (EPPS, green heat map and lines) and lower (nCTEQ15np, blue heat maps and lines) triangles.
-One notices that results from different nuclear PDF are consistent within the uncertainty; therefore, from now on I shall not stress on any differences between these two set of results, but combine them into a single distribution to fold in the PDF uncertainty.
-The favored parameters are $\mu \sim 0.6$ and $\kappa_D \sim 0.4$, indicating a large in-medium $\alpha_s$ and a small additional diffusion.
-The typical value of the $\alpha_s$ is, in fact, so large that let one worried about the use of weakly-couple based approaches.
+One notices that the results from different nuclear PDF are consistent within the uncertainty; therefore, from now on I shall not stress on any differences between these two sets of results, but combine them into a single distribution to fold in the PDF uncertainty.
+The favored parameters are $\mu \sim 0.6$ and $\kappa_D \sim 0.4$, indicating a large in-medium $\alpha_s$ and a small amount of additional diffusion.
+The typical value of $\alpha_s$ is, in fact, so large that one is let to worry about the use of weakly-coupled approaches.
 For example, $\alpha_s(0.6\pi T)$ at $T=300$ MeV is 0.67, corresponding to $g \approx 3$. 
 And the screening mass $m_D \sim 3.6 T$ is even larger than the average energy of the thermal partons $3T$. 
-In the discussion of the next section, we will see that this problem can be slightly alleviated, once we use the improved implementation of the LPM effect and implement a separation of soft-modes into the diffusion constant, though $g$ is still large.
+In the discussion of the next section, we will see that this problem can be somewhat alleviated, once we use the improved implementation of the LPM effect and implement a separation of soft-modes into the diffusion constant, though $g$ is still large.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{qhat_p_T.pdf}
@@ -91,7 +90,7 @@ The mass difference only causes a small difference in $\hat{q}$.
 
 \paragraph{Comparison to results from an improved-Langevin model}
 The same transport coefficient is also extracted using the improved-Langevin model \cite{Cao:2013ita}.
-It includes a diffusion modeling of the elastic interacton, a high-twist single gluon emission rate, and a similar routine to implement multiple radiations.
+It includes a diffusion modeling of the elastic interaction, a high-twist single gluon emission rate, and a similar routine to implement multiple radiations.
 This model is then coupled to the same medium as the one used here and compared to the same set of observables as this work does.
 The resultant posterior (for charm quark only) is shown as the shaded region in figure \ref{fig:LBT:compare_qhat}.
 We see that the $\hat{q}$ extracted using the two models only overlap at the boundary of the credible region.
@@ -115,7 +114,7 @@ They are listed in table \ref{table:new:prior}.
 \item The first parameter is again the energy loss starting time $\tau_i$.
 In this analysis, we are comparing to data at two collision energies and the hydrodynamic starting time $\tau_0$ varies from $1.2$ fm/$c$ to $0.6$ fm/$c$.
 To account for this differences, we use the ratio $\xi = \tau_i/\tau_0$ as the single parameter for both energies.
-It means that after $\xi$ fraction of the hydrodynamization time, the color density is assumed to be large enough to apply the linearized transport  model.
+It means that after $\xi$ fraction of the hydrodynamization time, the color density is assumed to be large enough to apply the linearized transport model.
 \item The second parameter is switching scale parameter $1.0 < c < 10.0$ in $Q_{\textrm{cut}}^2 = c m_D^2$. For a typical coupling $g\sim 2$, $Q_{\textrm{cut}}$ is then varied from about $2T$ to $7T$.
 \item The third parameter $0<R_v<7$ controls the matching condition between the vacuum-like radiation and the medium-induce radiation $\Delta k_\perp^2 = R_v Q^2$.
 At $R_v = 0$, the vacuum-like radiation is completely forbidden once it interacts with the medium; for $R_v \gg 1$, the vacuum-like radiation is effectively unmodified.
@@ -139,7 +138,7 @@ Symbol & Description & Range \\
 \hline
 $\xi = \frac{\tau_0}{\tau_{\textrm{hydro}}}$ & Energy loss starting time & (.1, .9) \\
 $c = \frac{Q_{\textrm{cut}}^2}{m_D^2}$ & Soft / hard switching scale & $(.1, 10.)$ \\
-$R_v$ & Vacuum / Medium mathcing scale & $(0,7)$\\
+$R_v$ & Vacuum / Medium matching scale & $(0,7)$\\
 $\mu$ & Running $\alpha_s$ stops at $Q = \mu\pi T$ & $(.6, 10)$ \\
 $K$ & Magnitude of $\Delta \hat{q}/T^3$ & $(0, 15)$\\ 
 $p$ & \multirow{2}{*}{$E$-dependence of $\Delta \hat{q}/T^3$} & $(-2, 2)$\\ 
@@ -284,7 +283,7 @@ The magnitude of $R_{CP}$ at $p_T> 5$ GeV \footnote{Remember that the model is c
 
 \paragraph{Posterior distribution of parameters} Figure \ref{fig:new:posterior} shows the single parameter posterior (diagonal plots) and two-parameter-joint posterior distributions (off-diagonal plots) of the 10 model parameters, plus the model systematic uncertainty parameter ($\sigma_m$).
 The $\ln\mu$ parameter has an evident peak around $1.3$, which correspond to $\mu \approx 3.5$.
-The resulting posterior of $\alpha_s$ is plotted in figure \ref{fig:new:posterior-alphas}, the median value of $\alpha_s$ at $Q=\mu\pi T$ varies from 0.3 to 0.22 for the relevant temperature trange $0.15 < T < 0.5$ GeV, corresponding to $g\sim 2$.
+The resulting posterior of $\alpha_s$ is plotted in figure \ref{fig:new:posterior-alphas}, the median value of $\alpha_s$ at $Q=\mu\pi T$ varies from 0.3 to 0.22 for the relevant temperature range $0.15 < T < 0.5$ GeV, corresponding to $g\sim 2$.
 Note that this $\alpha_s$ does not stands for the strength of all the probe-medium interaction, recalling that there is a significant parametric diffusion contribution to the elastic energy loss.
 For radiative process, though the $1\rightarrow 2$ splitting vertex explicitly uses this $\alpha_s$, the strength of the LPM effect is again controlled by the elastic broadening.
 Compared to the previous extraction, the preferred in-medium coupling strength is smaller and is closer to the phenomenological values used by other studies \cite{Burke:2013yra}.
