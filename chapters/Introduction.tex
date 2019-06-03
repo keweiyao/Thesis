@@ -5,30 +5,31 @@ Its force binds over 99\% of the mass in the visible universe, yet its complexit
 To understand its dynamics, people look for simplified scenarios to do experiments and examine our understandings.
 One such limit is the high energy limit, where the coupling constant of the strong interaction $\alpha_s$ becomes relatively small, known as asymptotic freedom \cite{Gross:1973id,Politzer:1973fx}. 
 Theoretical tools such as perturbative QCD (pQCD) can be applied.
-Observations from high energy collisions have confirmed the successful use of perturbative tools at high energy \cite{RevModPhys.59.465}.
+Observations from high energy collisions have confirmed the success of perturbatiation theory \cite{RevModPhys.59.465}.
 Another interesting aspect is to understand physical systems in the ``many particle'' (thermodynamic) limit.
 Instead of exciting a few fundamental particles and observing their evolution, one deposits a huge amount of energy into a tiny region, for example, by colliding heavy nuclei that excite a medium with thousands of particles. 
-In this limit, one is more interested in the collective features of the strong force.
+In this limit, one is more interested in the collective dynamics of the strong force.
 Features such as the structure of the equation-of-state (EoS), the medium transport coefficients, and the medium stopping power (opacity), etc, are also fundamental properties of the strong interaction.
 Applying tools from many body physics such as the finite temperature field theory, kinetic transport theory, and hydrodynamics, many facets of QCD have been revealed from data taken at particle colliders.
 
 I shall briefly review the basic concepts of QCD and our current understanding of nuclear matter, in particular, the quark-gluon plasma (QGP). 
 Then key experimental discoveries made by studying relativistic heavy-ion collisions are reviewed and I will show how different probes can be used to characterize the different transport properties of the QGP through a model-to-data comparison.
-This dissertation is an example of such practice: I developed a heavy-flavor transport model and combined it with and advanced statistical method to reverse engineer one of QGP transport properties (stopping power) from experimental data.
+This dissertation is an example of such practice: I developed a heavy-flavor transport model and combined it with and advanced statistical method to reverse engineer heavy quark transport coefficient from experimental data.
 
-\section{Nuclear matter and Quantum chromodynamics}
+\section{Quantum chromodynamics and nuclear matter}
 QCD describes the interaction of objects that carries ``color'' charges.
 Quarks (fermions) and gluons (bosons) are the elementary degrees of freedom. 
 The QCD Lagrangian (with one flavor of quark) is,
 \begin{eqnarray}
 \mathcal{L} = \bar{\psi_i} \left(i\gamma_\mu D^\mu_{ij} -m \delta_{ij} \right)\psi_j - \frac{1}{4}G_{\mu\nu}^a G^{\mu\nu,a},
 \end{eqnarray}
-where $\psi_i$ the Dirac spinor of the quark field with $i$ the color index.
+where $\psi_i$ is the Dirac spinor of the quark field with color $i=1,\cdots N_c$. 
+There are three types of color charges $N_c = 3$ in the physical world.
 \begin{eqnarray}
 D_{ij}^\mu = \partial^\mu - i g T_{ij}^a A^{\mu, a}
 \end{eqnarray}
 is the covariant derivative, containing the interaction between quark field and the gluon field with coupling strength $g$.
-Here $T_{ij}^a$ are the generators of the SU(3) group in the fundamental representation and they satisfy the commutation relation,
+Here $T_{ij}^a$ are the generators of the SU(3) group in the fundamental representation of the color space and they satisfy the commutation relation,
 \begin{eqnarray}
 [T^a, T^b] = i f^{abc} T^c
 \end{eqnarray}
@@ -38,15 +39,16 @@ The field tensor of the gluon field with color $a$ is,
 G^{\mu\nu,a} = \partial^\mu A^{\nu, a} - \partial^\nu A^{\mu, a} + g f^{abc} A^{\mu,b}A^{\mu,c}
 \end{eqnarray}
 The first term is the kinetic term, and the second term is the gluon field self-interation (also with strength $g$), which is a unique feature of the non-Abelian gauge field.
+$a, b$ and $c$ label the color of the gluon field which forms a $N_c^2-1=8$ dimension ad-joint representation in the color space.
 
 \subsection{Asymptotic freedom and confinement}
-Due to quantum fluctuations, the effective coupling constant $g$ changes with the energy scale of a process. 
+Due to quantum fluctuations, the effective coupling strength $g$ changes with the energy scale of a process. 
 The rate of change of $g$ with respect to the scale parameter is called the $\beta$-function,
 \begin{eqnarray}
 \frac{\partial g}{\partial \ln\mu} = \beta(g),
 \end{eqnarray}
-which can be evaluated as a perturbation series of $g$.
-At leading order, the QCD $\beta$ function with number of colors $N_c$ and $n_f$ flavors of fermion is,
+which can be evaluated as a perturbation series of $g$ at weak coupling.
+At leading order, the QCD $\beta$ function with number of colors $N_c$ and $n_f$ flavors of quarks is,
 \begin{eqnarray}
 \beta(g) = - \left( \frac{11}{3}N_c - \frac{2}{3}n_f \right) \frac{g^3}{16\pi^2}.
 \end{eqnarray}
@@ -65,9 +67,9 @@ The leading order $\Lambda$ is then around $200$ MeV.
 
 The decrease of $\alpha_s(Q)$ is logarithmically slow at high energy, but it rises quickly with $Q$ approaching $\Lambda$ from above.
 Even before reaching this scale, the coupling constant is already too large for a reliable perturbative calculation.
-Near the $\Lambda$ scale, QCD enters the non-perturbative region,
-and at the long distances only hadrons exist as colorless bound states of quarks and gluons.
-The fact that color is not directly observed at large distances is knowns as ``color confinement'' of QCD. 
+Near the $\Lambda$ scale, QCD enters the non-perturbative region.
+At the long distances ($l \gtrsim 1/\Lambda$), only hadrons exist as colorless bound states of quarks and gluons.
+The fact that color is not directly observed at large distances is known as ``color confinement'' of QCD. 
 To pull a quark out of the hadron, the color field becomes so strong that eventually more quark-anti-quark pairs populate the space in-between the pulled quark and the remnant and form new colorless hadrons.
 
 Depending on its valence quarks (quarks that carry the net quantum number of the hadron) content, hadrons are generally categorized as baryons and mesons.
@@ -82,7 +84,7 @@ Nowadays, the only reliable ab initio theoretical tool for solving non-perturbat
 \subsection{The phase-diagram of the QCD matter}
 At zero temperature ($T$), protons and neutrons form bound states of atomi nuclei that are the building blocks of the ordinary matter.
 One can define the baryon chemical potential $\mu_b$, which for ordinary matter is around $1$ GeV, close to the proton mass.
-$\mu_b$ of ordinary nuclei is indicated as the white dot on the (partly conjectured) phase diagram in figure \ref{fig:phase-diagram}.
+The region of ordinary nuclei is indicated as the white dot on the (partly conjectured) phase diagram in figure \ref{fig:phase-diagram} \cite{Geesaman:2015fha}.
 Increasing the temperature of the system, nucleons start to escape from the nuclear potential and other hadrons can be created from collisions and resonance formation and decay.
 This system is know as the hadron gas (cyan region in figure \ref{fig:phase-diagram}).
 
@@ -101,16 +103,14 @@ Nevertheless, a pseudo critical temperature is defined to be $T_c \approx 150 $ 
 \begin{figure}
     \centering
     \includegraphics[width=.8\textwidth]{phase-diagram.png}
-    \caption{The (partly projected) phase-diagram of the nuclear matter from reference []. The horizontal variable is Baryon chemical potentail $\mu_B$ and the vertical variable is temperature $T$. The red and green trajectories indicates the reachable regions by the heavy-ion program at the LHC and RHIC.}
+    \caption{The (partly projected) phase-diagram of the nuclear matter from reference \cite{Geesaman:2015fha} with the red dots from lattice calculation \cite{PhysRevLett.109.192302}. The horizontal variable is Baryon chemical potentail $\mu_B$ and the vertical variable is temperature $T$. The red and green trajectories indicates the reachable regions by the heavy-ion program at the LHC and RHIC.}
     \label{fig:phase-diagram}
 \end{figure}
 
 Moving towards a finite baryon chemical potential, the lattice approach runs into the fermion sign problem, though recent studies has been pushing the realm of lattice QCD into regions of small $\mu/T$  \cite{Gunther:2016vcp,Bazavov:2017dus}.
-Effective models [] and Dyson-Schwinger equation studies [] have suggested the existence of a first order phase transition at large $\mu_B/T$.
+Effective models studies have suggested the existence of a first order phase transition at large $\mu_B/T$ and one may refer to \cite{Fukushima:2010bq} for a review.
 If true, the first-order coexistence line must end at a point on the phase-diagram at lower $\mu_b$, beyond which the phase-transition is of the cross-over type.
 Such a point, called the critical end point (CEP), has attracted great interests from both the theoretical and the experimental community.
-
-At higher chemical potential and low temperature, people conjectured another phase of nuclear matter known as the ``color superconducting phase'', where the quarks forms Cooper pair in analogy to superconductor [].
 
 \begin{figure}
     \centering
@@ -119,15 +119,15 @@ At higher chemical potential and low temperature, people conjectured another pha
     \label{fig:qcd_eos}
 \end{figure}
 
-It is believed that the QCD high-temperature phase-transition occurred in the early universe around a microsecond after ``the Big Bang'', when its temperature drops down to the QCD scale.
-Compact stars are ``celestial laboratories'' to test the QCD equation-of-state in the high density and low temperature region, providing an important physical input for simulating the recently discovered gravitational wave emission from neutron star mergers [].
+It is believed that the QCD high-temperature phase-transition occurred in the early universe around microseconds after ``the Big Bang'', when its temperature drops down to the QCD scale.
+In ``nowadays'' universe, compact stars are ``celestial laboratories'' to test the QCD equation-of-state in the high density and low temperature region, providing an important physical input for simulating the recently discovered gravitational wave emission from neutron star mergers \cite{TheLIGOScientific:2017qsa}.
 In laboratories, we create hot and dense nuclear matter by colliding heavy nuclei at ultra-relativistic high energies.
 While the created matter is transient and tiny compared to the cosmic nuclear matter, we can study not only thermodynamic properties but also essential dynamical properties of QCD in these experiments.
 
 \section{Phenomenology of relativistic heavy-ion collision}
 Relativistic heavy-ion collisions are currently the only tool to access the high energy density QCD medium in laboratory.
-Since 2000, the Relativistic Heavy-ion Collider (RHIC) at the Brookheaven National Laboratory (BNL) has been colliding gold nuclei at 200 GeV []. 
-The Large Hadron Collider (LHC) started its heavy ion programs later, colliding lead nuclei at 2.76 TeV and 5.02 TeV [].
+Since 2000, the Relativistic Heavy-ion Collider (RHIC) at the Brookheaven National Laboratory (BNL) has been colliding gold nuclei at 200 GeV. 
+The Large Hadron Collider (LHC) started its heavy ion programs later, colliding lead nuclei at 2.76 TeV and 5.02 TeV.
 Since then, evidences have been pointing to the existence a new state-of-matter: the strongly coupled quark-gluon plasma (sQGP).
 
 In this section, I shall introduce useful concepts and terminology used in heavy-ion collision physics.
@@ -189,13 +189,20 @@ Experimentally, $N_{\textrm{part}}$ is often used as the centrality estimator of
 While this correspondence can be model dependent, the uncertainty can be quantified and model predictions can be validated by studying the production of colorless probes such as photon and weak-boson \cite{Afanasiev:2012dg,Chatrchyan:2011ua,Aad:2012ew,Aad:2015lcb,Adam:2015lda}.
 In particular, recent measurement of $Z$ boson production in Pb-Pb collisions at $\sqrt{s}=5.02$ TeV has reached a very high precision to contrain collision geometry models in the future \cite{ATLAS:2017zkv}.
 
+\begin{figure}
+\centering
+\includegraphics[width=.8\textwidth]{v2_origin.pdf}
+\caption{Illustration of the connections between final state particles and the formation of a dense medium and its geometry. Left: blue circles indicates the nuclei with a finite impact-parameter. An almond shaped hot medium (red contour) is created in the overlapped region. The medium undergoes pressure driven expansion and creates a $\cos(2\phi)$ like modulation in the final particle distribution (denoted as colored histogram). Right: hard particles travel through the medium loses energy. Its final momentum (black arrow) is smaller than the original one (red arrow). The energy loss is on average stronger if the hard parton travel in the the long-axis direction than the short axis direction.}
+\end{figure}
+
+
 \subsection{Particle production at low-$p_T$ and collective flow} 
 Immediately after the nuclei pass through each other at $t\sim 2R/\gamma$, a huge amount of energy is deposited into the overlap area and entropy is produced, creating a fireball in the middle while the nuclear remnants recede.
 This highly excited fireball of fields undergoes complex dynamics and cools down rapidly due to its longitudinal and transverse expansion.
 Eventually, the system hardronizes, and the hadrons can have further interactions and may decay into other hadrons, photons and lepton that are measured by the detectors.
 
-It is observed that the particles produced in relativistic nuclear collisions are distributed across a wide (pseudo)rapidity range, and have steep falling transverse momentum spectra [].
-The majority of the particles are soft hadrons with relatively small transverse momenta $p_T \lesssim 3$ GeV and their creation is a consequence of final state interactions [].
+It is observed that the particles produced in relativistic nuclear collisions are distributed across a wide (pseudo)rapidity range, and have steep falling transverse momentum spectra \cite{ALICE:2015kda}.
+The majority of the particles are soft hadrons with relatively small transverse momenta $p_T \lesssim 3$ GeV and their creation is a consequence of final state interactions.
 One of the most striking discoveries from the RHIC and the LHC heavy-ion programs is that these soft particles display a strong collectivity and the patterns can be described by viscous hydrodynamic-based models to a very high precision \cite{Dusling:2007gi,Song:2008si,Schenke:2010nt,Petersen:2008dd,Niemi:2015qia,Bernhard:2016tnd,Bernhard:2018hnz}.
 This success of the hydrodynamic model reveals the strongly coupled nature of the matter produced with a temperature of several times $T_c$ and it has been given the name strongly coupled quark-gluon plasma.
 This is in contrast to a weakly coupled gas of quarks and gluons that would not exhibit any collectivity.
@@ -203,12 +210,12 @@ This is in contrast to a weakly coupled gas of quarks and gluons that would not 
 \begin{figure}
 \centering
 \includegraphics[width=.6\textwidth]{ALICE-chg-vn.png}
-\caption{The momentum anisotropy coefficient $v_2$ estimated from multi-particle correlation for charged particle from the ALICE collaboration [].
-The hydrodynamic-based calculations [] (lines) very well explains the centrality dependence of the second (red), third (blue) and fourth (green) order coefficients at different beam energies.}
+\caption{The momentum anisotropy coefficient $v_2$ estimated from multi-particle correlation for charged particle from the ALICE collaboration \cite{ALICE:2011ab,Adam:2016izf}.
+The hydrodynamic-based calculations \cite{Niemi:2015voa,Noronha-Hostler:2015uye} (lines) very well explains the centrality dependence of the second (red), third (blue) and fourth (green) order coefficients at different beam energies.}
 \label{fig:intro:vn}
 \end{figure}
 
-One manifestation of collectivity is the momentum space anisotropy or collective flow of the bulk medium.
+One manifestation of collectivity is the momentum-space anisotropy or collective flow of the bulk medium.
 We decompose the charged particle spectra into a Fourier series of the azimuth angle,
 \begin{eqnarray}
 E\frac{dN}{p_T dp_T d\phi dy} = \frac{1}{2\pi}\frac{dN}{p_T dp_T dy}\left(1 + 2\sum_{n=1}^{\infty}v_n(p_T)\cos\left[n(\phi-\Psi_n)\right]\right).
@@ -218,7 +225,7 @@ The $n=1$ term is a shift of the center-of-mass momentum
 From $n=2$, $v_n$s are momentum anisotropy coefficients of $\cos({n\phi})$ modulations.
 If the particle production is simply an independent sum of elementary nucleon binary collisions, then the anisotropy would be zero after the average. 
 However, experiments observe a surprisingly larger elliptic flow ($v_2$), triangular flow ($v_3$) and higher order $v_n$ at both RHIC and LHC in nuclear collisions.
-Figure \ref{fig:intro:vn} shows the variation of the $v_n$ as function of centrality from ALICE measurements [].
+Figure \ref{fig:intro:vn} shows the variation of the $v_n$ as function of centrality from ALICE measurements \cite{ALICE:2011ab,Adam:2016izf}.
 The $v_2$ coefficient first increases from central to mid-central collisions and slightly decreases at peripheral collisions, while $v_3$, $v_4$ signals are smaller and varies slower with centrality.
 
 In the hydrodynamic picture, a non-central collision deposits initial energy density in an almond shape and the initial fireball has a finite spatial eccentricity $\epsilon_2$.
@@ -282,7 +289,7 @@ Though there has also been a proposal that takes the advantage of this short lif
 \begin{figure}
 \centering
 \includegraphics[width=.7\textwidth]{CMS-HF.png}
-\caption{The nuclear modification factor $R_{AA}(p_T)$ of charged hadron (gray), D meson (red), B meson (blue), and $b$-decayed D meson (red), $b$-decayed J$/\Psi$ (purple) measured by the CMS collaboration [].}
+\caption{The nuclear modification factor $R_{AA}(p_T)$ of charged hadron (gray), D meson (red), B meson (blue), and $b$-decayed D meson (red), $b$-decayed J$/\Psi$ (purple) measured by the CMS collaboration \cite{Khachatryan:2016odn,Sirunyan:2017isk,Sirunyan:2017xss,Sirunyan:2017oug} (figure from Matthew Nguyen).}
 \label{fig:intro:Raa}
 \end{figure}
 
