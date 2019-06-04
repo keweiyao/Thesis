@@ -74,7 +74,7 @@ Left plot: the temperature dependence at $p=10$ GeV. Right plot: the momentum de
 }\label{fig:LBT:posterior_qhat}
 \end{figure}
 
-\paragraph{Transport coefficients} In this analysis, the heavy quark transport coefficient $\hat{q}$ is computed from adding up the momentum broadening from both the scattering and the parametric diffusion,
+\paragraph{Transport coefficients} In this analysis, the heavy quark transport coefficient $\hat{q}$ is computed by adding up the momentum broadening from both the scattering and the parametric diffusion,
 \begin{eqnarray}\label{eq:qhat}
 \hat{q} &=& 2T^3\kappa_D\left(x_D + (1-x_D)\frac{\textrm{GeV}^2}{ET}\right) + \hat{q}_{\textrm{el}}.
 \end{eqnarray}
@@ -85,30 +85,30 @@ The mass difference only causes a small difference in $\hat{q}$.
 
 \begin{figure}
 \includegraphics[width=\columnwidth]{qhat_compare.pdf}
-\caption{Comparing the 90\% credible region of the charm $\hat{q}$ using different models. The red regions use the model described in \cite{Ke:2018tsh}, while the  shaded regions are obtained using  the improved-Langevin model \cite{Cao:2013ita}.}\label{fig:LBT:compare_qhat}
+\caption{Comparison of the 90\% credible region of the charm $\hat{q}$ using different models. The red regions use the model described in \cite{Ke:2018tsh}, while the  shaded regions are obtained using  the improved-Langevin model \cite{Cao:2013ita}.}\label{fig:LBT:compare_qhat}
 \end{figure}
 
 \paragraph{Comparison to results from an improved-Langevin model}
 The same transport coefficient is also extracted using the improved-Langevin model \cite{Cao:2013ita}.
-It includes a diffusion modeling of the elastic interaction, a high-twist single gluon emission rate, and a similar routine to implement multiple radiations.
+It includes a diffusion modeling of the elastic interaction, a higher-twist single gluon emission rate, and a similar routine to implement multiple radiations.
 This model is then coupled to the same medium as the one used here and compared to the same set of observables as this work does.
-The resultant posterior (for charm quark only) is shown as the shaded region in figure \ref{fig:LBT:compare_qhat}.
+The resultant posterior (for charm quarks only) is shown as the shaded region in figure \ref{fig:LBT:compare_qhat}.
 We see that the $\hat{q}$ extracted using the two models only overlap at the boundary of the credible region.
 Their difference is comparable to the uncertainty band of either model, while both models provide a reasonable description of the data.
-This suggests the theoretical uncertainty that comes from the assumption between the probe and the medium is a significant one.
+This suggests that the theoretical uncertainty that comes from the assumption made about the probe-medium is a significant one.
 The ability to tune a switching scale parameter in the new model intends to include this type of theoretical uncertainty.
 
 \section{Calibration using the improved transport model}
 Finally, we apply the improved model to the extraction of the heavy quark transport coefficients.
-As a summary of the improvements:
+Here we summarize the improvements:
 \begin{itemize}
-\item A more sophisticated implementation of the LPM effect to reduce modeling uncertainty of the radiative process;
-\item An interpolation of the diffusion picture and the scattering picture to take into account modeling uncertainty.
-\item Separating the high-virtuality evolution and the low-virtuality transport equation at a medium scale.
+\item A more sophisticated implementation of the LPM effect to reduce modeling uncertainty of the radiative processes;
+\item An interpolation between the diffusion picture and the scattering picture to take into account modeling uncertainty.
+\item Separation of the high-virtuality evolution and the low-virtuality transport equation at a medium scale.
 \end{itemize}
 
 \paragraph{Model parameters}
-In the new analysis, we try to include as many theoretical uncertainty as possible, so we have much more parameters than the two previous studies.
+In the new analysis, we try to include as many theoretical uncertainties as possible, so we have more parameters than in the two previous studies.
 They are listed in table \ref{table:new:prior}.
 \begin{itemize}
 \item The first parameter is again the energy loss starting time $\tau_i$.
@@ -117,17 +117,17 @@ To account for this differences, we use the ratio $\xi = \tau_i/\tau_0$ as the s
 It means that after $\xi$ fraction of the hydrodynamization time, the color density is assumed to be large enough to apply the linearized transport model.
 \item The second parameter is switching scale parameter $1.0 < c < 10.0$ in $Q_{\textrm{cut}}^2 = c m_D^2$. For a typical coupling $g\sim 2$, $Q_{\textrm{cut}}$ is then varied from about $2T$ to $7T$.
 \item The third parameter $0<R_v<7$ controls the matching condition between the vacuum-like radiation and the medium-induce radiation $\Delta k_\perp^2 = R_v Q^2$.
-At $R_v = 0$, the vacuum-like radiation is completely forbidden once it interacts with the medium; for $R_v \gg 1$, the vacuum-like radiation is effectively unmodified.
+At $R_v = 0$, the vacuum-like radiation is completely forbidden once the daughter parton interacts with the medium; for $R_v \gg 1$, the vacuum-like radiation is effectively unmodified.
 \item The $0.6 < \mu < 10$ parameter controls the in-medium strong coupling $\alpha_s(\max\{Q, \mu\pi T\})$.
-\item The rest of the six numbers $K,a,b,p,q, \gamma$ parametrizes a correction to the weakly coupled transport coefficient $\hat{q} + \Delta\hat{q}$, $\hat{q}_L + \Delta\hat{q}_L$,
+\item The remaining six numbers $K,a,b,p,q, \gamma$ parametrize a correction to the weakly coupled transport coefficient $\hat{q} + \Delta\hat{q}$, $\hat{q}_L + \Delta\hat{q}_L$,
 \begin{eqnarray}
 \Delta\hat{q} &=& \frac{K T^3}{\left[1+\left(a\frac{T}{T_c}\right)^p\right]\left[1+\left(b\frac{E}{T}\right)^q\right]}, \\
 \Delta\hat{q}_L &=& \left(\frac{E}{M}\right)^\gamma \frac{\Delta\hat{q}}{2}
 \end{eqnarray}
 $0 < K < 15$ is the overall magnitude of the correction. 
 The deviation from the $T^3$ dependence and the energy dependence are parametrized using two dimensionless combinations $T/T_c$, and $E/T$.
-The $\gamma$ parameter varied from $-1$ to $1$ allows the correction to be anisotropic.
-Note that such a construction goes back to an isotropic diffusion when velocity approaches zero ($E\rightarrow M$).
+The $\gamma$ parameter varies from $-1$ to $1$ allow the correction to be anisotropic.
+Note that such a construction reverts back to an isotropic diffusion when velocity approaches zero ($E\rightarrow M$).
 \end{itemize}
 \begin{table}
 \centering
@@ -153,54 +153,54 @@ $\gamma$ & $\Delta \hat{q}_L = (E/M)^\gamma\Delta \hat{q}_L$  & (-1, 1)\\
 \paragraph{Design and prior} 
 We chosoe to give $\ln c, \ln R_v, \ln \mu, \ln a$ and $\ln b$ an uniform design and a uniform prior.
 Therefore, the original parameter will have a non-uniform design and prior distribution.
-The reason is that these parameters either causes a logarithmic slow change in the model and its prior uncertainty is large that it is allowed vary by orders of magnitude.
+The reason is that these parameters either cause a logarithmically slow change of the model prediction or their prior uncertainty is large that they are allowed to vary by orders of magnitude.
 For example, the $\mu$ parameter enters the logarithmic running of $\alpha_s$ and we can rewrite the maximum possible $\alpha_s$ as,
 \begin{eqnarray}
 \alpha_{s,\max}(T) = \frac{2\pi}{9}\frac{1}{\ln(\mu) + \ln(\pi T/\Lambda_{\textrm{QCD}})}
 \end{eqnarray}
 Therefore, we assign a uniform prior to $\ln(\mu)$ so that $\alpha_s$ also varies notable within the prior range.
-For the $c$ and $R_v$ parameter, we have seen in the previous benchmark calculation that the $R_{AA}$ and $v_2$ predictions depends fairly weak on the choice of these parameter, therefore they are also given a logarithm prior.
-For the $a$ and $b$ parameters, one notice that asymptotically largeness or smallness of these numbers do not change the value of $\Delta \hat{q}$ notably.
-By applying the logarithmic prior and design, we can explore both the large and small limits of these numbers while still have enough design points to control the interpolation uncertainty in the physical interesting regions ($a$ and $b$ are of order one). 
+For the $c$ and $R_v$ parameter, we have seen in the previous benchmark calculation that the $R_{AA}$ and $v_2$ predictions depend fairly weakly on the choice of these parameters, therefore they are also given a logarithm prior.
+For the $a$ and $b$ parameters, one notices that asymptotic largeness or smallness of these numbers do not change the value of $\Delta \hat{q}$ notably.
+By applying the logarithmic prior, we can explore both the large and small limits of these numbers while still having enough design points to control the interpolation uncertainty in the physically interesting regions ($a$ and $b$ are of order one). 
 
 \begin{figure}
 \centering
 \includegraphics[width=.5\textwidth]{qhat_prior.png}\includegraphics[width=.5\textwidth]{ER_prior.png}
-\caption{Left: the prior range of the transport parameter $\hat{q}$ as funtion of temperature at different momentum. Right: the prior range of the longitudinal diffusion parameter $\hat{q}_L$, plotted as ratio $2\hat{q}_L/\hat{q}$.}
+\caption{Left: the prior range of the transport parameter $\hat{q}$ as funtion of temperature at different heavy quark energy. Right: the prior range of the longitudinal diffusion parameter $\hat{q}_L$, plotted as ratio $2\hat{q}_L/\hat{q}$.}
 \label{fig:new:design-qhat}
 \end{figure}
 
-We sampled 250 design points and 50 validation points. 
-Combining $\mu, K, p, q, a, b$ and $\gamma$, the prior region of the heavy quark transport parameters are plotted function of temperature and energy in figure \ref{fig:new:design-qhat}. 
-On the left, 250 design's $\hat{q}$ as function of temperatures are shown  (using charm mass for demonstration).
-Each subplot shows quark energy at $1.4$ GeV, $11.4$ GeV and $101.3$ GeV.
+We sample 250 design points and 50 validation points. 
+Combining $\mu, K, p, q, a, b$ and $\gamma$, the prior region of the heavy quark transport parameters are plotted as a function of temperature and energy in figure \ref{fig:new:design-qhat}. 
+On the left, the 250 design $\hat{q}$'s as function of temperatures are shown  (using charm mass for demonstration).
+Each subplot shows a quark energy at $1.4$ GeV, $11.4$ GeV and $101.3$ GeV.
 The prior range of $\hat{q}$ varies over an order of magnitude.
-On the right of the figure, we show the ratio $2\hat{q}_L/\hat{q}$ to indicated the degree of anisotropy of the transport parameters.
+On the right of the figure, we show the ratio $2\hat{q}_L/\hat{q}$ to indicate the degree of anisotropy of the transport parameters.
 
-The computations of the model on both the design points and the validation points are performed on the NERSC super-computing system using over two million CPU hours.
-The prior observables are shown in figure \ref{fig:new:obs_prior_LHC} at LHC energy $\sqrt{s}$ = 5.02 TeV and in figure \ref{fig:new:obs_prior_RHIC} at RHIC energy $\sqrt{s} = 200$ GeV.
-In additional to LHC dataset used in the last calibration, we also include a dataset at RHIC energy measured by the STAR Collaboration \cite{Adamczyk:2017xur,Adam:2018inb}.
+The computations of the model on both the design points and the validation points are performed on the NERSC super-computing platform using over two million CPU hours.
+The observables calculated on the prior are shown in figure \ref{fig:new:obs_prior_LHC} at LHC energy $\sqrt{s}$ = 5.02 TeV and in figure \ref{fig:new:obs_prior_RHIC} at RHIC energy $\sqrt{s} = 200$ GeV.
+In addition to the LHC dataset used in the last calibration, we also include a dataset at RHIC energy measured by the STAR Collaboration \cite{Adamczyk:2017xur,Adam:2018inb}.
 We choose two observables at RHIC, namely D meson $R_{CP}$ and $v_2$. 
 The new one, $R_{CP}$, is defined as the $N_{\textrm{bin}}$ normalized ratio between the D meson yield in a smaller centrality class $C$ to a larger centrality class $P$,
 \begin{eqnarray}
 R_{\textrm{CP}} = \frac{dN_\textrm{C}/dp_T N_{\textrm{bin,P}}}{dN_\textrm{P}/dp_T N_{\textrm{bin,C}}}.
 \end{eqnarray}
 Using the nuclear data as a reference has the advantage of canceling certain theoretical uncertainties, such as the nuclear PDF (if its impact-parameter dependence is neglected) and possible modifications to the initial production mechanism in the nuclear environment.
-A problem we found at RHIC energy is that even varying wildly the parameters, the very low-$p_T$ $R_{CP}$ is not well covered by the calculation. 
-This indicates the model will have to be improved in this region of $p_T$, possible a more up-to-date dynamical hadronization model.
+A problem we found at RHIC energy is that even exploring a broad parameter range, the very low-$p_T$ $R_{CP}$ is not well covered by the calculation. 
+This indicates the model will have to be improved in this region of $p_T$, possibly by a more up-to-date dynamical hadronization model.
 Our temporary solution is to only include the STAR $R_{CP}$ data above $5$ GeV in the calibration.
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{obs_prior_LHC.png}
-\caption{The prior distribution of the observables at the LHC energy.}
+\caption{The prior distribution of the calculated observables at LHC energy compared to data.}
 \label{fig:new:obs_prior_LHC}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{obs_prior_RHIC.png}
-\caption{The prior distribution of the observables at the RHIC energy.}
+\caption{The prior distribution of the calculated observables at RHIC energy compared to data.}
 \label{fig:new:obs_prior_RHIC}
 \end{figure}
 
@@ -209,7 +209,7 @@ The validation is performed by comparing the emulator trained on the 250 design 
 We visualize the validation in figure \ref{fig:new:validation}.
 In the top row, the emulated $v_2$ (left) and emulated $R_{AA}$ (right) are compared with the model calculations, and the data from different experiments and centrality has been labeled by different colors.
 The emulated values strongly correlates with the true calculations around the the $y=x$ line.
-Most points hit off the line, meaning the emulator is not 100\% accurate.
+Most points slightly miss the line, meaning the emulator is not 100\% accurate.
 To see if the uncertainty is accounted for, we scatter plot the emulator's prediction uncertainty ($1\sigma$, $y$ axis) versus the absolute deviation between the prediction and the calculation (the $x$ axis).
 The dashed line defines the shaded region where the true deviation is large than $\pm 3\sigma$.
 We found that over $99\%$ of the prediction are within the $3\sigma$ region.
@@ -217,21 +217,21 @@ Therefore, for most cases the emulator correctly estimates its uncertainty  and 
 
 \begin{figure}
 \centering
-\includegraphics[width=.6\textwidth]{validation.png}
-\caption{Validation of the emulators performance. The top two plots shows the correlation between the calculated quantities ($x$ variable) versus the emulated quantities ($y$ variable). The bottom two plots compares the GP's estimated standard deviation $\sigma$ of the prediction to the true deviation from the actually calculation. The dashed regions indicates where the true deviations has a larger than $3\sigma$ difference from the emulator's prediction.}
+\includegraphics[width=.8\textwidth]{validation.png}
+\caption{Validation of the emulators performance. The top two plots shows the correlation between the calculated quantities ($x$ variable) versus the emulated quantities ($y$ variable). The bottom two plots compare the GP's estimated standard deviation $\sigma$ of the prediction to the true deviation from the actual calculation. The dashed regions indicates where the true deviations have a larger than $3\sigma$ difference from the emulator's prediction.}
 \label{fig:new:validation}
 \end{figure}
 
-\paragraph{Co-variance matrix} 
-From chapter \ref{chapter:bayes}, the co-variance matrix has the structure
+\paragraph{Covariance matrix} 
+From chapter \ref{chapter:bayes}, the covariance matrix has the structure
 \begin{eqnarray}
 \Sigma = \Sigma_{\textrm{emulator}} + \Sigma_{\textrm{truncation}} + \Sigma_{\textrm{stat}} + \Sigma_{\textrm{sys}} + \Sigma_{\textrm{model, sys}} 
 \end{eqnarray}
-The construction of these terms are straight forward, except for the systematic covariance $\Sigma_{\textrm{sys}}$ of the experimental data.
+The construction of these terms is straight forward, except for the systematic covariance $\Sigma_{\textrm{sys}}$ of the experimental data.
 Usually, experiments publish the marginalized uncertainty on each observable point $\delta y_{sys}$ (for example, $R_{AA}$ of a certain centrality at a single $p_T$ bin), and may specify the nature of the uncertainty as ``correlated'' or ``uncorrelated''.
 The correlation among uncertainties is important as it directly affects the interpretation of the quality of fit.
 For instance: a fit with $+5\%$ deviations on each of the $N$ data points will be penalized by a factor $e^{-N(0.05 y)^2/\delta y^2}$, assuming uncorrelated uncertainty; while it will only be penalized by $e^{-(0.05 y)^2/\delta y^2}$ if one assumes fully correlated uncertainty.
-This is because fully correlated uncertainty allows data to be systematically deviation from a trend.
+This is because fully correlated uncertainty allows data to systematically deviate from a trend.
 
 However, we the lack the information to construct the full covariance matrix from $\delta y_{sys}$.
 In this study, we simply parametrize the correlation as function of observables (labeled by $\alpha, \beta \in \{R_{AA}, v_2, R_{CP}\}$), centrality labeled by $m,n$ and transverse momentum (labeled by $i,j$),
@@ -239,16 +239,16 @@ In this study, we simply parametrize the correlation as function of observables 
 \mathbf{\Sigma}_{\textrm{sys}} = \delta_{\alpha\beta} C_{mn}  \exp\left\{-\frac{1}{2 L_{\textrm{corr}}^2} \left(\ln\frac{p_{T, i}}{p_{T, j}}\right)^2 \right\} \times \sigma^{\alpha m}_{\textrm{sys}, i}\sigma^{\beta n}_{\textrm{sys}, j}.
 \end{eqnarray}
 So, the covariance is zero if there are different observables or measurements from different experiments or different particle species.
-The centrality correlation $C_{mn}$ is only applied to $R_{AA}$ and $R_{CP}$ as these quantities across different centrality shares the same baseline reference, so a fraction of their uncertainty must be correlated across-centrality. 
+The centrality correlation $C_{mn}$ is only applied to $R_{AA}$ and $R_{CP}$ as these quantities shares the same baseline reference across different centrality, so a fraction of their uncertainty must be correlated across-centrality. 
 By default, $C_{m=n}=1$ and $C_{m\neq n}=0.3$.
 The correlation in the $p_T$ dimension is assumed to be a Gaussian in the $\ln p_T$ space with correlation length $L_{\textrm{corr}}$.
-We use $\ln p_T$ based on the consideration that the original of these uncertainty should not be sensitive to the linear change of $p_T$ as the there is no other scale present.
+We use $\ln p_T$ based on the consideration that the original uncertainty should not be sensitive to the linear change of $p_T$ as the there is no other scale present.
 The default correlation length is $1$, meaning the uncertainty is effectively uncorrelated with measurements at a $p_T$ $2.7$ times larger or smaller.
 Finally, this correlation modulation is applied to the completely correlation case of the systematic uncertainty $\sigma^{\alpha m}_{\textrm{sys}, i}\sigma^{\beta n}_{\textrm{sys}, j}$.
 
 This construction is entirely parametric, except for the direct experimental inputs $\sigma^{\alpha m}_{\textrm{sys}, i}$.
 We hope that future measurements will provide more information on the co-variance structure of the published systematic uncertainties.
-In the actually calibration, we will also change a few default parameters to see if the extracted physical parameters are sensitive to the detailed construction of $\Sigma_{\textrm{sys}}$.
+In the actual calibration, we will also change a few default parameters to see if the extracted physical parameters are sensitive to the detailed construction of $\Sigma_{\textrm{sys}}$.
 
 \begin{figure}
 \centering
@@ -259,12 +259,12 @@ In the actually calibration, we will also change a few default parameters to see
 
 \paragraph{Posterior observables} The global level of agreement between the calibrated model and the data is shown in figure \ref{fig:new:obs_posterior_LHC} at the LHC energy, and figure \ref{fig:new:obs_posterior_RHIC} at the RHIC energy.
 The black dashed lines show the median prediction, while the blue bands stands for $90\%$ credible region.
-We remind the reader that because of the model predicts anti-correlation between $R_{AA}$ and $v_2$, the lower and upper bounds of the uncertainty bands are also anti-correlated.
+We remind the reader that because the model predicts anti-correlation between $R_{AA}$ and $v_2$, the lower and upper bounds of the uncertainty bands are also anti-correlated.
 For example, a line that is close to the higher bounds in $R_{AA}$ is likely to be lose to the lower bounds in $v_2$.
 
 Both the $D$-meson and the $B$-meson $R_{AA}$ at the LHC energy are well described by the calibrated model, while $v_2$ is systematically below the data.
-Large separation between the event-engineered $v_2$ is observed, 
-At the RHIC energy, $v_2$ has a better agreement. 
+A large separation between the event-engineered $v_2$ is observed, 
+At RHIC energy, $v_2$ has a better agreement. 
 The magnitude of $R_{CP}$ at $p_T> 5$ GeV \footnote{Remember that the model is calibrated on the three data points above $p_T=5$ GeV} and its centrality dependences is correctly reflected, though the shape is too flat compared to the data.
 
 \begin{figure}
@@ -282,10 +282,10 @@ The magnitude of $R_{CP}$ at $p_T> 5$ GeV \footnote{Remember that the model is c
 \end{figure*}
 
 \paragraph{Posterior distribution of parameters} Figure \ref{fig:new:posterior} shows the single parameter posterior (diagonal plots) and two-parameter-joint posterior distributions (off-diagonal plots) of the 10 model parameters, plus the model systematic uncertainty parameter ($\sigma_m$).
-The $\ln\mu$ parameter has an evident peak around $1.3$, which correspond to $\mu \approx 3.5$.
+The $\ln\mu$ parameter has an evident peak around $1.3$, which corresponds to $\mu \approx 3.5$.
 The resulting posterior of $\alpha_s$ is plotted in figure \ref{fig:new:posterior-alphas}, the median value of $\alpha_s$ at $Q=\mu\pi T$ varies from 0.3 to 0.22 for the relevant temperature range $0.15 < T < 0.5$ GeV, corresponding to $g\sim 2$.
-Note that this $\alpha_s$ does not stands for the strength of all the probe-medium interaction, recalling that there is a significant parametric diffusion contribution to the elastic energy loss.
-For radiative process, though the $1\rightarrow 2$ splitting vertex explicitly uses this $\alpha_s$, the strength of the LPM effect is again controlled by the elastic broadening.
+Note that this $\alpha_s$ does not stand for the strength of all the probe-medium interaction, recalling that there is a significant parametric diffusion contribution to the elastic energy loss.
+For radiative processes, though the $1\rightarrow 2$ splitting vertex explicitly uses this $\alpha_s$, the strength of the LPM effect is again controlled by the elastic broadening.
 Compared to the previous extraction, the preferred in-medium coupling strength is smaller and is closer to the phenomenological values used by other studies \cite{Burke:2013yra}.
 However, the coupling is still large compared to the weakly coupled assumption $g\ll 1$.
 
@@ -297,7 +297,7 @@ However, the coupling is still large compared to the weakly coupled assumption $
 \end{figure}
 
 The energy loss starting is preferred to be after about half of the hydrodynamic starting time.
-The switching scale parameter do not have a strong preference as long as it is not too large, which is consistent with our model construction that physical processes should be weakly depends on this switching scale between diffusion and scattering modeling.
+The switching scale parameter does not have a strong preference as long as it is not too large, which is consistent with our model construction that physical processes should only weakly depend on this switching scale between diffusion and scattering modeling.
 The matching parameter $R_v$ is not very well constrained, but tends to prefer a smaller value.
 
 \begin{figure}
@@ -307,23 +307,21 @@ The matching parameter $R_v$ is not very well constrained, but tends to prefer a
 \label{fig:new:posterior-qhat}
 \end{figure}
 
-We plotted the 90\% credible range (red bands) of the posterior transport parameters $\hat{q}, \hat{q}_L$ on top of their prior range (gray band) in figure \ref{fig:new:posterior-qhat}.
-The transport parameters is nicely constrained and is comparable to the earlier extraction by the JET Collaboration \footnote{Note that the JET Collaboration extracts the light quark $\hat{q}$. However, at $p_T = 10$ GeV, the mass effect of the charm is small and these two numbers should be comparable.}.
+We plot the 90\% credible range (red bands) of the posterior transport parameters $\hat{q}, \hat{q}_L$ on top of their prior range (gray band) in figure \ref{fig:new:posterior-qhat}.
+The transport parameters are nicely constrained and is comparable to the earlier extraction by the JET Collaboration \footnote{Note that the JET Collaboration extracts the light quark $\hat{q}$. However, at $p_T = 10$ GeV, the mass effect of the charm is small and these two numbers should be comparable.}.
 We also present a first extraction of the longitudinal transport parameter $\hat{q}_L$. 
 The longitudinal transport is quite anisotropic when compared to $\hat{q}$.
-First, its perturbative contribution already introduces
 
-For the heavy quark spatial diffusion constant, since it is related to $\hat{q}$ in the zero momentum limit. 
-Such an extraction is essentially an extrapolation of our parametrization, and can be sensitive to the detailed choice of the ansatz.
-Nevertheless, the extraction is (red band for 90\% credible region) is compared to varies lattice calculations \cite{Banerjee:2011ra,Ding:2012sp,Francis:2015daa} in  figure \ref{fig:new:posterior-Ds}.
-Our extraction for both charm and bottom quark spatial diffusion constants is similar, and is consistent with lattice calculations in the static / infinitely heavy limit of the heavy quark.
-While the lattice calculation of dynamical charm quark gives a much lower value of $D_s$.
+For the heavy quark spatial diffusion constant, since it is related to $\hat{q}$ in the zero momentum limit, our extraction is essentially an extrapolation of the parametrization and can be sensitive to the detailed choice of the ansatz.
+Nevertheless, the extraction (red band for 90\% credible region) is compared to various lattice calculations \cite{Banerjee:2011ra,Ding:2012sp,Francis:2015daa} in  figure \ref{fig:new:posterior-Ds}.
+Our extraction for both the charm and bottom quark spatial diffusion constants is similar, and is consistent with lattice calculations in the static / infinitely heavy limit of the heavy quark.
+While the lattice calculation of dynamical charm quarks gives a much lower value of $D_s$.
 One may expect that our phenomenological extraction should give a similar separation between bottom and charm flavor, as the bottom is more than three times heavier.
 However, we found that the mass dependence in the elastic part of our model is relatively weak. 
 First, the mass only affects the phase-space integration of $t$-channel exchange perturbative scattering.
-Second, the diffusion parameter of the weakly coupled theory, we are using explicitly heavy-quark limit that it does not depend on mass.
-Finally, mass only enters the parametric diffusion part through a combination $E/T$, which is approximately $M/T$ at low momentum, since both charm and bottom mass are already much higher than the typical temperature, the parametric part also introduces a weak flavor dependence.
-In the future, one may seek for more physically motivated flavor dependence parametrization of the transport parameters.
+Second, we are using the heavy-quark limit that it does not depend on mass for the diffusion parameter of the weakly coupled theory, 
+Finally, mass only enters the parametric diffusion part through a combination $E/T$, which is approximately $M/T$ at low momentum, since both charm and bottom mass are already much higher than the typical temperature, therefore the parametric part also introduces only a weak flavor dependence.
+In the future, one may seek a more physically motivated flavor dependence parametrization of the transport parameters.
 
 \begin{figure}
 \centering
