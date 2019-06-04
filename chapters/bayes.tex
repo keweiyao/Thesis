@@ -1,0 +1,214 @@
+\chapter{Bayesian model-to-data comparison}
+\label{chapter:bayes}
+We have discussed the modeling details of the heavy flavor transport in relativistic heavy-ion collisions, and have shown a first comparison to data with rather a ``na\"ive'' guess of multiple parameters.
+Till now we have only varied a small subset of them to qualitatively understand the model.
+In this section, we introduce the advanced statistical tool known as Bayesian analysis that can calibrate all parameters simultaneously to the experimental data.
+For the full details of such an analysis, we refer the readers to this excellent dissertation on this subject \cite{Bernhard:2018hnz} in the context of heavy-ion collisions.
+
+To facilitate the discussion, I define problem for this chapter and introduce a few notations and terminologies.
+We formulate the general task of a model-to-data comparison into the following form,
+\begin{itemize}
+\item A complex model $M$, with $n$ input parameters organized as a $n$-dimensional vector $\mathbf{p}$.
+\item There exists a prior belief on the reasonable range of each parameter, known as the prior probability distribution, and for short ``$\mathrm{Prior}$''.
+\item $n$ experimental measurements are organized as an observation vector $\mathbf{y}_{\exp}$ of dimension $m$, with given statistical and systematic uncertainties $\delta\mathbf{y}_{stat}$,$\delta\mathbf{y}_{sys}$.
+\item The task is to infer the posterior probability distribution of $p$ ($\mathrm{Posterior}$), given the model $M$, the measurements $\delta\mathbf{y}_{\exp}\pm \delta \mathbf{y}$, and the $\mathrm{Prior}$.
+\end{itemize}
+The analysis proceeds in the following steps that are explained in each section.
+
+\section{Model evaluation}
+First, we need a fast evaluation of model $M$ at any point in the considered region of parameter space.
+This is done by sampling the high-dimensional input parameter space at $N$ carefully designed points and then interpolates.
+This $N$ set of parameter vectors of length $n$ forms a so-called design matrix $\mathbf{D}$,
+\begin{eqnarray}
+\mathbf{D}_{N\times n} = 
+\begin{bmatrix}
+p_{11} & p_{12} & \cdots & p_{1n}\\
+p_{21} & p_{22} & \cdots & p_{2n}\\
+\vdots & \vdots & \ddots & \vdots \\
+p_{N1} & p_{N2} & \cdots & p_{Nn}
+\end{bmatrix}
+\end{eqnarray}
+where the first index is the label of different parameter set, and the second index labels different parameters.
+
+We use the so-called Latin-Hyper-Cube sampling method to determine the location of these points in parameter space. 
+It generates a semi-random design subject to the following constraints:
+\begin{itemize}
+\item The marginalized distribution on any parameter is a uniform distribution.
+This is different from a grid design, where the marginalized distribution are spiky delta functions on the grid points.
+\item The minimum distance between any two points in the parameter space is maximized.
+This is different from a completely random design in which points may form tight clusters or leave sparsely occupied regions.
+\end{itemize}
+Usually, for a well behaved model, the number of design points needed for a good interpolation increases linearly with the number of parameters $n$. 
+This is in contrast to an exponential increasing with $n$ in a grid design.
+
+The actually model evaluation on these points is the most time consuming part in this analysis.
+The outputs are organized into the observation matrix,
+\begin{eqnarray}
+\mathbf{Y}_{N\times m} = 
+\begin{bmatrix}
+y_{11} & y_{12} & \cdots & y_{1m}\\
+y_{21} & y_{22} & \cdots & y_{2m}\\
+\vdots & \vdots & \ddots & \vdots \\
+y_{N1} & y_{N2} & \cdots & y_{Nm}
+\end{bmatrix}
+\end{eqnarray}
+where the first index is the label of different parameter set, and the second index labels different observables.
+The design matrix $\mathbf{D}$ and the observations matrix $\mathbf{Y}$ help to train a general interpolator to infer the calculated observables at any given parameter value.
+
+\section{Data reduction}
+The model $M$ is a mapping of an $n$-dimesional vector to an $m$-dimensional vector. 
+One can certainly construct an array of independent $m$ scalar mappings, and interpolate each of them.
+However, this na\"ive construction does not make use of the intrinsic correlations / structures that are already present in the training data, and can be very inefficient for practice usage.
+Considering an observation with two values of $R_{AA}$ and $v_2$. Usually the larger the $R_{AA}$ the model predicts, the smaller the $v_2$, and thus an anti-correlation is expected.
+If one build interpolators for them independently, their uncertainties are also going to be independent, and the true covariance is omitted.
+However, if one interpolates the linearly combinations $a R_{AA} \pm b v_2$; then a wise choice of $a, b$ can largely reduces the correlation between these two ``newly'' constructed observables.
+
+The principal component analysis (PCA) is a systematic way to implement this idea.
+The original vectors of observables are transformed into the principal-component (PC) space, with each PC a specific linear combination of the original observables, so that the covariances between the newly defined observables (the PCs) vanish.
+Mathematically, this is the same as finding the singular value decomposition (SVD) of $\mathbf{\tilde{Y}}$. 
+$\mathbf{\tilde{Y}}$ is the standardized observation matrix $\mathbf{Y}$,
+\begin{eqnarray}
+\tilde{y}_{ij} = \frac{y_{ij} - \mu_j}{\sigma_j}
+\end{eqnarray}
+with $\mu_j$ and $\sigma_j$ the mean and the standard deviation of column $j$.
+Then the SVD proceeds as,
+\begin{eqnarray}
+\tilde{\mathbf{Y}}_{N\times m} = \mathbf{U}_{N\times N} \mathbf{\Sigma}_{N\times m} \mathbf{V}_{m\times m}.
+\end{eqnarray}
+Here $\mathbf{\Sigma}$ only contains the variance of each PCs on its diagonal.
+The PCs are defined as the components after the $V$ transformation.
+\begin{eqnarray}
+z = \mathbf{V}y
+\end{eqnarray}
+It is evident that the covariance matrix of the $z$ observables is diagonalized,
+\begin{eqnarray}
+\mathrm{Var}(z_i, z_j) = \frac{1}{N}V_{ii'}\tilde{Y}_{ki'}V_{jj'}\tilde{Y}_{kj'} = \frac{1}{N}V\tilde{Y}^T\tilde{Y}V^T = \frac{1}{N}\mathbf{\Sigma}.
+\end{eqnarray}
+So different PCs are orthogonalized.
+Another benefits is data reduction. 
+Suppose the variance in $\mathbf{\Sigma}$ has been ordered from maximum to minimum.
+For data with pronounced structures, often the first few PCs take into account the majority of the data variance.
+Practically, a truncated set of PCs already gives a good representation of the original data, and this greatly reduces the computations necessary for interpolating a large number of observables.
+Certainly, one can always go back from the PC space to the original space by the inverse transformation $y = V^{-1} z$.
+
+\section{Model emulator}
+With limited information on a finite number of design points contained in the matrices $D$ and $M$, the original mapping is approximated by a model emulator (a surrogate model) using a Gaussian Process (GP).
+The Gaussian Process provides a non-parametric interpolation for scalar function with one or high dimensional input.
+We shall let the readers refer to \cite{rasmussen2006gaussian} for the technical details and only summarize the basic of the Gaussian Process.
+
+\paragraph{Gaussian Process} Taking a uni-variate case as an example, given an array of input and an array of output, the common way to interpolate the data is, e.g., polynomial interpolation.
+However, polynomials only uses local information of the grid, and its performance can be sensitive to the error of the output (e.g. statistical fluctuation in the simulation).
+Moreover, it is hard to work with a Lain-hypercube design because the design points are not arranged on a grid.
+In contrary, a GP does not make any assumption on the functional form of the interpolation, but infers the output at a certain input based on how the output at the present point correlates with those given outputs at other input points.
+Mathematically, one assumes that elements of the predicted output $\mathbf{y}^*$ at input $\mathbf{x^*}$ and the known outputs $\mathbf{y}_{\textrm{train}}$ at the training points $\mathbf{x}_{\textrm{train}}$ form a multi-variate normal distribution,
+\begin{eqnarray}
+\begin{bmatrix}
+\mathbf{y}^* \\
+\mathbf{y}_{\textrm{train}}
+\end{bmatrix}
+\sim
+\mathcal{N}\left(
+\begin{bmatrix}
+\mathbf{\mu}^* \\
+\mathbf{\mu}_{\textrm{train}}
+\end{bmatrix},
+\begin{bmatrix}
+\mathbf{\Sigma}(\mathbf{x}^*, \mathbf{x}^*)& \mathbf{\Sigma}(\mathbf{x}^*, \mathbf{x}_{\textrm{train}}) \\
+\mathbf{\Sigma}(\mathbf{x}_{\textrm{train}}, \mathbf{x}^*)& \mathbf{\Sigma}(\mathbf{x}_{\textrm{train}}, \mathbf{x}_{\textrm{train}})
+\end{bmatrix}
+\right)
+\end{eqnarray}
+$\mathbf{\mu}^*$ and $\mathbf{\mu}_{\textrm{train}}$ are the mean values and can be often set to zero after standardizing the training data.
+The $\mathbf{\Sigma}$s form the co-variance matrix, and each of them has the same shape of the outer product of its two arguments.
+Its matrix-element (the kernel function) are parametric, and one often takes a squared exponential form,
+\begin{eqnarray}
+\Sigma_{ij} = k(x_i, x_j) = \sigma^2 \exp\left(-\frac{(x_i-x_j)^2}{2l^2}\right).
+\end{eqnarray}
+$\sigma^2$ is the auto correlation. 
+The co-variance decays exponentially with the squared separation of the two input points.
+In such a way, points that are close in inputs will also be close in outputs, and points that are far apart are effectively uncorrelated.
+
+\paragraph{Conditioning a Gaussian Process} The outputs at training points are known.
+Therefore, the probability distribution of $\mathbf{y}^*$ is obtained by conditioning the training outputs on their actual values,
+\begin{eqnarray}
+\mathbf{y}^* \sim &&\mathcal{N}\left(
+\mathbf{\Sigma}(\mathbf{x}^*, \mathbf{x}_{\textrm{train}} )
+\mathbf{\Sigma}^{-1}(\mathbf{x}_{\textrm{train}}, \mathbf{x}_{\textrm{train}} )\mathbf{y}_{\textrm{train}},\right.\\\nonumber
+&&\left.
+\mathbf{\Sigma}(\mathbf{x}^*, \mathbf{x}^*) - 
+\mathbf{\Sigma}(\mathbf{x}^*, \mathbf{x}_{\textrm{train}} )
+\mathbf{\Sigma}^{-1}(\mathbf{x}_{\textrm{train}}, \mathbf{x}_{\textrm{train}} )
+\mathbf{\Sigma}(\mathbf{x}_{\textrm{train}},\mathbf{x}^*)
+\right)
+\end{eqnarray}
+Note that the conditional multivariate normal distribution is still a normal distribution, with modified mean and co-variance matrix.
+One can easily check that if the predicted input approaches one of the training inputs, the distribution of the output approaches an delta function (as the limit of a narrow Gaussian) at the training output.
+
+\paragraph{Hyperparameters and training} We have not discussed the parameters in the kernel function $k(x, x')$ too much yet.
+They are the auto-correlation $\sigma^2$ and the correlation length $l$. 
+The squared exponential form is not the only possible kernel function, more sophisticated choices with more parameters are designed for various problems.
+They are known as hyper-parameters (denoted as a vector $\mathbf{\theta}$), and should in principle, also be treated as unknown parameters in the calibration.
+But a common practice to reduce the complexity is to fix the hyper-parameters at a set of ``optimal values'' by minimizing the loss function $\mathcal{L}$,
+\begin{eqnarray}
+\mathcal{L} = -\ln p(\mathbf{y}|\mathbf{\theta}) = \frac{1}{2}\ln \det \mathbf{\Sigma}(\mathbf{\theta})  + \frac{1}{2}\mathbf{y}^T \mathbf{\Sigma}(\mathbf{\theta})^{-1} \mathbf{y} + \frac{N}{2}\ln(2\pi)
+\end{eqnarray}
+where $\mathbf{y}$ is the (PCA transformed) training data, and $N$ is the number of training points.
+The minimization process is referred as ``training'' a Gaussian Process emulator.
+
+\paragraph{Inference with uncertainty quantification} Unlike the polynomial interpolation, a GP does not provide a single estimation of the output, but infers the probability distribution of the predicted outputs by giving both the mean and the co-variance matrix.
+This is a huge advantage of the Gaussian Process as it quantifies its own interpolation uncertainty.
+
+\paragraph{Validation} Though the training process includes a penalty for over-fitting the data, whether the trained GP has over-fitting problem can only be checked by validation.
+A validation is done by performing the model calculation at novel points in the parameter space that the GP was not trained on, then comparing the trained GP's prediction $y_i \pm \sigma_i$ to the model calculation $y_{\textrm{validate}, i}$.
+If an emulator is trained to work properly, then the standardized deviation $(y_i - y_{\textrm{validate}, i})/\sigma_i$ should follow approximately a standard normal distribution.
+
+\paragraph{Multivariate inputs and outputs} The GP formulation can be easily generalized to higher dimensional inputs by specifying a multidimensional kernel function.
+For high dimensional outputs, one first applies the PCA analysis introduced in the previous section and the build individual GPs for each of the first $N_{PC}$ principal components that take most of the data's variance.
+
+\section{Bayes' theorem and Markov chain Monte Carlo}
+With the model emulator $M$ (we are using the same symbol as the model, but one should always remember that the emulator is only a fast surrogate of the original model and comes with uncertainty), we apply Bayes' theorem, the essence of the statistical analysis.
+Bayes' theorem provides a quantitative way to update the knowledge of model parameters with empirical observations,
+\begin{eqnarray}
+\mathrm{Posterior}(\mathbf{p}|M, \mathbf{y}_{\textrm{exp}}) \propto \mathrm{Likelihood}(\mathbf{y}_{\textrm{exp}}|M, \mathbf{p})\times\mathrm{Prior}(\mathbf{p}).
+\end{eqnarray}
+It states that the posterior probability distribution of parameters, given model and experimental measurements, is proportional to the likelihood of describing the experiments with the model using this set of parameters, times the prior belief of the distribution of the parameters.
+The likelihood function is often assumed to be a multivariate Gaussian,
+\begin{eqnarray}
+\mathrm{Likelihood}(\mathbf{p}) &=& (2\pi)^{-\frac{m}{2}} (\det|\Sigma|)^{-\frac{1}{2}} \exp\left\{-\frac{1}{2}\Delta \mathbf{y}^T \mathbf{\Sigma}^{-1} \Delta \mathbf{y}\right\}, \\ 
+\Delta \mathbf{y} &=& \mathbf{y}(\mathbf{p}) - \mathbf{y}_{\textrm{exp}}
+\end{eqnarray}
+where the $\mathbf{y}(\mathbf{p})$ is the model emulators' prediction at parameter point $\mathbf{p}$, $m$ is the number of observables.
+The prior distribution is often a multi-dimensional uniform distribution within a reasonable range. 
+The co-variance matrix contains various sources of uncertainties from both theory and experimental side.
+
+\paragraph{A model dependent statement} The posterior is always defined with a given model, and therefore even the extraction of theoretically well defined quantities can be affected by the use of different dynamical modeling assumptions and approximations.
+The ultimate solution is of course the improvement of model's physical accuracy.
+Using a flexible model or models with different (but reasonable) assumptions to extract the same quantity can help estimate the level of theoretical uncertainty.
+
+\paragraph{The covariance matrix} covariance matrix is decomposed into different contributions,
+\begin{eqnarray}
+\mathbf{\Sigma} = \mathbf{\Sigma}_{\textrm{stat}} + \mathbf{\Sigma}_{\textrm{sys}} + \mathbf{\Sigma}_{\textrm{emulator}} + \mathbf{\Sigma}_{\textrm{truncation}} + \mathbf{\Sigma}_{\textrm{model, sys}}
+\end{eqnarray}
+\begin{itemize}
+\item The statistical co-variance takes the diagonal form, $\mathbf{\Sigma}_{\textrm{stat}} = \delta_{ij}\delta\mathbf{y}_{\textrm{stat}, i}^2$. 
+$\delta\mathbf{y}_{\textrm{stat}, i}$ is the experimental statistical uncertainty.
+\item The experimental systematic uncertainties $\mathbf{\Sigma}_{\textrm{sys}}$ can be correlated for different observations, so generally its off-diagonal elements are non-zero,
+\item The emulator covariance $\mathbf{\Sigma}_{\textrm{emulator}}$ is the prediction covariance of the GPs in the PC space and then transformed into the physical space.
+\item The truncation covariance $\mathbf{\Sigma}_{\textrm{truncation}}$ take those less important principal components that are not being emulated by GPs into account. 
+Its variance is first computed in the PC space and then transformed back to the physical space.
+\item Finally, $\mathbf{\Sigma}_{\textrm{model, sys}}$ stands for the model uncertainty. 
+It is always present but is hard to quantify using the model itself.
+Therefore, the previous study \cite{Bernhard:2018hnz} assign a variable model systematic uncertainty parameter $\sigma$ and this parameter will be treated as uncertainty in the calibration as well.
+The $\sigma$ stands for a uniform model uncertainty fraction on each principal component, and is added to the emulator prediction covariance.
+The $\sigma$ parameter is given an information prior distribution $P(\sigma) \propto \sigma^2 e^{-\sigma/0.05}$. Meaning an expectation of $15\%$ model uncertainty.
+The exact origin of this model uncertainty is unknown, but it plays a row as a ``regulator'' in the fitting process to prevent the model trying to explaining feature that can never be described better than at the $\sigma$ level precision.
+\end{itemize}
+
+\paragraph{Marginalize the posterior distribution} The resultant posterior distribution is a function of $n$ parameters.
+To answer what is the probability distribution of one parameter folded with the uncertainty from other parameters, one looks at the marginalized distribution with the other $n-1$ parameters integrated out.
+This is done by a Markov chain Monte Carlo (MCMC) sampling of the posterior function using an ensemble of $n$-dimensional walkers whose distribution thermalizes into the target posterior distribution function.
+The maginalized distribution is then the distribution of the projected ensemble onto one dimension.
+Similary, a marginalization of the joint distribution of two or more parameters can be obtained similarly.
+
+
+

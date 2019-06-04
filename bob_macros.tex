@@ -1,0 +1,147 @@
+%----  macros to save typing; added by hartley, 2002 ----
+\newcommand{\fig}{\begin{figure}[htbp]\centering}
+\newcommand{\pic}[1]{\includegraphics[width=#1]}
+\newcommand{\efig}{\end{figure}} 
+%\newcommand{\efig}{\end{figure} \clearpage}
+% Use \clearpage to cure ``too many floats'' problem (1 fig. per page).
+\newcommand{\fr}[1]{Figure \ref{fig:#1}}
+\newcommand{\FR}[1]{Figure \ref{fig:#1}}
+\newcommand{\er}[1]{equation \ref{eq:#1}}
+\newcommand{\ER}[1]{Equation \ref{eq:#1}}
+\newcommand{\eq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\eqa}{\begin{eqnarray}}
+\newcommand{\eeqa}{\end{eqnarray}}
+\newcommand{\etal}{\nobreak\mbox{\it et al.}}
+
+
+
+\newcommand{\singlespacing}{%
+  \let\CS=\small\renewcommand{\baselinestretch}{1.0}\CS}
+\newcommand{\doublespacing}{%
+  \let\CS=\small\renewcommand{\baselinestretch}{1.6}\CS}
+\newcommand{\normalspacing}{\doublespacing}
+
+%\newcommand{\singlespacingplus}{%
+%  \let\CS=\@currsize\renewcommand{\baselinestretch}{1.25}\tiny\CS}
+%\newcommand{\realdoublespacing}{%
+%  \let\CS=\@currsize\renewcommand{\baselinestretch}{2}\tiny\CS}
+%\newcommand{\footnotespacing}{\singlespacing}
+%\newcommand{\changespacing}[2]{%
+%  \renewcommand{#1}{%
+%    \let\CS=\@currsize\renewcommand{\baselinestretch}{#2}\tiny\CS}%
+%}
+%\newcommand{\changenormalspacing}[1]{\renewcommand{\normalspacing}{#1}}
+
+
+
+
+%---- units ----
+\newcommand{\days}{\nobreak\mbox{$\;$days}}
+\newcommand{\hrs}{\nobreak\mbox{$\;$hrs}}
+\newcommand{\mins}{\nobreak\mbox{$\;$min}}
+\newcommand{\s}{\nobreak\mbox{$\;$s}}
+\newcommand{\ms}{\nobreak\mbox{$\;$ms}}
+\newcommand{\us}{\nobreak\mbox{$\;\mu$s}}
+\newcommand{\inch}{\nobreak\mbox{$\;$in}}
+\newcommand{\meter}{\nobreak\mbox{$\;$m}}
+\newcommand{\cm}{\nobreak\mbox{$\;$cm}}
+\newcommand{\mm}{\nobreak\mbox{$\;$mm}}
+\newcommand{\um}{\nobreak\mbox{$\;\mu$m}}
+\newcommand{\nm}{\nobreak\mbox{$\;$nm}}
+\newcommand{\cmpers}{\nobreak\mbox{$\;$cm\,s$^{-1}$}}
+\newcommand{\mmpers}{\nobreak\mbox{$\;$mm\,s$^{-1}$}}
+\newcommand{\umpers}{\nobreak\mbox{$\;\mu$m\,s$^{-1}$}}
+\newcommand{\g}{\nobreak\mbox{$\;$g}}
+\newcommand{\kg}{\nobreak\mbox{$\;$kg}}
+\newcommand{\hz}{\nobreak\mbox{$\;$Hz}}
+\newcommand{\mhz}{\nobreak\mbox{$\;$mHz}}
+\newcommand{\uhz}{\nobreak\mbox{$\;\mu$Hz}}
+
+
+%---- oft-used complicated symbols ----
+\newcommand{\rms}{\nobreak\mbox{$\sigma_{rms}$}}
+\newcommand{\sat}{\nobreak\mbox{$\sigma_{\textrm{sat}}$}}
+\newcommand{\DG}{\nobreak\mbox{$\Delta G^2$}}
+\newcommand{\DS}{\nobreak\mbox{$\Delta\sigma$}}
+\newcommand{\DQ}{\nobreak\mbox{$\Delta\theta$}}
+\newcommand{\DSDQ}{\nobreak\mbox{$\Delta\sigma/\Delta\theta$}}
+\newcommand{\dq}{\nobreak\mbox{$d\theta$}}
+\newcommand{\ds}{\nobreak\mbox{$d\sigma$}}
+\newcommand{\dsdq}{\nobreak\mbox{$d\sigma/d\theta$}}
+\newcommand{\YY}{$\curlyvee\curlywedge$}
+\newcommand{\GG}{\nobreak\mbox{$G^2$}}
+
+\newcommand{\fmc}{\ensuremath{\text{fm}/c}}
+\newcommand{\sqrts}{\sqrt{s_\mathrm{NN}}}
+\newcommand{\sigmann}{\sigma^\text{inel}_\mathrm{NN}}
+\newcommand{\nch}{N_\text{ch}}
+\newcommand{\ntrk}{N_\text{trk}^\text{offline}}
+\newcommand{\Np}{N_\text{part}}
+\newcommand{\Nc}{N_\text{coll}}
+\newcommand{\np}{n_\text{part}}
+\newcommand{\nc}{n_\text{coll}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+\newcommand{\vnk}[2]{v_{#1}\{#2\}}
+\newcommand{\order}[1]{\ensuremath{\mathcal{O}(#1)}}
+\newcommand{\del}{\nabla}
+\newcommand{\mn}{^{\mu\nu}}
+\newcommand{\trento}{T\raisebox{-0.5ex}{R}ENTo}
+\newcommand{\T}{\tilde{T}}
+\newcommand{\dmin}{d_\text{min}}
+\newcommand{\tfs}{\tau_\text{fs}}
+\newcommand{\Tsw}{T_\text{switch}}
+\newcommand{\dv}{\mathbf d}
+\newcommand{\kv}{\mathbf k}
+\newcommand{\vv}{\mathbf v}
+\newcommand{\xv}{\mathbf x}
+\newcommand{\yv}{\mathbf y}
+\newcommand{\zv}{\mathbf z}
+\newcommand{\tran}{^\mathrm{T}}
+\newcommand{\note}{[{\color{deepred} ?}]}
+
+\newcommand{\paddedhline}{\noalign{\smallskip}\hline\noalign{\smallskip}}
+\newcommand{\dnchdy}{dN_\text{ch}/d\eta}
+\newcommand{\dndypP}{dN_\text{pPb}/d\eta}
+\newcommand{\dndyPP}{dN_\text{PbPb}/d\eta}
+\newcommand{\x}{\mathbf x}
+\newcommand{\y}{\mathbf y}
+\newcommand{\z}{\mathbf z}
+\newcommand{\trans}{^\intercal}
+
+\newcommand{\Raa}{R_{AA}}
+\newcommand{\vvv}{v_3\{2\}}
+\newcommand{\vnv}{v_n\{2\}}
+\newcommand{\ppi}{\frac{\partial}{\partial p_i}}
+\newcommand{\ppj}{\frac{\partial}{\partial p_j}}
+\newcommand{\ppl}{\frac{\partial}{\partial p_l}}
+\newcommand{\Kpara}{\kappa_{\|}}
+\newcommand{\Kperp}{\kappa_{\perp}}
+\newcommand{\Ppara}{\hat{P}^{\|}}
+\newcommand{\Pperp}{\hat{P}^{\perp}}
+
+\DeclareFontFamily{OMS}{oasy}{\skewchar\font48 }
+\DeclareFontShape{OMS}{oasy}{m}{n}{%
+         <-5.5> oasy5     <5.5-6.5> oasy6
+      <6.5-7.5> oasy7     <7.5-8.5> oasy8
+      <8.5-9.5> oasy9     <9.5->  oasy10
+      }{}
+\DeclareFontShape{OMS}{oasy}{b}{n}{%
+       <-6> oabsy5
+      <6-8> oabsy7
+      <8->  oabsy10
+      }{}
+\DeclareSymbolFont{oasy}{OMS}{oasy}{m}{n}
+\SetSymbolFont{oasy}{bold}{OMS}{oasy}{b}{n}
+
+\DeclareMathSymbol{\smallleftarrow}     {\mathrel}{oasy}{"20}
+\DeclareMathSymbol{\smallrightarrow}    {\mathrel}{oasy}{"21}
+\DeclareMathSymbol{\smallleftrightarrow}{\mathrel}{oasy}{"24}
+\newcommand{\tensor}[1]{\overset{\scriptscriptstyle\smallleftrightarrow}{#1}}
+
+
+\DeclareMathOperator{\expi}{Ei}
+\DeclareMathOperator{\acosh}{acosh}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\SC}{SC}

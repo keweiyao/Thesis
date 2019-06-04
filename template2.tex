@@ -1,0 +1,109 @@
+\documentclass[PhD]{dukethesis2006}
+\UseRawInputEncoding
+%preamble here for options
+
+%-----------------------------------------------------------------------------%
+% DEFINITIONS:
+%
+% include \usepackage here
+%-----------------------------------------------------------------------------%
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{bbold}
+\usepackage{wrapfig}
+%\usepackage[light]{roboto}
+
+\usepackage{mathtools}
+\usepackage[titletoc]{appendix}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{verbatim}
+\usepackage[inline]{enumitem}
+\usepackage{slashed}
+\usepackage{booktabs}
+\usepackage{enumerate}
+\usepackage{tikz}
+
+\usepackage{array}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\graphicspath{{images/}{images/LBT/}{images/Feynman/}{images/Lido/}{images/New-analysis/}{images/Citing/}}
+\usepackage{xy}
+
+
+\input{bob_macros.tex} 
+% This is where the shortened versions of Latex environments like figure, equation, etc 
+% are defined. See the file for the shortcuts.
+
+
+\author{Weiyao Ke}
+\advisor{Steffen Bass}
+\member{Berndt M\"uller}
+\member{Christopher Walter}
+\member{Robert Wolpert}
+\member{Thomas Sch\"afer}
+
+\department{Department of Physics}
+%\subject{xxx} If this is used, "subject" has to be un-commented in the cls file in several places
+\title{Partonic transport model application to heavy flavor}
+
+%end of preamble, beginning of printable document
+
+\begin{document}
+
+
+\Copyright
+
+\maketitle
+
+\makeabstract
+
+\abstract
+
+\acknowledgements
+
+
+%A table of contents file is automatically generated in the same folder as the .tex file when
+%the \tableofcontents is used
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+%-----------------------------------------------------------------------------%
+% replace FILE in \input{FILE} with name of tex file
+% containing the given chapter, eg. for the introduction one could
+% have FILE = intro if stored in intro.tex (.tex extension is assumed!).
+%-----------------------------------------------------------------------------%
+
+\pagenumbering{arabic}
+\input{chapters/Introduction}
+\input{chapters/simulation}
+\input{chapters/transport}
+\input{chapters/coupling}
+\input{chapters/bayes}
+\input{chapters/results}
+\input{chapters/conclusion}
+\input{chapters/appendix}
+
+\nocite{*}
+\bibliographystyle{alpha}
+\bibliography{lit}
+
+
+
+\biography
+%-----------------------------------------------------------------------------%
+% For PhD Biography,
+% -- Talk about YOU:  
+% -- be sure to include publications, awards, fellowships, etc.
+%-----------------------------------------------------------------------------%
+
+\end{document}
