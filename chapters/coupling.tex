@@ -16,9 +16,10 @@ The heavy flavor hadronization model and hadronic rescatterings are introduced i
 The hadronization routine applies a previously used implementation \cite{Cao:2013ita} of the high-$p_T$ fragmentation plus low-$p_T$ recombination model for heavy hadrons production \cite{Oh:2009zj}.
 Finally, in section \ref{section:benchmark}, the model is benchmarked using a few values of fixed coupling constant and running coupling constants, before being systematically calibrated to data in the next chapter.
 \begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=.8\textwidth]{flowchart.pdf}
-\caption{A schematic workflow of the heavy quark simulation. The left branch evolves the medium in the hydrodynamic based model, providing medium information (temperature, flow velocity) to the hard probe transport in the right branch. The hard and soft hadrons are evolved in the hadronic afterburner in the last step.}
+\caption[A schematic workflow of the heavy quark simulation. The left]{A schematic workflow of the heavy quark simulation. The left branch evolves the medium in the hydrodynamic based model, providing medium information (temperature, flow velocity) to the hard probe transport in the right branch. The hard and soft hadrons are evolved in the hadronic afterburner in the last step.}
 \label{fig:flowchart}
 \end{figure}
 
@@ -42,9 +43,10 @@ Although the parton distribution function $f$ and the parton fragmentation funct
 Moreover, the evolution from their ``definition'' scale $Q_0^2$ to the process scale $Q^2$ can be described by the DGLAP evolution equation \cite{Gribov:1972ri,Altarelli:1977zs,Dokshitzer:1977sg} based on perturbative QCD to increase the predictive power of the factorization formula.
 
 \begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=.8\textwidth]{factorization.pdf}
-\caption{A schematic demonstration of the factorization theorem. Two incoming proton momenta are $p_1$ and $p_2$. $f_{i,j}$ are the parton distribution function. $d\sigma$ is the perturbative matrix-element. $f_H$ is the fragmentation function.}
+\caption[A schematic demonstration of the factorization theorem. The]{A schematic demonstration of the factorization theorem. The momenta of the two incoming protons are $p_1$ and $p_2$. $f_{i,j}$ are the parton distribution function. $d\sigma$ is the perturbative matrix-element. $f_H$ is the fragmentation function.}
 \label{fig:factorization}
 \end{figure}
 
@@ -114,9 +116,10 @@ FONLL and Pythia simulations predict consistent modulation: the initial producti
 At higher $p_T$, the ratio increase and slightly shoots over unity, because partons from anti-shadowing contribute more at larger-$x$.
 
 \begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=.8\textwidth]{pythia-vs-fonll.png}
-\caption{Top plot: a comparison of $D$-meson production in proton-proton collisions (blue) and in Pb-Pb collisions (red) with cold nuclear matter effect only. FONLL calculations are shown as lines and Pythia8 simulations are shown as symbols. Bottom plot: the ratio between the production in Pb-Pb collision (cold nuclear matter effect only) to the proton-proton baseline shows the nuclear shadowing effect.}
+\caption[Top plot: a comparison of $D$-meson production in proton-proton]{Top plot: a comparison of $D$-meson production in proton-proton collisions (blue) and in Pb-Pb collisions (red) with cold nuclear matter effect only. FONLL calculations are shown as lines and Pythia8 simulations are shown as symbols. Bottom plot: the ratio between the production in Pb-Pb collision (cold nuclear matter effect only) to the proton-proton baseline shows the nuclear shadowing effect.}
 \label{fig:pythia-fonll}
 \end{figure}
 
@@ -128,8 +131,9 @@ The prescription that we build in this section is by no means exact, but follow 
 The general idea is to identify different regions of phase-space of radiation, and apply different means of computation (DGLAP / transport) to different regions based on how much medium-modification it would have received.
 
 \begin{figure}
+\singlespacing
 \includegraphics[width=.35\textwidth]{largeQ.pdf}\includegraphics[width=.35\textwidth]{mediumQ.pdf}\includegraphics[width=.35\textwidth]{smallQ.pdf}
-\caption{Demonstration of the medium corrections to vacuum-like radiation with different formation time. The energy of the gluon is hold fixed, while the virtuality is decreasing from left to right.}
+\caption[Demonstration of the medium corrections to vacuum-like radiation]{Demonstration of the medium corrections to vacuum-like radiation with different formation time. The energy of the gluon is hold fixed, while the virtuality is decreasing from left to right.}
 \label{fig:vac-med-interface}
 \end{figure}
 
@@ -191,8 +195,9 @@ The rejection program introduced before suppresses the vacuum-like radiation in 
 Again, due to fluctuations, the trianglar region is not entirely vetoed as the one demonsrated in \cite{PhysRevLett.120.232001}.
 
 \begin{figure}
+\singlespacing
 \includegraphics[width=.5\textwidth]{lund-vac.png}\includegraphics[width=.5\textwidth]{lund-med.png}
-\caption{Plotting the gluon radiations from a charm quark on the Lund diagram. The gluon emission has an energy $\omega$ with angle $\theta$ with respect to the heavy quark. The blue heat map in the left plot shows the distribution of vacuum-like emissions without medium effects. The heat map in right left plot shows the distribution of vacuum-like emissions with medium effects; while the red contour stands for the medium induced emissions. Emissions on the black dashed lines have $k_\perp^2 = \sqrt{2\omega \hat{q}}$. Emissions on the dashed-dotted lines have a formation time equals to the medium path-length. Finally, the dotted lines is the non-perturbative cut-off in Pythia $k_\perp = 0.4$ GeV.}
+\caption[Plotting the gluon radiations from a charm quark on the Lund]{Plotting the gluon radiations from a charm quark on the Lund diagram. The gluon emission has an energy $\omega$ with angle $\theta$ with respect to the heavy quark. The blue heat map in the left plot shows the distribution of vacuum-like emissions without medium effects. The heat map in right left plot shows the distribution of vacuum-like emissions with medium effects; while the red contour stands for the medium induced emissions. Emissions on the black dashed lines have $k_\perp^2 = \sqrt{2\omega \hat{q}}$. Emissions on the dashed-dotted lines have a formation time equals to the medium path-length. Finally, the dotted lines is the non-perturbative cut-off in Pythia $k_\perp = 0.4$ GeV.}
 \label{fig:lund}
 \end{figure}
 
@@ -453,9 +458,10 @@ We used only leading order contributions from the weakly coupled theory, and try
 The default switching scale between a large-$Q$ scattering small-$Q$ is $Q_{\textrm{cut}}^2 = 4 m_D^2$.
 
 \begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=\textwidth]{fix_alphas.png}
-\caption{Benchmark results using a fixed coupling constant $\alpha_s = 0.2$ (dashed), $0.3$ (solid), and $0.4$ (dash-dotted). The blue bands fill between the results using $\alpha_s=0.2$ and $0.4$. They are compared to the experimental data (black symbols) obtained by the ALICE Collaboration \cite{Acharya:2017qps,Acharya:2018hre} and the CMS Collaboration \cite{Sirunyan:2017xss,Sirunyan:2017plt}.}
+\caption[Benchmark results using a fixed coupling constant $\alpha_s = 0.2$ (dashed),]{Benchmark results using a fixed coupling constant $\alpha_s = 0.2$ (dashed), $0.3$ (solid), and $0.4$ (dash-dotted). The blue bands fill between the results using $\alpha_s=0.2$ and $0.4$. They are compared to the experimental data (black symbols) obtained by the ALICE Collaboration \cite{Acharya:2017qps,Acharya:2018hre} and the CMS Collaboration \cite{Sirunyan:2017xss,Sirunyan:2017plt}.}
 \label{fig:new:fix-a}
 \end{figure}
 
@@ -480,9 +486,10 @@ A non-zero $v_3$ of $D$ mesons is an evidence of heavy-flavor coupling to detail
 The calculation of $v_3$ is systematically below the data, despite the large statistical and systematic uncertainty,
 
 \begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=\textwidth]{run_alphas_DB.png}
-\caption{Demonstrating the mass dependence of the observables using $\alpha_s = 0.4$. 
+\caption[Demonstrating the mass dependence of the observables using]{Demonstrating the mass dependence of the observables using $\alpha_s = 0.4$. 
 The D meson and B meson results are labeled by color black and blue respectively.
 Left plot: $R_{AA}$ for 0-100\% centrality. Right plot: $v_2$ for 10-30\% centrality.}
 \label{fig:new:charm-bottom}
@@ -494,9 +501,10 @@ At very high $p_T$, the ``dead cone'' of bottom quark becomes insignificant, and
 Unlike the sudden increase of $v_2^D$ at low $p_T$, $v_2^B$ is always small, meaning that the bottom quarks do not catch up to the medium flow as the charm quarks do and remains far from equilibrium.
 
 \begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=\textwidth]{run_alphas.png}
-\caption{Benchmark results using a running coupling constant. The medium scale that stops the low-$Q$ running is chosen at $Q_{\textrm{med}} = \mu\pi T = \pi T$ (dashed), $2\pi T$ (solid), and $4\pi T$ (dash-dotted). They are compared to the experimental data (black symbols) obtained by the ALICE Collaboration and the CMS Collaboration.}
+\caption[Benchmark results using a running coupling constant. The]{Benchmark results using a running coupling constant. The medium scale that stops the low-$Q$ running is chosen at $Q_{\textrm{med}} = \mu\pi T = \pi T$ (dashed), $2\pi T$ (solid), and $4\pi T$ (dash-dotted). They are compared to the experimental data (black symbols) obtained by the ALICE Collaboration and the CMS Collaboration.}
 \label{fig:new:run-a}
 \end{figure}
 
@@ -514,9 +522,10 @@ The $\mu=\pi T$ case achieves a better agreement with $v_n$, but $R_{AA}$ is sys
 Therefore, going from fixed coupling to running coupling, the $v_2$ puzzle still remains.
 
 \begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=\textwidth]{run_alphas_cut.png}
-\caption{Effect of changing the switch scale between small-$Q$ diffusion modeling and large-$Q$ scattering modeling. $\mu=2$ is used. The red solid lines used a switching scale at $Q_{\textrm{switch}}^2 = 4 m_D^2$, and the blue dashed lines uses $16 m_D^2$.}
+\caption[Effect of changing the switch scale between small-$Q$ diffusion]{Effect of changing the switch scale between small-$Q$ diffusion modeling and large-$Q$ scattering modeling. $\mu=2$ is used. The red solid lines used a switching scale at $Q_{\textrm{switch}}^2 = 4 m_D^2$, and the blue dashed lines uses $16 m_D^2$.}
 \label{fig:new:run-cut}
 \end{figure}
 \paragraph{Switching scale dependence} By construction, the energy loss should be insensitive to the switching scale between the small-$Q$ diffusion and the large-$Q$ scattering in the high energy, weakly coupled limit.
@@ -534,9 +543,10 @@ This $Q_\textrm{cut}$ dependence may be bad at first sight, but one knows that t
 The $Q_\textrm{cut}$ actually parametrizes an important source of theoretical uncertainty in our modeling.
 
 \begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=\textwidth]{run_alphas_match.png}
-\caption{Effect of changing the matching scale parameter $R_v$ ($\Delta k_\perp^2 = R_v Q^2$) between the vacuum-like shower and the medium-induced shower. $\mu=2$ is used. The red solid lines use $R_v =1$, while the blue dashed lines use $R_v = 1000$, which leave the vacuum-like shower largely unmodified.}
+\caption[Effect of changing the matching scale parameter $R_v$]{Effect of changing the matching scale parameter $R_v$ ($\Delta k_\perp^2 = R_v Q^2$) between the vacuum-like shower and the medium-induced shower. $\mu=2$ is used. The red solid lines use $R_v =1$, while the blue dashed lines use $R_v = 1000$, which leave the vacuum-like shower largely unmodified.}
 \label{fig:new:run-match}
 \end{figure}
 
@@ -553,9 +563,10 @@ Also the difference is larger for central collisions than for peripheral collisi
 No significant difference is observed for $v_n$.
 
 \begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=\textwidth]{run_alphas_local.png}
-\caption{The impact of using the ``local rate'' approximation. The red solid lines use the default implementation; while the blue dashed lines perform the rescatterings in an imaginary infinite box using locally defined temperatures to mimic the ``local rate'' approximation.}
+\caption[The impact of using the ``local rate'' approximation. The red]{The impact of using the ``local rate'' approximation. The red solid lines use the default implementation; while the blue dashed lines perform the rescatterings in an imaginary infinite box using locally defined temperatures to mimic the ``local rate'' approximation.}
 \label{fig:new:run-local}
 \end{figure}
 

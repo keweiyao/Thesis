@@ -1,4 +1,4 @@
-\chapter{Bulk medium evolution and initial conditions}
+\chapter{Bulk-medium evolution and initial conditions}
 \label{chapter:simulation}
 This chapter introduces a hydrodynamic-based model for the medium evolution in heavy-ion collisions.
 I will also review my project on applying this framework to the reverse engineering of the initial three-dimensional entropy deposition from experimental observables \cite{PhysRevC.96.044912}.
@@ -112,7 +112,7 @@ The UrQMD model includes processes such as resonance decays, elastic and inelast
 At very early times of the collision, the system is off equilibrium. 
 However, viscous hydrodynamic assumes a closeness to the local thermal equilibrium . (There are also recent efforts in understanding the effectiveness of hydrodynamics outside of its traditional range of applicability \cite{PhysRevLett.115.072501,Romatschke:2017vte,Strickland:2019jut}).
 A successful prediction using an early onset of hydrodynamic evolution at $\tau_0\lesssim 1$fm/$c$ suggests a fast hydrodynamization, though the mechanism is still under debate. 
-There are different models of the pre-equilibrium stage avaiable\footnote{Such a pre-equilibrium stage was not included in my study of the 3D initial condition, and the hydrodynamics starts at $\tau_0 = 0.6$ fm/$c$ assuming local thermal equilibrium. For my later study of the heavy flavor transport, a 2+1D collision-less Boltzmann equation implemented by \cite{Bernhard:2018hnz} is used.}, including solving the classical Yang-Mills equation \cite{Schenke:2012wb,Schenke:2016ksl}, applying partonic transport models \cite{PhysRevC.97.034915}, a collision-less Boltzmann equation (free-streaming) plus Landau matching \cite{Liu:2015nwa}, and the linear response method of the effective kinetic approach \cite{Kurkela:2018wud}.
+There are different models of the pre-equilibrium stage avaiable\footnote{\singlespacing  Such a pre-equilibrium stage was not included in my study of the 3D initial condition, and the hydrodynamics starts at $\tau_0 = 0.6$ fm/$c$ assuming local thermal equilibrium. For my later study of the heavy flavor transport, a 2+1D collision-less Boltzmann equation implemented by \cite{Bernhard:2018hnz} is used.}, including solving the classical Yang-Mills equation \cite{Schenke:2012wb,Schenke:2016ksl}, applying partonic transport models \cite{PhysRevC.97.034915}, a collision-less Boltzmann equation (free-streaming) plus Landau matching \cite{Liu:2015nwa}, and the linear response method of the effective kinetic approach \cite{Kurkela:2018wud}.
 
 Here we briefly introduce the free-streaming model \cite{Liu:2015nwa}.
 The initial energy density ($\tau = 0^+$) at mid-rapidity is thought to be carried by mass-less partons that propagate at the speed of light in the transverse direction. 
@@ -140,7 +140,7 @@ This section introduces the original boost-invariant \trento\ model, and my work
 \subsection{The original (boost-invariant) \trento\ model}
 The original \trento\ model is proposed as a flexible ansatz to investigate a family of entropy / energy deposition behaviors at mid-rapidity.
 First, the impact parameter $\vec{b}_{AB}$ between the two colliding nuclei $A$ and $B$ is sampled at random.
-Then, nucleon positions inside each nucleus are sampled according to the Woods-Saxon distribution\footnote{The Woods-Saxon distribution is intended for heavy nuclei, for light nuclei such as Deuteron, Helium, Oxygen, the few-body wave function or pre-tabulated nuclear configurations are used for sampling},
+Then, nucleon positions inside each nucleus are sampled according to the Woods-Saxon distribution\footnote{ \singlespacing  The Woods-Saxon distribution is intended for heavy nuclei, for light nuclei such as Deuteron, Helium, Oxygen, the few-body wave function or pre-tabulated nuclear configurations are used for sampling},
 \begin{eqnarray}
 \frac{df_N}{r^2 dr d\phi d\cos\theta} = \frac{1}{\exp\{\frac{r-R(1+\beta_2 Y_{20}(\theta)+\beta_4 Y_{40}(\theta))}{a}\}+1}
 \end{eqnarray}
@@ -274,7 +274,7 @@ And we put the unit for thickness function $T_0=1$~fm$^{-2}$ to restore $\gamma$
 We have summarized the two parametrizations in table \ref{tab:parametrization}, and $\mu_0$, $\sigma_0$, $\gamma_r$ or $\gamma_a$, along with the effective Jacobian $J$ are the four additional parameters introduced for the three-dimensional extended \trento model.
 \begin{table}
 \centering
-\caption{Table}\label{tab:parametrization}
+\caption{Rapidity cumulants parametrizations}\label{tab:parametrization}
 \begin{tabular}{lccc}
 \paddedhline
 Model & mean $\mu$ & std.\ $\sigma$ & skewness $\gamma$ \\
@@ -286,9 +286,10 @@ Absolute & $\frac{1}{2} \mu_0 \ln\left(\frac{T_A e^{y_b}+T_B e^{-y_b}}{T_A e^{-y
 \end{table}
 
 \begin{figure}
+\singlespacing 
 \centering
-\includegraphics{trento3d/trento3d_example}
-\caption{Two sample events for Pb-Pb collision (top row) and p+Pb collision (bottom row). The left column and the right column slice the initial entropy density at middle rapidity and the $x=0$ plane respectively. The relative skewness parametrization is used with $\mu_0=1$, $\sigma_0=3$ and $\gamma_r=6$.}
+\includegraphics[width=.8\textwidth]{trento3d/trento3d_example}
+\caption[Two sample events for Pb-Pb collision (top row) and p+Pb]{Two sample events for Pb-Pb collision (top row) and p+Pb collision (bottom row). The left column and the right column slice the initial entropy density at middle rapidity and the $x=0$ plane respectively. The relative skewness parametrization is used with $\mu_0=1$, $\sigma_0=3$ and $\gamma_r=6$.}
 \label{fig:3d-example}
 \end{figure}
 
@@ -395,8 +396,9 @@ The justification is that the rapidity distribution of the multiplicity and norm
 In the end, as a validation of this procedure, we will be using a set of high-likelihood parameters and run the dynamical model with the viscous mode of the hydrodynamic model to see if other observables such as the anisotropic flows, and event-plane decorrelations can be described.
 
 \begin{figure}
+\singlespacing 
 \includegraphics[width=\textwidth]{trento3d/post_obs.pdf}
-\caption{The posterior distribution of the observables after the fitting process. Blue and red stands for the results calibrated using the ``relative skewness'' and the ``absolute skewness'' ansatz respectively.
+\caption[The posterior distribution of the observables after the fitting]{The posterior distribution of the observables after the fitting process. Blue and red stands for the results calibrated using the ``relative skewness'' and the ``absolute skewness'' ansatz respectively.
 From left to the right are charged particle pseudorapidity density in Pb-Pb collision, in p+Pb collision, and the rms of the $a_1$ coefficient in the two-particle pseudorapidity correlation decomposition. The lines in the right most figure shows that the rms $a_1$ is not very sensitive to the viscous effect in the hydrodynamic evolution.}
 \label{fig:trento:post_obs}
 \end{figure}
@@ -411,9 +413,10 @@ It is found that these jet-like correlations agrees well with the $a_1$ fluctuat
 The hydrodynamic model and mini-jet production model provide a complementary picture to fully understand the rms $a_1$: at larger centrality, mini-jet production dominates the fluctuation of the $\dnchdy$, while as multiplicity increases and the final state interactions are frequent, the event-by-event asymmetry in the single-particle distribution dominates the rms $a_1$.
 
 \begin{figure}
+\singlespacing 
 \centering
 \includegraphics[width=\textwidth]{trento3d/posterior.pdf}
-\caption{The posterior probability distribution of the model parameters, the colors distinguish the use of ``absolute skewness'' (red) and ``relative skewness'' ansatz. The diagonals are single parameter distribution, the off-diagonals are two-parameter joint distributions.}
+\caption[The posterior probability distribution of the model parameters,]{The posterior probability distribution of the model parameters, the colors distinguish the use of ``absolute skewness'' (red) and ``relative skewness'' ansatz. The diagonals are single parameter distribution, the off-diagonals are two-parameter joint distributions.}
 \label{fig:trento:posterior}
 \end{figure}
 
@@ -422,9 +425,10 @@ However, there is no strong evidence to favor any of them over the other.
 We will see later that this is because the two parametrizations, though take different forms, actually behave similar in terms of $ds/d\eta(\eta; T_A, T_B)$, for typical values of $T_A$ and $T_B$ of heavy nuclei.
 
 \begin{figure}
+\singlespacing 
 \centering
 \includegraphics[width=.8\textwidth]{trento3d/post_dsdy}
-\caption{The constrained functional form of the three-dimensional initial entropy deposition $s(T_A(\mathbf{x}_\perp), T_B(\mathbf{x}_\perp), \eta_s)$. $T_A$ and $T_B$ is varied from $0.2$ to $2.4$ fm${}^{-2}$. Colors distinguish the results from using ``absolute skewness'' (red) and ``relative skewness'' ansatz.}
+\caption[The constrained functional form of the three-dimensional initial]{The constrained functional form of the three-dimensional initial entropy deposition $s(T_A(\mathbf{x}_\perp), T_B(\mathbf{x}_\perp), \eta_s)$. $T_A$ and $T_B$ is varied from $0.2$ to $2.4$ fm${}^{-2}$. Colors distinguish the results from using ``absolute skewness'' (red) and ``relative skewness'' ansatz.}
 \label{fig:trento:post_dsdy}
 \end{figure}
 
@@ -476,9 +480,10 @@ $J$	     & 0.75 & 0.75	\\
 We are able to describe flow measured by ALICE \cite{Adam:2016izf} at mid-rapidity with a shear viscosity $\eta/s = 0.17$--$0.19$ close to other phenomenological studies, though the bulk viscosity is not included in this study.
 
 \begin{figure}
+\singlespacing 
 \centering
 \includegraphics[width=.7\textwidth]{trento3d/vn_cen}
-\caption{Flow coefficients $v_2\{2\}$ (blue) and $v_3\{2\}$ (orange) are plotted as a function of centrality. The calculation uses a 3+1D viscous hydrodynamic-based model with constant $\eta/s=0.17$ and $0.19$ for ``relative skewness'' (solid) and ``absolute skewness'' (dashed) ansatz. $\zeta/s=0$ and the switching temperature is $T_\text{sw}=154$~MeV.
+\caption[Flow coefficients $v_2\{2\}$ (blue) and $v_3\{2\}$ (orange) are plotted as]{Flow coefficients $v_2\{2\}$ (blue) and $v_3\{2\}$ (orange) are plotted as a function of centrality. The calculation uses a 3+1D viscous hydrodynamic-based model with constant $\eta/s=0.17$ and $0.19$ for ``relative skewness'' (solid) and ``absolute skewness'' (dashed) ansatz. $\zeta/s=0$ and the switching temperature is $T_\text{sw}=154$~MeV.
 The initial condition parameters are selected from the high-likelihood region of the posterior.}
 \label{fig:trento:vn_cen}
 \end{figure}
@@ -500,8 +505,9 @@ while it is possible that a constant entropy density hypersurface is a better cr
 To systematically investigate all these effects, a future global parameter calibration including both initial condition parameters, transport parameters, and matching parameters is inevitable and is also feasible given the advances in the dynamical models and programming developments as well as more powerful computing resources.
 
 \begin{figure}
+\singlespacing 
 \includegraphics[width=\textwidth]{trento3d/vn_eta}
-\caption{Pseudorapidity dependent flow coefficients $v_2\{2\}$ (blue circle), $v_3\{2\}$ (green triangle) and $v_2\{4\}$ (orange diamond).
+\caption[Pseudorapidity dependent flow coefficients $v_2\{2\}$ (blue circle), ]{Pseudorapidity dependent flow coefficients $v_2\{2\}$ (blue circle), $v_3\{2\}$ (green triangle) and $v_2\{4\}$ (orange diamond).
 Constant $\eta/s=0.25$ and $0.28$ are used for ``relative skewness'' (closed symbol) and ``absolute skewness'' (open symbol) ansatz. Data is taken from the ALICE Collaboration \cite{Adam:2016ows}.}
 \label{fig:trento:vn_eta}
 \end{figure}
@@ -527,7 +533,7 @@ One of the rapidity bins is near $\eta^b$ and the rest of the two bins are aroun
 This ratio measures the decorrelation between two event planes separated by a larger rapidity gap $\eta^a + \eta^b$ relative to the decorrelation over a smaller gap $|\eta^a - \eta^b|$.
 In experiments, one would like to take the reference bin $\eta^b$ farther from $\eta_a$ to suppress the short range correlations correlation.
 However, the way we build our model is to extend the mid-rapidity entropy deposition to finite rapidity, and this extension will eventually fail at sufficiently large rapidity because the model behavior in those region is not well constrained.
-In figure \ref{fig:trento:epd}, we compare the model calculations to data with both a large $4.4<\eta^b<5.0$ (right) and a relative smaller $3.0 < \eta^b< 4.0$ (left).
+In figure \ref{fig:trento:epd}, we compare the model calculations to data with both a large $4.4<\eta^b<5.0$ (bottom) and a relative smaller $3.0 < \eta^b< 4.0$ (top).
 The predicted factoziation ratios decreases linearly with the increasing rapidity gap.
 Using reference particles from $3.0 < \eta^b< 4.0$, the decorrelation is reproduced at larger centrality but not for central collisions.
 Because the $n=2$ event-plane has a preferred direction defined by the impact parameter, while $n=3$ event-plane does not, we observe that the $n=2$ factorization ratio decorrelates slower than the $n=3$ ratio, except for the most central collision when $n=2$ event-plane is also dominated by fluctuations.
@@ -536,11 +542,11 @@ This is simply because the model fails on the details at large rapidity as we ex
 Given the present comparison, we conclude that the valid range of the model should be restricted to $|\eta| < 4.0$.
 
 \begin{figure}
+\singlespacing 
 \centering
-\includegraphics[width=.495\textwidth]{trento3d/evt_pln_decorr_near}
-\hfill
-\includegraphics[width=.495\textwidth]{trento3d/evt_pln_decorr_far}
-\caption{The $n=2$ (blue) and $n=3$ (orange) event-plane decorrelations obtained for ``relative skewness'' (lines with bands) and ``absolute skewness'' (lines with hatches) ansatz. The left and right plots uses different reference particle bins $3.0<|\eta_b|<4.0$ and $4.4<|\eta_b|<5.0$ respectively.}
+\includegraphics[width=.8\textwidth]{trento3d/evt_pln_decorr_near}\\
+\includegraphics[width=.8\textwidth]{trento3d/evt_pln_decorr_far}
+\caption[The $n=2$ (blue) and $n=3$ (orange) event-plane decorrelations]{The $n=2$ (blue) and $n=3$ (orange) event-plane decorrelations obtained for ``relative skewness'' (lines with bands) and ``absolute skewness'' (lines with hatches) ansatz. The top and bottom plots uses different reference particle bins $3.0<|\eta_b|<4.0$ and $4.4<|\eta_b|<5.0$ respectively.}
 \label{fig:trento:epd}
 \end{figure}
 
@@ -566,7 +572,7 @@ Within each plot, black dots are ALICE measurements at midrapidity $|\eta|<0.8$ 
 The calculation shown in dashed lines are our predictions at forward/backward rapidity $2.5 < |\eta| < 3.5$,
 \begin{eqnarray}
 SC^\prime(m, n) &=& \langle\langle \cos(m\phi_1+n\phi_2-m\phi_3^\prime-n\phi_4^\prime)\rangle\rangle \\
-\nonumber &-& \langle\langle\cos[m(\phi_1-\phi_2^\prime)]\rangle\rangle\langle\langle\cos[n(\phi_1-\phi_2^\prime)]\rangle\rangle, \label{eq:scmn}
+\nonumber &-& \langle\langle\cos[m(\phi_1-\phi_2^\prime)]\rangle\rangle\langle\langle\cos[n(\phi_1-\phi_2^\prime)]\rangle\rangle, \label{eq:scmn-diff}
 \end{eqnarray}
 where the two of the particles (primed) are selected from the forward/backward rapidity bins, while the rest of the two still come from the mid-rapidity bin $|\eta|<0.8$.
 
@@ -575,8 +581,9 @@ At forward and backward rapidity, though the magnitudes of both $SC(m,n)$ and $v
 This is a prediction that can be checked in future measurements to put further constraints on the three-dimensional initial condition model.
 
 \begin{figure}
+\singlespacing 
 \includegraphics[width=\textwidth]{trento3d/smn}
-\caption{The symmetric cumulants (top row) and normalized symmetric cumultants (bottom row) obtained from the ``relative skewness'' (left column) and the ``absolute skewness'' (right column) ansatz.
+\caption[The symmetric cumulants (top row) and normalized symmetric]{The symmetric cumulants (top row) and normalized symmetric cumultants (bottom row) obtained from the ``relative skewness'' (left column) and the ``absolute skewness'' (right column) ansatz.
 $SC(4,2)$ (blue) and $SC(3,2)$ (green) are shown as functions of centrality. The experimental measurements at mid-rapidity (black symbols) are taken from \cite{ALICE:2016kpq}.
 The calculations are performed at both mid-rapidity $|\eta|<0.8$ (solid lines) and forward/backward rapidity $2.5<|\eta|<3.5$ (dashed lines).
 }

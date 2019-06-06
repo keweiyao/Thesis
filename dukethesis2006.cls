@@ -410,7 +410,8 @@
 %\newlength{\@chapwidth}
 %\newlength{\@chaptitlewidth}
 \def\@makechapterhead#1{             % Heading for \chapter command
-  { \parindent 0pt \raggedright
+  { \singlespacing
+    \parindent 0pt \raggedright
     \ifnum \c@secnumdepth >\m@ne     % IF secnumdepth > -1 THEN
       \LARGE\bf \@chapapp{} \thechapter % Print 'Chapter' and number.
       \par
@@ -504,17 +505,17 @@
 %
 %----------------------------------------------------------------------
 % same as book.cls, excl \currentclassname refs
-%% \renewcommand\section{
+\renewcommand\section{
 %%   \renewcommand{\currentclassname}{section\xspace} % Added by Syam Gadde.
-%%   \@startsection {section}{1}{\z@}{-3.5ex plus -1ex minus -.2ex}%
-%%   {2.3ex plus .2ex}{\large\bf}
-%% }
+   \@startsection {section}{1}{\z@}{-3.5ex plus -1ex minus -.2ex}%
+   {2.3ex plus .2ex}{\singlespacing\large\bf}
+}
 
-%% \renewcommand\subsection{
+ \renewcommand\subsection{
 %%   \renewcommand{\currentclassname}{subsection\xspace} % Added by Syam Gadde.
-%%   \@startsection{subsection}{2}{\z@}{-3.25ex plus -1ex minus -.2ex}%
-%%   {1.5ex plus .2ex}{\normalsize\bf}
-%% }
+   \@startsection{subsection}{2}{\z@}{-3.25ex plus -1ex minus -.2ex}%
+   {1.5ex plus .2ex}{\singlespacing\normalsize\bf}
+ }
 
 %% \renewcommand\subsubsection{
 %%   \renewcommand{\currentclassname}{subsection\xspace} % Added by Syam Gadde.
@@ -522,11 +523,11 @@
 %%   {1.5ex plus .2ex}{\normalsize\bf}
 %% }
 
-%% \renewcommand\paragraph{
-%%   \renewcommand{\currentclassname}{subsection\xspace} % Added by Syam Gadde.
-%%   \@startsection{paragraph}{4}{\z@}{3.25ex plus 1ex minus .2ex}%
-%%   {-1em}{\normalsize\it}
-%% }
+ \renewcommand\paragraph{
+%   \renewcommand{\currentclassname}{subsection\xspace} % Added by Syam Gadde.
+   \@startsection{paragraph}{4}{\z@}{3.25ex plus 1ex minus .2ex}%
+   {-1em}{\normalsize\it}
+ }
 
 %% \renewcommand\subparagraph{
 %%   \renewcommand{\currentclassname}{subsection\xspace} % Added by Syam Gadde.
@@ -616,7 +617,7 @@
         \openup 2.75\jot % double spaced
         \begin{center}
                 \def\thanks##1{} % temporarily kill any thanks lines
-                {\large \uppercase\expandafter{\@title} \par}
+                {\large \expandafter{\@title} \par}
                 {\large\lineskip .75em\begin{tabular}[t]{c}{\@author}\end{tabular}\par}
                 {\large Under the supervision of Professor \@advisor \par}
                 \vskip 1.5em
@@ -1108,26 +1109,26 @@
 %  TEMPORARY DEFINITIONS:
 %
 %----------------------------------------------------------------------
-\renewenvironment{thebibliography}[1]
-{
-        \normalbaselines
+%\renewenvironment{thebibliography}[1]
+%{
+%        \normalbaselines
 %        \def\itemsep{10pt} =====> Cause a lot of error messages. Remove 
-        \chapter*{Bibliography\markboth{BIBLIOGRAPHY}{BIBLIOGRAPHY}}
-        \list{[\arabic{enumi}]}{
-                \settowidth\labelwidth{[#1]}\leftmargin\labelwidth
-                \advance\leftmargin\labelsep\usecounter{enumi}
-        }
-        \addcontentsline{toc}{chapter}{Bibliography}
-        \def\newblock{\hskip .11em plus .33em minus -.07em}
-        \sloppy
-        \sfcode`\.=1000\relax
-}{\endlist}
-\renewcommand\newblock{x}
+%        \chapter*{Bibliography\markboth{BIBLIOGRAPHY}{BIBLIOGRAPHY}}
+%        \list{[\arabic{enumi}]}{
+%                \settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+%                \advance\leftmargin\labelsep\usecounter{enumi}
+%        }
+%        \addcontentsline{toc}{chapter}{Bibliography}
+%        \def\newblock{\hskip .11em plus .33em minus -.07em}
+%        \sloppy
+%        \sfcode`\.=1000\relax
+%}{\endlist}
+%\renewcommand\newblock{x}
 
-\newcommand{\startbibliography}{
-  \newpage
-  \normalbaselines
-  \addcontentsline{toc}{chapter}{Bibliography}}
+%\newcommand{\startbibliography}{
+%  \newpage
+%  \normalbaselines
+%  \addcontentsline{toc}{chapter}{Bibliography}}
 
 % \def\@biblabel#1{[#1]\hfill}  % Produces the label for a \bibitem[...]
                                 % command.
@@ -1413,7 +1414,7 @@
     \parskip=0pt
     \begin{center}
       \vglue -.25in   % this makes top margin 2in
-      {\Large \uppercase\expandafter{\@title} \par}
+      {\Large \expandafter{\@title} \par}
       \vglue 2ex
       {\normalsize by \par}
       \vglue 2ex
@@ -1519,7 +1520,7 @@
       \vglue 2ex
       %{\large (\@subject)}
       %\vglue 2ex
-      {\Large \uppercase\expandafter{\@title} \par}
+      {\Large \expandafter{\@title} \par}
       \vglue 2ex
       {\normalsize by \par}
       \vglue 2ex

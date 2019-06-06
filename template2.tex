@@ -1,12 +1,9 @@
 \documentclass[PhD]{dukethesis2006}
-\UseRawInputEncoding
+%\UseRawInputEncoding
 %preamble here for options
-
-%-----------------------------------------------------------------------------%
-% DEFINITIONS:
-%
-% include \usepackage here
-%-----------------------------------------------------------------------------%
+\usepackage[left=1.5in, top=1in, right=1in, bottom=1in]{geometry}
+\usepackage[numbers,compress]{natbib}
+\setcitestyle{square}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{bbold}
@@ -14,7 +11,7 @@
 %\usepackage[light]{roboto}
 
 \usepackage{mathtools}
-\usepackage[titletoc]{appendix}
+\usepackage{appendix}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
@@ -26,18 +23,17 @@
 \usepackage{verbatim}
 \usepackage[inline]{enumitem}
 \usepackage{slashed}
-\usepackage{booktabs}
 \usepackage{enumerate}
-\usepackage{tikz}
-
+\usepackage{mfirstuc}
 \usepackage{array}
 \usepackage{epsfig}
 \usepackage{graphicx}
 \graphicspath{{images/}{images/LBT/}{images/Feynman/}{images/Lido/}{images/New-analysis/}{images/Citing/}}
 \usepackage{xy}
 
-
 \input{bob_macros.tex} 
+%\usepackage{sectsty}
+%\allsectionsfont{\singlespacing\raggedright\Large}
 % This is where the shortened versions of Latex environments like figure, equation, etc 
 % are defined. See the file for the shortcuts.
 
@@ -51,30 +47,40 @@
 
 \department{Department of Physics}
 %\subject{xxx} If this is used, "subject" has to be un-commented in the cls file in several places
-\title{Partonic transport model application to heavy flavor}
+\title{Partonic Transport Model Application to Heavy Flavor}
 
 %end of preamble, beginning of printable document
 
 \begin{document}
 
 
-\Copyright
-
 \maketitle
 
 \makeabstract
 
+\Copyright
+
 \abstract
+\doublespacing
+Heavy-flavor particles are excellent probes of the properties of the hot and dense nuclear medium created in the relativistic heavy-ion collisions.
+Heavy-flavor transport coefficients in the quark-gluon plasma (QGP) stage of the collisions are particularly interesting, as they contain important information on the strong interaction at finite temperatures.
+Studying the heavy-flavor evolution in a dynamically evolving medium requires a comprehensive multi-stage modeling approach of both the medium and the probes, with an accurate implementation of the physical ingredients to be tested.
+For this purpose, I have developed a new partonic transport model (Linear-Boltzmann-plus-Diffusion-Transport-Model) LIDO and applied it to heavy quark propagation inside a QGP.
+The model has an improved implementation of parton in-medium bremsstrahlung and a flexible treatment of the probe-medium interactions, combining both large angle scatterings and diffusion processes.
+The model is then coupled to a high-energy event-generator, a hydrodynamic medium evolution and a hadronic transport model.
+Finally, applying a Bayesian analysis, I extract the heavy quark transport coefficients from a model-to-data comparison.
+The results, with uncertainty quantification, are found to be consistent with earlier extraction of the light-quark transport coefficients at high momentum and with first-principle calculations of the heavy flavor diffusion constant at low momentum.
 
 \acknowledgements
+This work was supported by the U.S. Department of Energy (DOE) grant number DE-FG02-05ER41367 and by National Science Foundation (NSC) grant number OAC-1550225.
+The computational resources were provided by the Open Science Grid (OSG) funded by DOE and NSF, and by the National Energy Research Scientific Computing Center (NERSC), which is the primary scientific computing facility for the Office of Science in the DOE.
 
 
 %A table of contents file is automatically generated in the same folder as the .tex file when
 %the \tableofcontents is used
+\singlespacing
 \tableofcontents
-
 \listoffigures
-
 \listoftables
 
 %-----------------------------------------------------------------------------%
@@ -83,7 +89,7 @@
 % have FILE = intro if stored in intro.tex (.tex extension is assumed!).
 %-----------------------------------------------------------------------------%
 
-\pagenumbering{arabic}
+\doublespacing
 \input{chapters/Introduction}
 \input{chapters/simulation}
 \input{chapters/transport}
@@ -94,16 +100,22 @@
 \input{chapters/appendix}
 
 \nocite{*}
-\bibliographystyle{alpha}
-\bibliography{lit}
-
+\singlespacing
+\bibliographystyle{unsrt}
+\begingroup
+    \setlength{\bibsep}{10pt}
+    \bibliography{lit}
+\endgroup
 
 
 \biography
-%-----------------------------------------------------------------------------%
-% For PhD Biography,
-% -- Talk about YOU:  
-% -- be sure to include publications, awards, fellowships, etc.
-%-----------------------------------------------------------------------------%
+\doublespacing
+Weiyao Ke reveived a B.S. in Physics from Peking University in 2014. His published or currently in preparation works during his PhD include:
 
+\begin{itemize}
+\singlespacing
+\item Weiyao Ke, Yingru Xu, and Steffen A. Bass Modeling of quantum-coherence effects in parton radiative energy loss. arXiv:1810.08177.
+\item Weiyao Ke, Yingru Xu, and Steffen A. Bass A linearized Boltzmann-Langevin transport model for heavy quark transport in hot and dense QCD matter. Phys. Rev. C {\bf 98}, 064901 (2018).
+\item Weiyao Ke, J. Scott Moreland, Jonah E. Bernhard, and Steffen A. Bass Constraints on rapidity-dependent initial conditions from charged-particle pseudorapidity densities and two-particle correlations. Phys. Rev. C {\bf 96}, 044912 (2017).
+\end{itemize}
 \end{document}
