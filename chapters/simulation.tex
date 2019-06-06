@@ -67,7 +67,7 @@ It states that the system at different space-time rapidity behaves the same upto
 Then, the 2+1 dimensional solution obtained at one space-time rapidity ($\eta_s = 0$) can be boosted to get the solution at other $\eta_s$.
 As a result, particle emissions from such a fireball does not strongly depends on $\eta_s$.
 
-The $\eta_s$-dependence cannot be detected but is related to the the emitted particle rapidity / pseudo-rapidity for the reason below.
+The $\eta_s$-dependence cannot be detected but is related to the the emitted particle rapidity / pseudorapidity for the reason below.
 Suppose that the Lorentz contracted nuclei interact at $z=0$ and produce excitations that free-stream in the longitudinal direction, then for each of these excitations,
 \begin{equation}
   \frac{z}{t} = \frac{p_z}{E}.
@@ -77,7 +77,7 @@ This approximation provides the equivalence of $\eta_s$ and $y$ at early stages 
   \eta_s = \frac{1}{2}\log\frac{t+z}{t-z} \sim y = \frac{1}{2}\log\frac{E+p_z}{E-p_z}.
 \end{equation}
 Assume further that these initial excitations have small masses, then the rapidity can be approximated by pseudorapidity as $E\approx |p|$.
-Since the following hydrodynamics is boost-invariant, then emitted particle pseudo-rapidity should be flat.
+Since the following hydrodynamics is boost-invariant, then emitted particle pseudorapidity should be flat.
 Experimentally, the event-averaged rapidity-distribution of charged particles $dN_{\textrm{ch}}/dy$ in both proton-proton and symmetric nuclei-nuclei collisions at the RHIC and energy falls off at large rapidity but has a central plateau at least within $|y|<2$.
 
 However, since $dN_{\textrm{ch}}/dy$ are event-averaged quantities, it being flat within $|y|<2$ does not rule out event-by-event particle production fluctuation which break the boost-invariance, and these fluctuations can be different at different transverse locations.
@@ -128,11 +128,11 @@ T^{\mu\nu}(x_\perp, \tau_{\textrm{hydro}}) = \int f(x_\perp, p_\perp, \tau=0) \f
 is used for initializing the hydrodynamic equations by the Landau matching procedure \cite{Liu:2015nwa}.
 
 \section{Initial condition model}
-Unlike the dynamical models that are governed by a few equations / laws with a few parameters, the initial condition model parameterizes many more unknowns.
+Unlike the dynamical models that are governed by a few equations / laws with a few parameters, the initial condition model parametrizes many more unknowns.
 For different initial condition models, these unknowns can be the initial color density of the nuclear wave function, the effective size of a nucleon, the form factor of the nucleon-nucleon inelastic cross-section, and the amount of fluctuations in particle production / energy deposition, etc.
 There are two classes of initial condition models:
 \begin{itemize}
-\item Models that takes into account the particle production dynamics. Such as minijet production, strings productions and flux-tubes, coarse-grained hadronic transport models, and color-glass condensate (CGC) effective field theory based models.
+\item Models that takes into account the particle production dynamics. Such as mini-jet production, strings productions and flux-tubes, coarse-grained hadronic transport models, and color-glass condensate (CGC) effective field theory based models.
 \item Parametric models. Models provide macroscopic initial conditions without a dynamical component. Such as the Monte-Carlo Glauber models and its extensions, and the \trento\ initial condition model to be explained.
 \end{itemize}
 This section introduces the original boost-invariant \trento\ model, and my work that extends the model to include longitudinal structure and fluctuations.
@@ -232,7 +232,7 @@ Take the following decomposition of $s(\x, \eta_s)$ at the hydrodynamic starting
   s(\x, \eta_s)\vert_{\tau=\tau_0} \propto f(T_A(\x), T_B(\x)) \times g(T_A(\x), T_B(\x), \eta_s).
   \label{factorized}
 \end{equation}
-$f$ is the entropy production at midrapidity as explain above.
+$f$ is the entropy production at mid-rapidity as explain above.
 $g$ parametrize the rapidity-dependence and is always normalized such that $g(\eta_s=0)=1$, so that it reduces to the original model at mid-rapidity.
 We parametrize the $g$ function in terms of rapidity and then transformed to the space-time rapidity.
 \begin{eqnarray}
@@ -240,7 +240,7 @@ g(\x, \eta) &=& g(y; T_A(\x), T_B(\x)) \frac{J \cosh \eta_s}{\sqrt{1 + J^2 \sinh
 \label{jacobian}
 \end{eqnarray}
 where the species-dependent factor $J$ is replaced with an effective value $J \approx \langle p_T \rangle / \langle m_T \rangle$.
-To relate the asymmetry of $g(y)$ to the difference of $T_A, T_B$, we choose to parametrize the $y$-cumulents of $g$ as functions of $T_A$ and $T_B$.
+To relate the asymmetry of $g(y)$ to the difference of $T_A, T_B$, we choose to parametrize the $y$-cumulants of $g$ as functions of $T_A$ and $T_B$.
 The $g(y)$ function is then reconstruct using its first few cumulants (mean $\mu$, standard deviation $\sigma$, and skewness $\gamma$) by,
 \begin{eqnarray}
 g(\x, y) &=& \mathcal{F}^{-1}\{\tilde{g}(\x, k)\}, \\
@@ -308,11 +308,11 @@ The statistical technique for the reverse-engineering is the Bayes analysis expl
 
 \subsection{Sensitive observables to the initial entropy deposition}
 \paragraph{The single particle spectra}
-The most direct observable is the charged particle pseudo-rapidity density $\dnchdy$ measured for different collision systems and centralities.
+The most direct observable is the charged particle pseudorapidity density $\dnchdy$ measured for different collision systems and centralities.
 The ALICE collaboration and the ATLAS collaboration has measured this quantity for both the Pb-Pb system ($-3.5<\eta<5.0$) and the p-Pb system ($|\eta| < 2.7$).
 $\dnchdy$ can very well constrain the global rapidity profile and the centrality dependence of the mode, while the limitation being that it is less sensitive to the amount of longitudinal fluctuations.
 
-\paragraph{Two particle pseudo-rapidity correlation}
+\paragraph{Two particle pseudorapidity correlation}
 A good probe of event-by-event longitudinal fluctuations is the two-particle pseudorapidity correlation observable $C(\eta_1, \eta_2)$,
 \begin{eqnarray}
 C(\eta_1, \eta_2) = \frac{ \left\langle N(\eta_1)N(\eta_2) \right\rangle}{\left\langle N(\eta_1)\right\rangle\left\langle N(\eta_2) \right\rangle}
@@ -321,7 +321,7 @@ The long range part of $C(\eta_1, \eta_2)$ is sensitive to the initial state.
 This is because the correlation between particles separated by a large rapidity gap at proper time $\tau$ can only come from proper times before $\tau e^{-|\eta_1-\eta_2|/2}$ due to causality.
 For example, if two particles separated by four units of rapidity are emitted at a constant $\tau = 8$ fm/$c$ hydrodynamic freeze-out hyper-surface and neglecting the long range correlation from the hadronic cascade, then any correlation must have come from before the proper time $ 8 e^{-2}\approx 1$ fm/c.
 
-To see how $C(\eta_1, \eta_2)$ is related to the longitudinal fluctuation of the entropy deposition / particle production, decompose $\dnchdy$ for each event in a finite pseudo-rapidity window $[-Y, Y]$ using the normalized Legendre polynomials basis \cite{Bzdak:2012tp, Jia:2015jga, ATLAS:2015kla},
+To see how $C(\eta_1, \eta_2)$ is related to the longitudinal fluctuation of the entropy deposition / particle production, decompose $\dnchdy$ for each event in a finite pseudorapidity window $[-Y, Y]$ using the normalized Legendre polynomials basis \cite{Bzdak:2012tp, Jia:2015jga, ATLAS:2015kla},
 \begin{eqnarray}
 \frac{dN}{d\eta} &=& \biggl\langle\frac{dN}{d\eta}\biggr\rangle \biggl[1 + \sum_{n=0}^\infty a_n T_n\left(\frac{\eta}{Y}\right) \biggr],\\
 T_n(x) &=& \sqrt{n + \frac{1}{2}} P_n(x)
@@ -387,7 +387,7 @@ One may notice that we did not use different width parameters for the rapidity d
 
 The dynamical model consists of a 3+1D relativistic hydrodynamics and a hadronic afterburner.
 The equation-of-state (EoS) is obtained by interpolating the state-of-the-art lattice-QCD EoS \cite{Bazavov:2014pvz} at high temperature (zero baryon density) to a hadron resonance gas EoS at low temperature \cite{Moreland:2015dvc}.
-The energy density at which the hydrodynamic energy momentum tensor is particulized into hadrons is $\epsilon_{sw} = 0.322$~GeV/fm$^3$ corresponding to a switching temperature close to the pseudo-critical temperature $T_{sw} \sim T_c = 0.154$~GeV).
+The energy density at which the hydrodynamic energy momentum tensor is particlized into hadrons is $\epsilon_{sw} = 0.322$~GeV/fm$^3$ corresponding to a switching temperature close to the pseudo-critical temperature $T_{sw} \sim T_c = 0.154$~GeV).
 As a remark, the relativistic hydrodynamics code vHLLE \cite{Karpenko:2013wva} includes viscous corrections, but we used its ideal mode in the parameter extraction.
 This is because the parameter optimization process requires running the model on hundreds of different parameter sets.
 For each parameter set, thousands of minimum-biased events needed to be generated to control the statistical uncertainty, especially for the correlation observables. 
@@ -436,7 +436,7 @@ The distribution of the calibrated parameters is shown in figure \ref{fig:trento
 The red and blue lines and color map correspond to results using the ``absolute'' and ``relative'' skewness respectively.
 The normalization parameters $N_{\textrm{PbPb}}$ and $N_{\textrm{pPb}}$, mid-rapidity entropy deposition parameter $p$, nucleon thickness function fluctuation parameter $k$, the width of the rapidity distribution $\sigma_0$ and the effective Jacobian $J$ have similar probability distributions between the two parametrizations.
 However, the distribution of the asymmetry related parameters $\mu_0$ and $\gamma_0$ (anti-correlated), and nucleon width $w$ are very different.
-This is because the Bayesian calibration looks for the high-likelihood region of the parameter space to explain the data, and the two different prarametrizations can achieve this same goal by optimizing the parameter combinations differently.
+This is because the Bayesian calibration looks for the high-likelihood region of the parameter space to explain the data, and the two different parametrizations can achieve this same goal by optimizing the parameter combinations differently.
 For the ``relative'' skewness one, the optimized parameters have a small shift of the mean $\mu$ and a large skewness $\gamma$; for the ``absolute'' skewness one, they correspond to the region with a large $\mu$ but vanishing $\gamma$.
 This does not mean that there are ``two models'' explaining the same data, because both of them are an oversimplified parametrization of $ds/d\eta(\eta; T_A, T_B)$ with infinitely many degrees of freedom. 
 Instead, we should treat them as an estimation of the systematic uncertainty in extracting the function form of the initial 3D entropy deposition $ds/d\eta(\eta; T_A(\x), T_B(\x))$.
@@ -448,13 +448,13 @@ For references, the value of the thickness function at the center of a Gaussian 
 Therefore, the chosen range of $T_{A,B}$ already cover the typical ranges and combinations for entropy production in a realistic heavy-ion collision.
 One observe that the functional form of the $ds/dy$ between the two parametrization agrees within one standard deviation, with the deviations increasing as the asymmetry increases.
 Certainly, with sufficiently different $T_A$ and $T_B$ combinations, the two results will have totally different predictions; however, within the physical range of the thickness function, the two methods converges onto a similar behavior,
-We conclude that by applying the hydrodynamic-based model and a flexible 3D initial condition, the form of the local rapidity distribution as function of participant densities can be reverse engineered using single particle pseudo-rapidity distributions and two-particle pseudo-rapidity correlations.
+We conclude that by applying the hydrodynamic-based model and a flexible 3D initial condition, the form of the local rapidity distribution as function of participant densities can be reverse engineered using single particle pseudorapidity distributions and two-particle pseudorapidity correlations.
 
 \subsection{Prediction with the calibrated 3D initial condition}
 The calibrated initial condition is useful in predicting other rapidity-dependent observables.
 Especially, because we have only used multiplicity based observables $\dnchdy$ and rms $a_1$ in the calibration, a prediction of azimuthal anisotropy related observables would provide an important validation of the initial condition.
 We choose a set of high-likelihood parameters shown in table \ref{tab:chosen_parameters}.
-The selected validation / prediction observables are pseudo-rapidity dependent harmonic flows, event-plane decorrelations and the symmetric cumulants which quantify the correlation between different flow harmonics.
+The selected validation / prediction observables are pseudorapidity dependent harmonic flows, event-plane decorrelations and the symmetric cumulants which quantify the correlation between different flow harmonics.
 
 \begin{table}
 \centering
@@ -476,7 +476,7 @@ $J$	     & 0.75 & 0.75	\\
 \label{tab:chosen_parameters}    
 \end{table}
 
-\paragraph{Mid-rapidity $v_n$} The elliptic and triangular flow from two-particle correlation $v_2\{2\}$ and $v_3\{2\}$ are calculated at as function of centrality at mid-rapidity (figure \ref{fig:trento:vn_cen}) and as function of pesudo-rapidity at different centrality (figure \ref{fig:trento:vn_eta}).
+\paragraph{Mid-rapidity $v_n$} The elliptic and triangular flow from two-particle correlation $v_2\{2\}$ and $v_3\{2\}$ are calculated at as function of centrality at mid-rapidity (figure \ref{fig:trento:vn_cen}) and as function of pseudo-rapidity at different centrality (figure \ref{fig:trento:vn_eta}).
 We are able to describe flow measured by ALICE \cite{Adam:2016izf} at mid-rapidity with a shear viscosity $\eta/s = 0.17$--$0.19$ close to other phenomenological studies, though the bulk viscosity is not included in this study.
 
 \begin{figure}
@@ -534,7 +534,7 @@ This ratio measures the decorrelation between two event planes separated by a la
 In experiments, one would like to take the reference bin $\eta^b$ farther from $\eta_a$ to suppress the short range correlations correlation.
 However, the way we build our model is to extend the mid-rapidity entropy deposition to finite rapidity, and this extension will eventually fail at sufficiently large rapidity because the model behavior in those region is not well constrained.
 In figure \ref{fig:trento:epd}, we compare the model calculations to data with both a large $4.4<\eta^b<5.0$ (bottom) and a relative smaller $3.0 < \eta^b< 4.0$ (top).
-The predicted factoziation ratios decreases linearly with the increasing rapidity gap.
+The predicted factorization ratios decreases linearly with the increasing rapidity gap.
 Using reference particles from $3.0 < \eta^b< 4.0$, the decorrelation is reproduced at larger centrality but not for central collisions.
 Because the $n=2$ event-plane has a preferred direction defined by the impact parameter, while $n=3$ event-plane does not, we observe that the $n=2$ factorization ratio decorrelates slower than the $n=3$ ratio, except for the most central collision when $n=2$ event-plane is also dominated by fluctuations.
 Comparing to data with reference particles from $4.4<\eta^b<5.0$, the experimental data stays similar to the the previous case except for central collisions, but the prediction is completely off.
@@ -576,14 +576,14 @@ SC^\prime(m, n) &=& \langle\langle \cos(m\phi_1+n\phi_2-m\phi_3^\prime-n\phi_4^\
 \end{eqnarray}
 where the two of the particles (primed) are selected from the forward/backward rapidity bins, while the rest of the two still come from the mid-rapidity bin $|\eta|<0.8$.
 
-At mid-rapidity, the calculated (normalized) symmetric cumulents reproduce the trend of the measurements, and the ``relative'' skewed initial condition does a better quantitative job than the ``absolute'' skewed model.
+At mid-rapidity, the calculated (normalized) symmetric cumulants reproduce the trend of the measurements, and the ``relative'' skewed initial condition does a better quantitative job than the ``absolute'' skewed model.
 At forward and backward rapidity, though the magnitudes of both $SC(m,n)$ and $v_n$, $v_m$ changed, the normalized symmetric cumulants remains the same as the one at mid-rapidity.
 This is a prediction that can be checked in future measurements to put further constraints on the three-dimensional initial condition model.
 
 \begin{figure}
 \singlespacing 
 \includegraphics[width=\textwidth]{trento3d/smn}
-\caption[The symmetric cumulants (top row) and normalized symmetric]{The symmetric cumulants (top row) and normalized symmetric cumultants (bottom row) obtained from the ``relative skewness'' (left column) and the ``absolute skewness'' (right column) ansatz.
+\caption[The symmetric cumulants (top row) and normalized symmetric]{The symmetric cumulants (top row) and normalized symmetric cumulants (bottom row) obtained from the ``relative skewness'' (left column) and the ``absolute skewness'' (right column) ansatz.
 $SC(4,2)$ (blue) and $SC(3,2)$ (green) are shown as functions of centrality. The experimental measurements at mid-rapidity (black symbols) are taken from \cite{ALICE:2016kpq}.
 The calculations are performed at both mid-rapidity $|\eta|<0.8$ (solid lines) and forward/backward rapidity $2.5<|\eta|<3.5$ (dashed lines).
 }
