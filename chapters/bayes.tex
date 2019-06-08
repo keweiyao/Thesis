@@ -56,7 +56,7 @@ where the first index is the label of different parameter set, and the second in
 The design matrix $\mathbf{D}$ and the observations matrix $\mathbf{Y}$ help to train a general interpolator to infer the calculated observables at any given parameter value.
 
 \section{Data reduction}
-The model $M$ is a mapping of an $n$-dimesional vector to an $m$-dimensional vector. 
+The model $M$ is a mapping of an $n$-dimensional vector to an $m$-dimensional vector. 
 One can certainly construct an array of independent $m$ scalar mappings, and interpolate each of them.
 However, this na\"ive construction does not make use of the intrinsic correlations / structures that are already present in the training data, and can be very inefficient for practice usage.
 Considering an observation with two values of $R_{AA}$ and $v_2$. Usually the larger the $R_{AA}$ the model predicts, the smaller the $v_2$, and thus an anti-correlation is expected.
@@ -97,7 +97,7 @@ The Gaussian Process provides a non-parametric interpolation for scalar function
 We shall let the readers refer to \cite{rasmussen2006gaussian} for the technical details and only summarize the basic of the Gaussian Process.
 
 \paragraph{Gaussian Process} Taking a uni-variate case as an example, given an array of input and an array of output, the common way to interpolate the data is, e.g., polynomial interpolation.
-However, polynomials only uses local information of the grid, and its performance can be sensitive to the error of the output (e.g. statistical fluctuation in the simulation).
+However, polynomials only uses local information of the grid, and its performance can be sensitive to the error of the output (e.g., statistical fluctuation in the simulation).
 Moreover, it is hard to work with a Lain-hypercube design because the design points are not arranged on a grid.
 In contrary, a GP does not make any assumption on the functional form of the interpolation, but infers the output at a certain input based on how the output at the present point correlates with those given outputs at other input points.
 Mathematically, one assumes that elements of the predicted output $\mathbf{y}^*$ at input $\mathbf{x^*}$ and the known outputs $\mathbf{y}_{\textrm{train}}$ at the training points $\mathbf{x}_{\textrm{train}}$ form a multi-variate normal distribution,
@@ -163,7 +163,7 @@ A validation is done by performing the model calculation at novel points in the 
 If an emulator is trained to work properly, then the standardized deviation $(y_i - y_{\textrm{validate}, i})/\sigma_i$ should follow approximately a standard normal distribution.
 
 \paragraph{Multivariate inputs and outputs} The GP formulation can be easily generalized to higher dimensional inputs by specifying a multidimensional kernel function.
-For high dimensional outputs, one first applies the PCA analysis introduced in the previous section and the build individual GPs for each of the first $N_{PC}$ principal components that take most of the data's variance.
+For high dimensional outputs, one first applies the PCA analysis introduced in the previous section and the build individual GPs for each of the first $N_{PC}$ principal components that take most of the data variance.
 
 \section{Bayes' theorem and Markov chain Monte Carlo}
 With the model emulator $M$ (we are using the same symbol as the model, but one should always remember that the emulator is only a fast surrogate of the original model and comes with uncertainty), we apply Bayes' theorem, the essence of the statistical analysis.
@@ -207,8 +207,8 @@ The exact origin of this model uncertainty is unknown, but it plays a row as a `
 \paragraph{Marginalize the posterior distribution} The resultant posterior distribution is a function of $n$ parameters.
 To answer what is the probability distribution of one parameter folded with the uncertainty from other parameters, one looks at the marginalized distribution with the other $n-1$ parameters integrated out.
 This is done by a Markov chain Monte Carlo (MCMC) sampling of the posterior function using an ensemble of $n$-dimensional walkers whose distribution thermalizes into the target posterior distribution function.
-The maginalized distribution is then the distribution of the projected ensemble onto one dimension.
-Similary, a marginalization of the joint distribution of two or more parameters can be obtained similarly.
+The marginalized distribution is then the distribution of the projected ensemble onto one dimension.
+Similarly, a marginalization of the joint distribution of two or more parameters can be obtained similarly.
 
 
 

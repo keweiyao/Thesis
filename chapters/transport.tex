@@ -18,7 +18,7 @@ Hard partons scatter perturbatively with these well separated scattering centers
 These two commonly used approaches are not necessarily mutually exclusive, and can have overlapping range of validity. 
 For example, the effect of soft momentum exchange processes in the perturbative calculation can be very well modeled by a diffusion equation \cite{Ghiglieri:2015ala,Dai:2019hbi}.
 These different assumptions on the interaction between the medium and the hard probe are largely due to our inadequate theoretical tools in describing the QGP medium in the strongly coupled regime.
-On the one hand, this becomes the an uncertainty intrinsic to the transport approach, until one finds convincing way of calculating the dynamics of the strongly coupled QGP medium from first principles.
+On the one hand, this becomes an uncertainty intrinsic to the transport approach, until one finds convincing way of calculating the dynamics of the strongly coupled QGP medium from first principles.
 On the other hand, experiments may be able to tell which assumption (or a combination of both) is preferred and answer the very question of how the sQGP participates in the jet-medium interactions.
 
 A second difficulty is that semi-classical transport equations can be cumbersome in treating quantum coherence.
@@ -138,11 +138,11 @@ w(p; p') = \sum_b\int_{24} f_{eq}^b(p_2) \overline{|M|^2}(p, p_2; p', p_4)
 
 Using local thermal solutions for the bulk particles is a strong assumption. 
 The degree of local thermalization in realistic events is still an open question, especially at the early stage of the heavy-ion collision. 
-Morevoer, whether the system can be understood in terms of quasi-particle degrees of freedom is a different question.
+Moreover, whether the system can be understood in terms of quasi-particle degrees of freedom is a different question.
 In an extreme weakly coupled system $g\ll 1$, one expects that the local pressure and energy density can be explained using fundamental degrees of freedom: quarks and gluons, with perturbative corrections \cite{Blaizot:2000fc,Strickland:2010tm,Su:2015esa}.
 But with a large $g$ estimated from phenomenological studies, such a perturbative description may not be the most efficient way of understanding the bulk medium, and non-perturbative physics can play an essential role. 
 
-Interpreting the medium in terms of microscopic degrees-of-freedom seem to be a an unavoidable step of the Boltzmann equations, however, it is possible to ``integrate out'' the microscopic details in the soft limit of interaction into a set of transport coefficients.
+Interpreting the medium in terms of microscopic degrees-of-freedom seem to be an unavoidable step of the Boltzmann equations, however, it is possible to ``integrate out'' the microscopic details in the soft limit of interaction into a set of transport coefficients.
 
 \paragraph{The Fokker Planck equation}
 In the soft momentum transfer $q = p'-p$ limit  $|q| \ll |p|$, the change in distribution function can be expanded to the second terms in $q$, and the linearized Boltzmann equation reduces to the Fokker-Planck type of equation,
@@ -393,7 +393,7 @@ The tabulation of a high-dimensional rate and cross-section tables can be made m
 Tabulating the ratio of $T/A$ would be extremely efficient and accurate with a moderate size table.
 
 The sequential sampling breaks the original $m+n$ body phase-space sampling into two lower dimensional samplings.
-But as one should notice, the prerequisite is that the integration over the final state momentum of the matrix-element can be written into a Lorentiz invariant form and therefore only depends on the Mandelstam variables.
+But as one should notice, the prerequisite is that the integration over the final state momentum of the matrix-element can be written into a Lorentz invariant form and therefore only depends on the Mandelstam variables.
 This appealing feature is broken by the inclusion of either
 quantum statistics or in-medium propagators in the matrix-elements. 
 Because quantum statistics introduces factors like $1\pm f(p\cdot u)$ to the final momentum integral and the in-medium propagator is not Lorentz invariant, resulting in a $F_{nm}$ that depends on the relative velocity between the collision system and the medium rest frame.
@@ -543,7 +543,7 @@ $\hat{q}_3$ is the effective transport parameter,
 \begin{eqnarray}
 \hat{q}_3(x, Q_0^2) &=& \alpha_s T m_D^2 \ln\left(1+\frac{Q_0^2}{m_D^2}\right) C_{abc}(x).\label{eq:qhat3}
 \end{eqnarray}
-This is obtained by doing the $\mathbf{q}$ integration of the expanded collision operator upto a cut-off scale $Q_0$, below which the small-$q$ approximation is considered to be valid.
+This is obtained by doing the $\mathbf{q}$ integration of the expanded collision operator up to a cut-off scale $Q_0$, below which the small-$q$ approximation is considered to be valid.
 The effective transport parameter also depends on the color structure of the splitting,
 \begin{eqnarray}
 C_{abc}(x) &=&  \frac{C_b+C_c-C_a}{2} + x^2 \frac{C_a+C_c-C_b}{2} \\
@@ -703,7 +703,7 @@ From the leading-log approximation, we see that the branching probability should
 Our modified approach follows this simple observation, and can be summarized as follows (please also refers to figure \ref{fig:split-approx} for a schematic demonstration),
 \begin{itemize}
 \item[1.] Assume an incoherent branching processes is generated at $t=t_0$. Do not treat the daughter partons as immediately independent.
-\item[2.] Both mother and daughter partons receives elastic brodening from interacting with the medium, which also changes the formation time of the branching.
+\item[2.] Both mother and daughter partons receives elastic broadening from interacting with the medium, which also changes the formation time of the branching.
 \item[3.] Evolve the branching system until $t-t_0 > \tau_f$. Then, reject this branching process with an acceptance probability that is proportional to $\lambda/\tau_f$, which corrects for the fact that these multiple scatterings should contribute coherently.
 \item[4.] Branching partons for those accepted processes are treated as independent objects from this point, rejected partons are discarded without causing any physical effect.
 \end{itemize}
@@ -713,7 +713,7 @@ Formally, this method can be understood as replacing the transition amplitude $F
 \begin{eqnarray}
 F(t', t) \rightarrow \frac{1}{N}\sum_{i=1}^N \frac{b}{\tau_i(t)} \delta(t-t'- a \tau_i(t)).
 \end{eqnarray}
-Each copy ``$i$'' that evolves under the incoherent Boltzman dyanmics will have a certainty probability to have a certain $\tau_i(t)$ at time $t$.
+Each copy ``$i$'' that evolves under the incoherent Boltzmann dynamics will have a certainty probability to have a certain $\tau_i(t)$ at time $t$.
 The $\delta$-function expresses that the branching that starts at time $t'$  is thought to be formed at time $t+a\tau_f$.
 The additional factor $b/\tau_f$ corrects the probability, accounting for the difference between coherent and incoherent calculation.
 This ansatz of representing a two-point function using information at $t$ and $t'$ of an ensemble of particles follows the same spirit as the Monte-Carlo solver of the traditional Boltzmann equation to discretize a function by an ensemble of particles.
@@ -749,7 +749,7 @@ a \rightarrow a_{abc}(x) = \frac{C_A}{C_{abc}(x)}
 \end{eqnarray}
 
 From the previous theory discussion, we know that there is a logarithmic ambiguity in the cut-off scale $Q_0$ in $\hat{q}_3$, which can be determined at the NLL level to be the same order as the branching transverse momentum.
-We need to address what the $Q_0$ scale is in the Botlzmann simulation and how to improve on that.
+We need to address what the $Q_0$ scale is in the Boltzmann simulation and how to improve on that.
 Because the large-$Q$ part of the elastic rescattering also uses vacuum two-body matrix-elements, the upper bound of the momentum transfer integration is cut-off by the center-of-mass energy $\sqrt{s}$ of each independent collision,
 \begin{eqnarray}
 s = (p_1 + p_2)^2 = 2E_1 E_2 (1-\cos(\theta))
@@ -777,7 +777,7 @@ However, if one assumes the absence of such a slowly decaying tail in $q^2$, suc
 
 \subsection{Implementing mass effect}
 Heavy quark's large mass $M\gg T$ and unique flavor make it an excellent probe and we would like to apply the aforementioned approach to study heavy flavor as well. 
-Of course, both the theory and the method described should only work in the the limit that the parton energy is still large compared to the heavy quark mass.
+Of course, both the theory and the method described should only work in the limit that the parton energy is still large compared to the heavy quark mass.
 In the region $p \lesssim M/g$ at weak coupling, the $M/E \ll 1$ assumption breaks down and the elastic energy loss starts to dominate over radiate processes.
 
 Considering that heavy quarks introduce a mass correction to the Fermion propagator, the most {\it na\"ive } change is to include the mass effect in both the formation time and also the few-body matrix-elements,
@@ -799,7 +799,7 @@ The key change is that the acceptance probability is modified by the dead-cone f
 \begin{eqnarray}
 \frac{b\lambda}{\tau_f} \rightarrow \frac{b\lambda}{\tau_f} \left(\frac{k_\perp^2}{k_\perp^2+x^2M^2}\right)^2.
 \end{eqnarray}
-Note that the $k_\perp$ here is the branching transverse momentum after the elastic momentum broadening, and on average $\langle k_\perp^2 \rangle = \langle k_{0,\perp}^2 \rangle + \langle\tau_f\hat{q}\rangle$, where $\langle k_{0,\perp}^2 \rangle$ is the average transverse momentum sampled from the the $2\rightarrow 3$ matrix-element.
+Note that the $k_\perp$ here is the branching transverse momentum after the elastic momentum broadening, and on average $\langle k_\perp^2 \rangle = \langle k_{0,\perp}^2 \rangle + \langle\tau_f\hat{q}\rangle$, where $\langle k_{0,\perp}^2 \rangle$ is the average transverse momentum sampled from the $2\rightarrow 3$ matrix-element.
 One may question the accuracy of approximating the massive version of the complicated multiple scattering matrix-element using a dead-cone approximation.
 We will compare the radiation spectrum off the heavy quark to the exact solution for heavy quark in the next section.
 
@@ -817,7 +817,7 @@ the coupling constant will blow up with the scale getting close to the non-pertu
 In a medium, we introduce a minimum scale in the running coupling, proportional to the temperature $Q_{\textrm{med}} = \mu \pi T$, to regulate the leading order running formula.
 Of course, regulating $\alpha_s$ to a finite number using such a medium scale does not necessarily improve the accuracy of using the leading order  calculation in this temperature range. 
 For example $\alpha_s(2\pi T)$ ranges from $0.28$ to $0.45$ ($g \sim 1.9$--$2.4$) for temperature decreasing from $T=0.4$ GeV to $T_c$, which are extremely large values, considering that the next-to-leading-order correction to the probe-medium correction is $O(g)$  
-\footnote{\singlespacing As a remark, in the final model-to-data comparison, we try to parametrize the non-pertubative contribution by a diffusion processes in our model to prevent the attempt to explain the coupling to sQGP in a pure pertrubative framework.}.
+\footnote{\singlespacing As a remark, in the final model-to-data comparison, we try to parametrize the non-perturbative contribution by a diffusion processes in our model to prevent the attempt to explain the coupling to sQGP in a pure perturbative framework.}.
 Following \cite{Arnold:2008zu}, the elastic collision couplings are evaluated at the $\hat{t}$-channel momentum transfer $q_\perp^2$.
 This involve both the $\alpha_s$ in the large-$q$ matrix-element ($2\leftrightarrow 2$, and the elastic matrix-element factorized in $2\leftrightarrow 3$) as well as the $\alpha_s$ in the soft transport coefficients $\hat{q}_S$ and $\hat{q}_{S, L}$.
 
@@ -994,7 +994,7 @@ We would like to investigate if our simulation of the boundary effect can qualit
 \singlespacing
 \centering
 \includegraphics[width=.8\columnwidth]{spectrum_L.png}
-\caption[The path-length dependence of the simulated $q\rightarrow q+g$]{The path-length dependence of the simulated $q\rightarrow q+g$ emission rate $dR/d\omega$ comapred to the direction calculation of formula \ref{eq:full-theory} from \cite{CaronHuot:2010bp}. $\alpha_s = 0.3$. The quark energy is $16$ GeV. The left and right columns have medium temperature $T=0.2$ and $0.4$ GeV respectively. The top and bottom rows show the differential rate at $\omega = 3$ and $8$ GeV.}
+\caption[The path-length dependence of the simulated $q\rightarrow q+g$]{The path-length dependence of the simulated $q\rightarrow q+g$ emission rate $dR/d\omega$ compared to the direction calculation of formula \ref{eq:full-theory} from \cite{CaronHuot:2010bp}. $\alpha_s = 0.3$. The quark energy is $16$ GeV. The left and right columns have medium temperature $T=0.2$ and $0.4$ GeV respectively. The top and bottom rows show the differential rate at $\omega = 3$ and $8$ GeV.}
 \label{fig:spectra-L-alphas=0.3}
 \end{figure}
 
@@ -1051,7 +1051,7 @@ t_2 - t_1 &=& \frac{2x(1-x)E}{k_{\perp}^2(t_1) + \int_{t_0}^{t} \hat{q}(\tau) d\
 \singlespacing
 \centering
 \includegraphics[width=.8\columnwidth]{spectrum_Bjorken.png}
-\caption[Top plot: the simulated spectrum (diffusion plues diffusion-induced]{Top plot: the simulated spectrum (diffusion plues diffusion-induced radiation only) using the parametric medium with expansion parameters $\nu = 0$ (static, black), $3/4$ (green), $1$ (Bjorken, blue), and $3/2$ (orange). The analytic results are shown in symbols and simulations in lines. $\alpha_s=0.3$. The expansion starts at $\tau_0 = 0.2$ fm/$c$ with an initial temperature $T_0 = 1$ GeV. Bottom plot: the ratios between calculation (simulation) in an expanding medium to that in the static medium.}
+\caption[Top plot: the simulated spectrum (diffusion plus diffusion-induced]{Top plot: the simulated spectrum (diffusion plus diffusion-induced radiation only) using the parametric medium with expansion parameters $\nu = 0$ (static, black), $3/4$ (green), $1$ (Bjorken, blue), and $3/2$ (orange). The analytic results are shown in symbols and simulations in lines. $\alpha_s=0.3$. The expansion starts at $\tau_0 = 0.2$ fm/$c$ with an initial temperature $T_0 = 1$ GeV. Bottom plot: the ratios between calculation (simulation) in an expanding medium to that in the static medium.}
 \label{fig:Bjorken-BDMPS}
 \end{figure}
 
@@ -1066,7 +1066,7 @@ z_{i,f} &=& 2i\nu \sqrt{\frac{\hat{q}_g(1-x+C_F/C_A x^2)}{2(1-x)\omega}} \tau_0 
 This result recovers the static BDMPS result \cite{Baier:1996kr} when $\nu=1/2$.
 One potential problem of comparing the formula to our simulation is that this BDMPS calculation works in the multiple-soft limit (leading log).
 Therefore, we used only the diffusion-induced radiation in the simulation and deactivate the large-$Q$ $2\rightarrow 3$ scattering part.
-Also as mentioned before, in the absence of the pertrubative tail in the collision kernel, $b=0.75$ is used without the logarithmic correcting factor in equation \ref{eq:NLL-b}.
+Also as mentioned before, in the absence of the perturbative tail in the collision kernel, $b=0.75$ is used without the logarithmic correcting factor in equation \ref{eq:NLL-b}.
 In addition, we will not try to make a direct comparison to the spectra (top of figure \ref{fig:Bjorken-BDMPS}), but focus more on the ratio between the expanding calculation/simulation over the static calculation/simulation instead (bottom of figure \ref{fig:Bjorken-BDMPS}).
 This ratio reflects the change of the shape of the spectra due to the dropping of the temperature.
 
@@ -1119,7 +1119,7 @@ We define a quantity $\Delta S$ to measure the approach to thermal distribution 
  &=& - \frac{1}{N}\sum_i\ln f_0(E_i) - \frac{\int dp^3 f_0 \ln(f_0)}{\int dp^3 f_0}
  \label{eq:DeltaS}
 \end{eqnarray}
-Where the first term is the ensemble average of the the function $-\ln f_0$, and the subtracted term is proportional to the entropy of distribution $f_0$.
+Where the first term is the ensemble average of the function $-\ln f_0$, and the subtracted term is proportional to the entropy of distribution $f_0$.
 Note that the quantity is zero if the ensemble is thermalized.
 If the system is approaching a thermal distribution with an effective temperature such that $f = e^{-E/T'}$, then $\Delta S$ is 
 \begin{eqnarray}
@@ -1174,9 +1174,9 @@ The algorithm goes as follows:
 \item[4.] Proceed to the next time step.
 \end{itemize}
 We found that the key step here is resetting the clock $t_0 = t$ for the parton after every emission.
-As a result, from the second emission onwards, the $t-t_0$ that appears in the interference factor is measuring the time difference between two medium scattering centers.
+As a result, from the second emission onward, the $t-t_0$ that appears in the interference factor is measuring the time difference between two medium scattering centers.
 Therefore, we will not interpret this procedure as the higher-twist rate (interference between initial hard vertex and one medium collision center) starting from the second emission;
-instead we understand it as an ansatz, from the second emission onwards, to treat medium-induced emission in a large medium, as it does not require any information on the production vertex.
+instead we understand it as an ansatz, from the second emission onward, to treat medium-induced emission in a large medium, as it does not require any information on the production vertex.
 
 Considering that it only includes one medium scattering center in the trigger of the radiation, one wonders if this approach reproduces any in-medium radiation features predicted by theory.
 It is not immediately clear what this iterative procedure predicts unless one performs explicit simulations. 
@@ -1230,7 +1230,7 @@ This is in fact an order of $\alpha_s$ wrong as the mean-free-path of the incohe
 \singlespacing
 \centering
 \includegraphics[width=1.\textwidth]{Eloss_infinite.png}
-\caption[Energy loss per unit path lengh $dE/dx$ as a function of energy $E$,]{Energy loss per unit path lengh $dE/dx$ as a function of energy $E$, temperature $T$ and coupling constant $\alpha_s$. Each column corresponds to a value of the coupling constant $\alpha_s = 0.075, 0.15, 0.3$, and $0.6$ (from left to right). Each row corresponds to a temperature of $T = 0.2, 0.4$, and $0.6$ GeV (from top to bottom). $dE/dx$ is divided by the expected scaling $\alpha_s^2 \sqrt{ET^3}$. The MC implementations in this work (red dashed lines) is compared to the ``coherence factor'' approach (green dash-dotted lines) and the ``block radiation'' approach (blue dotted lines). The analytic results are denoted as black solid lines.}
+\caption[Energy loss per unit path length $dE/dx$ as a function of energy $E$,]{Energy loss per unit path length $dE/dx$ as a function of energy $E$, temperature $T$ and coupling constant $\alpha_s$. Each column corresponds to a value of the coupling constant $\alpha_s = 0.075, 0.15, 0.3$, and $0.6$ (from left to right). Each row corresponds to a temperature of $T = 0.2, 0.4$, and $0.6$ GeV (from top to bottom). $dE/dx$ is divided by the expected scaling $\alpha_s^2 \sqrt{ET^3}$. The MC implementations in this work (red dashed lines) is compared to the ``coherence factor'' approach (green dash-dotted lines) and the ``block radiation'' approach (blue dotted lines). The analytic results are denoted as black solid lines.}
 \label{fig:eloss-inf}
 \end{figure}
 
@@ -1248,7 +1248,7 @@ Technically, $dE/dx$ is measured after an evolution time long enough ($L\gg L_c$
 The results presented are normalized by $1/(\alpha_s^2 \sqrt{ET^3})$ in anticipation of the scaling $dE/dx \propto \alpha_s^2 \sqrt{ET^3}$.
 For each column, we double the value of $\alpha_s$ and for each row, the temperature is increased by $0.2$ GeV. 
 Within each subplot, the parton energy varies from $10$ GeV to $200$ GeV.
-Different Monte Carlo implementations of the LPM effect are shown in colored lines, AMY NLL results are shown as black bands (we only integrate $\omega$ above the the Debye mass to calculate the AMY energy loss). 
+Different Monte Carlo implementations of the LPM effect are shown in colored lines, AMY NLL results are shown as black bands (we only integrate $\omega$ above the Debye mass to calculate the AMY energy loss). 
 Without a surprise, the ``modified approach'' approach (red-dashed lines) reproduces the energy, temperature, and coupling constant dependence of AMY NLL energy loss very well.
 The ``coherence factor'' approach (blue-dash-dotted lines) has a similar energy and temperature dependence to that of the theoretical baseline; however, it systematically deviates from the baseline for different values of the coupling constant in a logarithmic manner.
 For the ``block radiation'' approaches, the deviations from the baseline regarding their $\alpha_s$-dependence are even bigger and the energy dependence also gets worse, which is not surprising as we have discussed its problems.

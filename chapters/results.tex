@@ -14,7 +14,7 @@ We have already commented on the advantages and disadvantages of these choices.
 Two different sets of nuclear PDF--EPPS and nCTEQ15--were used to represent the uncertainty from the cold nuclear matter effect in the $\hat{q}$ extraction.
 
 Regarding model parameters, the one parameter for the perturbative elastic and inelastic scatterings was controlled by $1/3 < \mu < 4$ in the running coupling. 
-There was an additional pure diffusion process with a diffusion constant $\kappa_{NP}$ parametized to peak at low temperature and low energy, in order to mimic the non-perturbative coupling between a low energy probe and the medium near $T_c$,
+There was an additional pure diffusion process with a diffusion constant $\kappa_{NP}$ parametrized to peak at low temperature and low energy, in order to mimic the non-perturbative coupling between a low energy probe and the medium near $T_c$,
 \begin{eqnarray}
 \kappa_{NP} = T^3 \kappa_D \left(x_D + (1-x_D)\frac{1\textrm{ GeV}{}^2}{ET}\right).
 \end{eqnarray}
@@ -45,7 +45,7 @@ CMS measurements of the $B^{\pm}$-meson $R_{AA}$ were also included to constrain
 \end{figure}
 
 The prior and the posterior of the observables before and after the calibration is shown in figures \ref{fig:LBT:obs_prior} and \ref{fig:LBT:obs_posterior}.
-blue stands for using EPPS nuclear PDF and green stands for using the nCTEQnp nuclear PDF.
+Blue stands for using EPPS nuclear PDF and green stands for using the nCTEQnp nuclear PDF.
 We found that the model after the calibration provided a good description of $R_{AA}$ and $v_2$ at the intermediate $p_T$ of the ALICE experiments.
 But it did not reproduce the fast uprising shape of $R_{AA}$ at high-$p_T$ of the CMS experiment.
 In addition, the model seemed to underestimate the high-$p_T$ $v_2$ of the $30-50\%$ centrality bin measured by CMS.
@@ -62,7 +62,7 @@ Another thing worth noting is that the $D$ and $B$ meson $R_{AA}$ were described
 \end{figure}
 
 The inferred posterior probability distribution of the parameters is shown in the figure \ref{fig:LBT:posterior}.
-The diagonal plots show single parameterized distributions, and the off-diagonal ones displays the two-parameter correlations.
+The diagonal plots show single parametrized distributions, and the off-diagonal ones displays the two-parameter correlations.
 We split the results that use different nuclear PDFs into the upper (EPPS, green heat map and lines) and lower (nCTEQ15np, blue heat maps and lines) triangles.
 One notices that the results from different nuclear PDF are consistent within the uncertainty; therefore, from now on I shall not stress on any differences between these two sets of results, but combine them into a single distribution to fold in the PDF uncertainty.
 The favored parameters are $\mu \sim 0.6$ and $\kappa_D \sim 0.4$, indicating a large in-medium $\alpha_s$ and a small amount of additional diffusion.
@@ -165,12 +165,12 @@ Note that such a construction reverts back to an isotropic diffusion when veloci
 \singlespacing
 \centering
 \includegraphics[width=.5\textwidth]{qhat_prior.png}\includegraphics[width=.5\textwidth]{ER_prior.png}
-\caption[Left: the prior range of the transport parameter $\hat{q}$ as funtion]{Left: the prior range of the transport parameter $\hat{q}$ as funtion of temperature at different heavy quark energy. Right: the prior range of the longitudinal diffusion parameter $\hat{q}_L$, plotted as ratio $2\hat{q}_L/\hat{q}$.}
+\caption[Left: the prior range of the transport parameter $\hat{q}$ as function]{Left: the prior range of the transport parameter $\hat{q}$ as function of temperature at different heavy quark energy. Right: the prior range of the longitudinal diffusion parameter $\hat{q}_L$, plotted as ratio $2\hat{q}_L/\hat{q}$.}
 \label{fig:new:design-qhat}
 \end{figure}
 
 \paragraph{Design and prior} 
-We chosoe to give $\ln c, \ln R_v, \ln \mu, \ln a$ and $\ln b$ an uniform design and a uniform prior.
+We choose to give $\ln c, \ln R_v, \ln \mu, \ln a$ and $\ln b$ an uniform design and a uniform prior.
 Therefore, the original parameter will have a non-uniform design and prior distribution.
 The reason is that these parameters either cause a logarithmically slow change of the model prediction or their prior uncertainty is large that they are allowed to vary by orders of magnitude.
 For example, the $\mu$ parameter enters the logarithmic running of $\alpha_s$ and we can rewrite the maximum possible $\alpha_s$ as,
@@ -222,7 +222,7 @@ Our temporary solution is to only include the STAR $R_{CP}$ data above $5$ GeV i
 The validation is performed by comparing the emulator trained on the 250 design points to the actual calculation on the 50 validation points.
 We visualize the validation in figure \ref{fig:new:validation}.
 In the top row, the emulated $v_2$ (left) and emulated $R_{AA}$ (right) are compared with the model calculations, and the data from different experiments and centrality has been labeled by different colors.
-The emulated values strongly correlates with the true calculations around the the $y=x$ line.
+The emulated values strongly correlates with the true calculations around the $y=x$ line.
 Most points slightly miss the line, meaning the emulator is not 100\% accurate.
 To see if the uncertainty is accounted for, we scatter plot the emulator's prediction uncertainty ($1\sigma$, $y$ axis) versus the absolute deviation between the prediction and the calculation (the $x$ axis).
 The dashed line defines the shaded region where the true deviation is large than $\pm 3\sigma$.
@@ -289,7 +289,7 @@ The shape of the $D$-meson and the $B$-meson $R_{AA}$ and $D$-meson $v_2$ at the
 A large separation between the event-engineered $v_2$ is observed and is in a good agreement with data.
 This means our model correctly accounts for the heavy-flavor response on the event-by-event geometry fluctuation of the medium.
 At RHIC energy, $v_2$ is well described.  
-The magnitude of $R_{CP}$ at $p_T> 5$ GeV \footnote{\singlespacing  Remember that the model is calibrated on the three data points above $p_T=5$ GeV} and its centrality dependences are correctly reflected, though the $p_T$-shape is too flat compared to the data.
+The magnitude of $R_{CP}$ at $p_T> 5$ GeV \footnote{\singlespacing  Remember that the model is calibrated on the three data points above $p_T=5$ GeV} and its centrality dependencies are correctly reflected, though the $p_T$-shape is too flat compared to the data.
 
 \begin{figure}
 \singlespacing
@@ -299,12 +299,13 @@ The magnitude of $R_{CP}$ at $p_T> 5$ GeV \footnote{\singlespacing  Remember tha
 \label{fig:new:obs_posterior_RHIC}
 \end{figure}
 
-\begin{figure*}
+\begin{figure}
+\singlespacing
 \centering
 \includegraphics[width=\textwidth]{new-posterior.png}
 \caption[The single-parameter posterior distributions (diagonal plots) and]{The single-parameter posterior distributions (diagonal plots) and two-parameter joint posterior distributions (off-diagonal plots).}
 \label{fig:new:posterior}
-\end{figure*}
+\end{figure}
 
 \paragraph{Posterior distribution of parameters} Figure \ref{fig:new:posterior} shows the single parameter posterior (diagonal plots) and two-parameter-joint posterior distributions (off-diagonal plots) of the 10 model parameters, plus the model systematic uncertainty parameter ($\sigma_m$).
 Both the $\ln\mu$ parameter which controls the perturbative coupling and the $K$ parameter which controls the magnitude of parametric diffusion have rather broad distributions.
