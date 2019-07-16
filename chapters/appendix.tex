@@ -2,11 +2,11 @@
 \chapter{Few-body matrix-elements}
 \label{app:ME}
 This section provides the detailed $2\leftrightarrow 2$ and $2\leftrightarrow 3$ matrix-elements we used in the transport model.
-The $2\leftrightarrow 2$ results are standard and we do not re-derive them here.
-The $2\leftrightarrow 3$ cross-sections are more complicated and a detailed derivation is attached to show the approximations we made for readers reference.  
+The $2\leftrightarrow 2$ results are standard, and we do not re-derive them here.
+A detailed derivation for the $2\leftrightarrow 3$ cross-sections is attached.
 
 \subsection{$2\leftrightarrow 2$ processes}
-The two-body scatterings between quarks, anti-quarks and gluons are standard and we quote the results from existing references \cite{RevModPhys.59.465}.
+The two-body scatterings between quarks, antiquarks, and gluons are standard, and we quote the results from existing references \cite{RevModPhys.59.465}.
 For a light parton scattering, we keep only $\hat{t}$-channel contribution, the $\hat{s}$ and $\hat{u}$ channel contribution are suppressed at high energy.
 \begin{eqnarray}
 \overline{|M_{q_1q_2\rightarrow q_1q_2}|^2} &=& \frac{64\pi^2 \alpha_s^2}{9} \frac{s^2+u^2}{t^2} \\
@@ -44,7 +44,7 @@ For the heavy quark, since we are interested in its diffusion dynamics at low $p
 
 \subsection{$2\rightarrow 3$ matrix-elements}
 Large-Q $2\rightarrow 3$ inelastic processes are $g + i \rightarrow q+\bar{q} + i$, $q+i\rightarrow q+g+i$ and $g+i\rightarrow g+g+i$, where $i$ stands for a medium parton, and the other symbols stands for hard partons.
-In the medium frame, the hard parton has an energy $E\gg T$, while the medium thermal parton has $E\sim T$, and the typical center-of-mass energy is therefore $\sqrt{6ET}$.
+In the medium frame, the hard parton has an energy $E\gg T$, while the medium thermal parton has $E\sim T$, and the typical center-of-mass energy is $\sqrt{6ET}$.
 We perform the calculation in the center-of-mass frame of the two incoming partons and let the hard parton move towards the $+z$ direction with momentum $p_1$, and the medium parton moving to the $-z$ direction with $p_2$.
 The hard parton then splits into two daughter partons with momenta $k$ and $p_1 + q - k$.
 The momentum transfer $q$ between the hard parton and the medium parton is thought to be large enough $|q| > Q_{\textrm{cut}}$ so we neglect the thermal correction to its propagator.
@@ -69,7 +69,7 @@ Using the light-cone gauge with a light-like vector $n = (0, 1, 0)$, the gauge f
 \end{eqnarray}
 With these preparations, the matrix-element is factorized into an amplitude for the splitting process (approximated in the collinear limit) times the amplitude for two-body collision with the medium parton.
 We shall only derive explicitly the cases where the medium parton is a quark, for colliding with medium anti-quark and gluon, it is sufficient to replace the $H+q\xrightarrow{\hat{t}} H+q$ amplitude by $H+\bar{q}\xrightarrow{\hat{t}} H+\bar{q}$ and $H+g\xrightarrow{\hat{t}} H+g$.
-The connection of these results to the Bethe-Heitler limit of the AMY integral equation will be elucidated in the end.
+In the end, we elucidate the connection of these results and the Bethe-Heitler limit of the solution to the AMY integral equation.
 
 \paragraph*{Gluon splitting to quark-anti-quark pair}
 \begin{figure}
@@ -101,12 +101,12 @@ i M_A &\approx& -g^3 f^{abc}(t^b)_{j'j}(t^c)_{i'i} \delta^{\sigma\sigma'} \epsil
 &=& -g^3 f^{abc}(t^b)_{j'j}(t^c)_{i'i} \frac{1}{(p_1+q)^2}\frac{1}{q_\perp^2} \sum_{\lambda'=\pm}iP_{A,\lambda}^{ss'} \delta^{\sigma\sigma'}  \\ \nonumber
 && \epsilon_\lambda^\mu(p_1)2p_2^{\nu} \epsilon_{\lambda'}^{\rho}(p_1+q) \left[g_{\mu\nu}(p_1-q)_\rho + g_{\nu\rho}(2q+p_1)_\rho + g_{\rho\mu}(-2p_1 -q)_\nu \right].
 \end{eqnarray}
-Finally, we evaluate the contraction in the second line using the expression for $p_1, q$ and $\epsilon$, and keep only terms that is leading in $q_\perp^2/s$ to get,
+Finally, we evaluate the contraction in the second line using the expression for $p_1, q$ and $\epsilon$, and keep only terms that are leading in $q_\perp^2/s$ to get,
 \begin{eqnarray}
 i M_A \approx -g^3 f^{abc}(t^b)_{j'j}(t^c)_{i'i}\delta^{\sigma\sigma'}\frac{2s}{q_\perp^2} \frac{x(1-x)}{(\vec{k}_\perp-x \vec{q}_\perp)^2} iP_{A,\lambda}^{ss'}.
 \end{eqnarray}
 
-Diagram B and C are similar and we only write down diagram B in detail.
+Diagram B and C are similar, so we only write down diagram B in detail.
 \begin{eqnarray}
 i M_B &=& (-ig)^3 (t^bt^a)_{i'i}(t^b)_{j'j} \epsilon_\lambda^\mu(p_1) \\\nonumber
 &&\frac{-i}{q^2}\left(g^{\nu\nu'}-\frac{n^{\nu}q^{\nu'}+n^{\nu'}q^\nu}{n\cdot q}\right) \\\nonumber
@@ -130,7 +130,7 @@ Diagram C can be obtained similarly,
 \begin{eqnarray}
 i M_C &=& -i g^3 (t^a t^b)){i'i} t^b{j'j} \delta^{\sigma\sigma'} \frac{2s}{q_\perp^2} \frac{x(1-x)}{(\vec{k}_\perp-\vec{q}_\perp)^2}  iP_{C,\lambda}^{ss'} 
 \end{eqnarray}
-To sum the contributions from all three diagrams, applying $f^{abc}t^c = -i[t^a, t^b]$ to $iM_A$ and the result is,
+To sum the contributions from all three diagrams, apply $f^{abc}t^c = -i[t^a, t^b]$ to $iM_A$, and the result is,
 \begin{eqnarray}
 i (M_A+M_B+M_C) &=& ig^3 \frac{2s}{q_\perp^2} (t^b)_{j'j} x(1-x)\\\nonumber
 &&\left\{(t^a t^b)_{i'i} \left(\frac{iP_{A,\lambda}^{ss'} }{(\vec{k}_\perp-x \vec{q}_\perp)^2} - \frac{iP_{C,\lambda}^{ss'}}{(\vec{k}_\perp-\vec{q}_\perp)^2}\right) \right. \\\nonumber
@@ -138,13 +138,12 @@ i (M_A+M_B+M_C) &=& ig^3 \frac{2s}{q_\perp^2} (t^b)_{j'j} x(1-x)\\\nonumber
 \end{eqnarray}
 
 Now we have to address what those splitting amplitudes are.
-Label the four momenta as $p_g = c$, $p_q = a$, $p_{\bar{q}} = b$.
-And use the following representation for the spinors,
+Label the four momenta as $p_g = c$, $p_q = a$, $p_{\bar{q}} = b$, then use the following representation for the spinors,
 \begin{eqnarray}
 u^s(p) = (\sqrt{p\cdot \sigma} \xi^s, \sqrt{p\cdot \bar{\sigma}} \xi^s)^T
-v^s(p) = (\sqrt{p\cdot \sigma} \eta^s, -\sqrt{p\cdot \bar{\sigma}} \eta^s)^T
+v^s(p) = (\sqrt{p\cdot \sigma} \eta^s, -\sqrt{p\cdot \bar{\sigma}} \eta^s)^T.
 \end{eqnarray}
-where $\sigma_{i=\{1,2,3\}}$ are Pauli matrices, $\sigma = (1_{2\times 2}, \vec{\sigma})$, and $\bar{\sigma} = (1_{2\times 2}, -\vec{\sigma})$.
+$\sigma_{i=\{1,2,3\}}$ are Pauli matrices, $\sigma = (1_{2\times 2}, \vec{\sigma})$, and $\bar{\sigma} = (1_{2\times 2}, -\vec{\sigma})$.
 The square root of the matrix is,
 \begin{eqnarray}
 \sqrt{p\cdot \sigma} =
@@ -163,8 +162,7 @@ p_R^\perp & p^-
 = \frac{1}{\sqrt{2(E\pm M)}}(p\cdot\bar{\sigma} \pm \mathbf{1}M)\\
 \end{eqnarray}
 where $M$ is the mass of the particle, $p^\pm = E\pm p_z$, and $p_{R,L}^\perp = p_x \pm  i p_y$.
-Currently, we only consider the massless case, because the mass effect is not implemented in the few-body matrix-elements in our model.
-Neglecting the mass, the splitting amplitude is,
+Currently, we only consider the massless case, and the splitting amplitude is,
 \begin{eqnarray}
 &&\epsilon_{\lambda, \mu}(c) \bar{u}_s(a)\gamma^\mu v_{s'}(b)\\
 &=&\frac{1}{\sqrt{2a}\sqrt{2b}}(\xi^T_s a\cdot\sigma, \xi^T_{s} a\cdot \bar{\sigma})
@@ -241,7 +239,7 @@ a^\perp_L b^+ \delta_{\lambda L} + a^+ b^\perp_R \delta_{\lambda R} - a^+ b^+\fr
 \end{bmatrix}
 \eta_{s'}
 \end{eqnarray}
-There are four combinations for the possible initial state polarization and final state spins
+There are four combinations for the possible initial state polarization and final state spins:
 \begin{eqnarray}
 \epsilon_{\lambda, \mu} \bar{u}_s(a)\gamma^\mu v_{s'}(b) = \frac{x\vec{a} - (1-x)\vec{b}}{\sqrt{2x(1-x)}}
 \begin{cases}
@@ -256,20 +254,20 @@ Sum over the spins and average over polarization for the squared amplitude,
 \begin{eqnarray}
 \frac{1}{2}\sum_\pm |P|^2 = \frac{2(x^2 + (1-x)^2)}{x(1-x)} \left((1-x)\vec{a}_\perp-x\vec{b}_\perp\right)^2.
 \end{eqnarray}
-This result goes back to the standard splitting function if it is computed in the frame where $a_\perp = -b_\perp$. 
-However, there is no such frame that $a_\perp = -b_\perp$ satisfies simultaneously for the splitting in diagram A, B and C.
-Therefore different amplitude needs to be inserted for each diagram and we find,
+This result goes back to the standard splitting function if we compute it in the frame where $a_\perp = -b_\perp$. 
+However, there is no such frame that $a_\perp = -b_\perp$ satisfies simultaneously for the splitting in diagram A, B, and C.
+Therefore different amplitude needs to be inserted for each diagram, and we find
 \begin{eqnarray}
 \label{eq:gq2qqbarq}
 \frac{\sum_{\lambda, s, s', \sigma, \sigma', a, b}|M^2|_{g+q\rightarrow q+\bar{q}+q}}{2d_F 2d_A} &=& g^4 \frac{2C_F}{d_A}\frac{4s^2 x(1-x)}{q_\perp^4}  \\\nonumber
-&\times& g^2\frac{(x^2+(1-x)^2)}{2} \left(C_F \vec{A}^2 + C_F \vec{B}^2 - (2C_F- C_A)\vec{A}\cdot\vec{B}\right)
+&\times& g^2\frac{(x^2+(1-x)^2)}{2} \left(C_F \vec{A}^2 + C_F \vec{B}^2 - (2C_F- C_A)\vec{A}\cdot\vec{B}\right).
 \end{eqnarray}
-Where the $\vec{A}$ and $\vec{B}$ are,
+The vectors $\vec{A}$ and $\vec{B}$ are,
 \begin{eqnarray}
 \vec{A} &=& \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2} -  \frac{\vec{k}_\perp - \vec{q}_\perp}{(\vec{k}_\perp - \vec{q}_\perp)^2}, \\
 \vec{B} &=& \frac{\vec{k}_\perp - x\vec{q}_\perp}{(\vec{k}_\perp - x\vec{q}_\perp)^2} -  \frac{\vec{k}_\perp}{\vec{k}_\perp^2}.
 \end{eqnarray}
-The final squared matrix-element has been factorized into the two body scattering part (first line) and the collinear splitting part (second line) with the desired leading order QCD splitting function. 
+The final squared matrix-element has been factorized into the two-body scattering part (first line) and the collinear splitting part (second line) with the desired leading order QCD splitting function. 
 
 \paragraph*{Quark splits to quark and gluon}
 \begin{figure}
@@ -284,7 +282,7 @@ The final squared matrix-element has been factorized into the two body scatterin
 \end{figure}
 
 The Feynman diagrams to be included for $q+q\rightarrow q+g+q$ are shown in Figure \ref{fig:feyn-q2qg}.
-The calculation uses exactly the same technique we used for the gluon splitting channel, and we present the result directly,
+The calculation uses precisely the same technique we used for the gluon splitting channel, and we present the result directly,
 \begin{eqnarray}
 \label{eq:qq2qgq}
 \overline{|M^2|}_{g+q\rightarrow g+g+q} &=& 
@@ -309,7 +307,7 @@ The calculation uses exactly the same technique we used for the gluon splitting 
 \end{figure}
 
 Finally, for $g+q\rightarrow g+q+g$, the Feynman diagrams are shown in Figure \ref{fig:feyn-g2gg}. 
-The simplification of the two body collision amplitude can be done in a similar manner as the previous two channels. 
+The simplification of the two-body collision amplitude can be done similarly as the previous two channels. 
 We only write down the splitting amplitude $g\rightarrow g+ g$ in detail.
 Suppressing the color index, we label the initial gluon with $\epsilon_1^\mu(p)$, and the two daughter gluons with $\epsilon_2^\nu(k)$ and $\epsilon_3^\rho(q)$.
 The splitting amplitudes are then (omitting the factor $-gf^{abc}$)
@@ -323,7 +321,7 @@ g_{\mu\nu} (p+k)_{\rho} +  g_{\nu\rho} (p+k)_{\mu} + g_{\rho\mu} (-q-p)_{\nu}
 \\\nonumber
 &&-\vec{\epsilon}_{3,\perp}\cdot \vec{\epsilon}_{1,\perp} \left[(-q-p)^+\frac{\vec{\epsilon}_{2,\perp}\cdot \vec{k}_\perp}{k^+} - \vec{\epsilon}_{2,\perp}\cdot (-\vec{q}_\perp-\vec{p}_\perp)\right]
 \end{eqnarray}
-There are four possible combinations of the polarization vectors, and their respective amplitude is computed as,
+There are four possible combinations of the polarization vectors, and their respective amplitudes are,
 \begin{eqnarray}
 iP = \sqrt{2}\left[x\vec{q}_\perp - (1-x)\vec{k}_\perp\right]\times 
 \begin{cases}
@@ -337,7 +335,6 @@ Summing over the squared amplitude of all four cases and averaging over the init
 \begin{eqnarray}
 2\frac{1+x^2+(1-x)^4}{x^2(1-x)^2} \left[x\vec{q}_\perp - (1-x)\vec{k}_\perp\right]^2.
 \end{eqnarray}
-
 Substituting the amplitude in each diagram, the final squared matrix-element is 
 \begin{eqnarray}
 \label{eq:gq2ggq}
@@ -350,10 +347,10 @@ g^4 \frac{C_A}{d_F}\frac{4s^2x(1-x)}{q_\perp^4} \\\nonumber
 \end{eqnarray}
 
 \paragraph{Regulating the $2\rightarrow 3$ squared matrix-elements}
-The divergence in the $q$ integration is removed by the requirement that this few-body matrix-element only applies to processes with $q>Q_{\textrm{cut}}$.
+The requirement that the few-body matrix-elements only apply to processes with $q>Q_{\textrm{cut}}$ removes the divergence in the $q$ integration.
 The collinear divergence when $k$ approaches $q$ or $xq$ is regulated by including a gluon thermal mass. 
-In practice, the collinear region will be further suppressed by the LPM effect.
-The cross-section is obtained by integrating over the final state phase-space, where we have chosen to parametrize the three particle final state in terms of $k_\perp^2$, the rapidity of $k$ in the center-of-mass frame $y_k$, and the solid angle of the recoil medium particle.
+In practice, the collinear divergence is further regulated by the LPM effect.
+The cross-section is obtained by integrating over the final-state phase-space, parameterized by $k_\perp^2$, the rapidity of $k$ in the center-of-mass frame $y_k$, and the solid angle of the recoil medium particle.
 
 \paragraph{Soft limit: the Gunion-Bertsch approximation}
 The result we obtained for the $g\rightarrow g+g$ and $q\rightarrow q+g$ channel have a soft limit that goes back to the well known Gunion-Bertsch form. 
@@ -368,7 +365,7 @@ Neglecting the $O(x^2)$ terms in the splitting function, the result is the same 
 \end{eqnarray}
 
 \paragraph{The backward ($y_k < 0$) region}
-We have mentioned in the beginning of the derivation that the condition $k_\perp^2 < x(1-x)\hat{s}$ restricts the splitting to be happen only for the parton moving in the $+z$ direction in the center-of-mass frame ($y_k > 0$).
+We have mentioned at the beginning of the derivation that the condition $k_\perp^2 < x(1-x)\hat{s}$ restricts the splitting to happen only for the parton moving in the $+z$ direction in the center-of-mass frame ($y_k > 0$).
 For splittings that happen in the backward region, another set of diagrams contribute, where the splitting comes from the parton that moves in the $-z$ direction in the center-of-mass frame.
 Also one needs a different gauge $A^- = 0$.
 The derivation is similar to the previous ones, but with the definition of $x$ and $q$ changed to $x = k^-/\sqrt{s}$, and $q = p_1-p_3$.
@@ -382,8 +379,8 @@ which replaces the original $x$ and $q$ in our formula, and the resultant matrix
 
 
 
-\paragraph*{Relation to the Bethe-Heitler limit of the AMY formalism}
-Now we show the connection between the $2\rightarrow 3$ cross section obtained here and the Bethe-Heitler limit of the AMY equation.
+\paragraph{Relation to the Bethe-Heitler limit of the AMY formalism}
+Now we show the connection between the $2\rightarrow 3$ cross-section obtained here and the Bethe-Heitler limit of the AMY equation.
 In the Bethe-Heitler limit, the AMY integral equation can be solved approximately by treating $1/\tau_f$ as the leading factor. 
 One obtains the splitting rate for each different channels (denoting $\vec{a}/a^2$ as $\vec{\phi}_{a}$), 
 \begin{eqnarray}
@@ -405,11 +402,11 @@ R_{g\rightarrow q+\bar{q}}^{BH} &\propto& g^2 P_{q\bar{q}}^{g(0)}(x) \int d k^2 
 + C_A \vec{\phi}_k\cdot\left(\vec{\phi}_k - \vec{\phi}_{k+(1-x)q}\right)
 \right\}
 \end{eqnarray}
-with the collision kernel $\mathcal{A} = g^2 T m_D^2/q^2(q^2+m_D^2)$. These expressions look drastically different from the incoherent rate computed using the cross-section derived in the previous section, however, we would like to show that they are the same once integration over $dk^2$ is performed.
+with the collision kernel $\mathcal{A} = g^2 T m_D^2/q^2(q^2+m_D^2)$. These expressions look different from the incoherent rate computed using the cross-section derived in the previous section; however, we would like to show that they are equivalent once integration over $dk^2$ is performed.
 Therefore, the incoherent rate we used in the Boltzmann equation indeed recovers the Bethe-Heitler limit of the AMY integral equation.
 
 To show this, we start from the $2\rightarrow 3$ rate formula using the matrix-elements from equations \ref{eq:gq2qqbarq}, \ref{eq:qq2qgq} and \ref{eq:gq2ggq}. 
-For the $q\rightarrow q+g$ channel, the rate in our Boltzmann equation is,
+For the $q\rightarrow q+g$ channel, the rate in the Boltzmann equation is,
 \begin{eqnarray}
 R_{q\rightarrow q+g} &\propto& g^2 P_{qg}^{q(0)}(x) \int  \frac{f(p_2)dp_2^3}{2E_2(2\pi)^3} d q^2 \frac{g^4}{q^4}\\\nonumber
 &&  \int d k^2\left\{
@@ -434,8 +431,8 @@ C_F\vec{\phi}_{k}\left( \vec{\phi}_{k}-\vec{\phi}_{k+(1-x)q} \right)
 +(2C_F-C_A)\vec{\phi}_{k} \cdot \left( \vec{\phi}_{k-(1-x)q}-\vec{\phi}_{k+xq} \right)
 \right\}
 \end{eqnarray}
-Next, flip  the sign of $q$ under the integration,
-and meanwhile, insert a $-\vec{\phi}_k +\vec{\phi}_k$ in the brackets of the last term,
+Next, flip the sign of $q$ under the integration.
+Meanwhile, insert a $-\vec{\phi}_k +\vec{\phi}_k$ in the brackets of the last term,
 \begin{eqnarray}
 R_{q\rightarrow q+g} &\propto& g^2 P_{qg}^{q(0)}(x) \int  \frac{f(p_2)dp_2^3}{2E_2(2\pi)^3} d q^2 \frac{g^4}{q^4}\\\nonumber
 &&  \int d k^2\left\{
@@ -459,7 +456,7 @@ C_A\vec{\phi}_{k}\cdot \left( \vec{\phi}_{k}-\vec{\phi}_{k+q} \right)
 \right\}
 \end{eqnarray}
 which is the same integration as the one obtained from the Bethe-Heitler limit of the AMY equation (neglecting the screen mass in $\mathcal{A}$ when $q^2 \gg m_D^2$)
-The equivalence between these two expressions for the $g\rightarrow g+g$ channel and the $g\rightarrow q+\bar{q}$ channel can also be shown similarly.
+Similarly, the equivalence also exists for the $g\rightarrow g+g$ channel and the $g\rightarrow q+\bar{q}$ channel.
 
 %\paragraph*{Mass effect in the $2\rightarrow 3$ squared matrix-elements}
 %For completeness, we briefly outline the derivation of $2\rightarrow 3$ cross-section with mass effect.
