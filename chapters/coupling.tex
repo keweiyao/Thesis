@@ -5,7 +5,7 @@ The soft initial condition model provides both the initial energy density of the
 The left branch of this flow chart -- the hydrodynamic-based medium evolution model -- has been discussed in chapter \ref{chapter:simulation}.
 We briefly review the RHS of the flow chart -- the multi-stage model for heavy-flavor evolution.
 The hard production model is introduced in section \ref{section:hard}.
-The initially produced partons are highly virtual and undergo the DGLAP evolution (vacuum shower) that bring down the virtuality; eventually, at some point, this evolution will be matched to the in-medium transport calculations.
+The initially produced partons are highly virtual and undergo the scale evolution that bring down the virtuality; eventually, at some point, this evolution will be matched to the in-medium transport calculations.
 There is a complication regarding vacuum-like parton showers in a medium since certain vacuum parton branchings occupy the same space-time volume as the medium and also receive medium corrections.
 Another obstacle is that multiple emissions are treated very differently between vacuum-like showers and medium-induce showers.
 For the vacuum evolution, the ``time'' variable is the virtuality scale with the space-time information integrated out, while the transport model evolves the systems in real-time, with virtuality integrated out below a specific in-medium scale.
@@ -39,7 +39,7 @@ Combing these pieces together, the cross-section for the inclusive production of
 \frac{d\sigma_{p+p\rightarrow H+X}}{dy d\mathbf{p}_T^2} = \frac{1}{\pi}\int dx_i dx_j f_i(x_i, Q^2) f_j(x_j, Q^2) \frac{d\sigma_{ij\rightarrow kl}}{d\hat{t}} \frac{1}{z_k}D^H(z_k, Q^2).
 \end{eqnarray}
 Although the parton distribution function $f$ and the parton fragmentation function $D$ are essentially non-perturbative objects, they parametrize universal long-distance physics and can be extracted from independent experiments at certain scales $Q_0^2$.
-Moreover, the evolution from the ``definition'' scale $Q_0^2$ to the process scale $Q^2$ can be described by the DGLAP evolution equation \cite{Gribov:1972ri,Altarelli:1977zs,Dokshitzer:1977sg} based on pQCD to increase the predictive power of the calculation.
+Moreover, the evolution from the ``definition'' scale $Q_0^2$ to the process scale $Q^2$ can be described by the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP) evolution equations \cite{Gribov:1972ri,Altarelli:1977zs,Dokshitzer:1977sg} based on pQCD to increase the predictive power of the calculation.
 
 \begin{figure}
 \singlespacing
@@ -54,7 +54,29 @@ Similarly, the final state high virtuality parton $k$ (or $l$) could also split 
 Though each splitting causes an additional power of $\alpha_s$, it is also magnified by a potentially large factor $\ln (Q^2/\mu^2)$ when $Q^2$ is much higher than the scale where the $f$, $D$ are defined.
 The same argument also applies to partons $i', j', k', l'$. 
 The DGLAP equations systematically resum contributions including an arbitrary number of parton splittings and evolve the scale from $\mu^2$ to the hard scale $Q^2$.
-Moreover, a beneficial parton-shower picture can be built from this process with a probabilistic interpretation of the DGLAP evolution. Using Monte Carlo techniques, one can even mimic the production of the exclusive final state from the sequence of parton branching processes.
+Take the evolution equation for quark distribution function as an example,
+\begin{eqnarray}
+\frac{\partial f_q(x, Q^2)}{\partial \ln Q^2} &=& \frac{\alpha_s C_F}{2\pi} \int_x^1 \frac{dz}{z} \left(\frac{1+z^2}{(1-z)_+} + \frac{3}{2}\delta(1-z) \right)  f_q\left(\frac{x}{z}, Q^2\right)\\\nonumber
+&&+ \frac{\alpha_s}{2\pi} \int_x^1 \frac{dz}{z} \frac{z^2+(1-z)^2}{2}f_g\left(\frac{x}{z}, Q^2\right).
+\end{eqnarray}
+where $x$ is the momentum fraction carried by the parton. The ``+'' subscript on a function defines the operation,
+\begin{eqnarray}
+\int_0^1 \frac{f(x)}{(1-x)_+} = \int_0^1 dx \frac{f(x)-f(1)}{1-x}.
+\end{eqnarray}
+Using
+\begin{eqnarray}
+\int_0^1 dx \frac{1+x^2}{(1-x)_+} = -\frac{3}{2}, P_{qg}^{q(0)}(z) = C_F\frac{1+z^2}{1-z}, P_{q\bar{q}}^{g(0)}(z) = \frac{z^2+(1-z)^2}{2}, 
+\end{eqnarray}
+The equation can be cast into a form similar to the transport equation,
+\begin{eqnarray}
+\frac{\partial f_q(x, Q^2)}{\partial \tau} &=&  \int_x^1 \frac{dz}{z}\left\{ P_{qg}^{q(0)}(z) f_q\left(\frac{x}{z}, Q^2\right) 
++ P_{q\bar{q}}^{g(0)}(z) f_g\left(\frac{x}{z}, Q^2\right)\right\} \\\nonumber&& - f_q\left(x, Q^2\right) \int_0^1 dz P_{qg}^{q(0)}(z).
+\end{eqnarray}
+where $\tau = \alpha_s/2\pi \ln Q^2$ plays the role of a ``time'', and the right-hand side contains the gain-term (feeding from quark and gluon splittings) and loss-term (splitting of a quark).
+This probabilistic interpretation is beneficial for building a phenomenological parton-shower picture: 
+each hard parton has certain probabilities to splits into two or more partons within a ``time'' interval from $\tau$ to $\tau+\Delta \tau$.
+The newly created partons can also split in the next ``time'' step.
+In this way, one can mimic the production of the exclusive partonic final state from the sequence parton branchings using Monte Carlo techniques.
 
 \subsection{Production in the nuclear environment}
 The above framework explains very well the hard production process in proton-proton collisions.
