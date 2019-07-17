@@ -1071,14 +1071,40 @@ The simulation uses a medium with initial temperature $T_0=1$ GeV at $\tau_0=0.2
 These choices correspond to a static medium, a slowly expanding medium, Bjorken flow, and a faster-than-Bjorken expansion.
 We find that when $\omega \gg T_0$, the degree of change in the radiation spectra is well reproduced by the modified transport simulations.
 
+\subsection{Comparison with a simplified solution of the transport equation}
+Given the model mimic the single-emission vertex reasonably well, we move the focus to the full distribution function $f(t, \mathbf{x}, \mathbf{p})$ of partons propagated by the transport equation. 
+The behavior of the distribution function is far more complicated than the final-state distribution of a single-emission vertex because transport equation resums multiple emissions during the time evolution.
+It is surprising that an analytic solution exists for a simplified version of the transport equation \cite{Blaizot:2013hx,Blaizot:2015jea}, which captures essential features of transport equation in the deep-LPM region.
+The simplifications and assumptions are:
+\begin{itemize}
+\item Focus only on the longitudinal momentum distribution function in the high energy limit $f(t, \mathbf{x}, \mathbf{p})\rightarrow f(t, p_z \approx E)$. 
+\item The initial condition consists of a single gluon $f = \delta(E-E_0)$.
+\item Neglect elastic energy loss and use fixed coupling constant.
+\item The system is gluonic. And retain only the singular part in the gluon splitting function $P_{gg}^g(0) = C_A(1+z^4+(1-z)^4)z^{-1}(1-z)^{-1} \rightarrow C_A z^{-1}(1-z)^{-1}$.
+\item Consider the deep-LPM region ($\tau_f \gg \lambda$) in a large medium ($L\gg \tau_f$).
+\item Use a leading-log picture where $\hat{q}$ is independent of the parton energy and neglect the difference between $\hat{q}$ and $\hat{q}_3$.
+\end{itemize}
+In this way, the authors of \cite{Blaizot:2013hx} simply the transport equation into, 
+\begin{eqnarray}
+\frac{\partial D(x, \tau)}{\partial \tau} = \int_x^1 \frac{dz}{z^{3/2}(1-z)^{3/2}} \sqrt{\frac{z}{x}} D\left(\frac{x}{z},\tau\right) -  \frac{D(x, \tau)}{\sqrt{x}}\int_0^1 \frac{z dz}{z^{3/2}(1-z)^{3/2}}.
+\end{eqnarray}
+$D(x, \tau) = E f(t, E=xE_0)$ is understood as the energy distribution with initial condition $D(x, \tau=0) = \delta(1-x)$.
+$\tau = \alpha_s C_A/\pi \sqrt{\hat{q}/E_0} t$ is the rescaled dimensionless ``time'' variable. 
+The gain-term and loss-term for the energy distribution are on the right-hand side.
+The solution they obtained is 
+\begin{eqnarray}
+D(x, \tau) = \frac{\tau}{x^{1/2}(1-x)^{3/2}}e^{-\frac{\pi \tau^2}{1-x}},
+\end{eqnarray}
+which displays a simple $1/\sqrt{x}$ scaling at small $x$.
+To see if the modified transport model reproduces such a feature, we initialize the system with an ensemble of $E_0=1$ TeV gluons in an infinite medium with temperature $0.5$ GeV.
+
+\section{Heavy quarks and thermalization test}
 \begin{figure}
 \singlespacing
 \includegraphics[width=\columnwidth]{mass.png}
 \caption[The mass dependence of the radiation spectrum $q\rightarrow q+g$,]{The mass dependence of the radiation spectrum $q\rightarrow q+g$, presented as the ratio of bottom $dR/d\omega$ over the light quark $dR/d\omega$, as functions of path length. The left and right columns use temperatures 0.2 and 0.4 GeV. Different rows (from top to bottom) plot cases for gluon energy $\omega = 5, 10, 20, 50$ (GeV).}
 \label{fig:mass}
 \end{figure}
-
-\subsection{Heavy quarks and thermalization test}
 Finally, we check the model performance for heavy quarks.
 The theory curves are obtained by solving the exact equation with an effective mass term,
 \begin{eqnarray}
@@ -1112,7 +1138,7 @@ Here we argue that close to a few times of temperature, the LPM effect is not th
 
 We define a quantity $\Delta S$ to measure the approach to thermal distribution $f_0 = e^{-E/T}$ for an ensemble of heavy quarks,
 \begin{eqnarray}
-\Delta S = - \langle \ln f_0 \rangle - S_0 \\
+\Delta S &=& - \langle \ln f_0 \rangle - S_0 \\
  &=& - \frac{1}{N}\sum_i\ln f_0(E_i) - \frac{\int dp^3 f_0 \ln(f_0)}{\int dp^3 f_0}
  \label{eq:DeltaS}
 \end{eqnarray}
@@ -1131,8 +1157,6 @@ Now, adding the radiative processes (blue), $\Delta S$ reaches a value below zer
 Only after the balancing processes of parton absorption are also included (orange), the correct thermal equilibrium limit restores. 
 We also found that the absorption process only sets in when the ensemble is close enough to the thermal distribution, as the blue line and the orange line are almost overlapping until $\Delta S$ drops to 0.3.
 This is because the absorbed gluon follows the thermal distribution in the medium while phase-space for a high energy parton $E\gg T$ to absorb a low energy gluon is very limited $x<T/E$, compared to radiation processes where the value of $x$ is not restricted by the Boltzmann factor $e^{-xE/T}$.
-
-\subsection{Comparison with a simplified solution of the transport equation}
 
 \section{Comments on two other inelastic process implementations}
 \label{section:compare_former}
