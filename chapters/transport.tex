@@ -1072,50 +1072,72 @@ These choices correspond to a static medium, a slowly expanding medium, Bjorken 
 We find that when $\omega \gg T_0$, the degree of change in the radiation spectra is well reproduced by the modified transport simulations.
 
 \subsection{Comparison with a simplified solution of the transport equation}
-Given the model mimic the single-emission vertex reasonably well, we move the focus to the full distribution function $f(t, \mathbf{x}, \mathbf{p})$ of partons propagated by the transport equation. 
-The behavior of the distribution function is far more complicated than the final-state distribution of a single-emission vertex because transport equation resums multiple emissions during the time evolution.
-Surprisingly, an analytic solution exists for a simplified version of the transport equation \cite{Blaizot:2013hx,Blaizot:2015jea}, which captures essential features of transport equation in the deep-LPM region.
-The simplifications and assumptions are:
+Given the model mimic the single-emission vertex reasonably well, we now focus on the evolution of the full distribution function $f(t, \mathbf{x}, \mathbf{p})$ of hard partons. 
+Though the behavior of the distribution function is far more complicated than the final-state distribution of a single-emission vertex,
+surprisingly, an analytic solution exists for a simplified version of the transport equation \cite{Blaizot:2013hx,Blaizot:2015jea}.
+Here we have listed the simplifications and assumptions for readers reference:
 \begin{itemize}
 \item Focus only on the longitudinal momentum distribution function in the high energy limit $f(t, \mathbf{x}, \mathbf{p})\rightarrow f(t, p_z \approx E)$. 
 \item The initial condition consists of a single gluon $f = \delta(E-E_0)$.
 \item Neglect elastic energy loss and use fixed coupling constant.
 \item The system is gluonic. And retain only the singular part in the gluon splitting function $P_{gg}^g(0) = C_A(1+z^4+(1-z)^4)z^{-1}(1-z)^{-1} \rightarrow C_A z^{-1}(1-z)^{-1}$.
 \item Consider the deep-LPM region ($\tau_f \gg \lambda$) in a large medium ($L\gg \tau_f$).
-\item Use a leading-log picture where $\hat{q}$ is independent of the parton energy and neglect the difference between $\hat{q}$ and $\hat{q}_3$.
+\item Use a leading-log picture where $\hat{q}$ is independent of the parton energy and neglect the difference between $\hat{q}$ and $\hat{q}_3$, so the formation time is $\tau_f \propto \sqrt{z(1-z)E/\hat{q}}$.
 \end{itemize}
 \begin{figure}
 \centering
 \singlespacing
 \includegraphics[width=.7\columnwidth]{jet_solution_NLL.png}
-\caption[Comparing the simulated energy distribution shared among]{Comparing the simulated energy distribution shared among the hard partons to the simplified solution in equation \ref{eq:simple-jet-solution}. The value of effective $\hat{q}$ is varied from $\hat{q}_0\ln(2E\hat{q}_0/m_D^2)$ to $\hat{q}_0\ln(0.5 E\hat{q}_0/m_D^2)$ with $\hat{q}_0 = \alpha_s C_A T m_D^2$.}
+\caption[Comparing the simulated energy distribution shared among]{Comparing the simulated energy distribution shared among the hard partons to the simplified solution in equation \ref{eq:simple-jet-solution} \cite{Blaizot:2013hx}.}
 \label{fig:jet_solution}
 \end{figure}
-Under these assumptions, the authors of \cite{Blaizot:2013hx} simplify the transport equation into, 
+Under these assumptions, the authors of \cite{Blaizot:2013hx} write the transport equation as 
 \begin{eqnarray}
 \frac{\partial D(x, \tau)}{\partial \tau} = \int_x^1 \frac{dz}{z^{3/2}(1-z)^{3/2}} \sqrt{\frac{z}{x}} D\left(\frac{x}{z},\tau\right) -  \frac{D(x, \tau)}{\sqrt{x}}\int_0^1 \frac{z dz}{z^{3/2}(1-z)^{3/2}}.
+\label{eq:simple-jet-eq}
 \end{eqnarray}
 $D(x, \tau) = E f(t, E=xE_0)$ is understood as the energy distribution with initial condition $D(x, \tau=0) = \delta(1-x)$.
-$\tau = \alpha_s C_A/\pi \sqrt{\hat{q}/E_0} t$ is the rescaled dimensionless ``time'' variable. 
-The gain-term and loss-term for the energy distribution are on the right-hand side.
-The solution they obtained is 
+$\tau$ is a rescaled dimensionless ``time'' variable,
 \begin{eqnarray}
-D(x, \tau) = \frac{\tau}{x^{1/2}(1-x)^{3/2}}e^{-\frac{\pi \tau^2}{1-x}},
+\tau = \alpha_s C_A/\pi \sqrt{\hat{q}/E_0} t.
+\label{eq:simple-jet-tau}
+\end{eqnarray}
+The gain-term and loss-term for the energy distribution are on the right-hand side.
+The solution is \cite{Blaizot:2013hx},
+\begin{eqnarray}
+D(x, \tau) = \frac{\tau}{x^{1/2}(1-x)^{3/2}}e^{-\frac{\pi \tau^2}{1-x}}.
 \label{eq:simple-jet-solution}
 \end{eqnarray}
-which displays a simple $1/\sqrt{x}$ scaling at small $x$.
-Indeed, this solution requires a series of approximations that is different from our modified transport models. 
-For example, the rate in the model uses the full splitting function, and the elastic processes are intrinsic to the implementation of the LPM effect, and the elastic collisions cannot be turned off.
-Moreover, the actual simulation always has a finite-size effect, which is not present in the simplified equation.
-Nevertheless, qualitative features dominated by the singular part of the splitting kernel should be captured.
+It displays a simple $1/\sqrt{x}$ scaling at small $x$.
+The Gaussian decaying factor quickly damps the initial peak of the energy distribution at $x\rightarrow 1$.
 
-To see if the modified transport model reproduces such a feature, we initialize the system with an ensemble of $E_0=1$ TeV gluons in an infinite medium with temperature $0.5$ GeV.
-The issue is the determination of $\hat{q}$ in the comparison because the effective $\hat{q}$ in the model is energy dependent $\hat{q} \sim  \hat{q}_0\ln(2x(1-x)E\hat{q}_0/m_D^2)$, with $\hat{q}_0 = \alpha_s C_A T m_D^2$.
-We neglect the weak $x$-dependence and use two values $\hat{q}_0\ln(2E\hat{q}_0/m_D^2)$ and $\hat{q}_0\ln(0.5 E\hat{q}_0/m_D^2)$ in the theoretical formula.
+Equation \ref{eq:simple-jet-solution} requires a series of approximations; therefore, we make the following changes the simulation.
+First, we use the approximated splitting function for $g\rightarrow g+g$ channel and replace $\hat{q}_3$ by $\hat{q}$ of the gluon in the transport model. 
+Second, elastic broadening is essential to the implementation of the LPM effect in the model so we cannot simply turn off elastic processes completely. 
+Instead, after elastic collisions/diffusion, we rescale the energy of the parton back to its value before the collision to remove the energy loss, while keeping the momentum broadening effect.
+Moreover, we remove the finite-size effect in the simulation, which is done by performing the elastic broadening locally without propagating the parton forward in space-time.
+These procedures take the simulation closer to the physical ingredients contained in equation \ref{eq:simple-jet-eq}.
+One last issue is the determination of $\hat{q}$ used the comparison. The effective $\hat{q}$ in the model is energy dependent $\hat{q} \sim  \alpha_s C_A T m_D^2\ln(1+\sqrt{2x(1-x)\hat{q}E_0}/m_D^2)$, with $\hat{q}_0 = \alpha_s C_A T m_D^2\ln(1+6ET/m_D^2)$.
+We neglect the weak $x$-dependence and use a range
+\begin{eqnarray}
+\ln\left(
+1+\frac{\sqrt{E_0\hat{q}_0}/2}{m_D^2}
+\right) < \frac{\hat{q}}{\alpha_s C_A T m_D^2} < 
+\ln\left(
+1+\frac{\sqrt{2 E_0\hat{q}_0}}{m_D^2}
+\right)
+\end{eqnarray}
+in equation \ref{eq:simple-jet-tau} to quantify the uncertainty.
+
+We initialize the system with an ensemble of $E_0=1$ TeV gluons in an infinite medium with temperature $0.5$ GeV.
+This choice of parameters gives $L_c = \sqrt{E_0/\hat{q}} \approx 12$ fm;
+however, since we have turned off the finite-size effect in the simulation, it is legitimate to make comparison when $L\lesssim L_c$.
 In figure \ref{fig:jet_solution}, the simulated energy distribution (histograms) evolved to different path-length is compared to the simplified solutions using the two estimates $\hat{q}$ (colored bands).
-The path-length where the finite-size effect is strong is $L_c = \sqrt{E_0/\hat{q}} \sim 15$ fm, so we have only compared the results for $L>L_c$.
-We find a good agreement with the $1/\sqrt{x}$ scaling for large to model-small $x$ values, while the small-$x$ part of the simulation deviates from the expected trend.
-One sees that the initial energy of the 1 TeV gluon at $x=1$ gets transported to the small-$x$ region; eventually, a significant fraction of energy is dissipated into the medium.
+Both results are multiplied by $\sqrt{x}$ to investigate the scaling behavior at small-$x$.
+We find a good agreement with the analytic solution from large to moderate-small $x$ values. 
+The small-$x$ part of the simulation starts to deviate from the trend at later times, e.g., the uprising tail at small-$x$ for the $L=40$ fm and $L=80$ fm cases.
+One sees that the transport equation quickly builds up a power-law like energy cascade spectrum as predicted. 
+The initial energy of the 1 TeV gluon gets transported along this cascade to the small-$x$ region; eventually, the initial peak near $x=1$ completely disappears, and the cascade also starts to fade.
 
 \section{Heavy quarks and thermalization test}
 \begin{figure}
