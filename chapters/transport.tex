@@ -438,8 +438,9 @@ The two gradient operators at time $t_1$ and $t_2$ come from the action of the r
 If one neglects the mass term and rewrites $G$ as $G_0 -i G_0\Gamma_3 G$, the equation simplifies to 
 \begin{eqnarray}
 \nonumber
-\frac{dP^{a}_{bc}}{d\omega} &=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2\\ &&\nabla_{\mathbf{b}_1} \cdot\nabla_{\mathbf{b}_2} [G_0(-i\Gamma_3) G](t_2, \mathbf{b}_2;t_1, \mathbf{b}_1)|_{\mathbf{b}_1, \mathbf{b}_2 \rightarrow 0},\\
-&=& \frac{\alpha_s P^{0,a}_{bc}(x)}{x^2(1-x)^2 E^2}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2 F(t_2; t_1).
+\frac{dP^{a}_{bc}}{d\omega} &=& \frac{g^2 P^{0,a}_{bc}(x)}{\pi}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2\\ &&\frac{1}{(2x(1-x) E)^2}\nabla_{\mathbf{b}_1} \cdot\nabla_{\mathbf{b}_2} [G_0(-i\Gamma_3) G](t_2, \mathbf{b}_2;t_1, \mathbf{b}_1)|_{\mathbf{b}_1, \mathbf{b}_2 \rightarrow 0},\\
+&=& \frac{g^2 P^{0,a}_{bc}(x)}{\pi}\mathfrak{Re}\int_0^\infty dt_1 \int_{t_1}^{\infty} dt_2 F(t_2; t_1).
+\label{eq:theory-dR-2}
 \end{eqnarray}
 $F(t_2, t_1)$ is a short notation for the term to be integrated.
 
@@ -686,18 +687,18 @@ We also discuss the inclusion of the running coupling effect and mass effect for
 \label{fig:split-approx}
 \end{figure}
 \subsection{Modifying single particle evolution}
-To see how to approximate the branching using a modification to the Boltzmann equation, we first go back to the branching probability formula introduced previously \cite{CaronHuot:2010bp},
+To see how to approximate the branching using a modification to the Boltzmann equation, we first go back to the formula for the single-emission rate introduced in equation \ref{eq:theory-dR-2},
 \begin{eqnarray}
-\frac{dP^{a}_{bc}}{dx} &=& \int_0^\infty dt \frac{g^2 P(x)}{2\pi x (1-x) } \int_t^\infty dt'  F(t', t).
+\frac{dP^{a}_{bc}}{dx} &=& \int_0^\infty dt \frac{g^2 P(x)}{\pi} \int_t^\infty dt'  F(t', t).
 \label{eq:full-theory}
 \end{eqnarray}
-We have abbreviated the transition amplitude by the notation $F(t', t)$ for convenience, but always keep in mind this is a quantity that depends on $E, \omega, g$ and complete medium properties along the trajectory of the parton, including temperature and fluid velocity profiles $T(t), u^\mu(t)$.
-The obstacle towards the Boltzmann formulation is the double-time integral that is the signature of the quantum transition, which also suggests a fundamental change to the semi-classical approach.
+We have denote the function under the integration by $F(t', t)$ for convenience. 
+Though only the time argument is written explicitly, $F(t', t)$ actually depends on $x, E$ and the complete medium information along the trajectory of the hard parton: $T(t)$, $u^\mu(t)$, and the coupling strength $g(t)$.
 
-If the time-dependent wave-function is expanded in a series of the collision operator, then this transition amplitude includes the superposition of an arbitrary number of multiple-interaction with the medium.
-Though multiple collisions of the branching partons are also present in the Boltzmann simulation, the difference is that the Boltzmann multiple collisions are independent of the branching processes; therefore, they only broaden the relative transverse momentum {\it without} changing the branching probability.
+If one expands $F(t',t)$ from equation \ref{eq:theory-dR-1} in a series of products of collision operator and free propagators, then the series contains contributions from processes with an arbitrary number of multiple-interaction with the medium.
+Though multiple collisions are also present in the Boltzmann simulation, the difference is that the Boltzmann multiple collisions are independent of the branching processes; therefore, they only broaden the relative transverse momentum {\it without} changing the branching probability.
 From the leading-log approximation, we see that the branching probability should be reduced by a factor $\sim \lambda/\tau_f$.
-Our modified approach follows this simple observation, and can be summarized as follows (please also refers to figure \ref{fig:split-approx} for a schematic demonstration).
+The modified transport approach follows this simple observation and is summarized as follows (please also refers to figure \ref{fig:split-approx} for a schematic demonstration).
 \begin{itemize}
 \item[1.] Assume an incoherent branching process is generated at $t=t_0$. Do not treat the daughter partons as immediately independent.
 \item[2.] Both mother and daughter partons receive elastic broadening from interacting with the medium, which also changes the formation time of the branching.
@@ -722,8 +723,8 @@ The dimensional numbers $a$ and $b$ shall be determined later when matching the 
 
 Plug this ansatz for $F(t, t')$ into the branching probability,
 \begin{eqnarray}
-\frac{dP^{a}_{bc}}{dx} &=& \frac{1}{N}\sum_i \int_0^\infty dt \frac{g^2 P(x)}{2\pi x (1-x)} \frac{b}{\tau_i} \\  
- &=& \frac{1}{N}\sum_i \int_0^\infty dt \frac{g^2 P(x)}{2\pi x (1-x) \tilde{\lambda}} \frac{b \tilde{\lambda}}{\tau_i(t=t'+\tau_i)}.\\
+\frac{dP^{a}_{bc}}{dx} &=& \frac{1}{N}\sum_i \int_0^\infty dt \frac{g^2 P(x)}{\pi} \frac{b}{\tau_i} \\  
+ &=& \frac{1}{N}\sum_i \int_0^\infty dt \frac{g^2 P(x)}{\pi \tilde{\lambda}} \frac{b \tilde{\lambda}}{\tau_i(t=t'+\tau_i)}.\\
   &=& \frac{1}{N}\sum_i \int_0^\infty dt \frac{dR_{\textrm{incoh}}}{dx} \frac{b \tilde{\lambda}}{\tau_i(t=t'+\tau_i)}.
 \end{eqnarray}
 In the second line, we divided and multiplied back an effective mean-free-path $\tilde{\lambda} = m_D^2/\hat{q}_g$.
